@@ -1,0 +1,3 @@
+# Ignore web.dbconfig and web.config
+Web.config
+web.dbconfig

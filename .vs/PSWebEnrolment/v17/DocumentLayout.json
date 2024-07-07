@@ -1,0 +1,132 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "T:\\\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\he\\checkout_enrolments.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\1618\\checkout_enrolments.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\1618\\checkout_enrolments.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\fc\\checkout_enrolfc.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\he\\checkout_enrolments.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|T:|t:\\additional\\fc\\checkout_enrolfc.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "T:\\Web.config",
+              "RelativeDocumentMoniker": "..\\Web.config",
+              "ToolTip": "T:\\Web.config",
+              "RelativeToolTip": "..\\Web.config",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAmwEAAAABvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-07-07T00:02:39.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "checkout_enrolFC.ascx.vb",
+              "DocumentMoniker": "T:\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "ToolTip": "T:\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAuwCUCAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-07-06T23:21:44.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "checkout_enrolFC.ascx",
+              "DocumentMoniker": "T:\\additional\\FC\\checkout_enrolFC.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC.ascx",
+              "ToolTip": "T:\\additional\\FC\\checkout_enrolFC.ascx",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-07-06T23:21:42.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "checkout_enrolments.ascx.vb",
+              "DocumentMoniker": "T:\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "ToolTip": "T:\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "ViewState": "AQIAAAYBAAAAAAAAAAAAAB8BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-07-06T23:21:13.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "checkout_enrolments.ascx",
+              "DocumentMoniker": "T:\\additional\\HE\\checkout_enrolments.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_enrolments.ascx",
+              "ToolTip": "T:\\additional\\HE\\checkout_enrolments.ascx",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_enrolments.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-07-06T23:19:14.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "checkout_enrolments.ascx.vb",
+              "DocumentMoniker": "T:\\additional\\1618\\checkout_enrolments.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\1618\\checkout_enrolments.ascx.vb",
+              "ToolTip": "T:\\additional\\1618\\checkout_enrolments.ascx.vb",
+              "RelativeToolTip": "..\\additional\\1618\\checkout_enrolments.ascx.vb",
+              "ViewState": "AQIAABsBAAAAAAAAAAAAADABAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-07-06T22:56:46.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "checkout_enrolments.ascx",
+              "DocumentMoniker": "T:\\additional\\1618\\checkout_enrolments.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\1618\\checkout_enrolments.ascx",
+              "ToolTip": "T:\\additional\\1618\\checkout_enrolments.ascx",
+              "RelativeToolTip": "..\\additional\\1618\\checkout_enrolments.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-07-06T22:56:46.072Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

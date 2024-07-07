@@ -1,0 +1,939 @@
+<%@ Master Language="VB" CodeFile="UserControlMasterPage.master.vb" Inherits="UserControlMasterPage" %>
+
+<%@ Register Assembly="PSWebEnrolmentKit" Namespace="CompassCC.ProSolution.PSWebEnrolmentKit"
+    TagPrefix="cc1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server" id="header">
+
+    <meta name="keywords" content="For all your training needs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="language" content="en" />
+    <meta name="document-type" content="Public" />
+    <meta name="country" content="uk" />
+    <meta name="url" content="http://www.compasscc.com" />
+    <script src="Scripts/jquery.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/_images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/_images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/_images/favicon-16x16.png">
+    <title>Askham Bryan College &#124; Applications &amp; Enrolments</title>
+<link rel="stylesheet" href="https://use.typekit.net/vgo2vjg.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<%--    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">--%>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital@0;1&amp;display=swap" rel="stylesheet">
+
+
+    
+</head>
+<body id="body" runat="server">
+
+
+
+    <header class="banner" id="headerbanner">
+        <div class="skip-link">
+            <div class="skip-link__container">
+                <a href="#content" class="skip-link__link">Skip to main content</a>
+            </div>
+        </div>
+
+  <%--      <div class="alert-banner bg-invert" data-closable="" data-hash="b0c7c95e1d37fd0acef97ea76cbf52b5">
+            <div class="alert-banner__inner p-rel">
+                <div class="alert-banner__text">
+                    <p>Clearing 2022 is now open to find your degree for this September, find out more <a href="https://www.askham-bryan.ac.uk/clearing/">here&nbsp;</a></p>
+                </div>
+                <button class="close-button" aria-label="Dismiss alert" type="button" data-close="">
+                    <svg aria-hidden="true">
+                        <use xlink:href="_images/sprite.svg#close"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>--%>
+
+        <div class="banner__content">
+
+            <a href="/" class="logo">
+                <svg>
+                    <use xlink:href="_images/sprite.svg#logo"></use>
+                </svg>
+                <span class="show-for-sr">Go to homepage</span>
+            </a>
+
+            <button class="button-hamburger" id="primary-menu-toggle" aria-expanded="false" aria-label="Toggle Primary Menu">
+                <svg>
+                    <use xlink:href="_images/sprite.svg#hamburger"></use>
+                </svg>
+
+            </button>
+
+            <nav class="banner__nav" aria-label="Askham Bryan College Menu">
+                <div id="primary-menu">
+                    <div id="main-menu">
+                        <ul class="main-menu clicky-menu no-bullet">
+                            <li>
+                                <button aria-controls="study-submenu" aria-expanded="false" id="studysubmenubutton">
+                                    Study                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu submenu--wide" id="study-submenu" aria-hidden="true">
+                                    <div>
+                                        <h2>Browse by level of study</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/further-education-landing/">16-19+</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/higher-education-landing/">University Centre Degree Study </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/apprenticeships/">Apprenticeships</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/short-courses-and-skills-training/">Short Courses and Skills Training</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/t-levels/">T-Level Qualifications </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h2>Browse by Department</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/agriculture/">Agriculture</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/animal-management/">Animal Management</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/forestry-and-arboriculture/">Arboriculture and Forestry </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/equine/">Equine</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/floristry/">Floristry </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/courses/foundation-learning/">Foundation Learning</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/horticulture/">Horticulture </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/land-and-wildlife/">Land and Wildlife </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/motorsport/">Motorsport</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/outreach/">Outreach (Prince's Trust)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/public-services/">Public Services </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/sport/">Sport</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/departments/veterinary-nursing/">Veterinary Nursing</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h2>Campuses</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-york-campus/">York</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-middlesbrough-campus/">Middlesbrough</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-saltaire-campus/">Saltaire</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-wakefield/">Wakefield</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-newcastle-gateshead/">Newcastle (Gateshead)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button aria-controls="student-experience-submenu" aria-expanded="false"  id="studentexperiencesubmenubutton">
+                                    Student Experience                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu submenu--wide" id="student-experience-submenu" aria-hidden="true">
+                                    <div>
+                                        <h2>Student Life at College</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-life/">Student Life</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/studying-in-york/">Studying in York</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/accommodation/">Accommodation</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-services/">Student Services</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/inclusive-services/">Inclusive Services</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-finance/">Student Finance</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/employer-and-career-support/">Student Careers Support</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h2>University Centre Askham Bryan (UCAB) Information </h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/accommodation-ucab/">Accommodation (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-life-ucab/">Student Life (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/studying-in-york/">Studying in York</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/inclusive-services-ucab/">Inclusive Services (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/fees-and-finance-ucab/">Fees and Finance (UCAB)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h2>Campuses</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-york-campus/">York</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-middlesbrough-campus/">Middlesbrough</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-saltaire-campus/">Saltaire </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-wakefield/">Wakefield</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-newcastle-gateshead/">Newcastle</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button aria-controls="apply-submenu" aria-expanded="false" id="applysubmenubutton">
+                                    Apply                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu submenu--wide" id="apply-submenu" aria-hidden="true">
+                                    <div>
+                                        <h2>Apply</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/apply/">How to Apply </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/schools-engagement/">Applications Team</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button aria-controls="about-submenu" aria-expanded="false"  id="aboutsubmenubutton">
+                                    About                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu submenu--wide" id="about-submenu" aria-hidden="true">
+                                    <div>
+                                        <h2>About</h2>
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/about-us/welcome/">Welcome</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/history/">Our History</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/governance/">Governance</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/college-policies/">College Policies</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/equality-and-diversity/">Equality and Diversity</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/feedback-and-complaints/">Feedback and Complaints</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/publication-scheme/">Publication Scheme</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/rbru/">RBRU</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="sub-main-menu">
+                        <ul class="main-menu main-menu--border clicky-menu no-bullet">
+                            <li>
+                                <button aria-controls="information-for-submenu" aria-expanded="false"  id="informationsubmenubutton">
+                                    Information for                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu" id="information-for-submenu" aria-hidden="true">
+                                    <ul class="no-bullet">
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/schools-engagement/">Schools Engagement</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/higher-education-landing/">University Centre Study</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/parents-information/">Parents</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/careers-support/">Employers</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/conferencing/">Conferencing</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button aria-controls="visit-us-submenu" aria-expanded="false"  id="visitussubmenubutton">
+                                    Visit us                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu" id="visit-us-submenu" aria-hidden="true">
+                                    <ul class="no-bullet">
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/open-days/">Open Days</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/virtual-tour/">Virtual Tour</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/3d-map/">3D Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/our-prospectuses/">Our Prospectuses</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button aria-controls="courses-submenu" aria-expanded="false" id="coursessubmenubutton">
+                                    Courses                                                                                                                       
+                                    <svg>
+                                        <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                    </svg></button>
+                                <div class="submenu" id="courses-submenu" aria-hidden="true">
+                                    <ul class="no-bullet">
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/course-listing/">College Courses</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/higher-education-course-listing/">UCAB Degree Courses</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/course-listing-apprenticeships/">Apprenticeships</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.askham-bryan.ac.uk/all-course-search/">All Course Search</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="button-hamburger" id="secondary-menu-toggle" aria-expanded="false" aria-label="Toggle secondary menu">
+
+                        <svg>
+                            <use xlink:href="_images/sprite.svg#hamburger"></use>
+                        </svg>
+
+
+                    </button>
+                    <div id="secondary-menu" class="">
+                        <div class="secondary-menu__container">
+                            <ul class="main-menu clicky-menu no-bullet">
+                                <li>
+                                    <button aria-controls="events-submenu" aria-expanded="false">
+                                        Events                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="events-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/open-days/">Open Events</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/events-by-date/">All Events</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/virtual-tour/">Virtual Tour</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/3d-map/">3D Map</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="campuses-submenu" aria-expanded="false">
+                                        Campuses                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="campuses-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-york-campus/">York Campus</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-middlesbrough-campus/">Middlesbrough</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-saltaire-campus/">Saltaire</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-wakefield/">Wakefield</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/askham-bryan-college-newcastle-gateshead/">Newcastle (Gateshead)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="employers-submenu" aria-expanded="false">
+                                        Employers                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="employers-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/apprenticeships/">Apprenticeships</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/careers-support/">Employer and Career Support</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/rbru/">RBRU</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="college-applicants-submenu" aria-expanded="false">
+                                        College Applicants                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="college-applicants-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/course-listing/">Courses</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/transport/">Transport</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/accommodation/">Accommodation</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-services/">Student Services</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/inclusive-services/">Inclusive Services (support)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-finance/">Student Finance</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/employer-and-career-support/">Student Careers Support</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-life/">Student Life</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="undergraduates-submenu" aria-expanded="false">
+                                        Undergraduates                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="undergraduates-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/higher-education-landing/">University Centre Askham Bryan (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/how-to-apply-ucab/">How to Apply (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/university-centre-open-days/">University Centre Open Days</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/postgraduate-study/">Postgraduate Study</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/accommodation-ucab/">Accommodation (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/fees-and-finance-ucab/">Fees and Finance (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/inclusive-services-ucab/">Student Support Services (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-life-ucab/">Student Life (UCAB)</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/employability-and-employment-ucab/">Employability and Employment (UCAB)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="news-&amp;-media-submenu" aria-expanded="false">
+                                        News &amp; Media                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="news-&amp;-media-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/news-listing/">News</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/student-stories/">Student Stories</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button aria-controls="additional-links-submenu" aria-expanded="false">
+                                        Additional Links                                        
+                                                                                           
+                                        <svg>
+                                            <use xlink:href="_images/sprite.svg#dropdown-arrow"></use>
+                                        </svg></button>
+                                    <div class="submenu" id="additional-links-submenu" aria-hidden="true">
+                                        <ul class="no-bullet">
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/short-courses-and-skills-training/">Short Courses and Skills Training</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://abcwildlifepark.co.uk/">Wildlife Park</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.eteach.com/careers/askham-bryan-ac/">Job Vacancies</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/college-policies/">College Policies</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.askham-bryan.ac.uk/covid-19-updates/">Covid-19 Updates</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="secondary-menu__events show-for-xlarge">
+                                <h2 class="secondary-menu__title">Upcoming Events</h2>
+                                <div class="card-event">
+                                    <div class="card-event__date">
+                                        <span class="card-event__day fw-b">12</span>
+                                        <span class="card-event__month display-6 fw-l"><span>Nov </span>2022</span>
+                                    </div>
+                                    <div class="card-event__text">
+                                        <h3 class="card-event__title"><a href="https://www.askham-bryan.ac.uk/events/open-morning-12-november-2022-2/">Open Morning – 12 November 2022</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="card-event">
+                                    <div class="card-event__date">
+                                        <span class="card-event__day fw-b">26</span>
+                                        <span class="card-event__month display-6 fw-l"><span>Nov </span>2022</span>
+                                    </div>
+                                    <div class="card-event__text">
+                                        <h3 class="card-event__title"><a href="https://www.askham-bryan.ac.uk/events/ucab-open-morning-26-nov-2022/">On Campus UCAB Open Morning – 26 November 2022</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="banner__buttons">
+                <a href="https://www.askham-bryan.ac.uk/all-course-search/" class="button-search is-active" id="js-search-toggle">
+                    <button class="button-search" id="js-search-toggle" aria-expanded="false" aria-label="Toggle site search">
+                        <span class="show-for-sr">Toggle Search</span>
+                        <svg>
+                            <use xlink:href="_images/sprite.svg#icon-search"></use>
+                        </svg>
+
+                    </button>
+                </a>
+            <%--    <div class="site-search" id="js-search">
+                    <form action="https://www.askham-bryan.ac.uk/">
+                        <svg class="show-for-xlarge">
+                            <use xlink:href="_images/sprite.svg#icon-search"></use>
+                        </svg>
+                        <label>
+                            <span class="show-for-sr">Site Search</span>
+                            <input id="site-search__keyword" name="s" type="text" placeholder="Search Askham Bryan College" data-swplive="true" autocomplete="off" aria-owns="searchwp_live_search_results_62cd2cc19f9a1" aria-autocomplete="both" aria-label="When autocomplete results are available use up and down arrows to review and enter to go to the desired page. Touch device users, explore by touch or with swipe gestures.">
+                        </label>
+                    </form>
+                    <button class="site-search__close" id="js-search-close" aria-label="Close">
+                        <svg>
+                            <use xlink:href="_images/sprite.svg#close"></use>
+                        </svg>
+                    </button>
+                </div>--%>
+            </div>
+        </div>
+    </header>
+
+
+
+    <form id="form1" runat="server">
+
+        <div style='display: none;'>
+            Style sheets must be enabled to view this page as it was intended.
+        </div>
+
+        <div class="containerbody">
+            <div class="body-content" id="content">
+                <asp:ContentPlaceHolder ID="MainContentPlaceholder" runat="server">
+                </asp:ContentPlaceHolder>
+
+
+
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+    <footer class="site-footer">
+        <div class="site-footer__inner inner">
+            <div class="site-footer__grid grid-x grid-margin-x medium-up-2 large-up-5">
+                <div class="cell">
+                    <ul class="no-bullet">
+                        <li><a href="https://www.askham-bryan.ac.uk/about-us/">About us</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/all-course-search/">All course search</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/apply/">Apply</a></li>
+                    </ul>
+                </div>
+                <div class="cell">
+                    <h2>Audience</h2>
+                    <ul class="no-bullet">
+                        <li><a href="https://www.askham-bryan.ac.uk/further-education-landing/">16-19+</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/higher-education-landing/">UCAB</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/short-courses-and-skills-training/">Short Courses and Skills Training</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/schools-engagement/">Schools Engagement</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/parents-information/">Parents Information</a></li>
+                        <li><a href="https://www.eteach.com/careers/askham-bryan-ac/">Job Vacancies</a></li>
+                    </ul>
+                </div>
+                <div class="cell">
+                    <h2>Student &amp; Staff</h2>
+                    <ul class="no-bullet">
+                        <li><a href="https://www.askham-bryan.ac.uk/staff-access/">Staff Access</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/student-access/">Student Access</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/term-dates/">Term Dates</a></li>
+                        <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=A_D0_MohlkGoHefjRlrlf4hUyMc-behGmBXSXxPtDWBURTUyTk9RNFRRTEk5TE1RRjFTS0xTVElBNiQlQCN0PWcu">Absence reporting</a></li>
+                    </ul>
+                </div>
+                <div class="cell">
+                    <h2>Quick Links</h2>
+                    <ul class="no-bullet">
+                        <li><a href="https://www.askham-bryan.ac.uk/apply/">Apply</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/events-by-date/">All Events</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/our-prospectuses/">Our Prospectuses</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/transport/">Transport</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/accommodation/">Accommodation</a></li>
+                        <li><a href="https://abcwildlifepark.co.uk/">Wildlife Park</a></li>
+                        <li><a href="https://store.askham-bryan.ac.uk/">Online Store</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/press-and-media-enquiries/">Press and Media Enquiries</a></li>
+                        <li><a href="https://www.askham-bryan.ac.uk/rbru/">RBRU</a></li>
+                    </ul>
+                </div>
+                <div class="cell">
+                    <h2>Contact Us</h2>
+                    <p>
+                        Askham Bryan College<br>
+                        Askham Bryan<br>
+                        York<br>
+                        YO23 3FR<br>
+                        <br>
+                        <a href="tel:01904 772277">01904 772277</a><br>
+                        <a href="mailto:enquiries@askham-bryan.ac.uk">enquiries@askham-bryan.ac.uk</a>
+                    </p>
+                </div>
+            </div>
+            <div class="site-footer__misc">
+                <div class="site-footer__social social">
+                    <h2 style="margin-right: 20px">Follow us on social</h2>
+                    <ul class="social__list no-bullet">
+                        <li class="social__facebook"><a href="https://www.facebook.com/AskhamBryanCollege/" aria-label="Follow us on Facebook" target="_blank">
+                            <svg width="10" height="21" viewBox="0 0 10 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.51563 21V10.4988H9.41442L9.79858 6.87999H6.51563L6.52055 5.06875C6.52055 4.12492 6.61023 3.61919 7.96585 3.61919H9.77806V0H6.87885C3.39643 0 2.17071 1.7555 2.17071 4.7077V6.8804H0V10.4992H2.17071V21H6.51563Z" fill="#3E3631"></path>
+                            </svg>
+
+                        </a></li>
+                        <li class="social__instagram"><a href="https://www.instagram.com/askhambryancollege/?hl=en" aria-label="Follow us on Instagram" target="_blank">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2953 0C7.49949 0 7.14862 0.0122246 6.05055 0.0621955C4.95462 0.112381 4.20656 0.285885 3.55201 0.540458C2.87493 0.803395 2.30059 1.15512 1.72839 1.72753C1.15576 2.29973 0.804038 2.87408 0.540243 3.55094C0.285027 4.2057 0.111309 4.95398 0.0619811 6.04948C0.012868 7.14755 0 7.49863 0 10.2944C0 13.0902 0.0124391 13.44 0.0621955 14.5381C0.112595 15.634 0.286099 16.3821 0.540458 17.0366C0.803609 17.7137 1.15534 18.2881 1.72775 18.8603C2.29973 19.4329 2.87408 19.7855 3.55072 20.0484C4.2057 20.303 4.95398 20.4765 6.04969 20.5267C7.14777 20.5766 7.49842 20.5889 10.294 20.5889C13.09 20.5889 13.4398 20.5766 14.5379 20.5267C15.6338 20.4765 16.3827 20.303 17.0377 20.0484C17.7146 19.7855 18.2881 19.4329 18.86 18.8603C19.4327 18.2881 19.7844 17.7137 20.0482 17.0369C20.3013 16.3821 20.475 15.6338 20.5265 14.5383C20.5758 13.4402 20.5886 13.0902 20.5886 10.2944C20.5886 7.49863 20.5758 7.14777 20.5265 6.04969C20.475 4.95377 20.3013 4.2057 20.0482 3.55115C19.7844 2.87408 19.4327 2.29973 18.86 1.72753C18.2874 1.15491 17.7148 0.80318 17.0371 0.540458C16.3808 0.285885 15.6323 0.112381 14.5364 0.0621955C13.4383 0.0122246 13.0887 0 10.2921 0H10.2953ZM9.3718 1.85516C9.64589 1.85473 9.95172 1.85516 10.2953 1.85516C13.0439 1.85516 13.3697 1.86503 14.4551 1.91436C15.4588 1.96025 16.0036 2.12796 16.3664 2.26887C16.8468 2.45546 17.1894 2.6785 17.5494 3.03881C17.9097 3.39911 18.1328 3.74226 18.3198 4.22267C18.4607 4.58512 18.6286 5.12986 18.6743 6.13357C18.7236 7.21878 18.7344 7.54477 18.7344 10.2921C18.7344 13.0394 18.7236 13.3654 18.6743 14.4506C18.6284 15.4543 18.4607 15.9991 18.3198 16.3615C18.1332 16.8419 17.9097 17.184 17.5494 17.5441C17.1891 17.9044 16.8471 18.1274 16.3664 18.314C16.004 18.4556 15.4588 18.6229 14.4551 18.6688C13.3699 18.7181 13.0439 18.7288 10.2953 18.7288C7.54647 18.7288 7.2207 18.7181 6.13549 18.6688C5.13178 18.6224 4.58704 18.4547 4.22394 18.3138C3.74354 18.1272 3.40039 17.9042 3.04008 17.5439C2.67978 17.1836 2.45673 16.8413 2.26972 16.3607C2.12881 15.9982 1.96089 15.4535 1.9152 14.4498C1.86588 13.3646 1.85601 13.0386 1.85601 10.2895C1.85601 7.54048 1.86588 7.2162 1.9152 6.131C1.9611 5.12729 2.12881 4.58254 2.26972 4.21966C2.4563 3.73926 2.67978 3.39611 3.04008 3.0358C3.40039 2.6755 3.74354 2.45245 4.22394 2.26544C4.58682 2.12389 5.13178 1.95661 6.13549 1.91049C7.08515 1.8676 7.45318 1.85473 9.3718 1.85259V1.85516ZM15.7904 3.56455C15.1084 3.56455 14.555 4.11723 14.555 4.79945C14.555 5.48146 15.1084 6.03478 15.7904 6.03478C16.4724 6.03478 17.0257 5.48146 17.0257 4.79945C17.0257 4.11745 16.4724 3.56412 15.7904 3.56412V3.56455ZM10.2953 5.00768C7.37576 5.00768 5.00868 7.37475 5.00868 10.2943C5.00868 13.2138 7.37576 15.5798 10.2953 15.5798C13.2148 15.5798 15.5811 13.2138 15.5811 10.2943C15.5811 7.37475 13.2146 5.00768 10.2951 5.00768H10.2953ZM10.2953 6.86309C12.1903 6.86309 13.7268 8.39932 13.7268 10.2946C13.7268 12.1896 12.1903 13.726 10.2953 13.726C8.40005 13.726 6.86382 12.1896 6.86382 10.2946C6.86382 8.39932 8.40005 6.86309 10.2953 6.86309Z" fill="#3E3631"></path>
+                            </svg>
+
+                        </a></li>
+                        <li class="social__twitter"><a href="https://twitter.com/askhambryan?lang=en" aria-label="Follow us on Twitter" target="_blank">
+                            <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.38729 4.6819L9.4278 5.34978L8.75273 5.268C6.29551 4.9545 4.14881 3.89133 2.32614 2.10576L1.43506 1.21978L1.20554 1.87404C0.719491 3.33249 1.03002 4.87272 2.04261 5.90863C2.58266 6.4811 2.46115 6.56289 1.52957 6.22213C1.20554 6.11308 0.922009 6.0313 0.895007 6.07219C0.800498 6.1676 1.12453 7.40797 1.38105 7.89866C1.73208 8.58018 2.44765 9.24807 3.23072 9.64335L3.89228 9.95685L3.10921 9.97048C2.35314 9.97048 2.32614 9.98411 2.40715 10.2703C2.67717 11.1563 3.74377 12.0968 4.93188 12.5057L5.76896 12.792L5.03989 13.2281C3.95979 13.8551 2.69067 14.2095 1.42156 14.2368C0.813999 14.2504 0.314453 14.3049 0.314453 14.3458C0.314453 14.4821 1.96161 15.2454 2.92019 15.5453C5.79596 16.4313 9.21178 16.0496 11.777 14.5366C13.5997 13.4598 15.4224 11.3199 16.2729 9.24807C16.732 8.14401 17.191 6.12671 17.191 5.15896C17.191 4.53196 17.2315 4.45018 17.9876 3.70051C18.4331 3.26434 18.8517 2.78728 18.9327 2.65097C19.0677 2.39199 19.0542 2.39199 18.3656 2.62371C17.218 3.03262 17.056 2.9781 17.6231 2.36473C18.0416 1.92856 18.5411 1.138 18.5411 0.906285C18.5411 0.865394 18.3386 0.933546 18.1091 1.05622C17.8661 1.19252 17.326 1.39698 16.921 1.51965L16.1919 1.75137L15.5304 1.30157C15.1658 1.05622 14.6528 0.783612 14.3828 0.70183C13.6942 0.511005 12.6411 0.538265 12.02 0.756351C10.3324 1.36972 9.26578 2.95084 9.38729 4.6819Z" fill="#3E3631"></path>
+                            </svg>
+
+                        </a></li>
+                        <li class="social__youtube"><a href="https://www.youtube.com/c/AskhamBryanCollegeVideo" aria-label="Follow us on YouTube" target="_blank">
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.2941 2.88499C20.0574 1.97538 19.3597 1.25911 18.4738 1.01601C16.8683 0.574219 10.4301 0.574219 10.4301 0.574219C10.4301 0.574219 3.99179 0.574219 2.38622 1.01601C1.50032 1.25911 0.802651 1.97538 0.565881 2.88499C0.135742 4.53354 0.135742 7.97326 0.135742 7.97326C0.135742 7.97326 0.135742 11.4129 0.565881 13.0615C0.802651 13.9711 1.50032 14.6874 2.38622 14.9306C3.99179 15.3723 10.4301 15.3723 10.4301 15.3723C10.4301 15.3723 16.8683 15.3723 18.4738 14.9306C19.3597 14.6874 20.0574 13.9711 20.2941 13.0615C20.7244 11.4129 20.7244 7.97326 20.7244 7.97326C20.7244 7.97326 20.7244 4.53354 20.2941 2.88499Z" fill="#3E3631"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 11.5121V5.07812L13.6472 8.29522L8.5 11.5121Z" fill="white"></path>
+                            </svg>
+
+                        </a></li>
+                    </ul>
+                </div>
+                <ul class="site-footer__links no-bullet">
+                    <li><a href="https://www.askham-bryan.ac.uk/accessi/">Accessibility</a></li>
+                    <li><a href="https://www.askham-bryan.ac.uk/?page_id=4756&amp;preview=true">Privacy Policy</a></li>
+                    <li><a href="https://www.askham-bryan.ac.uk/cookies-policy/">Cookies Policy</a></li>
+                    <li><a href="https://www.askham-bryan.ac.uk/sitemap_index.xml">Sitemap</a></li>
+                    <li><a href="https://www.askham-bryan.ac.uk/zero-tolerance/">Zero Tolerance Statement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__logos">
+            <div class="site-footer__inner inner">
+                <ul class="no-bullet">
+                    <li>
+                        <img src="https://bloom-digital.s3.eu-west-2.amazonaws.com/askham/wp-content/uploads/2021/06/21122052/logo-eu.jpg" alt="" loading="lazy">
+                    </li>
+                    <li>
+                        <img src="https://bloom-digital.s3.eu-west-2.amazonaws.com/askham/wp-content/uploads/2021/06/21122049/logo-rural.jpg" alt="" loading="lazy">
+                    </li>
+                    <li>
+                        <img src="https://bloom-digital.s3.eu-west-2.amazonaws.com/askham/wp-content/uploads/2021/06/21122048/logo-landex.jpg" alt="" loading="lazy">
+                    </li>
+                    <li>
+                        <img src="https://bloom-digital.s3.eu-west-2.amazonaws.com/askham/wp-content/uploads/2021/06/21122048/logo-ofsted.jpg" alt="" loading="lazy">
+                    </li>
+                    <li>
+                        <img src="https://bloom-digital.s3.eu-west-2.amazonaws.com/askham/wp-content/uploads/2021/06/21122048/logo-matrix.jpg" alt="" loading="lazy">
+                    </li>
+                    <li>
+                        <img src="" alt="" loading="lazy">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+
+     <script>
+
+         //rebuilt menu's (plugin doesnt work) , done by looping through odd and even clicks, changing class at attr of id's
+
+
+         //Full Menu
+         $('.button-hamburger').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#secondary-menu').removeClass('is-active');
+             
+              
+
+             } else {
+
+                 $('#secondary-menu').addClass('is-active');
+               
+            
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //Study menu
+
+         $('#studysubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#study-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#study-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //Student Experience menu
+
+         $('#studentexperiencesubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#student-experience-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#student-experience-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //Apply menu
+
+         $('#applysubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#apply-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#apply-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+
+         //About menu
+
+         $('#aboutsubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#about-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#about-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //information-for menu
+
+         $('#informationsubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#information-for-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#information-for-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //visit-us menu
+
+         $('#visitussubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#visit-us-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#visit-us-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+         //Courses menu
+
+         $('#coursessubmenubutton').click(function () {
+             var clicks = $(this).data('clicks');
+
+             if (clicks) {
+                 $('#courses-submenu').attr('aria-hidden', 'true');
+
+
+             } else {
+                 $('#courses-submenu').attr('aria-hidden', 'false');
+
+
+             }
+             $(this).data("clicks", !clicks);
+         });
+
+
+     </script>
+    
+   
+
+
+</body>
+</html>
