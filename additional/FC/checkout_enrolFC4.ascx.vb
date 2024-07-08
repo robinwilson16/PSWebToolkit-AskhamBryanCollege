@@ -456,16 +456,25 @@ Partial Class checkout_directapply
             End If
         End If
 
-            'If HasEHCP.SelectedValue = "" Then
-            '    Dim a As New CustomValidator
-            '    a.IsValid = False
-            '    a.ErrorMessage = "Do you have an Educational Health and Care Plan (EHCP)?"
-            '    Me.Page.Validators.Add(a)
-            '    HasEHCP.Style.Add("border", "1px solid red")
-            'End If
+        'If Not IsNothing(fldEthnicGroupID) Then
+        '    If String.IsNullOrEmpty(fldEthnicGroupID.Value) Then
+        '        fldEthnicGroupIDValidator.ErrorMessage = "Ethnic Group  must not be blank"
+        '        fldEthnicGroupIDValidator.IsValid = False
+        '        fldEthnicGroupIDValidator.CssClass = "error alert alert-danger"
+        '        fldEthnicGroupID.CssClass = "ErrorInput"
+        '    End If
+        'End If
+
+        'If HasEHCP.SelectedValue = "" Then
+        '    Dim a As New CustomValidator
+        '    a.IsValid = False
+        '    a.ErrorMessage = "Do you have an Educational Health and Care Plan (EHCP)?"
+        '    Me.Page.Validators.Add(a)
+        '    HasEHCP.Style.Add("border", "1px solid red")
+        'End If
 
 
-            MyBase.ValidateControl()
+        MyBase.ValidateControl()
     End Sub
 
 

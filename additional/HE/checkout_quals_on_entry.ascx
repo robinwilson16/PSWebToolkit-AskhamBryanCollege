@@ -32,6 +32,7 @@
     <div class="row">
         <div class="col-sm-12 columns form-group"> 
             <cc1:studentenrolmentfield id="fldPriorAttainmentLevelID" runat="server" customcaption="What is the highest level of qualification you already have?" ExcludedIDValues="98" isrequired="true" labelwidth="450" StudentEnrolmentFieldType="PriorAttainmentLevelID" ClientIDMode="Static"></cc1:studentenrolmentfield>
+            <asp:CustomValidator ID="fldPriorAttainmentLevelIDValidator" runat="server"></asp:CustomValidator>
         <span id="showItem"><a class="btn btn-primary" role="button">Unsure? Click me to help you decide</a></span>
             </div>
     </div>  
@@ -159,7 +160,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
     </div>
 
-    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row"></asp:button>
+    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row" CausesValidation="false"></asp:button>
 
     </div>
 </div>

@@ -11,7 +11,7 @@
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_parent_guardian.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_enrolments2.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Further Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_quals_on_entry.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
-        <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-paperclip"></i> Attachments</li>
+        <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-paperclip"></i> Documents/Evidence</li>
     </ol>
 </nav>
 
@@ -20,7 +20,7 @@
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-paperclip"></i> Attachments</h4>
+    <h4><i class="fa-solid fa-paperclip"></i> Documents/Evidence</h4>
 
      <p>
         <strong>Please use this page to upload evidence to support your enrolment.  You can take a picture using your phone as long as the image is clear.</strong>    
@@ -59,6 +59,7 @@
                         <div class="form-group col-md-6 col-xl-2 text-end mt-auto">
                             <asp:LinkButton ID="btnUpload" runat="server" CssClass="btn btn-primary" CausesValidation="true"><i class="fa-solid fa-file-import"></i> Upload</asp:LinkButton>
                         </div>
+                        <asp:CustomValidator ID="ddlTypeOfEvidenceValidator" runat="server"></asp:CustomValidator>
                     </div>
                 </div>
             </div>

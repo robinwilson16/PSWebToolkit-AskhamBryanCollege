@@ -52,6 +52,17 @@ Partial Class checkout_directapply
     End Sub
 
     Public Overrides Sub ValidateControl()
+
+        'Prior Attainment Level
+        If Not IsNothing(fldPriorAttainmentLevelID) Then
+            If String.IsNullOrEmpty(fldPriorAttainmentLevelID.Value) Then
+                fldPriorAttainmentLevelIDValidator.ErrorMessage = "Prior Attainment Level must not be blank"
+                fldPriorAttainmentLevelIDValidator.IsValid = False
+                fldPriorAttainmentLevelIDValidator.CssClass = "error alert alert-danger"
+                fldPriorAttainmentLevelID.CssClass = "ErrorInput"
+            End If
+        End If
+
         Dim rowCount As Integer = 0
 
         Dim availableQualsDataTable As New QualsOnEntryAvailableQualsDataTable
@@ -160,7 +171,7 @@ Partial Class checkout_directapply
 
                 qualID.StudentQualsOnEntryFieldType = StudentQualsOnEntryFieldType.QualID
                 qualID.StudentQualsOnEntryRowNumber = i
-                qualID.CustomCaption = "Qualification"
+                qualID.CustomCaption = "Subject"
                 'qualID.LabelWidth = 0
                 'qualIDCell.Controls.Add(qualID)
 
@@ -193,6 +204,7 @@ Partial Class checkout_directapply
                 removeQOEButton.CssClass = "btn btn-danger"
                 removeQOEButton.CommandArgument = i
                 removeQOEButton.CommandName = "RemoveQOEButton"
+                removeQOEButton.CausesValidation = False
 
                 AddHandler removeQOEButton.Command, AddressOf RemoveQOEButton_Click
 
@@ -221,13 +233,14 @@ Partial Class checkout_directapply
                 subjectBox.Controls.Add(subject)
                 qoeEntryRow.Controls.Add(subjectBox)
 
-                Dim predictedGradeBox As New HtmlGenericControl("DIV")
-                predictedGradeBox.Attributes.Add("class", "form-group col-md-3 col-xl")
-                predictedGradeBox.Controls.Add(predictedGrade)
-                qoeEntryRow.Controls.Add(predictedGradeBox)
+                'Dim predictedGradeBox As New HtmlGenericControl("DIV")
+                'predictedGradeBox.Attributes.Add("class", "form-group col-md-3 col-xl")
+                'predictedGradeBox.Controls.Add(predictedGrade)
+                'qoeEntryRow.Controls.Add(predictedGradeBox)
 
                 Dim gradeBox As New HtmlGenericControl("DIV")
-                gradeBox.Attributes.Add("class", "form-group col-md-3 col-xl")
+                'gradeBox.Attributes.Add("class", "form-group col-md-3 col-xl")
+                gradeBox.Attributes.Add("class", "form-group col-md-6 col-xl")
                 gradeBox.Controls.Add(grade)
                 qoeEntryRow.Controls.Add(gradeBox)
 
@@ -279,6 +292,9 @@ Partial Class checkout_directapply
         If rowDeleted = True Then
             HttpContext.Current.Session("intQualRows") = intCurrentQuals - 1
         End If
+
+        'Added redirect otherwise session variable was still showing old value
+        Response.Redirect(GetResourceValue("checkout_quals_on_entry_1618_aspx"))
     End Sub
 
     Protected Sub btnContinue_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinue.Click

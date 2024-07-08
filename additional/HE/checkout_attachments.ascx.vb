@@ -2,6 +2,7 @@
 Imports CompassCC.CCCSystem.CCCCommon
 Imports System.Web.UI
 Imports System.Linq
+Imports Svg
 ''' <summary>
 ''' CCCPS-75837: A sample step to depict integration of new Attachemnt option for user to upload data against Enrolment and Application requests.
 ''' </summary>
@@ -11,6 +12,9 @@ Partial Class webcontrols_checkout_attachments
     Public OfferingID As Integer
     Public Course As Course
     Public IsAttachmentRequired As Boolean = True
+    Public UploadButtonClicked As Boolean = False
+    Public HasSelectedEvidenceType As Boolean = True
+    Public FileIsValid As Boolean = False
 
     ''' <summary>
     ''' To keep last uploaded file id. This will be needed to delete attachment.
@@ -64,75 +68,132 @@ Partial Class webcontrols_checkout_attachments
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
     Private Sub btnUpload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpload.Click
-        FileChosen.Text = "N" 'Reset back to No
+        Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic", ".pdf", ".doc", ".docx"}
 
+        FileChosen.Text = "N" 'Reset back to No
+        UploadButtonClicked = True
+
+
+        If HasSelectedEvidenceType = True Then
+            Me.fuAttachment.ValidateFile()
+
+            Dim rowAttachment = WorkingData.EnrolmentRequestAttachments.NewRow
+            _lastAttachmentID -= 1
+            With rowAttachment
+
+                Dim ValidatorAppend As String = .TypeOfEvidence
+                .AttachmentID = _lastAttachmentID
+                .TypeOfEvidence = ddlTypeOfEvidence.SelectedValue
+                .Notes = txtNotes.Text.Trim
+                .Attachment = fuAttachment.FileBytes
+                .FileName = fuAttachment.FileName
+                .Size = fuAttachment.FileBytes.Length
+                hiddenvalidator.Value = (hiddenvalidator.Value + ValidatorAppend)
+                ''test.Text = (ddlTypeOfEvidence.SelectedValue)
+
+                If CCCAttachmentThumbnailGenerator.FilenameIndicatesFileIsCompatibleImage(fuAttachment.FileName) Then
+                    Try
+                        .ImageThumb = CCCAttachmentThumbnailGenerator.CreateThumbnailAsByteArray(.Attachment, 96)
+                    Catch ex As Exception
+                        ' Cannot create thumb nail- ignore error
+                        .ImageThumb = Nothing ' No thumb-nail
+                    End Try
+                End If
+                .CreatedDate = DateTime.Now
+            End With
+
+            'Check Image is Valid
+            If Not IsNothing(rowAttachment.FileName) Then
+                If String.IsNullOrEmpty(rowAttachment.FileName) Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
+                    ddlTypeOfEvidenceValidator.IsValid = False
+                    ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                ElseIf rowAttachment.FileName.LastIndexOf(".") <= 0 Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.IsValid = False
+                    ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                ElseIf validExtensions.Contains(rowAttachment.FileName.Substring(rowAttachment.FileName.LastIndexOf(".")).ToLower) = False Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.IsValid = False
+                    ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                Else
+                    WorkingData.EnrolmentRequestAttachments.AddRow(rowAttachment)
+                    FileIsValid = True
+                    'Redirecting to self instead of just resetting controls to avoid issue of attachment being added on browser refresh.
+                    Response.Redirect(GetResourceValue("checkout_attachments_HE_aspx"))
+                End If
+            End If
+        End If
 
         'trNoItems.Visible = False
         'Me.Page.Validate()
         ''Following line is important to perform validations on File Upload control based on setup done on control.
-        Me.fuAttachment.ValidateFile()
+        'Me.fuAttachment.ValidateFile()
 
         'If Not Me.Page.IsValid Then
         '    Return
         'End If
 
-        If ddlTypeOfEvidence.SelectedValue = "" Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please select Type of Evidence for the file you are uploading"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            Exit Sub
-        End If
+        'If ddlTypeOfEvidence.SelectedValue = "" Then
+        '    Dim v As New CustomValidator
+        '    v.ErrorMessage = "Please select Type of Evidence for the file you are uploading"
+        '    v.IsValid = False
+        '    Me.Page.Validators.Add(v)
+        '    Exit Sub
+        'End If
 
-        Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic, .pdf, .doc, .docx"}
-        If Not IsNothing(fuAttachment) Then
-            'If String.IsNullOrEmpty(PhotoPath.Value) And IsPhotoRequired = True Then
-            '    PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
-            '    PhotoPathValidator.IsValid = False
-            '    PhotoPathValidator.CssClass = "error alert alert-danger"
-            '    FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
-            'End If
-            If fuAttachment.FileName.ToString.Length = 0 Then
-                'Do Nothing
-            ElseIf fuAttachment.FileName.ToString.LastIndexOf(".") <= 0 Then
-                FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid file"
-                FilePathValidator.IsValid = False
-                FilePathValidator.CssClass = "error alert alert-danger"
-                fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
-            ElseIf validExtensions.Contains(fuAttachment.FileName.ToString.Substring(fuAttachment.FileName.ToString.LastIndexOf(".")).ToLower) = False Then
-                FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid file"
-                FilePathValidator.IsValid = False
-                FilePathValidator.CssClass = "error alert alert-danger"
-                fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
-            End If
-        End If
+        'Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic, .pdf, .doc, .docx"}
+        'If Not IsNothing(fuAttachment) Then
+        '    'If String.IsNullOrEmpty(PhotoPath.Value) And IsPhotoRequired = True Then
+        '    '    PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
+        '    '    PhotoPathValidator.IsValid = False
+        '    '    PhotoPathValidator.CssClass = "error alert alert-danger"
+        '    '    FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
+        '    'End If
+        '    If fuAttachment.FileName.ToString.Length = 0 Then
+        '        'Do Nothing
+        '    ElseIf fuAttachment.FileName.ToString.LastIndexOf(".") <= 0 Then
+        '        FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid file"
+        '        FilePathValidator.IsValid = False
+        '        FilePathValidator.CssClass = "error alert alert-danger"
+        '        fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+        '    ElseIf validExtensions.Contains(fuAttachment.FileName.ToString.Substring(fuAttachment.FileName.ToString.LastIndexOf(".")).ToLower) = False Then
+        '        FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid file"
+        '        FilePathValidator.IsValid = False
+        '        FilePathValidator.CssClass = "error alert alert-danger"
+        '        fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+        '    End If
+        'End If
 
-        Dim rowAttachment = WorkingData.EnrolmentRequestAttachments.NewRow
-        _lastAttachmentID -= 1
-        With rowAttachment
+        'Dim rowAttachment = WorkingData.EnrolmentRequestAttachments.NewRow
+        '_lastAttachmentID -= 1
+        'With rowAttachment
 
-            Dim ValidatorAppend As String = .TypeOfEvidence
-            .AttachmentID = _lastAttachmentID
-            .TypeOfEvidence = ddlTypeOfEvidence.SelectedValue
-            ' .Notes = txtNotes.Text.Trim
-            .Attachment = fuAttachment.FileBytes
-            .FileName = fuAttachment.FileName
-            .Size = fuAttachment.FileBytes.Length
-            hiddenvalidator.Value = (hiddenvalidator.Value + ValidatorAppend)
-            If CCCAttachmentThumbnailGenerator.FilenameIndicatesFileIsCompatibleImage(fuAttachment.FileName) Then
-                Try
-                    .ImageThumb = CCCAttachmentThumbnailGenerator.CreateThumbnailAsByteArray(.Attachment, 96)
-                Catch ex As Exception
-                    ' Cannot create thumb nail- ignore error
-                    .ImageThumb = Nothing ' No thumb-nail
-                End Try
-            End If
-            .CreatedDate = DateTime.Now
-        End With
-        WorkingData.EnrolmentRequestAttachments.AddRow(rowAttachment)
+        '    Dim ValidatorAppend As String = .TypeOfEvidence
+        '    .AttachmentID = _lastAttachmentID
+        '    .TypeOfEvidence = ddlTypeOfEvidence.SelectedValue
+        '    ' .Notes = txtNotes.Text.Trim
+        '    .Attachment = fuAttachment.FileBytes
+        '    .FileName = fuAttachment.FileName
+        '    .Size = fuAttachment.FileBytes.Length
+        '    hiddenvalidator.Value = (hiddenvalidator.Value + ValidatorAppend)
+        '    If CCCAttachmentThumbnailGenerator.FilenameIndicatesFileIsCompatibleImage(fuAttachment.FileName) Then
+        '        Try
+        '            .ImageThumb = CCCAttachmentThumbnailGenerator.CreateThumbnailAsByteArray(.Attachment, 96)
+        '        Catch ex As Exception
+        '            ' Cannot create thumb nail- ignore error
+        '            .ImageThumb = Nothing ' No thumb-nail
+        '        End Try
+        '    End If
+        '    .CreatedDate = DateTime.Now
+        'End With
+        'WorkingData.EnrolmentRequestAttachments.AddRow(rowAttachment)
         ''Redirecting to self instead of just resetting controls to avoid issue of attachment being added on browser refresh.
 
-        Response.Redirect(GetResourceValue("checkout_attachments_HE_aspx"))
+        'Response.Redirect(GetResourceValue("checkout_attachments_HE_aspx"))
     End Sub
 
     ''' <summary>
@@ -159,33 +220,48 @@ Partial Class webcontrols_checkout_attachments
 
     Public Overrides Sub ValidateControl()
 
-        'File picked but upload not pressed
-        If Not IsNothing(btnUpload) Then
-            If FileChosen.Text = "Y" Then
-                btnUploadValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please press Upload once you have picked a file before pressing Next"
-                btnUploadValidator.IsValid = False
-                btnUploadValidator.CssClass = "error alert alert-danger"
-                'btnUpload.CssClass = "ErrorInput"
+        'Type of Evidence
+        If Not IsNothing(ddlTypeOfEvidence) And UploadButtonClicked = True Then
+            If ddlTypeOfEvidence.SelectedValue = "" Then
+                ddlTypeOfEvidenceValidator.ErrorMessage = "Please select Type of Evidence for the file you are uploading"
+                ddlTypeOfEvidenceValidator.IsValid = False
+                ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                ddlTypeOfEvidence.CssClass = "ErrorInput"
+
+                HasSelectedEvidenceType = False
+                Return
             End If
         End If
 
-
-        'File Validation
-        Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic"}
-
-        If Not IsNothing(StudentDetailUserDefined25) Then
-            If WorkingData.EnrolmentRequestAttachments.Count = 0 And CType(StudentDetailUserDefined25.Value, String) = "" And IsAttachmentRequired = True Then
-                FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                FilePathValidator.IsValid = False
-                FilePathValidator.CssClass = "error alert alert-danger"
-                fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+        If UploadButtonClicked = False Then
+            'File picked but upload not pressed
+            If Not IsNothing(btnUpload) Then
+                If FileChosen.Text = "Y" Then
+                    btnUploadValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please press Upload once you have picked a file before pressing Next"
+                    btnUploadValidator.IsValid = False
+                    btnUploadValidator.CssClass = "error alert alert-danger"
+                    'btnUpload.CssClass = "ErrorInput"
+                End If
             End If
-        Else
-            If WorkingData.EnrolmentRequestAttachments.Count = 0 And IsAttachmentRequired = True Then
-                FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                FilePathValidator.IsValid = False
-                FilePathValidator.CssClass = "error alert alert-danger"
-                fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+
+
+            'File Validation
+            Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic", ".pdf", ".doc", ".docx"}
+
+            If Not IsNothing(StudentDetailUserDefined25) Then
+                If WorkingData.EnrolmentRequestAttachments.Count = 0 And (CType(StudentDetailUserDefined25.Value, String) = "" Or CType(StudentDetailUserDefined25.Value, String) = "OK") And IsAttachmentRequired = True Then
+                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    FilePathValidator.IsValid = False
+                    FilePathValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                End If
+            Else
+                If WorkingData.EnrolmentRequestAttachments.Count = 0 And IsAttachmentRequired = True Then
+                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    FilePathValidator.IsValid = False
+                    FilePathValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                End If
             End If
         End If
 

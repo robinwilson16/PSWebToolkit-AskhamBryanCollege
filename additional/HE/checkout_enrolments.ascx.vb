@@ -14,11 +14,19 @@ Partial Class webcontrols_checkout_enrolments
     Public Course As Course
     Public ReferenceDate As Date
     Public ConsentDate As Date
+    Public ShowBackButton As Boolean = False
 
     Protected Overrides Sub OnLoad(e As EventArgs)
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+
+        'Show back button if arrived here from search
+        If Not IsNothing(Request.UrlReferrer) Then
+            If Request.UrlReferrer.ToString.Contains("Dept=") Or Request.UrlReferrer.ToString.Contains("Search=") Then
+                ShowBackButton = True
+            End If
+        End If
 
         ReferenceDate = CDate(Today().Year & "-08-31")
         ConsentDate = ReferenceDate.AddYears(-18)

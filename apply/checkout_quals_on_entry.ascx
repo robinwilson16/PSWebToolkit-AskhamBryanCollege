@@ -53,7 +53,7 @@
 
     </div>
 
-    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row"></asp:button>
+    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row" CausesValidation="false"></asp:button>
 
     </div>
    

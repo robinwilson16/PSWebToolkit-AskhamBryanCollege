@@ -616,19 +616,19 @@ Partial Class checkout_directapply
 
         Dim redirectString As String = String.Empty
 
-        Me.Page.Validate()
+        'Me.Page.Validate()
 
 
-        If Me.Page.IsValid Then
+        'If Me.Page.IsValid Then
 
 
-            CheckData()
+        CheckData()
 
 
             redirectString = GetResourceValue("checkout_enrolFC_aspx")
             Response.Redirect(redirectString)
 
-        End If
+        'End If
 
 
 

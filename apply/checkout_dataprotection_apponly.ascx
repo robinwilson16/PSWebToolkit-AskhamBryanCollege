@@ -20,12 +20,12 @@
     <ol class="breadcrumb breadcrumb-arrow p-0">
         <li class="icon breadcrumb-item"><a href="https://www.askham-bryan.ac.uk/" class="pl-3"><i class="fa-solid fa-house"></i> <span class="d-none d-sm-inline">ABC Home</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/courseapply.ascx&OfferingID=0"><i class="fa-regular fa-folder-open"></i> <span class="d-none d-sm-inline"><%=Course.TeamName %></span></a></li>
-<li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/courseapply.ascx&Dept=<%=Course.TeamCode %>"><i class="fa-solid fa-book"></i> <span class="d-none d-sm-inline"<%=Course.CourseCode%> - <%=Course.CourseInformationTitle %></span></a></li>
+<li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/courseapply.ascx&Dept=<%=Course.TeamCode %>"><i class="fa-solid fa-book"></i> <span class="d-none d-sm-inline"><%=Course.CourseCode%> - <%=Course.CourseInformationTitle %></span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_applications.ascx"><i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Personal Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/supporting_you.ascx"><i class="fa-solid fa-hand-holding-medical"></i> <span class="d-none d-sm-inline">Supporting You</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_other_contacts.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_quals_on_entry.ascx"><i class="fa-solid fa-award"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
-        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_attachments.ascx"><i class="fa-solid fa-paperclip"></i> <span class="d-none d-sm-inline">Attachments</span></a></li>
+        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_attachments.ascx"><i class="fa-solid fa-paperclip"></i> <span class="d-none d-sm-inline">Documents/Evidence</span></a></li>
         <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-pen-to-square"></i> Declaration</li>
     </ol>
 </nav>

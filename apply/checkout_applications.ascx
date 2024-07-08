@@ -182,6 +182,19 @@
         </div>
     </div>
 
+    <div class="alert alert-primary" role="alert">
+        <div class="row">
+            <div class="col-md-auto d-flex align-items-center">
+                <h3><i class="fa-brands fa-apple"></i></h3>
+            </div>
+            <div class="col-md">
+                <p>
+                    Please note, if you upload an HEIC (Apple iPhone) format file it is not currently possible to show you a preview of this file above so please check your device to ensure the photo you sent us is suitable rather than relying on the preview above.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="mb-3">
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
             ControlToValidate="FileUpload1"
@@ -210,8 +223,10 @@
     <div class="row gap-3">
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
+                <%If ShowBackButton = True Then %>
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
                 <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <%End If %>
             </span>
         </div>
         <div class="col-md text-end">
@@ -365,7 +380,7 @@
 
         getAddress.autocomplete(
             'txtAddress1',
-            'ValpcU5HuEilvydhXVDAFw41587',
+            'jxO2lYlUvUO86UTwrjA57w42776',
             /*options*/{
                 output_fields: {
                     formatted_address_0: 'txtAddress1',  /* The id of the element bound to 'formatted_address[0]' */

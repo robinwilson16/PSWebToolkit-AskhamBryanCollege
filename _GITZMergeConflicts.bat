@@ -1,7 +1,7 @@
 @echo off
-echo ****************************************************************************************
-echo * GIT Merge Conflicts from https://github.com/robinwilson16/SSRS-HartlepoolCollegeOfFE *
-echo ****************************************************************************************
+echo *********************************************************************************************
+echo * GIT Merge Conflicts from https://github.com/robinwilson16/PSWebToolkit-AskhamBryanCollege *
+echo *********************************************************************************************
 echo .
 echo .
 echo Current conflicts to be merged:

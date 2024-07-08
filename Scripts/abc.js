@@ -107,7 +107,19 @@
             }
         });
     }
+
+    //Prevent Enter button in input fields submitting forms
+    let inputBoxes = document.querySelectorAll(`#aspnetForm input[type=text]`);
+    inputBoxes.forEach(function (elem) {
+        elem.addEventListener(`keydown`, function (event) {
+            if (event.key === "Enter") {
+                // Cancel the default action to submit the form and do nothing
+                event.preventDefault();
+            }
+        });
+    });
 });
+
 
 //Sort a select by the text options
 function sortSelectByText(dropDown) {
@@ -272,6 +284,7 @@ function addSearchableDropDown(elem) {
 
         let changeEvent = new Event(`change`);
         let blurEvent = new Event(`blur`);
+        let tabEvent = new KeyboardEvent('keydown', { 'key': 'Tab' });
 
         //If existing element is changed programatically ensure new element is kept up to date
         elem.addEventListener(`change`, function (event) {
@@ -288,8 +301,16 @@ function addSearchableDropDown(elem) {
             inputBox.value = ``;
         });
 
+        inputBox.addEventListener(`keydown`, function (event) {
+            if (event.key === "Enter") {
+                // Cancel the default action to submit the form and do nothing
+                event.preventDefault();
+                inputBox.dispatchEvent(tabEvent);
+            }
+        });
+
         //On blur update original element value to value selected in datalist
-        inputBox.addEventListener(`blur`, function (event) {
+        inputBox.addEventListener(`change`, function (event) {
             //Try to set select based on value such as if selected from datalist or tab key
             let selectedIndex = [...elem.options].findIndex(option => option.value === inputBox.value);
 
@@ -418,6 +439,7 @@ function addSearchableDropDownWithButton(elem, buttonText) {
 
         let changeEvent = new Event(`change`);
         let blurEvent = new Event(`blur`);
+        let tabEvent = new KeyboardEvent('keydown', { 'key': 'Tab' });
 
         //Create Input Group and Button
         let inputButton = document.createElement(`button`);
@@ -457,8 +479,16 @@ function addSearchableDropDownWithButton(elem, buttonText) {
             inputBox.value = ``;
         });
 
+        inputBox.addEventListener(`keydown`, function (event) {
+            if (event.key === "Enter") {
+                // Cancel the default action to submit the form and do nothing
+                event.preventDefault();
+                inputBox.dispatchEvent(tabEvent);
+            }
+        });
+
         //On blur update original element value to value selected in datalist
-        inputBox.addEventListener(`blur`, function (event) {
+        inputBox.addEventListener(`change`, function (event) {
             //Try to set select based on value such as if selected from datalist or tab key
             let selectedIndex = [...elem.options].findIndex(option => option.value === inputBox.value);
 

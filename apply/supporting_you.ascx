@@ -103,7 +103,7 @@ Do you have any spent cautions or convictions, which are not protected as define
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-flag"></i> Background</h4>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" ClientIDMode="Static" runat="server" IsRequired="true" LabelWidth="300"
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" ClientIDMode="Static" runat="server" IsRequired="false" LabelWidth="300"
 	        CustomCaption="What is your ethnic origin?" />
         <asp:CustomValidator ID="fldEthnicGroupIDValidator" runat="server"></asp:CustomValidator>
     </div>

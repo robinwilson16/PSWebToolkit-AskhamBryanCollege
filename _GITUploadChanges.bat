@@ -1,10 +1,7 @@
 @echo off
-echo *****************************************************************************
-echo * GIT Upload to https://github.com/robinwilson16/SSRS-HartlepoolCollegeOfFE *
-echo *****************************************************************************
-echo .
-echo Deleting any temp data files generated from previewing reports...
-DEL /S /Q *.data
+echo **********************************************************************************
+echo * GIT Upload to https://github.com/robinwilson16/PSWebToolkit-AskhamBryanCollege *
+echo **********************************************************************************
 echo .
 echo Adding files to repository...
 git add .

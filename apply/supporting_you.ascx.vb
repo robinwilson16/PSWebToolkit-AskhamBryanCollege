@@ -133,14 +133,14 @@ Partial Class checkout_applications
             End If
         End If
 
-        If Not IsNothing(fldEthnicGroupID) Then
-            If IsNothing(fldEthnicGroupID.Value) Then
-                fldEthnicGroupIDValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select your ethnicity"
-                fldEthnicGroupIDValidator.IsValid = False
-                fldEthnicGroupIDValidator.CssClass = "error alert alert-danger"
-                fldEthnicGroupID.CssClass = "ErrorInput"
-            End If
-        End If
+        'If Not IsNothing(fldEthnicGroupID) Then
+        '    If IsNothing(fldEthnicGroupID.Value) Then
+        '        fldEthnicGroupIDValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select your ethnicity"
+        '        fldEthnicGroupIDValidator.IsValid = False
+        '        fldEthnicGroupIDValidator.CssClass = "error alert alert-danger"
+        '        fldEthnicGroupID.CssClass = "ErrorInput"
+        '    End If
+        'End If
 
         MyBase.ValidateControl()
     End Sub

@@ -105,7 +105,7 @@
            </div>
        <div class="col-sm-12 columns form-group"> 
             <%--<cc1:StudentEnrolmentField StudentEnrolmentFieldType="StudentDetailUserDefined7" ID="StudentEnrolmentField16" CustomFieldType="Lookup" runat="server"  IsRequired="false"  LabelWidth="350" CustomCaption="What Gender do you identify as?" /> <%-- Was UDF7 --%>
-           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="GenderType" ID="GenderType" runat="server"  IsRequired="false"  LabelWidth="350" CustomCaption="What Gender do you identify as?" ClientIDMode="Static" /> <%-- Was UDF7 --%>
+           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="GenderType" ID="GenderType" runat="server"  IsRequired="false" ExcludedIDValues="99" LabelWidth="350" CustomCaption="What Gender do you identify as?" ClientIDMode="Static" /> <%-- Was UDF7 --%>
            </div>
 <%--       <div class="col-sm-12 columns form-group"> 
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="StudentDetailUserDefined8" ID="StudentEnrolmentField17" CustomFieldType="Lookup" runat="server"  IsRequired="false"  LabelWidth="450" CustomCaption="Do you identify as the same gender as registered at birth?" />
@@ -254,20 +254,20 @@
 
   <div class="row">
       <div class="col-sm-6 columns form-group">
-            <cc1:StudentEnrolmentField ID="AltAddress1" runat="server" CustomCaption="Address Line 1" IsRequired="false" StudentEnrolmentFieldType="AltAddress1" LabelWidth="300" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField runat="server" ID="AltAddress1" StudentEnrolmentFieldType="AltAddress1" IsRequired="false" ClientIDMode="Static" CustomCaption="First Line of Address" Placeholder="Start typing your address here..." />
             <asp:CustomValidator ID="AltAddress1Validator" runat="server"></asp:CustomValidator>
         </div>
       <div class="col-sm-6 columns form-group">
-            <cc1:StudentEnrolmentField ID="AltAddress2" runat="server" CustomCaption="Address Line 2" IsRequired="false" StudentEnrolmentFieldType="AltAddress2" LabelWidth="300" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField runat="server" ID="AltAddress2" StudentEnrolmentFieldType="AltAddress2" ClientIDMode="Static" CustomCaption="Second Line of Address" />
         </div>
    </div>
 
   <div class="row">
       <div class="col-sm-6 columns form-group">
-            <cc1:StudentEnrolmentField ID="AltAddress3" runat="server" CustomCaption="Address Line 3" IsRequired="false" StudentEnrolmentFieldType="AltAddress3" LabelWidth="300" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField runat="server" ID="AltAddress3" StudentEnrolmentFieldType="AltAddress3" IsRequired="false" ClientIDMode="Static" CustomCaption="Town" />
         </div>
       <div class="col-sm-6 columns form-group">
-            <cc1:StudentEnrolmentField ID="AltAddress4" runat="server" CustomCaption="Address Line 4" IsRequired="false" StudentEnrolmentFieldType="AltAddress4" LabelWidth="300" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField runat="server" ID="AltAddress4" StudentEnrolmentFieldType="AltAddress4" IsRequired="false" ClientIDMode="Static" CustomCaption="County" />
         </div>
    </div>
 
@@ -300,8 +300,10 @@
     <div class="row gap-3">
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
+                <%If ShowBackButton = True Then %>
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
                 <cc1:CCCButton ID="btnBack" LinkResource="courseenrol1618_aspx" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <%End If %>
             </span>
         </div>
         <div class="col-md text-end">
@@ -399,5 +401,77 @@
         if (emailConfirmLabel != null) {
             emailConfirmLabel.innerHTML = `Confirm Personal Email`;
         }
+
+        // Get Address IO - Main Address
+        document.addEventListener("getaddress-autocomplete-suggestions", function (e) {
+            console.log(e.suggestions);
+        });
+
+        document.addEventListener("getaddress-autocomplete-suggestions-failed", function (e) {
+            console.log(e.status);
+            console.log(e.message);
+        });
+
+        document.addEventListener("getaddress-autocomplete-address-selected", function (e) {
+            console.log(e.address);
+
+            //postcode.dispatchEvent(postCodeKeyup);
+        });
+
+        document.addEventListener("getaddress-autocomplete-address-selected-failed", function (e) {
+            console.log(e.status);
+            console.log(e.message);
+        });
+
+        getAddress.autocomplete(
+            'txtAddress1',
+            'jxO2lYlUvUO86UTwrjA57w42776',
+            {
+                output_fields: {
+                    formatted_address_0: 'txtAddress1',  /* The id of the element bound to 'formatted_address[0]' */
+                    town_or_city: 'txtAddress3',  /* The id of the element bound to 'town_or_city' */
+                    county: 'txtAddress4',  /* The id of the element bound to 'county' */
+                    postcode: 'postcode'  /* The id of the element bound to 'postcode' */
+                },
+                id_prefix: 'getAddress-autocomplete-native',  /* The id of the textbox and list container */
+                delay: 200, /* millisecond delay between keypress and API call */
+                minimum_characters: 2,  /* minimum characters to initiate an API call */
+                select_on_focus: true,  /* if true, highlights textbox characters on focus*/
+                alt_autocomplete_url: undefined,  /* alterative local autocomplete URL (when API key is not used) */
+                alt_get_url: undefined,  /* alterative local get URL (when API key is not used) */
+                suggestion_count: 6, /* number of retreived suggestions (max 20) */
+                filter: undefined, /* the suggestion filter (see Autocomplete API)*/
+                bind_output_fields: true, /* if true, bind the output_fields to the address*/
+                input_focus_on_select: true,  /* if true, sets the focus to the textbox after selecting an address*/
+                debug: false, /* if true, logs behavior */
+                enable_get: true /* if true, retreives address on select */
+            }
+        );
+
+        //Alt Address
+        getAddress.autocomplete(
+            'txtAltAddress1',
+            'jxO2lYlUvUO86UTwrjA57w42776',
+            {
+                output_fields: {
+                    formatted_address_0: 'txtAltAddress1',  /* The id of the element bound to 'formatted_address[0]' */
+                    town_or_city: 'txtAltAddress3',  /* The id of the element bound to 'town_or_city' */
+                    county: 'txtAltAddress4',  /* The id of the element bound to 'county' */
+                    postcode: 'AltPostcode'  /* The id of the element bound to 'postcode' */
+                },
+                id_prefix: 'getAddress-autocomplete-native',  /* The id of the textbox and list container */
+                delay: 200, /* millisecond delay between keypress and API call */
+                minimum_characters: 2,  /* minimum characters to initiate an API call */
+                select_on_focus: true,  /* if true, highlights textbox characters on focus*/
+                alt_autocomplete_url: undefined,  /* alterative local autocomplete URL (when API key is not used) */
+                alt_get_url: undefined,  /* alterative local get URL (when API key is not used) */
+                suggestion_count: 6, /* number of retreived suggestions (max 20) */
+                filter: undefined, /* the suggestion filter (see Autocomplete API)*/
+                bind_output_fields: true, /* if true, bind the output_fields to the address*/
+                input_focus_on_select: true,  /* if true, sets the focus to the textbox after selecting an address*/
+                debug: false, /* if true, logs behavior */
+                enable_get: true /* if true, retreives address on select */
+            }
+        );
     });
 </script>

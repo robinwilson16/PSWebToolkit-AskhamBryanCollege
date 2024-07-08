@@ -18,7 +18,7 @@
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_parent_guardian.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_enrolments2.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Further Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_quals_on_entry.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
-        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_attachments.ascx"><i class="fa-solid fa-paperclip"></i> <span class="d-none d-sm-inline">Attachments</span></a></li>
+        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_attachments.ascx"><i class="fa-solid fa-paperclip"></i> <span class="d-none d-sm-inline">Documents/Evidence</span></a></li>
         <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-camera"></i> Photo Upload</li>
     </ol>
 </nav>
@@ -81,6 +81,19 @@
                         </ul>    
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-primary" role="alert">
+        <div class="row">
+            <div class="col-md-auto d-flex align-items-center">
+                <h3><i class="fa-brands fa-apple"></i></h3>
+            </div>
+            <div class="col-md">
+                <p>
+                    Please note, if you upload an HEIC (Apple iPhone) format file it is not currently possible to show you a preview of this file above so please check your device to ensure the photo you sent us is suitable rather than relying on the preview above.
+                </p>
             </div>
         </div>
     </div>

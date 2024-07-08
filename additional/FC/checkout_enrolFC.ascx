@@ -160,8 +160,10 @@
         <div class="row gap-3">
             <div class="col-md">
                 <span class="d-grid gap-2 d-md-block">
+                    <%If ShowBackButton = True Then %>
                     <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
                     <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                    <%End If %>
                 </span>
             </div>
             <div class="col-md text-end">

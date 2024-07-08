@@ -173,7 +173,7 @@
     </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-paperclip"></i> Attachments</h4>
+    <h4><i class="fa-solid fa-paperclip"></i> Documents/Evidence</h4>
 
     <p>
         Please provide a Purchase Order, or letter of Confirmation from the Employer/someone else
@@ -202,6 +202,7 @@
                         <div class="form-group col-md-6 col-xl-2 text-end mt-auto">
                             <asp:LinkButton ID="btnUpload" runat="server" CssClass="btn btn-primary" CausesValidation="true"><i class="fa-solid fa-file-import"></i> Upload</asp:LinkButton>
                         </div>
+                        <asp:CustomValidator ID="ddlTypeOfEvidenceValidator" runat="server"></asp:CustomValidator>
                     </div>
                 </div>
             </div>
@@ -260,6 +261,7 @@
         </ItemTemplate>
     </asp:Repeater>
 
+    <asp:HiddenField runat="server" ID="hiddenvalidator" Visible="true"/>
     <p class="mt-5"><strong>Not Able To Upload Your File/s</strong></p>
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined25" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined25" ClientIDMode="Static" CustomCaption="Can't upload your file/s at the moment - please select a reason why" />

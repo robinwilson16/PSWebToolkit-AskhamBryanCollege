@@ -112,7 +112,7 @@ Partial Class webcontrols_checkout_employment
 
             If Not IsDate(WorkingData.EnrolmentRequestEmploymentHistoryRow.DateFrom) Then
                 Dim v As New CustomValidator
-                v.ErrorMessage = "Employment from date must be proivded"
+                v.ErrorMessage = "Employment from date must be provided"
                 v.IsValid = False
                 Me.Page.Validators.Add(v)
             End If

@@ -16,6 +16,9 @@
     <p>
         Thank you for using this online enrolments website. We will be in contact with you shortly.
     </p>
+    <p>
+        Once we have processed your enrolment form you will receive an email from us containing your learning agreement, which you must sign and return. Please look out for this email.
+    </p>
     <hr />
     <p class="mb-0 text-center"><a class="btn btn-primary" href="https://www.askham-bryan.ac.uk/" role="button"><i class="fa-solid fa-door-open"></i> Return to the Askham-Bryan College Website</a></p>
 </div>

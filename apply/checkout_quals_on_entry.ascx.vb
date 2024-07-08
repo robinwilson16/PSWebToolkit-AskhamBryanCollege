@@ -181,7 +181,7 @@ Partial Class checkout_quals_on_entry
 
                 qualID.StudentQualsOnEntryFieldType = StudentQualsOnEntryFieldType.QualID
                 qualID.StudentQualsOnEntryRowNumber = i
-                qualID.CustomCaption = "Qualification"
+                qualID.CustomCaption = "Subject"
                 'qualID.LabelWidth = 0
                 'qualIDCell.Controls.Add(qualID)
 
@@ -214,6 +214,7 @@ Partial Class checkout_quals_on_entry
                 removeQOEButton.CssClass = "btn btn-danger"
                 removeQOEButton.CommandArgument = i
                 removeQOEButton.CommandName = "RemoveQOEButton"
+                removeQOEButton.CausesValidation = False
 
                 AddHandler removeQOEButton.Command, AddressOf RemoveQOEButton_Click
 
@@ -299,6 +300,9 @@ Partial Class checkout_quals_on_entry
         If rowDeleted = True Then
             HttpContext.Current.Session("intQualRows") = intCurrentQuals - 1
         End If
+
+        'Added redirect otherwise session variable was still showing old value
+        Response.Redirect(GetResourceValue("quals_on_entry_abc"))
     End Sub
 
     Private Sub btnContinue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnContinue.Click

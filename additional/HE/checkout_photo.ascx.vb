@@ -105,7 +105,7 @@ Partial Class webcontrols_checkout_photo
         Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".heic"}
 
         If Not IsNothing(StudentDetailUserDefined24) Then
-            If WorkingData.EnrolmentRequestRow.Photo Is Nothing And CType(StudentDetailUserDefined24.Value, String) = "" And IsPhotoRequired = True Then
+            If WorkingData.EnrolmentRequestRow.Photo Is Nothing And (CType(StudentDetailUserDefined24.Value, String) = "" Or CType(StudentDetailUserDefined24.Value, String) = "OK") And IsPhotoRequired = True Then
                 PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"

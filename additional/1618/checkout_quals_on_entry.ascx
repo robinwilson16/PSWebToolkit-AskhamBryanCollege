@@ -32,6 +32,7 @@
     <div class="row">
         <div class="col-sm-12 columns form-group">
             <cc1:studentenrolmentfield id="fldPriorAttainmentLevelID" runat="server" customcaption="What is the highest level of qualification you already have?" ExcludedIDValues="07,08,09,10,98" isrequired="true" labelwidth="450" StudentEnrolmentFieldType="PriorAttainmentLevelID" ClientIDMode="Static"></cc1:studentenrolmentfield>
+            <asp:CustomValidator ID="fldPriorAttainmentLevelIDValidator" runat="server"></asp:CustomValidator>
         <span id="showItem"><a class="btn btn-primary" role="button">Unsure? Click me to help you decide</a></span>
             </div>
     </div>  
@@ -122,7 +123,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
     </div>
 
-    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row"></asp:button>
+    <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row" CausesValidation="false"></asp:button>
     </div>
 
     <hr />
@@ -131,11 +132,11 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
 <%--    <p><strong>We MUST</strong> know about your level of English (language and literature) and Mathematics <strong>you already have.</strong></p>--%>
 <%--    <p>Do you have functional skills L2 in English or an alternative English qualification:</p>--%>
-    <p>Please confirm if you have achieved your GCSE English (language / literature) and GCSE Mathematics by Year 11.</p>
+    <p>Please confirm if you have achieved your GCSE English (language /literature) and GCSE Mathematics grade 9-4 by the end of Year 11.</p>
 
   <div class="row">
              <div class="col-sm-12 columns form-group"> 
-           <cc1:StudentEnrolmentField id="StudentEnrolmentField2" runat="server" customcaption="Yes, I have achieved GCSE English by Year 11"  labelwidth="300" StudentEnrolmentFieldType="AchievedEnglishGCSEByEndOfYear11"></cc1:StudentEnrolmentField>
+           <cc1:StudentEnrolmentField id="StudentEnrolmentField2" runat="server" customcaption="Yes, I have achieved GCSE English grade 9-4 by Year 11"  labelwidth="300" StudentEnrolmentFieldType="AchievedEnglishGCSEByEndOfYear11"></cc1:StudentEnrolmentField>
           </div>
    </div>
 
@@ -143,7 +144,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
   <div class="row">
              <div class="col-sm-12 columns form-group"> 
-           <cc1:StudentEnrolmentField id="StudentEnrolmentField1" runat="server" customcaption="Yes, I have achieved GCSE Maths by Year 11" labelwidth="300" StudentEnrolmentFieldType="AchievedMathsGCSEByEndOfYear11"></cc1:StudentEnrolmentField>
+           <cc1:StudentEnrolmentField id="StudentEnrolmentField1" runat="server" customcaption="Yes, I have achieved GCSE Maths grade 9-4 by Year 11" labelwidth="300" StudentEnrolmentFieldType="AchievedMathsGCSEByEndOfYear11"></cc1:StudentEnrolmentField>
           </div>
    </div>
 
@@ -165,11 +166,11 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
         </div>
     </div>
 
-      <div class="row">
+<%--      <div class="row">
         <div class="col-sm-12 columns form-group"> 
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="StillAtLastSchool" ID="fldStillAtSchool" runat="server" Visible="true" LabelWidth="400" IsRequired="false"  CustomCaption="Tick, if you are still at school?"/>
           </div>
-   </div>
+   </div>--%>
 
       <div class="row">
         <div class="col-sm-12 columns form-group"> 

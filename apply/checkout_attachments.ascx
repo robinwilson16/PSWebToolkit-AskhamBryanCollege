@@ -23,7 +23,7 @@
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/supporting_you.ascx"><i class="fa-solid fa-hand-holding-medical"></i> <span class="d-none d-sm-inline">Supporting You</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_other_contacts.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/apply/checkout_quals_on_entry.ascx"><i class="fa-solid fa-award"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
-        <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-paperclip"></i> Attachments</li>
+        <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-paperclip"></i> Documents/Evidence</li>
     </ol>
 </nav>
 
@@ -32,7 +32,7 @@
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-paperclip"></i> Attachments</h4>
+    <h4><i class="fa-solid fa-paperclip"></i> Documents/Evidence</h4>
 
     <p>
         Please use this page to upload evidence to support your request.        
@@ -66,6 +66,7 @@
                         <div class="form-group col-md-6 col-xl-2 text-end mt-auto">
                             <asp:LinkButton ID="btnUpload" runat="server" CssClass="btn btn-primary" CausesValidation="true"><i class="fa-solid fa-file-import"></i> Upload</asp:LinkButton>
                         </div>
+                        <asp:CustomValidator ID="ddlTypeOfEvidenceValidator" runat="server"></asp:CustomValidator>
                     </div>
                 </div>
             </div>
@@ -124,6 +125,7 @@
         </ItemTemplate>
     </asp:Repeater>
 
+    <asp:HiddenField runat="server" ID="hiddenvalidator" Visible="true"/>
     <p class="mt-5"><strong>Not Able To Upload Your File/s</strong></p>
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined25" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined25" ClientIDMode="Static" CustomCaption="Can't upload your file/s at the moment - please select a reason why" />

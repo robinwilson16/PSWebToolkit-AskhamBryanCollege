@@ -176,7 +176,8 @@
     <p><strong>For equality of opportunity monitoring, please select to describe your cultural background (groups based on 2011 census).</strong></p>
 
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="StudentEnrolmentField2" CssClass="form-input" runat="server" CustomCaption="Ethnic origin" IsRequired="false" LabelWidth="300" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" CssClass="form-input" runat="server" CustomCaption="Ethnic origin" IsRequired="false" LabelWidth="300" />
+        <asp:CustomValidator ID="fldEthnicGroupIDValidator" runat="server"></asp:CustomValidator>
     </div>
 
     </div>

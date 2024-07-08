@@ -58,6 +58,17 @@ Partial Class webcontrols_checkout_parent_guardian
             Me.Page.Validators.Add(v)
 
         End If
+
+        'Parental Relationship
+        If Not IsNothing(fldParentRelationshipID) Then
+            If String.IsNullOrEmpty(fldParentRelationshipID.Value) Then
+                fldParentRelationshipIDValidator.ErrorMessage = "Parental Relationship must not be blank"
+                fldParentRelationshipIDValidator.IsValid = False
+                fldParentRelationshipIDValidator.CssClass = "error alert alert-danger"
+                fldParentRelationshipID.CssClass = "ErrorInput"
+            End If
+        End If
+
         ''only mandatory if under 19, check the age in UDF
         'Response.Write(WorkingData.EnrolmentRequestRow.StudentDetailUserDefined1)
 

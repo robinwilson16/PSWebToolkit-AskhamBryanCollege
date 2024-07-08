@@ -70,6 +70,16 @@ Partial Class webcontrols_checkout_parent_guardian
 
         End If
 
+        'Parental Relationship
+        If Not IsNothing(fldParentRelationshipID) Then
+            If String.IsNullOrEmpty(fldParentRelationshipID.Value) Then
+                fldParentRelationshipIDValidator.ErrorMessage = "Parental Relationship must not be blank"
+                fldParentRelationshipIDValidator.IsValid = False
+                fldParentRelationshipIDValidator.CssClass = "error alert alert-danger"
+                fldParentRelationshipID.CssClass = "ErrorInput"
+            End If
+        End If
+
         If Len(postcode.Value) = 0 Then
             Dim v As New CustomValidator
             v.ErrorMessage = "Postcode must not be blank"

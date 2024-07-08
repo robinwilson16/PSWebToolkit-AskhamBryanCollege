@@ -80,6 +80,7 @@
         </div>
          <div class="col-sm-6 columns form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentRelationshipID" ID="fldParentRelationshipID" runat="server" IsRequired="true"  CustomCaption="Relationship" ClientIDMode="Static" />
+             <asp:CustomValidator ID="fldParentRelationshipIDValidator" runat="server"></asp:CustomValidator>
             </div>
      </div>
    
@@ -93,24 +94,24 @@
       <div id="divAddresslines" runat="server" visible="true">
   <div class="row">
     <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress1" ID="txtAddress1" runat="server" IsRequired="true" CustomCaption="First Line of Address" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress1" ID="txtAddress1" runat="server" IsRequired="true" CustomCaption="First Line of Address" ClientIDMode="Static" Placeholder="Start typing your address here..." />
     </div>
         <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress2" ID="txtAddress2" runat="server" IsRequired="false"  CustomCaption="Second Line of Address"  />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress2" ID="txtAddress2" runat="server" IsRequired="false"  CustomCaption="Second Line of Address" ClientIDMode="Static" />
     </div>
 </div>
   <div class="row">
         <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress3" ID="txtAddress3" runat="server" IsRequired="true"  CustomCaption="Town"  />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress3" ID="txtAddress3" runat="server" IsRequired="true"  CustomCaption="Town" ClientIDMode="Static" />
     </div>
         <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress4" ID="txtAddress4" runat="server" IsRequired="true"  CustomCaption="County"  />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentAddress4" ID="txtAddress4" runat="server" IsRequired="true"  CustomCaption="County" ClientIDMode="Static" />
     </div>
       </div>
     <div class="row">
          <div class="col-sm-12 columns form-group">
              <label for="postcode" class="textfieldlabelrequired">Postcode</label>
-             <input title="Postcode" runat="server" maxlength="9" type="text" id="postcode" class="form-control" name="pre[postalcode]" autocomplete="off"   />
+             <input title="Postcode" runat="server" maxlength="9" type="text" id="postcode" class="form-control" name="pre[postalcode]" autocomplete="off" ClientIDMode="Static" />
              </div>
         </div>
     </div>
@@ -160,5 +161,51 @@
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
         let fldParentRelationshipIDInputBox = addSearchableDropDown(cboParentRelationshipID);
+
+        // Get Address IO
+        document.addEventListener("getaddress-autocomplete-suggestions", function (e) {
+            console.log(e.suggestions);
+        });
+
+        document.addEventListener("getaddress-autocomplete-suggestions-failed", function (e) {
+            console.log(e.status);
+            console.log(e.message);
+        });
+
+        document.addEventListener("getaddress-autocomplete-address-selected", function (e) {
+            console.log(e.address);
+
+            //postcode.dispatchEvent(postCodeKeyup);
+        });
+
+        document.addEventListener("getaddress-autocomplete-address-selected-failed", function (e) {
+            console.log(e.status);
+            console.log(e.message);
+        });
+
+        getAddress.autocomplete(
+            'txtParentAddress1',
+            'jxO2lYlUvUO86UTwrjA57w42776',
+            {
+                output_fields: {
+                    formatted_address_0: 'txtParentAddress1',  /* The id of the element bound to 'formatted_address[0]' */
+                    town_or_city: 'txtParentAddress3',  /* The id of the element bound to 'town_or_city' */
+                    county: 'txtParentAddress4',  /* The id of the element bound to 'county' */
+                    postcode: 'postcode'  /* The id of the element bound to 'postcode' */
+                },
+                id_prefix: 'getAddress-autocomplete-native',  /* The id of the textbox and list container */
+                delay: 200, /* millisecond delay between keypress and API call */
+                minimum_characters: 2,  /* minimum characters to initiate an API call */
+                select_on_focus: true,  /* if true, highlights textbox characters on focus*/
+                alt_autocomplete_url: undefined,  /* alterative local autocomplete URL (when API key is not used) */
+                alt_get_url: undefined,  /* alterative local get URL (when API key is not used) */
+                suggestion_count: 6, /* number of retreived suggestions (max 20) */
+                filter: undefined, /* the suggestion filter (see Autocomplete API)*/
+                bind_output_fields: true, /* if true, bind the output_fields to the address*/
+                input_focus_on_select: true,  /* if true, sets the focus to the textbox after selecting an address*/
+                debug: false, /* if true, logs behavior */
+                enable_get: true /* if true, retreives address on select */
+            }
+        );
     });
 </script>

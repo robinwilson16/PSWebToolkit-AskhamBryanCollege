@@ -22,6 +22,7 @@ Partial Class checkout_directapply
     Public Course As Course
     Public Search As String
     Public CourseAction As String
+    Public ShowBackButton As Boolean = False
 
     Public tblOffering As New OfferingDataTable
 
@@ -92,6 +93,13 @@ Partial Class checkout_directapply
         MyBase.OnLoad(e)
 
         CourseAction = "Enrol"
+
+        'Show back button if arrived here from search
+        If Not IsNothing(Request.UrlReferrer) Then
+            If Request.UrlReferrer.ToString.Contains("Dept=") Or Request.UrlReferrer.ToString.Contains("Search=") Then
+                ShowBackButton = True
+            End If
+        End If
 
         Search = Request.QueryString("Search")
         If Not IsPostBack Then
@@ -597,6 +605,29 @@ Partial Class checkout_directapply
             redirectString = GetResourceValue("checkout_enrolFC2_aspx")
             Response.Redirect(redirectString)
         End If
+
+    End Sub
+
+    Protected Sub btnBack_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnBack.Click
+
+
+        Dim redirectString As String = String.Empty
+
+        'Me.Page.Validate()
+
+
+        'If Me.Page.IsValid Then
+
+
+        CheckData()
+
+
+        redirectString = GetResourceValue("checkout_enrolFC_aspx")
+        Response.Redirect(redirectString)
+
+        'End If
+
+
 
     End Sub
 

@@ -47,10 +47,12 @@
 
      <div class="row">
        <div class="col-sm-6 columns form-group"> 
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NationalityID" ID="StudentEnrolmentField1" runat="server"  IsRequired="true"   CustomCaption="Nationality" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NationalityID" ID="fldNationalityID" runat="server"  IsRequired="true"   CustomCaption="Nationality" ClientIDMode="Static" />
+           <asp:CustomValidator ID="fldNationalityIDValidator" runat="server"></asp:CustomValidator>
            </div>
        <div class="col-sm-6 columns form-group"> 
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="StudentEnrolmentField2" runat="server"  IsRequired="true"  LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="fldCountryID" runat="server"  IsRequired="true"  LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" />
+           <asp:CustomValidator ID="fldCountryIDValidator" runat="server"></asp:CustomValidator>
            </div>
  
     </div>
@@ -59,7 +61,8 @@
           <p><strong>For equality of opportunity monitoring, please select to describe your cultural background (groups based on 2011 census) below:</strong></p>
     <div class="row">
       <div class="col-sm-12 columns form-group"> 
-           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" runat="server" IsRequired="true"  ExcludedIDValues="99" CustomCaption="Ethnicity" ClientIDMode="Static" />
+           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" runat="server" IsRequired="false"  ExcludedIDValues="99" CustomCaption="Ethnicity" ClientIDMode="Static" />
+          <asp:CustomValidator ID="fldEthnicGroupIDValidator" runat="server"></asp:CustomValidator>
           </div>
     
    </div>
@@ -102,6 +105,7 @@
         <asp:Button runat="server" ID="btnAdd" CssClass="btn btn-primary" Text="Add Row"></asp:Button>
 
     </div>
+    <asp:CustomValidator ID="DisabilitiesValidator" runat="server"></asp:CustomValidator>
 
 </div>
 
