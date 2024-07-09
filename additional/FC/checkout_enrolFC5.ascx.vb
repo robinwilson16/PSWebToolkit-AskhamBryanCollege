@@ -517,6 +517,26 @@ Partial Class checkout_directapply
 
     Public Overrides Sub ValidateControl()
 
+        'Prior Attainment Level
+        If Not IsNothing(fldPriorAttainmentLevelID) Then
+            If String.IsNullOrEmpty(fldPriorAttainmentLevelID.Value) Then
+                fldPriorAttainmentLevelIDValidator.ErrorMessage = "Prior Attainment Level must not be blank"
+                fldPriorAttainmentLevelIDValidator.IsValid = False
+                fldPriorAttainmentLevelIDValidator.CssClass = "error alert alert-danger"
+                fldPriorAttainmentLevelID.CssClass = "ErrorInput"
+            End If
+        End If
+
+        'Employment Status
+        If Not IsNothing(fldEmploymentStatusID) Then
+            If String.IsNullOrEmpty(fldEmploymentStatusID.Value) Then
+                fldEmploymentStatusIDValidator.ErrorMessage = "Employment Status must not be blank"
+                fldEmploymentStatusIDValidator.IsValid = False
+                fldEmploymentStatusIDValidator.CssClass = "error alert alert-danger"
+                fldEmploymentStatusID.CssClass = "ErrorInput"
+            End If
+        End If
+
         If rdoStillAt.SelectedValue = "" Then
             Dim a As New CustomValidator
             a.IsValid = False
@@ -531,14 +551,14 @@ Partial Class checkout_directapply
                 a.IsValid = False
                 a.ErrorMessage = "I work (hours per week) must not be blank"
                 Me.Page.Validators.Add(a)
-                Field_EmploymentIntensityID.Style.Add("border", "1px solid red")
+                fldEmploymentIntensityID.Style.Add("border", "1px solid red")
             End If
             If WorkingData.EnrolmentRequestEmploymentHistoryRow.LengthOfEmploymentID = "" Then
                 Dim a As New CustomValidator
                 a.IsValid = False
                 a.ErrorMessage = "I have worked (number of months) must not be blank"
                 Me.Page.Validators.Add(a)
-                StudentEmploymentHistoryField1.Style.Add("border", "1px solid red")
+                fldLengthOfEmploymentID.Style.Add("border", "1px solid red")
             End If
         End If
 
@@ -548,7 +568,7 @@ Partial Class checkout_directapply
                 a.IsValid = False
                 a.ErrorMessage = "Unemployed for (number of months) must not be blank"
                 Me.Page.Validators.Add(a)
-                Field_LengthOfUnemploymentID.Style.Add("border", "1px solid red")
+                fldLengthOfUnemploymentID.Style.Add("border", "1px solid red")
             End If
         End If
 
@@ -558,7 +578,7 @@ Partial Class checkout_directapply
                 a.IsValid = False
                 a.ErrorMessage = "Unemployed for (number of months) must not be blank"
                 Me.Page.Validators.Add(a)
-                Field_LengthOfUnemploymentID.Style.Add("border", "1px solid red")
+                fldLengthOfUnemploymentID.Style.Add("border", "1px solid red")
             End If
         End If
 

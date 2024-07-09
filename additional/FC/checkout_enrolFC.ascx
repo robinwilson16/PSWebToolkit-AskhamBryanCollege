@@ -148,6 +148,7 @@
 
         <div class="form-input">
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="PreferredPronounID" ID="fldPronoun" runat="server" CustomCaption="Preferred Pronoun" IsRequired="true" ClientIDMode="Static" />
+            <asp:CustomValidator ID="fldPronounValidator" runat="server"></asp:CustomValidator>
         </div>
 
         <p><i><strong>The Education & Skills Funding Agency requires the College to collect legal gender.</strong></i></p>
@@ -349,6 +350,23 @@
         fldSex.options[2].textContent = "Male";
         let fldSexInputBox = addSearchableDropDown(fldSex);
 
+        //Re-order fields so most common values are moved to the top
+        let titleDropdown = document.getElementById(`cboTitle`);
+        sortSelectMoveToTop(titleDropdown, "Ms");
+        sortSelectMoveToTop(titleDropdown, "Miss");
+        sortSelectMoveToTop(titleDropdown, "Mrs");
+        sortSelectMoveToTop(titleDropdown, "Mr");
+        sortSelectMoveToTop(titleDropdown, "");
         let fldTitleInputBox = addSearchableDropDown(cboTitle);
+
+        //Put most common promouns first - uses custom JS function
+        let pronounDropdown = document.getElementById(`cboPreferredPronounID`);
+        sortSelectMoveToTop(pronounDropdown, "T");
+        sortSelectMoveToTop(pronounDropdown, "U");
+        sortSelectMoveToTop(pronounDropdown, "I");
+        sortSelectMoveToTop(pronounDropdown, "S");
+        sortSelectMoveToTop(pronounDropdown, "H");
+        sortSelectMoveToTop(pronounDropdown, "");
+        let fldPreferredPronounIDInputBox = addSearchableDropDown(cboPreferredPronounID);
     });
 </script>

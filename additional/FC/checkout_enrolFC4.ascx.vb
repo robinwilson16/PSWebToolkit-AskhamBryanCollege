@@ -447,7 +447,7 @@ Partial Class checkout_directapply
         End If
 
         If rdoLearnDiff.SelectedValue = "1" Then
-            If WorkingData.EnrolmentRequestRow.DisabilityCategory1ID Is Nothing Then
+            If String.IsNullOrEmpty(fldDisabilityCategory1ID.Value) Then
                 Dim a As New CustomValidator
                 a.IsValid = False
                 a.ErrorMessage = "Please provide your main learning diffculty/disability"

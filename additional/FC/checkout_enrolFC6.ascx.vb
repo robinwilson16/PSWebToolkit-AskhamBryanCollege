@@ -710,7 +710,7 @@ Partial Class checkout_directapply
                     WorkingData.EnrolmentRequestAttachments.AddRow(rowAttachment)
                     FileIsValid = True
                     'Redirecting to self instead of just resetting controls to avoid issue of attachment being added on browser refresh.
-                    Response.Redirect(GetResourceValue("checkout_attachments_HE_aspx"))
+                    Response.Redirect(GetResourceValue("checkout_enrolFC6_aspx"))
                 End If
             End If
         End If

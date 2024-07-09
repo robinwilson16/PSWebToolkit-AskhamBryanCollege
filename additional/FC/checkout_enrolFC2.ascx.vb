@@ -126,8 +126,6 @@ Partial Class checkout_directapply
 
     End Sub
 
-
-
     ''Put offerings in basket
     Protected Sub PutAllOfferingsInBasket()
 
@@ -546,7 +544,11 @@ Partial Class checkout_directapply
     Protected Overrides Sub CreateChildControls()
         MyBase.CreateChildControls()
 
-
+        'If IsPostBack Then
+        If Not String.IsNullOrEmpty(Session("RadioButtonListAlt")) Then
+            RadioButtonListAlt.SelectedValue = Session("RadioButtonListAlt")
+        End If
+        'End If
     End Sub
 
 
@@ -585,12 +587,20 @@ Partial Class checkout_directapply
 
     End Sub
 
-
+    Private Sub RadioButtonListAlt_Change(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButtonListAlt.SelectedIndexChanged
+        If RadioButtonListAlt.SelectedValue = 2 Then
+            WorkingData.EnrolmentRequest(0).AltPostcodeOut = ""
+            WorkingData.EnrolmentRequest(0).AltPostcodeIn = ""
+        End If
+    End Sub
 
     Protected Sub btnContinue_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinue.Click
 
 
         Dim redirectString As String = String.Empty
+
+        'Store custom field values in session
+        Session("RadioButtonListAlt") = RadioButtonListAlt.SelectedValue.ToString
 
         Me.Page.Validate()
 

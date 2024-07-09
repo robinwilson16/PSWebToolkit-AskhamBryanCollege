@@ -301,7 +301,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
                 let subjectFieldNum = subjectDropdown.replace(`ctl00_MainContentPlaceholder_ctl00_ctl`, ``).replace(`_cboQualID`, ``);
                 let subjectCustomFieldNum = parseInt(subjectFieldNum) + 2
                 let predictedGradeFieldNum = parseInt(subjectFieldNum) + 4
-                let gradeFieldNum = parseInt(subjectFieldNum) + 6
+                let gradeFieldNum = parseInt(subjectFieldNum) + 4 //Was 6
 
                 let subjectCustomFieldNumTxt =
                     subjectCustomFieldNum.toLocaleString(
@@ -336,7 +336,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
                 let predictedGradeDropDown = document.getElementById(`ctl00_MainContentPlaceholder_ctl00_ctl${predictedGradeFieldNumTxt}_cboPredictedGrade`);
                 let gradeDropDown = document.getElementById(`ctl00_MainContentPlaceholder_ctl00_ctl${gradeFieldNumTxt}_cboGrade`);
 
-                let predictedGradeInputBox = addSearchableDropDown(predictedGradeDropDown);
+                //let predictedGradeInputBox = addSearchableDropDown(predictedGradeDropDown);
                 let gradeInputBox = addSearchableDropDown(gradeDropDown);
 
                 //If custom field entered then clear original drop-down
@@ -355,14 +355,14 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
                     if (selectText.indexOf("GCSE") >= 0) {
                         gradeDropDown.innerHTML = gradeGCSEDropDown.innerHTML;
-                        predictedGradeDropDown.innerHTML = gradeGCSEDropDown.innerHTML;
+                        //predictedGradeDropDown.innerHTML = gradeGCSEDropDown.innerHTML;
                     }
                     else {
                         gradeDropDown.innerHTML = gradeAllDropDown.innerHTML;
-                        predictedGradeDropDown.innerHTML = gradeAllDropDown.innerHTML;
+                        //predictedGradeDropDown.innerHTML = gradeAllDropDown.innerHTML;
                     }
                     gradeDropDown.selectedIndex = 0;
-                    predictedGradeDropDown.selectedIndex = 0;
+                    //predictedGradeDropDown.selectedIndex = 0;
                 });
             }
         });

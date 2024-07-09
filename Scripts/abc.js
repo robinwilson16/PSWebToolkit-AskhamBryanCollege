@@ -109,12 +109,14 @@
     }
 
     //Prevent Enter button in input fields submitting forms
+    let tabEvent = new KeyboardEvent('keydown', { 'key': 'Tab' });
     let inputBoxes = document.querySelectorAll(`#aspnetForm input[type=text]`);
     inputBoxes.forEach(function (elem) {
         elem.addEventListener(`keydown`, function (event) {
             if (event.key === "Enter") {
                 // Cancel the default action to submit the form and do nothing
                 event.preventDefault();
+                elem.dispatchEvent(tabEvent);
             }
         });
     });
@@ -278,8 +280,11 @@ function addSearchableDropDown(elem) {
         let dataList = document.createElement(`datalist`);
         dataList.id = elem.id + "InputBoxItems";
         dataList.innerHTML = elem.innerHTML;
-        elem.parentNode.insertBefore(inputBox, elem.nextSibling);
+
+        //Add to page
         elem.parentNode.insertBefore(dataList, elem.nextSibling);
+        elem.parentNode.insertBefore(inputBox, elem.nextSibling);
+
         inputBox.setAttribute(`list`, elem.id + "InputBoxItems");
 
         let changeEvent = new Event(`change`);
@@ -460,8 +465,9 @@ function addSearchableDropDownWithButton(elem, buttonText) {
         inputGroup.appendChild(inputButton);
 
         //Add to page
-        elem.parentNode.insertBefore(inputGroup, elem.nextSibling);
         elem.parentNode.insertBefore(dataList, elem.nextSibling);
+        elem.parentNode.insertBefore(inputGroup, elem.nextSibling);
+        
         inputBox.setAttribute(`list`, elem.id + "InputBoxItems");
 
         //If existing element is changed programatically ensure new element is kept up to date

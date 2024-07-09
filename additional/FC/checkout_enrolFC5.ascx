@@ -110,9 +110,9 @@
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-award"></i> Education</h4>
 
-    <cc1:StudentEnrolmentField ID="StudentEnrolmentField37" runat="server" CustomCaption="What is the highest level of qualification you already have?"
-        IsRequired="True" LabelWidth="500" StudentEnrolmentFieldType="PriorAttainmentLevelID"></cc1:StudentEnrolmentField>
-
+    <cc1:StudentEnrolmentField ID="fldPriorAttainmentLevelID" runat="server" CustomCaption="What is the highest level of qualification you already have?"
+        IsRequired="True" LabelWidth="500" StudentEnrolmentFieldType="PriorAttainmentLevelID" ClientIDMode="Static"></cc1:StudentEnrolmentField>
+    <asp:CustomValidator ID="fldPriorAttainmentLevelIDValidator" runat="server"></asp:CustomValidator>
             <span id="showItem"><a class="btn btn-primary" role="button">Unsure? Click me to help you decide</a></span>
 <br />
 
@@ -240,9 +240,10 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
     <asp:HiddenField runat="server" ID="HiddenFieldForEmploymentvalue" />
 
         <div class="form-input">
-            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="EmploymentStatusID" ID="Field_EmploymentStatusID" runat="server" IsRequired="True" LabelWidth="300"
+            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="EmploymentStatusID" ID="fldEmploymentStatusID" runat="server" IsRequired="True" LabelWidth="300"
             CustomCaption="Employment Status" ClientIDMode="Static"
             ExcludedIDValues="98" />
+            <asp:CustomValidator ID="fldEmploymentStatusIDValidator" runat="server"></asp:CustomValidator>
         </div>
     
     <div class="Employedfields" id="Employedfields" runat="server">
@@ -280,12 +281,12 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
             </div>--%>
 
         <div class="form-input">
-            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="EmploymentIntensityID" ID="Field_EmploymentIntensityID" runat="server" IsRequired="false" LabelWidth="300"
-                CustomCaption="I work (hours per week)" />
+            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="EmploymentIntensityID" ID="fldEmploymentIntensityID" runat="server" IsRequired="false" LabelWidth="300"
+                CustomCaption="I work (hours per week)" ClientIDMode="Static" />
         </div>
         <div class="form-input">
-            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="LengthOfEmploymentID" ID="StudentEmploymentHistoryField1" runat="server" IsRequired="false" LabelWidth="300"
-                CustomCaption="I have worked (number of months)" />
+            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="LengthOfEmploymentID" ID="fldLengthOfEmploymentID" runat="server" IsRequired="false" LabelWidth="300"
+                CustomCaption="I have worked (number of months)" ClientIDMode="Static" />
         </div>
 
 
@@ -324,8 +325,8 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
     <div class="UnEmployedFieldsToHide" id="UnEmployedFieldsToHide" runat="server">
         <div class="form-input">
             <span class="textfieldlabelrequired">Unemployed for (number of months) </span>
-            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="LengthOfUnemploymentID" ID="Field_LengthOfUnemploymentID" runat="server" IsRequired="false" LabelWidth="300"
-                CustomCaption=" " />
+            <cc1:StudentEmploymentHistoryField StudentEmploymentHistoryFieldType="LengthOfUnemploymentID" ID="fldLengthOfUnemploymentID" runat="server" IsRequired="false" LabelWidth="300"
+                CustomCaption=" " ClientIDMode="Static" />
         </div>
     </div>
 
@@ -535,17 +536,26 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
         });
 </script>
 
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        //Prior Attainment
+        let fldPriorAttainmentLevelIDInputBox = addSearchableDropDown(cboPriorAttainmentLevelID);
 
+        //Employment Status
+        let fldEmploymentStatusIDInputBox = addSearchableDropDown(cboEmploymentStatusID);
 
+        //Employment Intensity
+        let fldEmploymentIntensityIDInputBox = addSearchableDropDown(cboEmploymentIntensityID);
 
+        //Length of Employment
+        let fldLengthOfEmploymentID = document.getElementById(`cboLengthOfEmploymentID`);
+        sortSelectMoveToTop(fldLengthOfEmploymentID, "1");
+        let fldLengthOfEmploymentIDInputBox = addSearchableDropDown(cboLengthOfEmploymentID);
 
-
-
-
-
-
-
-
-
-
+        //Length of Unemployment
+        let fldLengthOfUnemploymentID = document.getElementById(`cboLengthOfUnemploymentID`);
+        sortSelectMoveToTop(fldLengthOfUnemploymentID, "2");
+        sortSelectMoveToTop(fldLengthOfUnemploymentID, "1");
+        let fldLengthOfUnemploymentIDInputBox = addSearchableDropDown(cboLengthOfUnemploymentID);
+    });
+</script>

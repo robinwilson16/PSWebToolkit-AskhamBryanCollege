@@ -39,19 +39,6 @@ Partial Class webcontrols_checkout_enrolments
             WorkingData.EnrolmentRequestRow.StudentDetailUserDefined2 = Math.Floor(DateDiff(DateInterval.Day, CType(WorkingData.EnrolmentRequestRow.DateOfBirth.GetValueOrDefault, Date), OfferingDataTable.FetchByOfferingID(OfferingID).StartDate.GetValueOrDefault) / 365.25)
         End If
 
-        'Set custom fields back to what they should be based on custom session variables
-        If Not String.IsNullOrEmpty(Session("RadioButtonListAlt")) Then
-            RadioButtonListAlt.SelectedValue = Session("RadioButtonListAlt")
-        ElseIf IsPostBack = True Then
-            If Len(WorkingData.EnrolmentRequestRow.AltAddress1) > 0 Or Len(WorkingData.EnrolmentRequestRow.AltPostcodeOut) Or Len(WorkingData.EnrolmentRequestRow.AltPostcodeIn) > 0 Then
-                RadioButtonListAlt.SelectedValue = 1
-            Else
-                RadioButtonListAlt.SelectedValue = 2
-            End If
-        Else
-            'Do not set this
-        End If
-
 
         If IsPostBack Then
             '   UpdateAddress()
@@ -171,6 +158,17 @@ Partial Class webcontrols_checkout_enrolments
 
         MyBase.OnLoad(e)
     End Sub
+
+    Protected Overrides Sub CreateChildControls()
+        MyBase.CreateChildControls()
+
+        'If IsPostBack Then
+        If Not String.IsNullOrEmpty(Session("RadioButtonListAlt")) Then
+                RadioButtonListAlt.SelectedValue = Session("RadioButtonListAlt")
+            End If
+        'End If
+    End Sub
+
     Public Overrides Sub ValidateControl()
 
         'If Len(txtAddress1.Value) = 0 Then
@@ -302,13 +300,19 @@ Partial Class webcontrols_checkout_enrolments
         MyBase.ValidateControl()
     End Sub
 
+    Private Sub RadioButtonListAlt_Change(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButtonListAlt.SelectedIndexChanged
+        If RadioButtonListAlt.SelectedValue = 2 Then
+            WorkingData.EnrolmentRequest(0).AltPostcodeOut = ""
+            WorkingData.EnrolmentRequest(0).AltPostcodeIn = ""
+        End If
+    End Sub
+
     Private Sub btnContinue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnContinue.Click
         ' Response.Write(WorkingData.EnrolmentRequestRow.StudentDetailUserDefined1)
 
         'Store custom field values in session
-        If Not String.IsNullOrEmpty(RadioButtonListAlt.SelectedValue) Then
-            Session("RadioButtonListAlt") = RadioButtonListAlt.SelectedValue.ToString
-        End If
+        Session("RadioButtonListAlt") = RadioButtonListAlt.SelectedValue.ToString
+
 
         Me.Page.Validate()
 

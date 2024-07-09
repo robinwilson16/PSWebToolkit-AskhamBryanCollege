@@ -556,6 +556,16 @@ Partial Class checkout_directapply
             End If
         End If
 
+        'Preferred Pronoun
+        If Not IsNothing(fldPronoun) Then
+            If String.IsNullOrEmpty(fldPronoun.Value) Then
+                fldPronounValidator.ErrorMessage = "Preferred Pronoun must not be blank"
+                fldPronounValidator.IsValid = False
+                fldPronounValidator.CssClass = "error alert alert-danger"
+                fldPronoun.CssClass = "ErrorInput"
+            End If
+        End If
+
         MyBase.ValidateControl()
     End Sub
 

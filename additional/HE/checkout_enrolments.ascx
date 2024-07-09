@@ -379,6 +379,14 @@
         fldSex.options[1].textContent = "Female";
         fldSex.options[2].textContent = "Male";
 
+        //Re-order fields so most common values are moved to the top
+        let titleDropdown = document.getElementById(`cboTitle`);
+        sortSelectMoveToTop(titleDropdown, "Ms");
+        sortSelectMoveToTop(titleDropdown, "Miss");
+        sortSelectMoveToTop(titleDropdown, "Mrs");
+        sortSelectMoveToTop(titleDropdown, "Mr");
+        sortSelectMoveToTop(titleDropdown, "");
+
         //Put most common promouns first - uses custom JS function
         let pronounDropdown = document.getElementById(`cboPreferredPronounID`);
         sortSelectMoveToTop(pronounDropdown, "T");

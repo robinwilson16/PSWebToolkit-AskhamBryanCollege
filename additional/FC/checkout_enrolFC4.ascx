@@ -163,10 +163,10 @@
     <div class="Disability">
 
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="StudentEnrolmentField13" runat="server" CustomCaption="Please provide your main learning diffculty/disability" IsRequired="false" LabelWidth="400" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="fldDisabilityCategory1ID" runat="server" CustomCaption="Please provide your main learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
     </div>
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory2ID" ID="StudentEnrolmentField1" runat="server" CustomCaption="Let us know if you have any other learning diffculty/disability" IsRequired="false" LabelWidth="400" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory2ID" ID="fldDisabilityCategory2ID" runat="server" CustomCaption="Let us know if you have any other learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
     </div>
     </div>
 
@@ -176,7 +176,7 @@
     <p><strong>For equality of opportunity monitoring, please select to describe your cultural background (groups based on 2011 census).</strong></p>
 
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" CssClass="form-input" runat="server" CustomCaption="Ethnic origin" IsRequired="false" LabelWidth="300" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="EthnicGroupID" ID="fldEthnicGroupID" CssClass="form-input" runat="server" CustomCaption="Ethnic origin" IsRequired="false" LabelWidth="300" ClientIDMode="Static" />
         <asp:CustomValidator ID="fldEthnicGroupIDValidator" runat="server"></asp:CustomValidator>
     </div>
 
@@ -270,4 +270,17 @@
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        //Disability Category
+        let fldDisabilityCategory1IDInputBox = addSearchableDropDown(cboDisabilityCategory1ID);
 
+        //Disability Category 2
+        let fldDisabilityCategory2IDInputBox = addSearchableDropDown(cboDisabilityCategory2ID);
+
+        //Ethnicity
+        let fldEthnicGroup = document.getElementById(`cboEthnicGroupID`);
+        sortSelectMoveToTop(fldEthnicGroup, "31");
+        let fldEthnicGroupInputBox = addSearchableDropDown(fldEthnicGroup);
+    });
+</script>
