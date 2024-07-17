@@ -245,19 +245,17 @@ Partial Class webcontrols_checkout_enrolments2
         'End If
 
         'Response.Write(selectEuro.SelectedValue)
-        If selectLearnDiff.SelectedValue = "" Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please answer the question 'Do you consider that you have a learning difficulty, disability or health condition?"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            selectLearnDiff.Style.Add("border", "1px solid red")
-        End If
 
-        If selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
+        If selectLearnDiff.SelectedValue = "" Then
+            selectLearnDiffValidator.ErrorMessage = "Please confirm if you have a learning difficulty, disability or health condition"
+            selectLearnDiffValidator.IsValid = False
+            selectLearnDiffValidator.CssClass = "error alert alert-danger"
+            selectLearnDiff.Style.Add("border", "1px solid red")
+        ElseIf selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
+            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
+            selectLearnDiffValidator.IsValid = False
+            selectLearnDiffValidator.CssClass = "error alert alert-danger"
+            selectLearnDiff.Style.Add("border", "1px solid red")
         End If
 
         Dim rowCount As Integer = 0
@@ -275,7 +273,7 @@ Partial Class webcontrols_checkout_enrolments2
 
                 If Not disabilityCategoryID > 0 Then
                     Dim v As New CustomValidator
-                    v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Error on line " + (rowCount).ToString + " as no disability category has been selected. Please remove the row or enter the disability category."
+                    v.ErrorMessage = "Error on line " + (rowCount).ToString + " as no disability category has been selected. Please remove the row or enter the disability category."
                     v.IsValid = False
                     Me.Page.Validators.Add(v)
                 End If
@@ -322,12 +320,12 @@ Partial Class webcontrols_checkout_enrolments2
 
         If rowCount >= 1 And selectLearnDiff.SelectedValue = "1" And isPrimaryCount = 0 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please record which difficulty/disability is the primary (main) one."
+            v.ErrorMessage = "Please record which difficulty/disability is the primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         ElseIf rowCount >= 1 And isPrimaryCount > 1 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please record only one difficulty/disability as your primary (main) one."
+            v.ErrorMessage = "Please record only one difficulty/disability as your primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         End If

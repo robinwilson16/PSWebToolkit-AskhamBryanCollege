@@ -107,7 +107,7 @@
             Font-Size="Medium"
             ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|heic|JPG|JPEG|PNG|GIF|HEIC)$"></asp:RegularExpressionValidator>
         <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" IsRequired="false" ClientIDMode="Static" />
-        <input type="text" id="PhotoPath" runat="server" class="form-control d-none" ClientIDMode="Static" />
+        <input type="text" id="PhotoPath" runat="server" class="form-control d-none" ClientIDMode="Static" accept=".jpg,.jpeg,.png,.gif,.bmp,.heic" />
         <asp:CustomValidator ID="PhotoPathValidator" runat="server"></asp:CustomValidator>
 
         <asp:LinkButton ID="UploadPhoto" runat="server" OnClick="Upload" CssClass="btn btn-primary mb-3" CausesValidation="false"><i class="fa-solid fa-upload"></i> Upload and Preview</asp:LinkButton>

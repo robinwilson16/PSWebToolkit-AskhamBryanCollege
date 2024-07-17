@@ -76,11 +76,13 @@
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-comment"></i> Contact Details</h4>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" LabelWidth="200" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Mobile Telephone Number" />
+        <span class="textfieldlabelrequired">Personal Mobile</span>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" LabelWidth="0" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Mobile Telephone Number" />
         <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" LabelWidth="200" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?#(\d{4}|\d{3}))?$" Title="Please enter a valid Telephone Number" CustomCaption="Alternative Contact Number" />
+        <span class="textfieldlabelrequired">Alternative Contact Number</span>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" LabelWidth="0" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?#(\d{4}|\d{3}))?$" Title="Please enter a valid Telephone Number" CustomCaption="Alternative Contact Number" />
         <asp:CustomValidator ID="fldTelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
@@ -201,7 +203,7 @@
             ErrorMessage="Only .jpg, .png, .jpeg, .gif, .heic Files are allowed" Font-Bold="True"
             Font-Size="Medium"
             ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|heic|JPG|JPEG|PNG|GIF|HEIC)$"></asp:RegularExpressionValidator>
-        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" IsRequired="false" ClientIDMode="Static" />
+        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" IsRequired="false" ClientIDMode="Static" accept=".jpg,.jpeg,.png,.gif,.bmp,.heic" />
         <input type="text" id="PhotoPath" runat="server" class="form-control d-none" ClientIDMode="Static" />
         <asp:CustomValidator ID="PhotoPathValidator" runat="server"></asp:CustomValidator>
 

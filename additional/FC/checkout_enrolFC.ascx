@@ -117,7 +117,7 @@
         </div>
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="StudentEnrolmentField1" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forenames or given name" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstName" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forenames or given name" />
         </div>
     
 
@@ -130,7 +130,7 @@
         </div>--%>
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="StudentEnrolmentField10" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
         </div>
 
         <div class="form-input">

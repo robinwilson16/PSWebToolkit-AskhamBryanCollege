@@ -211,10 +211,12 @@
     </div>
     <div class="row">
         <div class="col-sm-6 columns form-group"> 
-            <cc1:StudentEnrolmentField CustomCaption="Personal Mobile" StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" Placeholder="Mobile numbers beginning 07" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$"/>
+            <span class="textfieldlabelrequired">Personal Mobile</span>
+            <cc1:StudentEnrolmentField CustomCaption="Personal Mobile" LabelWidth="0" StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" Placeholder="Mobile numbers beginning 07" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$"/>
         </div>
         <div class="col-sm-6 columns form-group"> 
-                <cc1:StudentEnrolmentField CustomCaption="Home phone (inc. STD code)" LabelWidth="350" StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
+            <span class="textfieldlabelrequired">Home phone (inc. STD code)</span>
+            <cc1:StudentEnrolmentField CustomCaption="Home phone (inc. STD code)" LabelWidth="0" StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
         </div>
         <div class="col-sm-12 columns form-group">
             <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>

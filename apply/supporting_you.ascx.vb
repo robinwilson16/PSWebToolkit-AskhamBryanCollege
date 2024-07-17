@@ -71,7 +71,7 @@ Partial Class checkout_applications
     Public Overrides Sub ValidateControl()
         If Not IsNothing(fldCriminalConvictionID) Then
             If IsNothing(fldCriminalConvictionID.Value) Then
-                fldCriminalConvictionIDValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select whether you have any criminal convictions"
+                fldCriminalConvictionIDValidator.ErrorMessage = "Please select whether you have any criminal convictions"
                 fldCriminalConvictionIDValidator.IsValid = False
                 fldCriminalConvictionIDValidator.CssClass = "error alert alert-danger"
                 fldCriminalConvictionID.CssClass = "ErrorInput"
@@ -80,12 +80,12 @@ Partial Class checkout_applications
 
         If Not IsNothing(fldLearningDiffOrDisID) Then
             If IsNothing(fldLearningDiffOrDisID.Value) Then
-                fldLearningDiffOrDisIDValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select whether you have a learning difficulty and/or disability"
+                fldLearningDiffOrDisIDValidator.ErrorMessage = "Please select whether you have a learning difficulty and/or disability"
                 fldLearningDiffOrDisIDValidator.IsValid = False
                 fldLearningDiffOrDisIDValidator.CssClass = "error alert alert-danger"
                 fldLearningDiffOrDisID.CssClass = "ErrorInput"
             ElseIf CInt(fldLearningDiffOrDisID.Value) = 1 And IsNothing(fldDisabilityCategory1ID.Value) Then
-                fldLearningDiffOrDisIDValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> As you have stated you have a learning difficulty and/or disability, please state what this so we can support you"
+                fldLearningDiffOrDisIDValidator.ErrorMessage = "As you have stated you have a learning difficulty and/or disability, please state what this so we can support you"
                 fldLearningDiffOrDisIDValidator.IsValid = False
                 fldLearningDiffOrDisIDValidator.CssClass = "error alert alert-danger"
                 fldLearningDiffOrDisID.CssClass = "ErrorInput"
@@ -94,7 +94,7 @@ Partial Class checkout_applications
 
         If Not IsNothing(ALSRequestedYN) Then
             If ALSRequestedYN.SelectedItem.Value.Length <> 1 Then
-                ALSRequestedYNValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select whether you consider yourself to have special educational needs"
+                ALSRequestedYNValidator.ErrorMessage = "Please select whether you consider yourself to have special educational needs"
                 ALSRequestedYNValidator.IsValid = False
                 ALSRequestedYNValidator.CssClass = "error alert alert-danger"
                 ALSRequestedYN.CssClass = "ErrorInput"
@@ -103,7 +103,7 @@ Partial Class checkout_applications
 
         If Not IsNothing(EHCPYN) Then
             If EHCPYN.SelectedItem.Value.Length <> 1 Then
-                EHCPYNValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select whether you have an Educational Healthcare Plan to help support your educational, health and social needs"
+                EHCPYNValidator.ErrorMessage = "Please select whether you have an Educational Healthcare Plan to help support your educational, health and social needs"
                 EHCPYNValidator.IsValid = False
                 EHCPYNValidator.CssClass = "error alert alert-danger"
                 EHCPYN.CssClass = "ErrorInput"
@@ -112,7 +112,7 @@ Partial Class checkout_applications
 
         If Not IsNothing(CareLeaverYN) Then
             If CareLeaverYN.SelectedItem.Value.Length <> 1 Then
-                CareLeaverYNValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select whether you are in or have you recently left Local Authority Care"
+                CareLeaverYNValidator.ErrorMessage = "Please select whether you are in or have you recently left Local Authority Care"
                 CareLeaverYNValidator.IsValid = False
                 CareLeaverYNValidator.CssClass = "error alert alert-danger"
                 CareLeaverYN.CssClass = "ErrorInput"
@@ -121,7 +121,7 @@ Partial Class checkout_applications
 
         If Not IsNothing(EuroResident) Then
             If EuroResident.SelectedItem.Value = "-- Please Select --" And Is19Plus = True Then
-                EuroResidentValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please select your residency status as you will be aged 19+ on " + DateIsAdult.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
+                EuroResidentValidator.ErrorMessage = "Please select your residency status as you will be aged 19+ on " + DateIsAdult.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
                 EuroResidentValidator.IsValid = False
                 EuroResidentValidator.CssClass = "error alert alert-danger"
                 EuroResident.CssClass = "ErrorInput"

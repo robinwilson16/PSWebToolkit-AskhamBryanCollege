@@ -130,12 +130,14 @@
         <asp:CustomValidator ID="postcodeValidator" runat="server"></asp:CustomValidator>
     </div>
 
-        <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="StudentEnrolmentField4" runat="server" CustomCaption="Home phone (inc. STD code)" IsRequired="false" LabelWidth="400" Pattern="^(0[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Telephone Number (0XXXXXXXXXX)" />
+        <div class="form-group"> 
+            <span class="textfieldlabelrequired">Personal Mobile</span>
+            <cc1:StudentEnrolmentField CustomCaption="Personal Mobile" LabelWidth="0" StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" Placeholder="Mobile numbers beginning 07" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$"/>
         </div>
-
-        <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="txtMobile" runat="server" CustomCaption="Personal mobile" IsRequired="true" LabelWidth="300" Pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|" Title="Please use international format (+ at the beginning)" />
+        <div class="form-group"> 
+            <span class="textfieldlabelrequired">Home phone (inc. STD code)</span>
+            <cc1:StudentEnrolmentField CustomCaption="Home phone (inc. STD code)" LabelWidth="0" StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
+            <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>
         </div>
 
         <div class="form-input">

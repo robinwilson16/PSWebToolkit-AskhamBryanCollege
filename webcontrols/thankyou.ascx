@@ -19,6 +19,9 @@
     <p>
         Once we have processed your enrolment form you will receive an email from us containing your learning agreement, which you must sign and return. Please look out for this email.
     </p>
+    <p>
+        If you were unable to upload your photos and attach documents/evidence we will need you to bring these items with you when you come to college.
+    </p>
     <hr />
     <p class="mb-0 text-center"><a class="btn btn-primary" href="https://www.askham-bryan.ac.uk/" role="button"><i class="fa-solid fa-door-open"></i> Return to the Askham-Bryan College Website</a></p>
 </div>

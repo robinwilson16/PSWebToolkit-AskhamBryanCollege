@@ -46,21 +46,35 @@ Partial Class webcontrols_checkout_parent_guardian
 
     Public Overrides Sub ValidateControl()
 
-        ''only one field is required.
-        If WorkingData.EnrolmentRequestRow.ParentPhoneNumber = "" And WorkingData.EnrolmentRequestRow.ParentMobileTel = "" Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please enter at least one Parent, Guardian or Carer Telephone number."
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
+        'Mobile Tel
+        If Not IsNothing(fldParentMobileTel) And Not IsNothing(fldParentPhoneNumber) Then
+            If String.IsNullOrEmpty(fldParentMobileTel.Value) And String.IsNullOrEmpty(fldParentPhoneNumber.Value) Then
+                fldMobileTelValidator.ErrorMessage = "Please enter at least one Parent, Guardian or Carer Telephone number."
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldParentMobileTel.CssClass = "ErrorInput"
+                fldParentPhoneNumber.CssClass = "ErrorInput"
+            ElseIf fldParentMobileTel.Value.ToString.Length <> 11 Then
+                fldMobileTelValidator.ErrorMessage = "Your Parent, Guardian or Carer mobile phone number must be 11 digits long"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldParentMobileTel.CssClass = "ErrorInput"
+                fldParentPhoneNumber.CssClass = "ErrorInput"
+            ElseIf Not fldParentMobileTel.Value.ToString.StartsWith("07") Then
+                fldMobileTelValidator.ErrorMessage = "Your Parent, Guardian or Carer mobile phone number must start with 07"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldParentMobileTel.CssClass = "ErrorInput"
+                fldParentPhoneNumber.CssClass = "ErrorInput"
+            ElseIf fldParentMobileTel.Value.ToString = WorkingData.EnrolmentRequestRow.MobileTel Then
+                fldMobileTelValidator.ErrorMessage = "You must provide a different emergency contact number to your own mobile number " + WorkingData.EnrolmentRequestRow.MobileTel
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldParentMobileTel.CssClass = "ErrorInput"
+                fldParentPhoneNumber.CssClass = "ErrorInput"
+            End If
         End If
 
-        If WorkingData.EnrolmentRequestRow.MobileTel = WorkingData.EnrolmentRequestRow.ParentMobileTel Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "You must provide a different emergency contact number to your own mobile number " + WorkingData.EnrolmentRequestRow.MobileTel
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-
-        End If
 
         If WorkingData.EnrolmentRequestRow.Email = WorkingData.EnrolmentRequestRow.ParentEmailAddress Then
             Dim v As New CustomValidator
@@ -80,21 +94,16 @@ Partial Class webcontrols_checkout_parent_guardian
             End If
         End If
 
-        If Len(postcode.Value) = 0 Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Postcode must not be blank"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            postcode.Style.Add("border", "1px solid red")
-        End If
-
+        'Post Code
         Dim regexPostCode As New Regex("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$")
-        Dim match As Match = regexPostCode.Match(postcode.Value)
-        If Not match.Success Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please enter a valid Postcode"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
+        If Not IsNothing(postcode) Then
+            Dim match As Match = regexPostCode.Match(postcode.Value)
+            If Not match.Success Then
+                postcodeValidator.ErrorMessage = "Please enter a valid Postcode"
+                postcodeValidator.IsValid = False
+                postcodeValidator.CssClass = "error alert alert-danger"
+                postcode.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
         End If
 
         'Only mandatory if under 18, check the age in UDF
@@ -107,7 +116,7 @@ Partial Class webcontrols_checkout_parent_guardian
         End If
 
 
-        '''lewis @adnvanced
+        'lewis @adnvanced
         Dim regexEmail As New Regex("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$")
         Dim matchE As Match = regexEmail.Match(fldEmail.Value)
         If Not matchE.Success Then
@@ -137,7 +146,12 @@ Partial Class webcontrols_checkout_parent_guardian
 
                 'avoid dodgy postcodes breaking system
                 Try
-                    WorkingData.EnrolmentRequestRow.ParentPostCodeOut = pcode.Substring(0, pcode.Length - 3)
+                    If pcode.Substring(0, pcode.Length - 3).Length <= 4 Then
+                        WorkingData.EnrolmentRequestRow.ParentPostCodeOut = pcode.Substring(0, pcode.Length - 3)
+                    Else
+                        WorkingData.EnrolmentRequestRow.ParentPostCodeOut = ""
+                    End If
+
                 Catch ex As ArgumentOutOfRangeException
                     WorkingData.EnrolmentRequestRow.ParentPostCodeOut = ""
                 End Try

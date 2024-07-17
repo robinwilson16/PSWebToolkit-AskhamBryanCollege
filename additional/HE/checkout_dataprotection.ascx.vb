@@ -49,28 +49,31 @@ Partial Class checkout_dataprotection
 
     Public Overrides Sub ValidateControl()
 
-        If selectStayingInTouch.SelectedValue = "" Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Staying in touch cannot be blank."
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            selectStayingInTouch.Style.Add("border", "1px solid red")
+        If Not IsNothing(selectStayingInTouch) Then
+            If selectStayingInTouch.SelectedValue = "" Then
+                selectStayingInTouchValidator.ErrorMessage = "Staying in touch cannot be blank."
+                selectStayingInTouchValidator.IsValid = False
+                selectStayingInTouchValidator.CssClass = "error alert alert-danger"
+                selectStayingInTouch.CssClass = "ErrorInput"
+            End If
         End If
 
-        If selectSMSConsent.SelectedValue = "" Then
-            Dim v As New CustomValidator()
-            v.ErrorMessage = "Please confirm you consent to the use of SMS."
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            selectSMSConsent.Style.Add("border", "1px solid red")
+        If Not IsNothing(selectSMSConsent) Then
+            If selectSMSConsent.SelectedValue = "" Then
+                selectSMSConsentValidator.ErrorMessage = "Please confirm you consent to the use of SMS."
+                selectSMSConsentValidator.IsValid = False
+                selectSMSConsentValidator.CssClass = "error alert alert-danger"
+                selectSMSConsent.CssClass = "ErrorInput"
+            End If
         End If
 
-        If Not chkConfirm.Checked Then
-            Dim v As New CustomValidator()
-            v.ErrorMessage = "Please confirm that you have read the declaration above."
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            chkConfirm.Style.Add("border", "1px solid red")
+        If Not IsNothing(chkConfirm) Then
+            If Not chkConfirm.Checked = True Then
+                chkConfirmValidator.ErrorMessage = "Please confirm that you have read the declaration above."
+                chkConfirmValidator.IsValid = False
+                chkConfirmValidator.CssClass = "error alert alert-danger"
+                chkConfirm.CssClass = "ErrorInput"
+            End If
         End If
 
     End Sub

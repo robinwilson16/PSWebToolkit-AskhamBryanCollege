@@ -77,6 +77,7 @@
                 <asp:ListItem Text="No" Value="2"></asp:ListItem>
                 <asp:ListItem Text="Rather not say" Value="9"></asp:ListItem>
             </asp:DropDownList>
+            <asp:CustomValidator ID="selectLearnDiffValidator" runat="server"></asp:CustomValidator>
           <div style="display:none">
              <cc1:StudentEnrolmentField Visible="true" ClientIDMode="Static" StudentEnrolmentFieldType="LearningDiffOrDisID" ID="fldLearningDiffOrDisID" runat="server" IsRequired="false"   />
       </div>

@@ -18,7 +18,7 @@ Partial Class checkout_dataprotection_apponly
         'I agree checkbox
         If Not IsNothing(chkConfirm) Then
             If Not chkConfirm.Checked Then
-                chkConfirmValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please confirm that you have read the declaration above"
+                chkConfirmValidator.ErrorMessage = "Please confirm that you have read the declaration above"
                 chkConfirmValidator.IsValid = False
                 chkConfirmValidator.CssClass = "error alert alert-danger"
                 chkConfirm.CssClass = "ErrorInput"

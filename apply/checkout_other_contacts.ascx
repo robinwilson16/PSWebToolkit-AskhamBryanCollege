@@ -67,11 +67,13 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1RelationshipID" ID="fldContact1RelationshipID" runat="server" IsRequired="true" LabelWidth="200" ClientIDMode="Static" CustomCaption="Relationship" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1MobileTel" ID="fldContact1MobileTel" runat="server" IsRequired="false" LabelWidth="200" CustomCaption="Mobile" />
+        <span class="textfieldlabelrequired">Mobile</span>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1MobileTel" ID="fldContact1MobileTel" runat="server" IsRequired="false" LabelWidth="0" CustomCaption="Mobile" />
         <asp:CustomValidator ID="fldContact1MobileTelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1Tel" ID="fldContact1Tel" runat="server" LabelWidth="200" CustomCaption="Home Landline" />
+        <span class="textfieldlabelrequired">Home Landline</span>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1Tel" ID="fldContact1Tel" runat="server" LabelWidth="0" CustomCaption="Home Landline" />
         <asp:CustomValidator ID="fldContact1TelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">

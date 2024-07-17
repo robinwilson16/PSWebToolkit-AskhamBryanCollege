@@ -436,8 +436,9 @@ Partial Class checkout_directapply
         If Not IsNothing(postcode) Then
             Dim match As Match = regexPostCode.Match(postcode.Value)
             If Not match.Success Then
-                postcodeValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid Postcode"
+                postcodeValidator.ErrorMessage = "Please enter a valid Postcode"
                 postcodeValidator.IsValid = False
+                postcodeValidator.CssClass = "error alert alert-danger"
                 postcode.Attributes.Add("Class", "textfield form-control ErrorInput")
             End If
         End If
@@ -454,11 +455,23 @@ Partial Class checkout_directapply
 
 
         If WorkingData.EnrolmentRequestRow.MobileTel = "" And WorkingData.EnrolmentRequestRow.Tel = "" Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please enter at least one phone number (Mobile number / Home phone (inc. STD code))"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-            txtMobile.Style.Add("border", "1px solid red")
+            fldMobileTelValidator.ErrorMessage = "Please enter at least one phone number (Mobile number / Home phone (inc. STD code))"
+            fldMobileTelValidator.IsValid = False
+            fldMobileTelValidator.CssClass = "error alert alert-danger"
+            fldMobileTel.CssClass = "ErrorInput"
+            fldTel.CssClass = "ErrorInput"
+        ElseIf fldMobileTel.Value.ToString.Length <> 11 Then
+            fldMobileTelValidator.ErrorMessage = "Your mobile phone number must be 11 digits long"
+            fldMobileTelValidator.IsValid = False
+            fldMobileTelValidator.CssClass = "error alert alert-danger"
+            fldMobileTel.CssClass = "ErrorInput"
+            fldTel.CssClass = "ErrorInput"
+        ElseIf Not fldMobileTel.Value.ToString.StartsWith("07") Then
+            fldMobileTelValidator.ErrorMessage = "Your mobile phone number must start with 07"
+            fldMobileTelValidator.IsValid = False
+            fldMobileTelValidator.CssClass = "error alert alert-danger"
+            fldMobileTel.CssClass = "ErrorInput"
+            fldTel.CssClass = "ErrorInput"
         End If
 
         If WorkingData.EnrolmentRequestRow.MobileTel = WorkingData.EnrolmentRequestRow.ParentMobileTel Then
@@ -502,7 +515,7 @@ Partial Class checkout_directapply
             If RadioButtonListAlt.SelectedValue = "1" Then
                 If Not IsNothing(AltAddress1) Then
                     If String.IsNullOrEmpty(AltAddress1.Value.ToString) Then
-                        AltAddress1Validator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> As you have said your term time address is different please enter the house number and street"
+                        AltAddress1Validator.ErrorMessage = "As you have said your term time address is different please enter the house number and street"
                         AltAddress1Validator.IsValid = False
                         AltAddress1Validator.CssClass = "error alert alert-danger"
                         AltAddress1.CssClass = "ErrorInput"
@@ -511,12 +524,12 @@ Partial Class checkout_directapply
 
                 If Not IsNothing(AltPostcode) Then
                     If String.IsNullOrEmpty(AltPostcode.Value.ToString) Then
-                        AltPostcodeValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> As you have said your term time address is different please enter the post code"
+                        AltPostcodeValidator.ErrorMessage = "As you have said your term time address is different please enter the post code"
                         AltPostcodeValidator.IsValid = False
                         AltPostcodeValidator.CssClass = "error alert alert-danger"
                         AltPostcode.Attributes.Add("Class", "textfield form-control ErrorInput")
                     ElseIf Not matchAltPostcode.Success Then
-                        AltPostcodeValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid post code for your term time address"
+                        AltPostcodeValidator.ErrorMessage = "Please enter a valid post code for your term time address"
                         AltPostcodeValidator.IsValid = False
                         AltPostcodeValidator.CssClass = "error alert alert-danger"
                         AltPostcode.Attributes.Add("Class", "textfield form-control ErrorInput")

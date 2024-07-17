@@ -83,7 +83,7 @@ Partial Class webcontrols_checkout_other_contacts
         'Forename - Contact 1
         If Not IsNothing(Contact1Forename) Then
             If Contact1Forename.Value.ToString.Length = 0 Then
-                Contact1ForenameValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a first name"
+                Contact1ForenameValidator.ErrorMessage = "Please enter a first name"
                 Contact1ForenameValidator.IsValid = False
                 Contact1ForenameValidator.CssClass = "error alert alert-danger"
                 Contact1Forename.Attributes.Add("Class", "textfield form-control ErrorInput")
@@ -93,7 +93,7 @@ Partial Class webcontrols_checkout_other_contacts
         'Surname - Contact 1
         If Not IsNothing(Contact1Surname) Then
             If Contact1Surname.Value.ToString.Length = 0 Then
-                Contact1SurnameValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a surname"
+                Contact1SurnameValidator.ErrorMessage = "Please enter a surname"
                 Contact1SurnameValidator.IsValid = False
                 Contact1SurnameValidator.CssClass = "error alert alert-danger"
                 Contact1Surname.Attributes.Add("Class", "textfield form-control ErrorInput")
@@ -109,7 +109,7 @@ Partial Class webcontrols_checkout_other_contacts
 
         If Not IsNothing(fldContact1MobileTel) Then
             If String.IsNullOrEmpty(fldContact1Tel.Value.ToString) And String.IsNullOrEmpty(fldContact1MobileTel.Value.ToString) Then
-                fldContact1MobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter at least a home phone number or a mobile number"
+                fldContact1MobileTelValidator.ErrorMessage = "Please enter at least a home phone number or a mobile number"
                 fldContact1MobileTelValidator.IsValid = False
                 fldContact1MobileTelValidator.CssClass = "error alert alert-danger"
                 fldContact1MobileTel.CssClass = "ErrorInput"
@@ -118,7 +118,7 @@ Partial Class webcontrols_checkout_other_contacts
 
         If Not IsNothing(fldContact1MobileTel) Then
             If Not String.IsNullOrEmpty(fldContact1MobileTel.Value.ToString) And Not matchMobileTelContact1.Success Then
-                fldContact1MobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid UK mobile number starting 07 containing no spaces"
+                fldContact1MobileTelValidator.ErrorMessage = "Please enter a valid UK mobile number starting 07 containing no spaces"
                 fldContact1MobileTelValidator.IsValid = False
                 fldContact1MobileTelValidator.CssClass = "error alert alert-danger"
                 fldContact1MobileTel.CssClass = "ErrorInput"
@@ -127,7 +127,7 @@ Partial Class webcontrols_checkout_other_contacts
 
         If Not IsNothing(fldContact1Tel) Then
             If Not String.IsNullOrEmpty(fldContact1Tel.Value.ToString) And Not (matchTel1Contact1.Success Or matchTel2Contact1.Success) Then
-                fldContact1TelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid Telephone Number"
+                fldContact1TelValidator.ErrorMessage = "Please enter a valid Telephone Number"
                 fldContact1TelValidator.IsValid = False
                 fldContact1TelValidator.CssClass = "error alert alert-danger"
                 fldContact1Tel.CssClass = "ErrorInput"
@@ -141,7 +141,7 @@ Partial Class webcontrols_checkout_other_contacts
 
         If Not IsNothing(fldContact2MobileTel) Then
             If Not String.IsNullOrEmpty(fldContact2MobileTel.Value.ToString) And Not matchMobileTelContact2.Success Then
-                fldContact2MobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid UK mobile number starting 07 containing no spaces"
+                fldContact2MobileTelValidator.ErrorMessage = "Please enter a valid UK mobile number starting 07 containing no spaces"
                 fldContact2MobileTelValidator.IsValid = False
                 fldContact2MobileTelValidator.CssClass = "error alert alert-danger"
                 fldContact2MobileTel.CssClass = "ErrorInput"
@@ -150,7 +150,7 @@ Partial Class webcontrols_checkout_other_contacts
 
         If Not IsNothing(fldContact2Tel) Then
             If Not String.IsNullOrEmpty(fldContact2Tel.Value.ToString) And Not (matchTel1Contact2.Success Or matchTel2Contact2.Success) Then
-                fldContact2TelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid Telephone Number"
+                fldContact2TelValidator.ErrorMessage = "Please enter a valid Telephone Number"
                 fldContact2TelValidator.IsValid = False
                 fldContact2TelValidator.CssClass = "error alert alert-danger"
                 fldContact2Tel.CssClass = "ErrorInput"

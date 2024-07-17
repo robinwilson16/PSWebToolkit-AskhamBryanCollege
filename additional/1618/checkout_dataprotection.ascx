@@ -42,7 +42,7 @@
 </div>
   
     
-<div class="bd-callout bd-callout-askham bd-callout-grey">
+<div class="bd-callout bd-callout-askham bd-callout-grey PrivacyNotice">
     <h4><i class="fa-solid fa-circle-info"></i> Privacy Notice</h4>
 
     <p>The data you provide including in some cases, special category (or “sensitive”) data, will be <strong>stored and processed</strong> by the College to support your enrolment and provision of education.</p>
@@ -84,6 +84,7 @@
                 <asp:ListItem Text="Yes - please use my contact details to keep me informed of services the College has to offer to support my study and my time here at the College" Value="1"></asp:ListItem>
                 <asp:ListItem Text="No - I do not wish to receive details of services the College has to offer to support my study and my time here at the College" Value="2"></asp:ListItem>
             </asp:DropDownList>
+            <asp:CustomValidator ID="selectStayingInTouchValidator" runat="server"></asp:CustomValidator>
           </div>
 
         <div class="form-input">
@@ -94,6 +95,7 @@
                 <asp:ListItem Text="No" Value="2"></asp:ListItem>
             </asp:DropDownList>
           </div>
+            <asp:CustomValidator ID="selectSMSConsentValidator" runat="server"></asp:CustomValidator>
 
     <hr />
 
@@ -124,7 +126,7 @@
      <asp:CheckBox ID="chkConfirm" runat="server" 
             Text="" Font-Bold="True" CausesValidation="True" /> 
 
-
+        <asp:CustomValidator ID="chkConfirmValidator" runat="server"></asp:CustomValidator>
     </div>
 
     <br />

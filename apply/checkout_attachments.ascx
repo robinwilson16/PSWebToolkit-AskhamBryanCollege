@@ -61,17 +61,16 @@
                         </div>
                         <div class="form-group col-md-6 col-xl-3">
                             <label for="fuAttachment" class="mb-2">File</label>
-                            <cc1:CCCFileUpload ID="fuAttachment" runat="server" data-html="true"  ClientIDMode="static"  IsRequired="true" SupportedFileTypes=".jpg, .png, .jpeg, .heic, .pdf, .doc, .docx" MaxAllowedFileSize="5000" MaxAllowedFileSizeErrorMessage="File size is larger than 5 MB" CSSClass="form-control pt-2 pb-3" />
+                            <cc1:CCCFileUpload ID="fuAttachment" runat="server" data-html="true"  ClientIDMode="static"  IsRequired="true" SupportedFileTypes=".jpg, .jpeg, .png, .gif, .bmp, .heic, .pdf, .doc, .docx" accept=".jpg,.jpeg,.png,.gif,.bmp,.heic,.pdf,.doc,.docx" MaxAllowedFileSize="5000" MaxAllowedFileSizeErrorMessage="File size is larger than 5 MB" CSSClass="form-control pt-2 pb-3" />
                         </div>
                         <div class="form-group col-md-6 col-xl-2 text-end mt-auto">
-                            <asp:LinkButton ID="btnUpload" runat="server" CssClass="btn btn-primary" CausesValidation="true"><i class="fa-solid fa-file-import"></i> Upload</asp:LinkButton>
+                            <asp:LinkButton ID="btnUpload" runat="server" CssClass="btn btn-primary" CausesValidation="False"><i class="fa-solid fa-file-import"></i> Upload</asp:LinkButton>
                         </div>
                         <asp:CustomValidator ID="ddlTypeOfEvidenceValidator" runat="server"></asp:CustomValidator>
                     </div>
                 </div>
             </div>
         </div>
-        <asp:CustomValidator ID="FilePathValidator" runat="server"></asp:CustomValidator>
     </div>
 
     <asp:CustomValidator ID="btnUploadValidator" runat="server"></asp:CustomValidator>
@@ -124,6 +123,8 @@
             </div>
         </ItemTemplate>
     </asp:Repeater>
+    <asp:CustomValidator ID="AttachmentsValidatorType" runat="server"></asp:CustomValidator>
+    <asp:CustomValidator ID="AttachmentsValidatorFiles" runat="server"></asp:CustomValidator>
 
     <asp:HiddenField runat="server" ID="hiddenvalidator" Visible="true"/>
     <p class="mt-5"><strong>Not Able To Upload Your File/s</strong></p>

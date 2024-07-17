@@ -151,13 +151,13 @@
 
     <div class="form-input">
         <span class="textfieldlabelrequired">Do you consider that you have a learning difficulty, disability or health condition? It is your responsibility to disclose any support requirements.</span>
-        <asp:DropDownList runat="server" ID="rdoLearnDiff" CssClass="form-input" EnableViewState="true" ClientIDMode="Static">
+        <asp:DropDownList runat="server" ID="selectLearnDiff" CssClass="form-input" EnableViewState="true" ClientIDMode="Static">
             <asp:ListItem Text="--please select--" Value=""></asp:ListItem>
             <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
             <asp:ListItem Text="No" Value="2"></asp:ListItem>
 
         </asp:DropDownList>
-
+        <asp:CustomValidator ID="selectLearnDiffValidator" runat="server"></asp:CustomValidator>
     </div>
 
     <div class="Disability">
@@ -241,7 +241,7 @@
         $('.Disability').hide()
 
     
-        if ($("#<%=rdoLearnDiff.ClientID%>").val()=="1") {
+        if ($("#<%=selectLearnDiff.ClientID%>").val()=="1") {
             $(".Disability").show()
            // $('#ctl00_MainContentPlaceholder_ctl00_LivingWithContact1_chkIsLivingWithContact1').prop('checked', true);
         }
@@ -252,9 +252,9 @@
 
         // Set EU Fields visibility when 'Yes' radio button is clicked
       
-        $('#<%= rdoLearnDiff.ClientID %>').change(function () {
+        $('#<%= selectLearnDiff.ClientID %>').change(function () {
           
-            if ($("#<%=rdoLearnDiff.ClientID%>").val()=="1") {
+            if ($("#<%=selectLearnDiff.ClientID%>").val()=="1") {
                // alert(ele[1].checked);
                 $(".Disability").slideDown()
               //  $('#ctl00_MainContentPlaceholder_ctl00_LivingWithContact1_chkIsLivingWithContact1').prop('checked', true);

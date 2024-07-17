@@ -67,11 +67,16 @@
        </div>
     <div class="row">
             <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentMobileTel" ID="StudentEmailField1" runat="server" IsRequired="false" Placeholder="Mobile numbers beginning 07" CustomCaption="Mobile Number (eg 07)" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" />
+                <span class="textfieldlabelrequired">Mobile Number (eg 07)</span>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentMobileTel" ID="fldParentMobileTel" runat="server" IsRequired="false" Placeholder="Mobile numbers beginning 07" CustomCaption="Mobile Number (eg 07)" LabelWidth="0" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" />
         </div>
        <div class="col-sm-6 columns form-group">
-                   <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentPhoneNumber" ID="StudentEnrolmentField10" runat="server" LabelWidth="350" CustomCaption="Contact phone (inc. STD code)" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
+           <span class="textfieldlabelrequired">Contact phone (inc. STD code)</span>
+                   <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentPhoneNumber" ID="fldParentPhoneNumber" runat="server" CustomCaption="Contact phone (inc. STD code)" LabelWidth="0" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
     </div>
+        <div class="col-sm-12 columns form-group">
+            <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>
+        </div>
      </div>
 
      <div class="row">
@@ -112,6 +117,7 @@
          <div class="col-sm-12 columns form-group">
              <label for="postcode" class="textfieldlabelrequired">Postcode</label>
              <input title="Postcode" runat="server" maxlength="9" type="text" id="postcode" class="form-control" name="pre[postalcode]" autocomplete="off" ClientIDMode="Static" />
+             <asp:CustomValidator ID="postcodeValidator" runat="server"></asp:CustomValidator>
              </div>
         </div>
     </div>

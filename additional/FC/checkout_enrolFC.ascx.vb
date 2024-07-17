@@ -537,14 +537,14 @@ Partial Class checkout_directapply
 
         'End If
         'Title
-        If Not IsNothing(fldTitle) Then
-            If String.IsNullOrEmpty(fldTitle.Value) Then
-                fldTitleValidator.ErrorMessage = "Title must not be blank"
-                fldTitleValidator.IsValid = False
-                fldTitleValidator.CssClass = "error alert alert-danger"
-                fldTitle.CssClass = "ErrorInput"
-            End If
-        End If
+        'If Not IsNothing(fldTitle) Then
+        '    If String.IsNullOrEmpty(fldTitle.Value) Then
+        '        fldTitleValidator.ErrorMessage = "Title must not be blank"
+        '        fldTitleValidator.IsValid = False
+        '        fldTitleValidator.CssClass = "error alert alert-danger"
+        '        fldTitle.CssClass = "ErrorInput"
+        '    End If
+        'End If
 
         'Gender
         If Not IsNothing(fldGender) Then
@@ -609,6 +609,8 @@ Partial Class checkout_directapply
         Me.Page.Validate()
 
         If Me.Page.IsValid Then
+            WorkingData.EnrolmentRequestRow.Surname = Trim(fldSurname.Value.ToString)
+            WorkingData.EnrolmentRequestRow.FirstForename = Trim(fldFirstName.Value.ToString)
 
             CheckData()
 

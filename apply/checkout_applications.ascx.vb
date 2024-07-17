@@ -67,8 +67,9 @@ Partial Class checkout_applications
             Dim regexPostCode As New Regex("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$")
             Dim match As Match = regexPostCode.Match(postcode.Value)
             If Not match.Success Then
-                postcodeValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid Postcode"
+                postcodeValidator.ErrorMessage = "Please enter a valid Postcode"
                 postcodeValidator.IsValid = False
+                postcodeValidator.CssClass = "error alert alert-danger"
                 postcode.Attributes.Add("Class", "textfield form-control ErrorInput")
             End If
         End If
@@ -86,12 +87,12 @@ Partial Class checkout_applications
             Dim maxAllowedDOB As Date = dateToCheckDOB.AddYears(-70)
 
             If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > minAllowedDOB Then
-                fldDateOfBirthValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> You cannot be aged under 16 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged under 16 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
                 fldDateOfBirthValidator.IsValid = False
                 fldDateOfBirthValidator.CssClass = "error alert alert-danger"
                 fldDateOfBirth.CssClass = "ErrorInput"
             ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate < maxAllowedDOB Then
-                fldDateOfBirthValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> You cannot be aged over 70 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged over 70 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
                 fldDateOfBirthValidator.IsValid = False
                 fldDateOfBirthValidator.CssClass = "error alert alert-danger"
                 fldDateOfBirth.CssClass = "ErrorInput"
@@ -105,7 +106,7 @@ Partial Class checkout_applications
             Dim matchNINumber As Match = regexNINumber.Match(fldNINumber.Value.ToString())
 
             If fldNINumber.Value.ToString.Length > 0 And Not matchNINumber.Success Then
-                fldNINumberValidate.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid National Insurance Number"
+                fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"
                 fldNINumberValidate.IsValid = False
                 fldNINumberValidate.CssClass = "error alert alert-danger"
                 fldNINumber.CssClass = "ErrorInput"
@@ -121,16 +122,28 @@ Partial Class checkout_applications
 
         If Not IsNothing(fldMobileTel) Then
             If String.IsNullOrEmpty(fldTel.Value.ToString) And String.IsNullOrEmpty(fldMobileTel.Value.ToString) Then
-                fldMobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter at least a home phone number or a mobile number"
+                fldMobileTelValidator.ErrorMessage = "Please enter at least a home phone number or a mobile number"
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
+            ElseIf fldMobileTel.Value.ToString.Length <> 11 Then
+                fldMobileTelValidator.ErrorMessage = "Your mobile phone number must be 11 digits long"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldMobileTel.CssClass = "ErrorInput"
+                fldTel.CssClass = "ErrorInput"
+            ElseIf Not fldMobileTel.Value.ToString.StartsWith("07") Then
+                fldMobileTelValidator.ErrorMessage = "Your mobile phone number must start with 07"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldMobileTel.CssClass = "ErrorInput"
+                fldTel.CssClass = "ErrorInput"
             End If
         End If
 
         If Not IsNothing(fldMobileTel) Then
             If Not String.IsNullOrEmpty(fldMobileTel.Value.ToString) And Not matchMobileTel.Success Then
-                fldMobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid UK mobile number starting 07 containing no spaces"
+                fldMobileTelValidator.ErrorMessage = "Please enter a valid UK mobile number starting 07 containing no spaces"
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
@@ -139,7 +152,7 @@ Partial Class checkout_applications
 
         If Not IsNothing(fldTel) Then
             If Not String.IsNullOrEmpty(fldTel.Value.ToString) And Not (matchTel1.Success Or matchTel2.Success) Then
-                fldTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please enter a valid Telephone Number"
+                fldTelValidator.ErrorMessage = "Please enter a valid Telephone Number"
                 fldTelValidator.IsValid = False
                 fldTelValidator.CssClass = "error alert alert-danger"
                 fldTel.CssClass = "ErrorInput"
@@ -147,14 +160,14 @@ Partial Class checkout_applications
         End If
 
         If WorkingData.EnrolmentRequestRow.MobileTel = WorkingData.EnrolmentRequestRow.ParentMobileTel Then
-            fldMobileTelValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> You must provide a different emergency contact number to your own mobile number " + WorkingData.EnrolmentRequestRow.MobileTel
+            fldMobileTelValidator.ErrorMessage = "You must provide a different emergency contact number to your own mobile number " + WorkingData.EnrolmentRequestRow.MobileTel
             fldMobileTelValidator.IsValid = False
             fldMobileTelValidator.CssClass = "error alert alert-danger"
             fldMobileTel.CssClass = "ErrorInput"
         End If
 
         If WorkingData.EnrolmentRequestRow.Email = WorkingData.EnrolmentRequestRow.ParentEmailAddress Then
-            fldEmailValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> You must provide a different emergency email address to your own email address " + WorkingData.EnrolmentRequestRow.Email
+            fldEmailValidator.ErrorMessage = "You must provide a different emergency email address to your own email address " + WorkingData.EnrolmentRequestRow.Email
             fldEmailValidator.IsValid = False
             fldEmailValidator.CssClass = "error alert alert-danger"
             fldEmail.CssClass = "ErrorInput"
@@ -163,7 +176,7 @@ Partial Class checkout_applications
         'Devolution Funding
         If Not IsNothing(ConfirmNoFundingAvailable) Then
             If DevolutionAreaIsFunded.Checked = False And ConfirmNoFundingAvailable.Checked = False Then
-                ConfirmNoFundingAvailableValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please confirm you acknowlege your fees may be significantly higher as you live in " & ExpectedSourceOfFundingName.Text & "."
+                ConfirmNoFundingAvailableValidator.ErrorMessage = "Please confirm you acknowlege your fees may be significantly higher as you live in " & ExpectedSourceOfFundingName.Text & "."
                 ConfirmNoFundingAvailableValidator.IsValid = False
                 ConfirmNoFundingAvailableValidator.CssClass = "error alert alert-danger"
                 ConfirmNoFundingAvailable.CssClass = "ErrorInput"
@@ -175,14 +188,14 @@ Partial Class checkout_applications
 
         If Not IsNothing(StudentDetailUserDefined24) Then
             If WorkingData.EnrolmentRequestRow.Photo Is Nothing And (CType(StudentDetailUserDefined24.Value, String) = "" Or CType(StudentDetailUserDefined24.Value, String) = "OK") And IsPhotoRequired = True Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
+                PhotoPathValidator.ErrorMessage = "Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             End If
         Else
             If WorkingData.EnrolmentRequestRow.Photo Is Nothing And IsPhotoRequired = True Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
+                PhotoPathValidator.ErrorMessage = "Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
@@ -211,17 +224,22 @@ Partial Class checkout_applications
         'Check Image is Valid
         If Not IsNothing(fileName) Then
             If String.IsNullOrEmpty(fileName) Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please click Choose File above first to browse your device for the photo you wish to use. If you cannot provide evidence at present, please instead select a reason why below."
+                PhotoPathValidator.ErrorMessage = "Please click Choose File above first to browse your device for the photo you wish to use. If you cannot provide evidence at present, please instead select a reason why below."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             ElseIf fileName.LastIndexOf(".") <= 0 Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             ElseIf validExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".")).ToLower) = False Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.IsValid = False
+                PhotoPathValidator.CssClass = "error alert alert-danger"
+                FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
+            ElseIf FileUpload1.FileBytes.Length > 5000 Then
+                PhotoPathValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
@@ -237,6 +255,12 @@ Partial Class checkout_applications
         Me.Page.Validate()
 
         If Me.Page.IsValid Then
+            WorkingData.ApplicationRequestRow.Surname = Trim(fldSurname.Value.ToString)
+            WorkingData.ApplicationRequestRow.FirstForename = Trim(fldFirstForename.Value.ToString)
+
+            WorkingData.EnrolmentRequestRow.Surname = Trim(fldSurname.Value.ToString)
+            WorkingData.EnrolmentRequestRow.FirstForename = Trim(fldFirstForename.Value.ToString)
+
             'postcode stuff            
             ''CCCPS-77326: Setting flag to false so Main Address screen opens when coming from this page.
             PSWebEnrolmentProperties.IsCurrentlyTakingAltAddress = False

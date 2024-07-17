@@ -82,7 +82,7 @@ Partial Class checkout_directapply
         Course = GetProSolutionData.GetCourseByID(MainOfferingID)
 
         If WorkingData.ApplicationRequestRow.AcceptMarketingConsent = True Then
-            rdoConsent.SelectedValue = "1"
+            selectStayingInTouch.SelectedValue = "1"
         End If
 
         ddlTypeOfEvidence.SelectedIndex = 1
@@ -452,7 +452,7 @@ Partial Class checkout_directapply
             'File picked but upload not pressed
             If Not IsNothing(btnUpload) Then
                 If FileChosen.Text = "Y" Then
-                    btnUploadValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please press Upload once you have picked a file before pressing Next"
+                    btnUploadValidator.ErrorMessage = "Please press Upload once you have picked a file before pressing Next"
                     btnUploadValidator.IsValid = False
                     btnUploadValidator.CssClass = "error alert alert-danger"
                     'btnUpload.CssClass = "ErrorInput"
@@ -465,27 +465,70 @@ Partial Class checkout_directapply
 
             If Not IsNothing(StudentDetailUserDefined25) Then
                 If WorkingData.EnrolmentRequestAttachments.Count = 0 And (CType(StudentDetailUserDefined25.Value, String) = "" Or CType(StudentDetailUserDefined25.Value, String) = "OK") And IsAttachmentRequired = True Then
-                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                    FilePathValidator.IsValid = False
-                    FilePathValidator.CssClass = "error alert alert-danger"
+                    btnUploadValidator.ErrorMessage = "Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    btnUploadValidator.IsValid = False
+                    btnUploadValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 End If
             Else
                 If WorkingData.EnrolmentRequestAttachments.Count = 0 And IsAttachmentRequired = True Then
-                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                    FilePathValidator.IsValid = False
-                    FilePathValidator.CssClass = "error alert alert-danger"
+                    btnUploadValidator.ErrorMessage = "Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    btnUploadValidator.IsValid = False
+                    btnUploadValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 End If
             End If
         End If
 
-        If rdoConsent.SelectedValue = "" Then
-            Dim a As New CustomValidator
-            a.IsValid = False
-            a.ErrorMessage = "After you enrol, we would like to send you details of services the College has to offer to support your study and your time here at the College. However, you can unsubscribe from those emails at any time must not be blank"
-            Me.Page.Validators.Add(a)
-            rdoConsent.Style.Add("border", "1px solid red")
+        Dim attachmentTypes As List(Of String) = New List(Of String)
+        Dim attachmentFiles As List(Of String) = New List(Of String)
+        For Each row As EnrolmentRequestAttachmentsRow In WorkingData.EnrolmentRequestAttachments.Rows
+            attachmentTypes.Add(row.TypeOfEvidence.ToString)
+            attachmentFiles.Add(row.FileName)
+        Next
+
+        Dim duplicateTypes As List(Of String) =
+               attachmentTypes.GroupBy(Function(n) n) _
+               .Where(Function(g) g.Count() > 1) _
+               .Select(Function(g) g.First) _
+               .ToList()
+
+        Dim duplicateTypesOnly As String() = duplicateTypes.ToArray
+        Dim duplicateTypesString As String = String.Join(", ", duplicateTypesOnly)
+
+        If Not IsNothing(duplicateTypesString) Then
+            If Not String.IsNullOrEmpty(duplicateTypesString) Then
+                AttachmentsValidatorType.ErrorMessage = "The following attachment types have been entered more than once: <strong>""" + duplicateTypesString + """</strong>. Please remove the duplicated options."
+                AttachmentsValidatorType.IsValid = False
+                AttachmentsValidatorType.CssClass = "error alert alert-danger"
+            End If
+        End If
+
+        Dim duplicateFiles As List(Of String) =
+               attachmentFiles.GroupBy(Function(n) n) _
+               .Where(Function(g) g.Count() > 1) _
+               .Select(Function(g) g.First) _
+               .ToList()
+
+        Dim duplicateFilesOnly As String() = duplicateFiles.ToArray
+        Dim duplicateFilesString As String = String.Join(", ", duplicateFilesOnly)
+
+        If Not IsNothing(duplicateFilesString) Then
+            If Not String.IsNullOrEmpty(duplicateFilesString) Then
+                AttachmentsValidatorFiles.ErrorMessage = "The following files have been attached more than once: <strong>""" + duplicateFilesString + """</strong>. Please remove the duplicated files."
+                AttachmentsValidatorFiles.IsValid = False
+                AttachmentsValidatorFiles.CssClass = "error alert alert-danger"
+            End If
+        End If
+
+
+        If Not IsNothing(selectStayingInTouch) Then
+            If selectStayingInTouch.SelectedValue = "" Then
+                selectStayingInTouchValidator.ErrorMessage = "Staying in touch cannot be blank."
+                selectStayingInTouchValidator.IsValid = False
+                selectStayingInTouchValidator.CssClass = "error alert alert-danger"
+                selectStayingInTouch.CssClass = "ErrorInput"
+            End If
         End If
 
         If whopays.SelectedValue = "" Then
@@ -504,12 +547,13 @@ Partial Class checkout_directapply
             howpay.Style.Add("border", "1px solid red")
         End If
 
-        If Not chkConfirm.Checked Then
-            Dim v As New CustomValidator
-            v.IsValid = False
-            v.ErrorMessage = "Please confirm the declaration"
-            Me.Page.Validators.Add(v)
-            chkConfirm.Style.Add("border", "1px solid red")
+        If Not IsNothing(chkConfirm) Then
+            If Not chkConfirm.Checked = True Then
+                chkConfirmValidator.ErrorMessage = "Please confirm that you have read the declaration above."
+                chkConfirmValidator.IsValid = False
+                chkConfirmValidator.CssClass = "error alert alert-danger"
+                chkConfirm.CssClass = "ErrorInput"
+            End If
         End If
 
         MyBase.ValidateControl()
@@ -559,7 +603,7 @@ Partial Class checkout_directapply
 
     Private Sub CheckData()
 
-        WorkingData.ApplicationRequestRow.AcceptMarketingConsent = rdoConsent.SelectedValue
+        WorkingData.ApplicationRequestRow.AcceptMarketingConsent = selectStayingInTouch.SelectedValue
         WorkingData.EnrolmentRequestRow.EnrolmentUserDefined10 = whopays.SelectedValue
         WorkingData.EnrolmentRequestRow.EnrolmentUserDefined11 = howpay.SelectedValue
 
@@ -662,7 +706,7 @@ Partial Class checkout_directapply
 
 
         If HasSelectedEvidenceType = True Then
-            Me.fuAttachment.ValidateFile()
+            'Me.fuAttachment.ValidateFile()
 
             Dim rowAttachment = WorkingData.EnrolmentRequestAttachments.NewRow
             _lastAttachmentID -= 1
@@ -692,17 +736,22 @@ Partial Class checkout_directapply
             'Check Image is Valid
             If Not IsNothing(rowAttachment.FileName) Then
                 If String.IsNullOrEmpty(rowAttachment.FileName) Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "Please upload your attachment by clicking on Choose File"
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 ElseIf rowAttachment.FileName.LastIndexOf(".") <= 0 Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 ElseIf validExtensions.Contains(rowAttachment.FileName.Substring(rowAttachment.FileName.LastIndexOf(".")).ToLower) = False Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.IsValid = False
+                    ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                ElseIf fuAttachment.FileBytes.Length > 5000 Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")

@@ -104,7 +104,7 @@
             ErrorMessage="Only .jpg, .png, .jpeg, .gif, .heic Files are allowed" Font-Bold="True"
             Font-Size="Medium"
             ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|heic|JPG|JPEG|PNG|GIF|HEIC)$"></asp:RegularExpressionValidator>
-        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" IsRequired="false" ClientIDMode="Static" />
+        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" IsRequired="false" ClientIDMode="Static" accept=".jpg,.jpeg,.png,.gif,.bmp,.heic" />
         <input type="text" id="PhotoPath" runat="server" class="form-control d-none" ClientIDMode="Static" />
         <asp:CustomValidator ID="PhotoPathValidator" runat="server"></asp:CustomValidator>
 

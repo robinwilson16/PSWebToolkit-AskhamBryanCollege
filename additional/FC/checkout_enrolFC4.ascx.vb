@@ -87,7 +87,7 @@ Partial Class checkout_directapply
         'End If
 
         If WorkingData.ApplicationRequestRow.LearningDiffOrDisID <> "" Then
-            rdoLearnDiff.SelectedValue = WorkingData.ApplicationRequestRow.LearningDiffOrDisID
+            selectLearnDiff.SelectedValue = WorkingData.ApplicationRequestRow.LearningDiffOrDisID
         End If
 
         'If WorkingData.EnrolmentRequestRow.HasSpecialEducationNeeds = True Then
@@ -438,22 +438,16 @@ Partial Class checkout_directapply
         '    NotHECareLeaver.Style.Add("border", "1px solid red")
         'End If
 
-        If rdoLearnDiff.SelectedValue = "" Then
-            Dim a As New CustomValidator
-            a.IsValid = False
-            a.ErrorMessage = "Do consider yourself to have a learning difficulty and/or disability?"
-            Me.Page.Validators.Add(a)
-            rdoLearnDiff.Style.Add("border", "1px solid red")
-        End If
-
-        If rdoLearnDiff.SelectedValue = "1" Then
-            If String.IsNullOrEmpty(fldDisabilityCategory1ID.Value) Then
-                Dim a As New CustomValidator
-                a.IsValid = False
-                a.ErrorMessage = "Please provide your main learning diffculty/disability"
-                Me.Page.Validators.Add(a)
-                rdoLearnDiff.Style.Add("border", "1px solid red")
-            End If
+        If selectLearnDiff.SelectedValue = "" Then
+            selectLearnDiffValidator.ErrorMessage = "Please confirm if you have a learning difficulty, disability or health condition"
+            selectLearnDiffValidator.IsValid = False
+            selectLearnDiffValidator.CssClass = "error alert alert-danger"
+            selectLearnDiff.Style.Add("border", "1px solid red")
+        ElseIf selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
+            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
+            selectLearnDiffValidator.IsValid = False
+            selectLearnDiffValidator.CssClass = "error alert alert-danger"
+            selectLearnDiff.Style.Add("border", "1px solid red")
         End If
 
         'If Not IsNothing(fldEthnicGroupID) Then
@@ -495,7 +489,7 @@ Partial Class checkout_directapply
         'WorkingData.ApplicationRequestRow.EuroResidentID = CType(RadioButtonListEU.SelectedValue, Boolean?)
         WorkingData.ApplicationRequestRow.CriminalConvictionID = CType(rdoCC.SelectedValue, Integer?)
         'WorkingData.ApplicationRequestRow.Overseas = rdoOverseas.SelectedValue
-        WorkingData.ApplicationRequestRow.LearningDiffOrDisID = rdoLearnDiff.SelectedValue
+        WorkingData.ApplicationRequestRow.LearningDiffOrDisID = selectLearnDiff.SelectedValue
         'WorkingData.EnrolmentRequestRow.HasEducationHealthCarePlan = HasEHCP.SelectedValue
         'WorkingData.EnrolmentRequestRow.CareLeaver = NotHECareLeaver.SelectedValue
 

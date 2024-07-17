@@ -61,8 +61,8 @@
              <asp:DropDownList ID="selectEmployed" runat="server"   EnableViewState="true" ClientIDMode="Static">
              <asp:ListItem value="">--Please Select--</asp:ListItem>
              <asp:ListItem value="10">In paid employment</asp:ListItem>
-             <asp:ListItem value="11">Not in paid employment, looking for work and available to start work</asp:ListItem>
-             <asp:ListItem value="12">Not in paid employment, not looking for work and/or not available to start work</asp:ListItem>
+             <asp:ListItem value="11">Not in paid employment, looking for work</asp:ListItem>
+             <asp:ListItem value="12">Not in paid employment, not looking for work</asp:ListItem>
              </asp:DropDownList>
           </div>
       </div>

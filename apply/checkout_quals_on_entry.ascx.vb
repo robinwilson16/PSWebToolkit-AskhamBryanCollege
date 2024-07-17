@@ -95,10 +95,11 @@ Partial Class checkout_quals_on_entry
                 Dim qualIDCustom As String = row.Subject
                 Dim grade As String = row.Grade
                 Dim predictedGrade As String = row.PredictedGrade
+                Dim dateAwarded As Date? = row.DateAwarded
 
                 If String.IsNullOrEmpty(qualID) And String.IsNullOrEmpty(qualIDCustom) And String.IsNullOrEmpty(grade) And String.IsNullOrEmpty(predictedGrade) Then
                     Dim v As New CustomValidator
-                    v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Error on line " + (rowCount).ToString + " as no subject or grade or predicted grade has been entered. Please remove the row or enter the subject and grade."
+                    v.ErrorMessage = "Error on line " + (rowCount).ToString + " as no subject or grade or predicted grade has been entered. Please remove the row or enter the subject and grade."
                     v.IsValid = False
                     Me.Page.Validators.Add(v)
                 ElseIf Not (String.IsNullOrEmpty(qualID) And String.IsNullOrEmpty(qualIDCustom)) And (String.IsNullOrEmpty(grade) And String.IsNullOrEmpty(predictedGrade)) Then
@@ -108,18 +109,25 @@ Partial Class checkout_quals_on_entry
                     End If
 
                     Dim v As New CustomValidator
-                    v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Error with " + If(qualTitle, qualIDCustom) + " on line " + (rowCount).ToString + " as a subject has been selected but no grade or predicted grade has been entered. Please remove the subject or enter the grade."
+                    v.ErrorMessage = "Error with " + If(qualTitle, qualIDCustom) + " on line " + (rowCount).ToString + " as a subject has been selected but no grade or predicted grade has been entered. Please remove the subject or enter the grade."
                     v.IsValid = False
                     Me.Page.Validators.Add(v)
                 ElseIf (String.IsNullOrEmpty(qualID) And String.IsNullOrEmpty(qualIDCustom)) And Not (String.IsNullOrEmpty(grade) And String.IsNullOrEmpty(predictedGrade)) Then
                     If Not String.IsNullOrEmpty(grade) Then
                         Dim v As New CustomValidator
-                        v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Error with " + grade + " on line " + (rowCount).ToString + " as a grade has been entered but a subject has not been selected. Please remove the grade or select the subject."
+                        v.ErrorMessage = "Error with " + grade + " on line " + (rowCount).ToString + " as a grade has been entered but a subject has not been selected. Please remove the grade or select the subject."
                         v.IsValid = False
                         Me.Page.Validators.Add(v)
                     Else
                         Dim v As New CustomValidator
-                        v.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Error with grade " + predictedGrade + " on line " + (rowCount).ToString + " as a predicted grade has been entered but a subject has not been selected. Please remove the predicted grade or select the subject."
+                        v.ErrorMessage = "Error with grade " + predictedGrade + " on line " + (rowCount).ToString + " as a predicted grade has been entered but a subject has not been selected. Please remove the predicted grade or select the subject."
+                        v.IsValid = False
+                        Me.Page.Validators.Add(v)
+                    End If
+                ElseIf Not IsNothing(dateAwarded) Then
+                    If dateAwarded > Today Then
+                        Dim v As New CustomValidator
+                        v.ErrorMessage = "Error with date awarded " + dateAwarded.Value.ToString("dd/MM/yyyy") + " on line " + (rowCount).ToString + " as it is in the future."
                         v.IsValid = False
                         Me.Page.Validators.Add(v)
                     End If

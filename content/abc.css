@@ -44,6 +44,16 @@
     border: 0px;
 }
 
+input[type=checkbox] {
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: -8px;
+}
+
+.PrivacyNotice {
+    word-wrap: break-word;
+}
+
 .bd-callout-askham {
     border-left-color: #23573a !important;
 }

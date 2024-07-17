@@ -90,7 +90,7 @@ Partial Class webcontrols_checkout_attachments
             'File picked but upload not pressed
             If Not IsNothing(btnUpload) Then
                 If FileChosen.Text = "Y" Then
-                    btnUploadValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please press Upload once you have picked a file before pressing Next"
+                    btnUploadValidator.ErrorMessage = "Please press Upload once you have picked a file before pressing Next"
                     btnUploadValidator.IsValid = False
                     btnUploadValidator.CssClass = "error alert alert-danger"
                     'btnUpload.CssClass = "ErrorInput"
@@ -103,20 +103,62 @@ Partial Class webcontrols_checkout_attachments
 
             If Not IsNothing(StudentDetailUserDefined25) Then
                 If WorkingData.EnrolmentRequestAttachments.Count = 0 And (CType(StudentDetailUserDefined25.Value, String) = "" Or CType(StudentDetailUserDefined25.Value, String) = "OK") And IsAttachmentRequired = True Then
-                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                    FilePathValidator.IsValid = False
-                    FilePathValidator.CssClass = "error alert alert-danger"
+                    btnUploadValidator.ErrorMessage = "Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    btnUploadValidator.IsValid = False
+                    btnUploadValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 End If
             Else
                 If WorkingData.EnrolmentRequestAttachments.Count = 0 And IsAttachmentRequired = True Then
-                    FilePathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
-                    FilePathValidator.IsValid = False
-                    FilePathValidator.CssClass = "error alert alert-danger"
+                    btnUploadValidator.ErrorMessage = "Please upload your attachment/s by clicking on Choose File. If you cannot upload your attachment/s then please state the reason why."
+                    btnUploadValidator.IsValid = False
+                    btnUploadValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 End If
             End If
         End If
+
+        Dim attachmentTypes As List(Of String) = New List(Of String)
+        Dim attachmentFiles As List(Of String) = New List(Of String)
+        For Each row As EnrolmentRequestAttachmentsRow In WorkingData.EnrolmentRequestAttachments.Rows
+            attachmentTypes.Add(row.TypeOfEvidence.ToString)
+            attachmentFiles.Add(row.FileName)
+        Next
+
+        Dim duplicateTypes As List(Of String) =
+               attachmentTypes.GroupBy(Function(n) n) _
+               .Where(Function(g) g.Count() > 1) _
+               .Select(Function(g) g.First) _
+               .ToList()
+
+        Dim duplicateTypesOnly As String() = duplicateTypes.ToArray
+        Dim duplicateTypesString As String = String.Join(", ", duplicateTypesOnly)
+
+        If Not IsNothing(duplicateTypesString) Then
+            If Not String.IsNullOrEmpty(duplicateTypesString) Then
+                AttachmentsValidatorType.ErrorMessage = "The following attachment types have been entered more than once: <strong>""" + duplicateTypesString + """</strong>. Please remove the duplicated options."
+                AttachmentsValidatorType.IsValid = False
+                AttachmentsValidatorType.CssClass = "error alert alert-danger"
+            End If
+        End If
+
+        Dim duplicateFiles As List(Of String) =
+               attachmentFiles.GroupBy(Function(n) n) _
+               .Where(Function(g) g.Count() > 1) _
+               .Select(Function(g) g.First) _
+               .ToList()
+
+        Dim duplicateFilesOnly As String() = duplicateFiles.ToArray
+        Dim duplicateFilesString As String = String.Join(", ", duplicateFilesOnly)
+
+        If Not IsNothing(duplicateFilesString) Then
+            If Not String.IsNullOrEmpty(duplicateFilesString) Then
+                AttachmentsValidatorFiles.ErrorMessage = "The following files have been attached more than once: <strong>""" + duplicateFilesString + """</strong>. Please remove the duplicated files."
+                AttachmentsValidatorFiles.IsValid = False
+                AttachmentsValidatorFiles.CssClass = "error alert alert-danger"
+            End If
+        End If
+
 
         MyBase.ValidateControl()
     End Sub
@@ -150,7 +192,7 @@ Partial Class webcontrols_checkout_attachments
 
 
         If HasSelectedEvidenceType = True Then
-            Me.fuAttachment.ValidateFile()
+            'Me.fuAttachment.ValidateFile()
 
             Dim rowAttachment = WorkingData.EnrolmentRequestAttachments.NewRow
             _lastAttachmentID -= 1
@@ -180,17 +222,22 @@ Partial Class webcontrols_checkout_attachments
             'Check Image is Valid
             If Not IsNothing(rowAttachment.FileName) Then
                 If String.IsNullOrEmpty(rowAttachment.FileName) Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "Please upload your attachment by clicking on Choose File"
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 ElseIf rowAttachment.FileName.LastIndexOf(".") <= 0 Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
                 ElseIf validExtensions.Contains(rowAttachment.FileName.Substring(rowAttachment.FileName.LastIndexOf(".")).ToLower) = False Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
+                    ddlTypeOfEvidenceValidator.IsValid = False
+                    ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
+                    fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
+                ElseIf fuAttachment.FileBytes.Length > 5000 Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")

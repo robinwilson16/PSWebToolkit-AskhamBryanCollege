@@ -59,17 +59,22 @@ Partial Class webcontrols_checkout_photo
         'Check Image is Valid
         If Not IsNothing(fileName) Then
             If String.IsNullOrEmpty(fileName) Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File"
+                PhotoPathValidator.ErrorMessage = "Please upload your photo by clicking on Choose File"
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             ElseIf fileName.LastIndexOf(".") <= 0 Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             ElseIf validExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".")).ToLower) = False Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.ErrorMessage = "This type of file is not valid. Please upload a valid image file"
+                PhotoPathValidator.IsValid = False
+                PhotoPathValidator.CssClass = "error alert alert-danger"
+                FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
+            ElseIf FileUpload1.FileBytes.Length > 5000 Then
+                PhotoPathValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
@@ -106,14 +111,14 @@ Partial Class webcontrols_checkout_photo
 
         If Not IsNothing(StudentDetailUserDefined24) Then
             If WorkingData.EnrolmentRequestRow.Photo Is Nothing And (CType(StudentDetailUserDefined24.Value, String) = "" Or CType(StudentDetailUserDefined24.Value, String) = "OK") And IsPhotoRequired = True Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
+                PhotoPathValidator.ErrorMessage = "Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
             End If
         Else
             If WorkingData.EnrolmentRequestRow.Photo Is Nothing And IsPhotoRequired = True Then
-                PhotoPathValidator.ErrorMessage = "<i class=""fa-solid fa-triangle-exclamation""></i> Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
+                PhotoPathValidator.ErrorMessage = "Please upload your photo by clicking on Choose File. If you cannot upload your photo then please state the reason why."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
