@@ -103,7 +103,7 @@
 
     <div class="bd-callout bd-callout-warning">
         <h5 class="mb-4">
-            <kbd>16-18 Form</kbd> Before you begin please have with you:
+            <kbd>16-18 and Adult Form</kbd> Before you begin please have with you:
         </h5>
 
         <ul class="list-group">
@@ -146,7 +146,7 @@
             <div class="col-md text-end">
                 <span class="d-grid gap-2 d-md-block">
                     <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue to Checkout" ImageResource="btnContinue" LinkResource="checkout_enrolments_1618_aspx" CausesValidation="true" />
+                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue to Checkout" ImageResource="btnContinue" LinkResource="checkout_enrolments_1618_aspx" CausesValidation="true" />
                 </span>
             </div>
         </div>

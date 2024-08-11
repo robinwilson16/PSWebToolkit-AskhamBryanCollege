@@ -750,8 +750,8 @@ Partial Class checkout_directapply
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
-                ElseIf fuAttachment.FileBytes.Length > 5000 Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
+                ElseIf fuAttachment.FileBytes.Length > 5 * 1000 * 1000 Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is " + Math.Round((fuAttachment.FileBytes.Length / 1000 / 1000), 2).ToString + "MB which is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")

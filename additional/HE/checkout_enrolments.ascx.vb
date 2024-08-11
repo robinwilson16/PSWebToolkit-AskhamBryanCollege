@@ -179,6 +179,36 @@ Partial Class webcontrols_checkout_enrolments
         '    End If
         'End If
 
+        'DOB
+        If Not IsNothing(fldDateOfBirth) Then
+            Dim dateOfBirthDate As Date?
+
+            If Not String.IsNullOrEmpty(fldDateOfBirth.Value.ToString) Then
+                dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
+            End If
+
+            Dim dateToCheckDOB As Date = CDate(Today().Year & "-08-31")
+            Dim minAllowedDOB As Date = dateToCheckDOB.AddYears(-16)
+            Dim maxAllowedDOB As Date = dateToCheckDOB.AddYears(-70)
+
+            If String.IsNullOrEmpty(fldDateOfBirth.Value.ToString) Then
+                fldDateOfBirthValidator.ErrorMessage = "Please enter your Date of Birth"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate > minAllowedDOB Then
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged under 16 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate < maxAllowedDOB Then
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged over 70 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            End If
+        End If
+
         'Gender
         If Not IsNothing(fldGender) Then
             If String.IsNullOrEmpty(fldGender.Value) Then

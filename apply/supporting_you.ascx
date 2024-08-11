@@ -141,13 +141,13 @@ Do you have any spent cautions or convictions, which are not protected as define
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" LinkResource="checkout_applications_abc" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" LinkResource="checkout_applications_abc" CausesValidation="false" />
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" LinkResource="other_contacts_abc" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" LinkResource="other_contacts_abc" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>

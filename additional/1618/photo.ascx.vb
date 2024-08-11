@@ -137,8 +137,8 @@ Partial Class photo
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
-            ElseIf FileUpload1.FileBytes.Length > 5000 Then
-                PhotoPathValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
+            ElseIf FileUpload1.FileBytes.Length > 5 * 1000 * 1000 Then
+                PhotoPathValidator.ErrorMessage = "This file is " + Math.Round((FileUpload1.FileBytes.Length / 1000 / 1000), 2).ToString + "MB which is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")

@@ -129,6 +129,10 @@
         <%--pattern="^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$" Title="Please enter a valid Postcode"--%>
         <asp:CustomValidator ID="postcodeValidator" runat="server"></asp:CustomValidator>
     </div>
+</div>
+
+<div class="bd-callout bd-callout-askham bd-callout-grey">
+    <h4><i class="fa-solid fa-comment"></i> Contact Details</h4>
 
         <div class="form-group"> 
             <span class="textfieldlabelrequired">Personal Mobile</span>
@@ -203,13 +207,13 @@
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>
@@ -297,6 +301,7 @@
         document.addEventListener("getaddress-autocomplete-address-selected", function (e) {
             console.log(e.address);
 
+            //Check devolution area
             //postcode.dispatchEvent(postCodeKeyup);
         });
 

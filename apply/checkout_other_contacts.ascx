@@ -130,13 +130,13 @@
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>

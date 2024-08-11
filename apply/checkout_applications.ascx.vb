@@ -6,6 +6,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Linq
 Imports CompassCC.ProSolution.PSWebEnrolmentKit
+Imports Microsoft.IdentityModel.Tokens
 
 Partial Class checkout_applications
     Inherits CheckoutBaseControl
@@ -61,6 +62,14 @@ Partial Class checkout_applications
         End If
     End Sub
 
+    Protected Overrides Sub CreateChildControls()
+        MyBase.CreateChildControls()
+
+        If Not String.IsNullOrEmpty(CStr(Session("19PlusOutsideAreaConfirmed"))) Then
+            ConfirmNoFundingAvailable.Checked = CBool(Session("19PlusOutsideAreaConfirmed"))
+        End If
+    End Sub
+
     Public Overrides Sub ValidateControl()
         'Post Code
         If Not IsNothing(postcode) Then
@@ -78,7 +87,7 @@ Partial Class checkout_applications
         If Not IsNothing(fldDateOfBirth) Then
             Dim dateOfBirthDate As Date?
 
-            If Not String.IsNullOrEmpty(fldDateOfBirth.Value.ToString) Then
+            If Not String.IsNullOrEmpty(CStr(fldDateOfBirth.Value)) Then
                 dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
             End If
 
@@ -86,7 +95,12 @@ Partial Class checkout_applications
             Dim minAllowedDOB As Date = dateToCheckDOB.AddYears(-16)
             Dim maxAllowedDOB As Date = dateToCheckDOB.AddYears(-70)
 
-            If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > minAllowedDOB Then
+            If String.IsNullOrEmpty(CStr(fldDateOfBirth.Value)) Then
+                fldDateOfBirthValidator.ErrorMessage = "Please enter your Date of Birth"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate > minAllowedDOB Then
                 fldDateOfBirthValidator.ErrorMessage = "You cannot be aged under 16 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
                 fldDateOfBirthValidator.IsValid = False
                 fldDateOfBirthValidator.CssClass = "error alert alert-danger"
@@ -103,7 +117,18 @@ Partial Class checkout_applications
         If Not IsNothing(fldNINumber) Then
             Dim regexNINumber As New Regex("^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$$")
 
-            Dim matchNINumber As Match = regexNINumber.Match(fldNINumber.Value.ToString())
+            Dim matchNINumber As Match = regexNINumber.Match(CStr(fldNINumber.Value))
+
+            If (String.IsNullOrEmpty(CStr(fldNINumber.Value))) Then
+                matchNINumber = regexNINumber.Match(CStr(fldNINumber.Value))
+            End If
+
+            If (String.IsNullOrEmpty(CStr(fldNINumber.Value))) Then
+                fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"
+                fldNINumberValidate.IsValid = False
+                fldNINumberValidate.CssClass = "error alert alert-danger"
+                fldNINumber.CssClass = "ErrorInput"
+            End If
 
             If fldNINumber.Value.ToString.Length > 0 And Not matchNINumber.Success Then
                 fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"
@@ -238,8 +263,8 @@ Partial Class checkout_applications
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")
-            ElseIf FileUpload1.FileBytes.Length > 5000 Then
-                PhotoPathValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
+            ElseIf FileUpload1.FileBytes.Length > 5 * 1000 * 1000 Then
+                PhotoPathValidator.ErrorMessage = "This file is " + Math.Round((FileUpload1.FileBytes.Length / 1000 / 1000), 2).ToString + "MB which is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                 PhotoPathValidator.IsValid = False
                 PhotoPathValidator.CssClass = "error alert alert-danger"
                 FileUpload1.Attributes.Add("Class", "textfield form-control ErrorInput")

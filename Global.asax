@@ -40,10 +40,18 @@
             If Not System.Web.HttpContext.Current.Session Is Nothing Then
                 Session("LastError") = exceptionContainer
 
-                'Need to do this to not destroy the session
-                'Server.ClearError()
 
-                'Response.Redirect("~/GenericError.aspx")
+
+                'Set maxRequestLength and maxAllowedContentLength
+                If Not IsNothing(exceptionContainer.InnerException) And exceptionContainer.InnerException.GetType() = GetType(HttpException) And DirectCast(exceptionContainer.InnerException, HttpException).WebEventCode = System.Web.Management.WebEventCodes.RuntimeErrorPostTooLarge Then
+                    Server.ClearError()
+                    Response.Redirect("~/Error/ErrorOccurred.aspx?StatusCode=413")
+                Else
+                    'Need to do this to not destroy the session
+                    Server.ClearError()
+
+                    Response.Redirect("~/GenericError.aspx")
+                End If
             End If
 
         Catch ex As Exception
@@ -116,7 +124,7 @@
 
 
         'System Settings
-        SystemSettings.AcademicYearID = "23/24"
+        SystemSettings.AcademicYearID = "24/25"
 
         SystemSettings.CollegeOrganisationID = 0
 

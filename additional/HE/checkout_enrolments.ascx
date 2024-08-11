@@ -81,9 +81,14 @@
           </div>
    </div>
   <div class="row">
-      <div class="col-sm-12 columns form-group"> 
-          <cc1:StudentEnrolmentField id="datepicker" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth"  CustomCaption="Date of birth" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
-          </div>
+        <div class="col-sm-12 columns form-group"> 
+            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
+            <div class="alert alert-secondary d-none" role="alert" id="AgeInfo">
+                &nbsp;
+            </div>
+            <asp:Textbox runat="server" ID="Age31stAug" Placeholder="Age31stAug" type="number" ClientIDMode="Static" class="d-none" />
+        </div>
       </div>
      <div class="row">
       <div class="col-sm-6 columns form-group">            
@@ -169,7 +174,7 @@
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-address-book"></i> Address and Contact Details</h4>
+    <h4><i class="fa-solid fa-address-book"></i> Address Details</h4>
 
 
 <%--    <div class="row">
@@ -213,6 +218,11 @@
        <div class="col-sm-12 columns form-group">  <p><strong>You must provide at least one phone number below:</strong></p>
            </div>
          </div>
+</div>
+
+<div class="bd-callout bd-callout-askham bd-callout-grey">
+    <h4><i class="fa-solid fa-comment"></i> Contact Details</h4>
+
     <div class="row">
         <div class="col-sm-6 columns form-group"> 
             <span class="textfieldlabelrequired">Personal Mobile</span>
@@ -301,14 +311,14 @@
             <span class="d-grid gap-2 d-md-block">
                 <%If ShowBackButton = True Then %>
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" LinkResource="courseenrol_aspx" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" LinkResource="courseenrol_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
                 <%End If %>
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>
@@ -427,6 +437,7 @@
         document.addEventListener("getaddress-autocomplete-address-selected", function (e) {
             console.log(e.address);
 
+            //Check devolution area
             //postcode.dispatchEvent(postCodeKeyup);
         });
 

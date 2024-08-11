@@ -79,9 +79,14 @@
           </div>
    </div>
   <div class="row">
-      <div class="col-sm-12 columns form-group"> 
-          <cc1:StudentEnrolmentField id="datepicker" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" placeholder="dd/mm/yyyy" CustomCaption="Date of birth" HTML5InputType="date" />
-          </div>
+        <div class="col-sm-12 columns form-group"> 
+            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
+            <div class="alert alert-secondary" role="alert" id="AgeInfo">
+                &nbsp;
+            </div>
+            <asp:Textbox runat="server" ID="Age31stAug" Placeholder="Age31stAug" type="number" ClientIDMode="Static" class="d-none" />
+        </div>
       <div class="col-sm-6 columns form-group">            
                  <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Sex" ID="fldGender" runat="server" LabelWidth="300" CustomCaption="Legal Gender" IsRequired="true" ClientIDMode="Static" />
             <asp:CustomValidator ID="fldGenderValidator" runat="server"></asp:CustomValidator>
@@ -164,7 +169,7 @@
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-address-book"></i> Address and Contact Details</h4>
+    <h4><i class="fa-solid fa-address-book"></i> Address Details</h4>
 
 
 <%--    <div class="row">
@@ -204,6 +209,40 @@
             </div> 
         </div>
     </div>
+    <div class="alert alert-secondary" role="alert" id="DevolvedPostCodeAreaInfo">
+        &nbsp;
+    </div>
+</div>
+
+<div class="bd-callout bd-callout-askham-warning bd-callout-fees d-none" id="DevolvedFeesInfo">
+    <h4><i class="fa-solid fa-landmark"></i> Funding Details</h4>
+    <p>
+        Please note, over 19s are usually liable for course fees. As you live in the <span id="DevolvedAreaName">[DEVOLVED AREA]</span> devolved area <strong>your course fees will be higher</strong>. 
+    </p>
+    <p>
+        Askham Bryan College receives government funding which allows us to offer courses at a lower cost. The guidelines relating to devolution means that we cannot apply this funding to learners who live in devolved areas. 
+    </p>
+    <p>
+        Before committing to a course with Askham Bryan College, we would recommend that you explore options to study the course the course in your local area.
+    </p>
+    <p>
+        If you would prefer to continue your application with Askham Bryan College please note that the price of the course <strong>could be doubled the advertised cost</strong>. Definitive fees can only be confirmed at point of enrolment (usually in September).
+    </p>
+    <p>
+        You may be able to find support for these fees based on your personal circumstances. Please confirm you acknowledge this.
+    </p>
+    <div class=" form-group">
+        <asp:Checkbox runat="server" ID="ConfirmNoFundingAvailable" Text="I confirm my acknowledgement" />
+        <asp:CustomValidator ID="ConfirmNoFundingAvailableValidator" runat="server"></asp:CustomValidator>
+        <asp:Textbox runat="server" ID="ExpectedSourceOfFundingID" Placeholder="ExpectedSourceOfFundingID" type="number" ClientIDMode="Static" class="d-none" />
+        <asp:Textbox runat="server" ID="ExpectedSourceOfFundingName" Placeholder="ExpectedSourceOfFundingName" ClientIDMode="Static" class="d-none" />
+        <asp:Checkbox runat="server" ID="DevolutionAreaIsFunded" Text="DevolutionAreaIsFunded" ClientIDMode="Static" class="d-none" />
+    </div>
+</div>
+
+<div class="bd-callout bd-callout-askham bd-callout-grey">
+    <h4><i class="fa-solid fa-comment"></i> Contact Details</h4>
+
     <div class="row">
         <div class="col-sm-12 columns form-group">
             <p><strong>You must provide at least one phone number below:</strong></p>
@@ -304,14 +343,14 @@
             <span class="d-grid gap-2 d-md-block">
                 <%If ShowBackButton = True Then %>
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" LinkResource="courseenrol1618_aspx" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" LinkResource="courseenrol1618_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
                 <%End If %>
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>
@@ -389,6 +428,39 @@
         sortSelectMoveToTop(titleDropdown, "Mr");
         sortSelectMoveToTop(titleDropdown, "");
 
+        //Calculate age and show under input box
+        let dob = document.getElementById(`txtDateOfBirth`);
+        let postcode = document.getElementById(`postcode`);
+        let postCodeKeyup = new Event('keyup');
+
+        if (dob.value !== null) {
+            //If DOB already has a value then attempt to show age from DOB
+            //alert(`|` + dob.value + `|`);
+            showAge();
+        }
+        dob.addEventListener(`keyup`, function (event) {
+            showAge();
+            postcode.dispatchEvent(postCodeKeyup);
+        });
+
+        function showAge() {
+            let today = new Date();
+            let date31stAug = new Date(today.getFullYear() + `-08-31`);
+            let dateOfBirth = new Date(dob.value);
+            let age31stAug = calculateAge(dateOfBirth);
+            let AgeInfo = document.getElementById(`AgeInfo`);
+            let AgeField = document.getElementById(`Age31stAug`);
+
+            if (isNaN(dateOfBirth) || (dateOfBirth === ` `)) {
+                AgeInfo.innerHTML = `&nbsp;`;
+                AgeField.value = ``;
+            }
+            else {
+                AgeInfo.innerHTML = `<i class="fa-solid fa-calendar-day"></i> Age on ${date31stAug.getDate()}${nth(date31stAug.getDate())} ${date31stAug.toLocaleString(`default`, { month: `long` })} ${date31stAug.getFullYear()}: <kbd>${age31stAug}</kbd>`;
+                AgeField.value = age31stAug;
+            }
+        }
+
         //Put most common promouns first - uses custom JS function
         let pronounDropdown = document.getElementById(`cboPreferredPronounID`);
         sortSelectMoveToTop(pronounDropdown, "T");
@@ -425,7 +497,8 @@
         document.addEventListener("getaddress-autocomplete-address-selected", function (e) {
             console.log(e.address);
 
-            //postcode.dispatchEvent(postCodeKeyup);
+            //Check devolution area
+            postcode.dispatchEvent(postCodeKeyup);
         });
 
         document.addEventListener("getaddress-autocomplete-address-selected-failed", function (e) {
@@ -483,5 +556,108 @@
                 enable_get: true /* if true, retreives address on select */
             }
         );
+
+        postcode.addEventListener(`keyup`, function (event) {
+            if (isPostCode(postcode.value) === true) {
+                getFundingSourceinfo(postcode.value);
+            }
+        });
+
+        //Check entry when page is loaded too
+        postcode.dispatchEvent(postCodeKeyup);
+
+        function isPostCode(postcode) {
+            postcode = postcode.replace(/\s/g, "");
+            const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i;
+            return regex.test(postcode);
+        }
+
+        async function getFundingSourceinfo(postcode) {
+            await fetch(`https://mis.askham-bryan.ac.uk/ProSolutionData/DevolvedAreaPostCode/${postcode}`, {
+                method: `GET`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': 'https://mis.askham-bryan.ac.uk/'
+                }
+            })
+                .then(response => response.json())
+                .then(response => showFundingSourceInfo(response));
+        }
+
+        function showFundingSourceInfo(devolvedPostCode) {
+            console.log(JSON.stringify(devolvedPostCode));
+
+            let DevolvedPostCodeAreaInfo = document.getElementById(`DevolvedPostCodeAreaInfo`);
+            let fundingIsAvailable = true;
+            let fundingMessage = null;
+
+            let Age31stAug = document.getElementById(`Age31stAug`);
+            let ExpectedSourceOfFundingID = document.getElementById(`ExpectedSourceOfFundingID`);
+            let ExpectedSourceOfFundingName = document.getElementById(`ExpectedSourceOfFundingName`);
+            let DevolutionAreaIsFunded = document.getElementById(`DevolutionAreaIsFunded`);
+            let DevolvedFeesInfo = document.getElementById(`DevolvedFeesInfo`);
+
+            if (Age31stAug.value < 19) {
+                //If 16-18
+                let fundSource1618 = `Education and Skills Funding Agency (ESFA) - 16-19`
+                ExpectedSourceOfFundingID.value = 107;
+                ExpectedSourceOfFundingName.value = fundSource1618;
+                DevolvedAreaName.innerHTML = fundSource1618;
+
+                fundingMessage = `<i class="fa-solid fa-circle-check"></i> Funding Available from ${fundSource1618}`;
+                fundingIsAvailable = true
+                DevolutionAreaIsFunded.checked = true;
+                DevolvedFeesInfo.classList.add(`d-none`);
+
+                //Reset in case DOB changed
+                DevolvedPostCodeAreaInfo.classList.remove(`alert-secondary`);
+                DevolvedPostCodeAreaInfo.classList.remove(`alert-danger`);
+                DevolvedPostCodeAreaInfo.classList.add(`alert-success`);
+
+                DevolvedFeesInfo.classList.add(`d-none`);
+            }
+            else {
+                if (devolvedPostCode.status === 404) {
+                    fundingMessage = `<i class="fa-solid fa-circle-check"></i> Cannot determine if funding is available. Please re-enter your post code above to check again`;
+                    fundingIsAvailable = false;
+                    DevolutionAreaIsFunded.checked = false;
+                }
+                else {
+                    //Set hidden fields on page
+                    ExpectedSourceOfFundingID.value = devolvedPostCode.fundingSourceCode;
+                    ExpectedSourceOfFundingName.value = devolvedPostCode.fundingSourceName;
+                    DevolvedAreaName.innerHTML = devolvedPostCode.fundingSourceName;
+
+                    if (devolvedPostCode.isSOFOffered === true) {
+                        fundingMessage = `<i class="fa-solid fa-circle-check"></i> Funding Available from ${devolvedPostCode.fundingSourceName}`;
+                        fundingIsAvailable = true;
+                        DevolutionAreaIsFunded.checked = true;
+                    }
+                    else {
+                        fundingMessage = `<i class="fa-solid fa-circle-xmark"></i> No Funding Available from ${devolvedPostCode.fundingSourceName}`;
+                        fundingIsAvailable = false;
+                        DevolutionAreaIsFunded.checked = false;
+                    }
+                }
+
+                if (fundingIsAvailable === true) {
+                    DevolvedPostCodeAreaInfo.classList.remove(`alert-secondary`);
+                    DevolvedPostCodeAreaInfo.classList.remove(`alert-danger`);
+                    DevolvedPostCodeAreaInfo.classList.add(`alert-success`);
+
+                    DevolvedFeesInfo.classList.add(`d-none`);
+                }
+                else {
+                    DevolvedPostCodeAreaInfo.classList.remove(`alert-secondary`);
+                    DevolvedPostCodeAreaInfo.classList.remove(`alert-success`);
+                    DevolvedPostCodeAreaInfo.classList.add(`alert-danger`);
+
+                    DevolvedFeesInfo.classList.remove(`d-none`);
+                }
+            }
+
+            DevolvedPostCodeAreaInfo.innerHTML = fundingMessage;
+        }
     });
 </script>

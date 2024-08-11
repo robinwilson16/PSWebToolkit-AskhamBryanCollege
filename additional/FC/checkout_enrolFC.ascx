@@ -138,7 +138,12 @@
         </div>
 
         <div class=" form-group">
-            <cc1:StudentEnrolmentField ID="datepicker" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" CustomCaption ="Date of Birth" LabelWidth="300" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
+            <div class="alert alert-secondary d-none" role="alert" id="AgeInfo">
+                &nbsp;
+            </div>
+            <asp:Textbox runat="server" ID="Age31stAug" Placeholder="Age31stAug" type="number" ClientIDMode="Static" class="d-none" />
         </div>
 
         <div class="form-input">
@@ -163,14 +168,14 @@
                 <span class="d-grid gap-2 d-md-block">
                     <%If ShowBackButton = True Then %>
                     <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                    <cc1:CCCButton ID="btnBack" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                    <cc1:CCCButton ID="btnBack" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
                     <%End If %>
                 </span>
             </div>
             <div class="col-md text-end">
                 <span class="d-grid gap-2 d-md-block">
                     <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
                 </span>
             </div>
         </div>

@@ -65,7 +65,7 @@ Partial Class webcontrols_webenrolment
         'Get Current Url
         Dim pageURL As String = HttpContext.Current.Request.Url.AbsoluteUri
 
-        If 1 = 2 Then 'Not pageURL.Contains("courseapply.ascx") And Not pageURL.Contains("courseenrol.ascx") And Not pageURL.Contains("checkout_enrolments.ascx") And Not pageURL.Contains("thankyou_application.ascx") And Not pageURL.Contains("thankyou.ascx") And WorkingData.ShoppingCart.Items.Count = 0 Then
+        If Not pageURL.Contains("courseapply.ascx") And Not pageURL.Contains("courseenrol.ascx") And Not pageURL.Contains("checkout_enrolFC.ascx") And Not pageURL.Contains("thankyou_application.ascx") And Not pageURL.Contains("thankyou.ascx") And WorkingData.ShoppingCart.Items.Count = 0 Then
             hasExpired = True
 
             Form.Action = "https://www.askham-bryan.ac.uk"

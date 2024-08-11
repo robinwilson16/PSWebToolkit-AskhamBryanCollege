@@ -16,6 +16,10 @@ Partial Class webcontrols_checkout_attachments
     Public HasSelectedEvidenceType As Boolean = True
     Public FileIsValid As Boolean = False
 
+    Public Is19Plus As Boolean
+    Public Date31stAug As Date
+    Public DateIsAdult As Date
+
     ''' <summary>
     ''' To keep last uploaded file id. This will be needed to delete attachment.
     ''' </summary>
@@ -33,6 +37,16 @@ Partial Class webcontrols_checkout_attachments
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+
+        'Check age to see if 19+ fields should be displayed
+        Date31stAug = CDate(Today().Year & "-08-31")
+        DateIsAdult = Date31stAug.AddYears(-19)
+
+        If WorkingData.ApplicationRequestRow.DateOfBirth < DateIsAdult Then
+            Is19Plus = True
+        Else
+            Is19Plus = False
+        End If
 
         'Response.Write("----" + WorkingData.EnrolmentRequestEmploymentHistory(0).EmploymentStatusID)
         'Response.Write(WorkingData.EnrolmentRequestRow.StudentDetailUserDefined42)
@@ -59,6 +73,31 @@ Partial Class webcontrols_checkout_attachments
                 WorkingData.EnrolmentRequestAttachments.RemoveRow(rowToDelete)
                 loadAttachments()
             End If
+        End If
+    End Sub
+
+    Protected Overrides Sub CreateChildControls()
+        MyBase.CreateChildControls()
+
+        Dim evidenceOfCertificates As New ListItem("Certificates", "Certificates")
+        Dim evidenceOfIdentity As New ListItem("Proof Of Identity", "Proof Of Identity")
+        Dim evidenceOfLowWage As New ListItem("Evidence Of Low Wage", "Evidence Of Low Wage")
+        Dim evidenceOfBenefits As New ListItem("Proof Of Benefits", "Proof Of Benefits")
+        Dim evidenceOfDrivingLicence As New ListItem("Driving Licence", "Driving Licence")
+        Dim evidenceOfPassport As New ListItem("Passport", "Passport")
+        Dim evidenceOfUtilityBill As New ListItem("Utility Bill", "Utility Bill")
+        Dim evidenceOfBankStatement As New ListItem("Bank Statement", "Bank Statement")
+        'Driving Licence/Passport/Utility Bill/Bank Statement/Benefit statement
+        ddlTypeOfEvidence.Items.Add(evidenceOfCertificates)
+        ddlTypeOfEvidence.Items.Add(evidenceOfIdentity)
+
+        If Is19Plus = True Then
+            ddlTypeOfEvidence.Items.Add(evidenceOfLowWage)
+            ddlTypeOfEvidence.Items.Add(evidenceOfBenefits)
+            ddlTypeOfEvidence.Items.Add(evidenceOfDrivingLicence)
+            ddlTypeOfEvidence.Items.Add(evidenceOfPassport)
+            ddlTypeOfEvidence.Items.Add(evidenceOfUtilityBill)
+            ddlTypeOfEvidence.Items.Add(evidenceOfBankStatement)
         End If
     End Sub
 
@@ -119,8 +158,8 @@ Partial Class webcontrols_checkout_attachments
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")
-                ElseIf fuAttachment.FileBytes.Length > 5000 Then
-                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
+                ElseIf fuAttachment.FileBytes.Length > 5 * 1000 * 1000 Then
+                    ddlTypeOfEvidenceValidator.ErrorMessage = "This file is " + Math.Round((fuAttachment.FileBytes.Length / 1000 / 1000), 2).ToString + "MB which is too large as the maximum permitted file size is 5MB. Please choose a smaller file."
                     ddlTypeOfEvidenceValidator.IsValid = False
                     ddlTypeOfEvidenceValidator.CssClass = "error alert alert-danger"
                     fuAttachment.Attributes.Add("Class", "textfield form-control ErrorInput")

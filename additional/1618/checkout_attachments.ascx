@@ -45,8 +45,6 @@
                             <label for="ddlTypeOfEvidence">Type of Evidence</label>
                             <asp:DropDownList ID="ddlTypeOfEvidence" runat="server" CSSClass="form-control">
                                 <asp:ListItem Text="Select" Value=""></asp:ListItem>
-                                <asp:ListItem Text="Certificates" Value="Certificates"></asp:ListItem>
-                                <asp:ListItem Text="Proof of Identity" Value="Proof of Identity"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="form-group col-md-6 col-xl-4">
@@ -152,13 +150,13 @@
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" LinkResource="checkout_employment_1618_aspx" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" LinkResource="checkout_employment_1618_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
             </span>
         </div>
         <div class="col-md text-end">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                <cc1:CCCButton ID="btnContinue" LinkResource="checkout_photo_1618_aspx" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
+                <cc1:CCCButton ID="btnContinue" LinkResource="checkout_photo_1618_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue" ImageResource="btnContinue" CausesValidation="true" SaveForLater="true" SaveForLaterIn="Request" />
             </span>
         </div>
     </div>

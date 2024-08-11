@@ -121,7 +121,7 @@
             <div class="col-md text-end">
                 <span class="d-grid gap-2 d-md-block">
                     <button type="button" class="btn btn-primary btn-lg NextButton">Next </button>
-                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" ClientIDMode="Static" runat="server" Text="Continue to Checkout" ImageResource="btnContinue" LinkResource="checkout_applications_abc" CausesValidation="true" />
+                    <cc1:CCCButton ID="btnContinue" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Continue to Checkout" ImageResource="btnContinue" LinkResource="checkout_applications_abc" CausesValidation="true" />
                 </span>
             </div>
         </div>

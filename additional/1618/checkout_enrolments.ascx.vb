@@ -164,9 +164,12 @@ Partial Class webcontrols_checkout_enrolments
 
         'If IsPostBack Then
         If Not String.IsNullOrEmpty(Session("RadioButtonListAlt")) Then
-                RadioButtonListAlt.SelectedValue = Session("RadioButtonListAlt")
-            End If
-        'End If
+            RadioButtonListAlt.SelectedValue = Session("RadioButtonListAlt")
+        End If
+
+        If Not String.IsNullOrEmpty(Session("19PlusOutsideAreaConfirmed")) Then
+            ConfirmNoFundingAvailable.Checked = Session("19PlusOutsideAreaConfirmed")
+        End If
     End Sub
 
     Public Overrides Sub ValidateControl()
@@ -198,6 +201,36 @@ Partial Class webcontrols_checkout_enrolments
             End If
         End If
 
+        'DOB
+        If Not IsNothing(fldDateOfBirth) Then
+            Dim dateOfBirthDate As Date?
+
+            If Not String.IsNullOrEmpty(fldDateOfBirth.Value) Then
+                dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
+            End If
+
+            Dim dateToCheckDOB As Date = CDate(Today().Year & "-08-31")
+            Dim minAllowedDOB As Date = dateToCheckDOB.AddYears(-16)
+            Dim maxAllowedDOB As Date = dateToCheckDOB.AddYears(-70)
+
+            If String.IsNullOrEmpty(fldDateOfBirth.Value) Then
+                fldDateOfBirthValidator.ErrorMessage = "Please enter your Date of Birth"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate > minAllowedDOB Then
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged under 16 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            ElseIf Not IsNothing(dateOfBirthDate) And dateOfBirthDate < maxAllowedDOB Then
+                fldDateOfBirthValidator.ErrorMessage = "You cannot be aged over 70 (on " & dateToCheckDOB.ToString("dd MMM yyyy") & ")"
+                fldDateOfBirthValidator.IsValid = False
+                fldDateOfBirthValidator.CssClass = "error alert alert-danger"
+                fldDateOfBirth.CssClass = "ErrorInput"
+            End If
+        End If
+
         'Criminal Convictions
         If Not IsNothing(fldCriminalConvictionID) Then
             If String.IsNullOrEmpty(fldCriminalConvictionID.Value) Then
@@ -218,6 +251,16 @@ Partial Class webcontrols_checkout_enrolments
                 postcodeValidator.IsValid = False
                 postcodeValidator.CssClass = "error alert alert-danger"
                 postcode.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
+        End If
+
+        'Devolution Funding
+        If Not IsNothing(ConfirmNoFundingAvailable) Then
+            If DevolutionAreaIsFunded.Checked = False And ConfirmNoFundingAvailable.Checked = False Then
+                ConfirmNoFundingAvailableValidator.ErrorMessage = "Please confirm you acknowlege your fees may be significantly higher as you live in " & ExpectedSourceOfFundingName.Text & "."
+                ConfirmNoFundingAvailableValidator.IsValid = False
+                ConfirmNoFundingAvailableValidator.CssClass = "error alert alert-danger"
+                ConfirmNoFundingAvailable.CssClass = "ErrorInput"
             End If
         End If
 
@@ -325,7 +368,7 @@ Partial Class webcontrols_checkout_enrolments
 
         'Store custom field values in session
         Session("RadioButtonListAlt") = RadioButtonListAlt.SelectedValue.ToString
-
+        Session("19PlusOutsideAreaConfirmed") = ConfirmNoFundingAvailable.Checked
 
         Me.Page.Validate()
 
