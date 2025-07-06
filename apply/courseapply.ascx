@@ -93,9 +93,11 @@
 
         <ul class="list-group">
             <li class="list-group-item icon listcheck"> Your address details, mobile number and a personal email address</li>
-            <li class="list-group-item icon listcheck"> Details of your previous qualifications</li>
-            <li class="list-group-item icon listcheck"> Information about your parent/carer/emergency contact</li>
-            <li class="list-group-item icon listcheck"> A digital passport-style photograph</li>
+            <li class="list-group-item icon listcheck"> Your parent, guardian or carer emergency contact details</li>
+            <li class="list-group-item icon listcheck"> One form of ID</li>
+            <li class="list-group-item icon listcheck"> A headshot photograph</li>
+            <li class="list-group-item icon listcheck"> Your National Insurance Number</li>
+            <li class="list-group-item icon listcheck"> Evidence of qualifications including English and/or Maths and their grades</li>
         </ul>
     </div>
 

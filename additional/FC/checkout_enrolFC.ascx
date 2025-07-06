@@ -112,29 +112,40 @@
         <p><i><strong>Please give your full legal name.</strong></i></p>
     
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" LabelWidth="300" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" LabelWidth="300" ClientIDMode="Static" />
             <asp:CustomValidator ID="fldTitleValidator" runat="server"></asp:CustomValidator>
         </div>
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstName" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forenames or given name" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forename or Given Name" />
+            <asp:CustomValidator ID="fldFirstForenameValidator" runat="server"></asp:CustomValidator>
         </div>
     
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="knownas" ID="StudentEnrolmentField2" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Preferred or familiar name (if different)" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
         </div>
-
-        <%--<div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="StudentEnrolmentField11" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Middle Name(s)" />
-        </div>--%>
 
         <div class="form-input">
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
         </div>
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SurnameAtBirth" ID="StudentEnrolmentField4" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Previous surname or family name" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
+            <div class="alert alert-primary hstack gap-3" role="alert">
+                <div>
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div>
+                    <p>
+                        This is a name you prefer to be called instead of your legal forename. This name will be printed on your student ID card. If you do not have a preferred name, leave this field blank.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-input">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SurnameAtBirth" ID="fldSurnameAtBirth" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Previous Surname or Family Name (if changed)" />
         </div>
 
         <div class=" form-group">

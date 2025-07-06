@@ -76,11 +76,26 @@ Partial Class checkout_dataprotection
             End If
         End If
 
+        If Not IsNothing(IsSigned) And Not IsNothing(IsSignedComplex) Then
+            If Not IsSigned.Checked = True Then
+                signatureValidator.ErrorMessage = "Please sign to confirm that you acknowledge the statements above."
+                signatureValidator.IsValid = False
+                signatureValidator.CssClass = "error alert alert-danger"
+                signature.Attributes.Add("Class", "textfield form-control ErrorInput")
+            ElseIf Not IsSignedComplex.Checked = True Then
+                signatureValidator.ErrorMessage = "Please sign your name more fully to confirm that you acknowledge the statements above."
+                signatureValidator.IsValid = False
+                signatureValidator.CssClass = "error alert alert-danger"
+                signature.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
+        End If
+
     End Sub
 
     Private Sub CheckData()
 
         WorkingData.EnrolmentRequestRow.SentMarketingInfo = selectStayingInTouch.SelectedValue
+        WorkingData.EnrolmentRequestRow.StudentSignature = signature.Signature
 
     End Sub
 
@@ -90,7 +105,7 @@ Partial Class checkout_dataprotection
 
         If Me.Page.IsValid Then
 
-            WorkingData.EnrolmentRequestRow.SentMarketingInfo = selectStayingInTouch.SelectedValue
+            CheckData()
 
             If selectSMSConsent.SelectedValue = "1" Then
                 WorkingData.EnrolmentRequestRow.CanBeContactBySMS = True

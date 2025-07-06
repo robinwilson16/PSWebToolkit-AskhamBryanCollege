@@ -647,9 +647,13 @@ Partial Class checkout_directapply
 
         CheckData()
 
+        Dim offeringID As Integer? = WorkingData.ShoppingCart.Items.Item(0).OfferingID
+        If Not offeringID >= 0 Then
+            offeringID = 0
+        End If
 
-            redirectString = GetResourceValue("checkout_enrolFC_aspx")
-            Response.Redirect(redirectString)
+        redirectString = GetResourceValue("checkout_enrolFC_aspx")
+        Response.Redirect(redirectString & "&OfferingID=" & offeringID.ToString())
 
         'End If
 

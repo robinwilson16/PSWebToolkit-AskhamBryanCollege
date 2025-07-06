@@ -556,6 +556,20 @@ Partial Class checkout_directapply
             End If
         End If
 
+        If Not IsNothing(IsSigned) And Not IsNothing(IsSignedComplex) Then
+            If Not IsSigned.Checked = True Then
+                signatureValidator.ErrorMessage = "Please sign to confirm that you acknowledge the statements above."
+                signatureValidator.IsValid = False
+                signatureValidator.CssClass = "error alert alert-danger"
+                signature.Attributes.Add("Class", "textfield form-control ErrorInput")
+            ElseIf Not IsSignedComplex.Checked = True Then
+                signatureValidator.ErrorMessage = "Please sign your name more fully to confirm that you acknowledge the statements above."
+                signatureValidator.IsValid = False
+                signatureValidator.CssClass = "error alert alert-danger"
+                signature.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
+        End If
+
         MyBase.ValidateControl()
     End Sub
 
@@ -603,10 +617,17 @@ Partial Class checkout_directapply
 
     Private Sub CheckData()
 
-        WorkingData.ApplicationRequestRow.AcceptMarketingConsent = selectStayingInTouch.SelectedValue
-        WorkingData.EnrolmentRequestRow.EnrolmentUserDefined10 = whopays.SelectedValue
-        WorkingData.EnrolmentRequestRow.EnrolmentUserDefined11 = howpay.SelectedValue
+        If selectStayingInTouch.SelectedValue.Length > 0 Then
+            WorkingData.ApplicationRequestRow.AcceptMarketingConsent = selectStayingInTouch.SelectedValue
+        End If
+        If whopays.SelectedValue.Length > 0 Then
+            WorkingData.EnrolmentRequestRow.EnrolmentUserDefined10 = whopays.SelectedValue
+        End If
+        If howpay.SelectedValue.Length > 0 Then
+            WorkingData.EnrolmentRequestRow.EnrolmentUserDefined11 = howpay.SelectedValue
+        End If
 
+        WorkingData.EnrolmentRequestRow.StudentSignature = signature.Signature
 
     End Sub
 

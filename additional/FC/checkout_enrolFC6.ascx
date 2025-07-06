@@ -267,6 +267,28 @@
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined25" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined25" ClientIDMode="Static" CustomCaption="Can't upload your file/s at the moment - please select a reason why" />
     </div>
+
+    <div id="UploadWarning" class="alert alert-warning hstack gap-3 d-none" role="alert">
+    <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    <div>
+        <p>
+            You must provide the required documents/evidence as soon as possible after completing this form. 
+        </p>
+        <p>
+            You cannot be fully enrolled without this evidence. You can:
+        </p>
+        <ul>
+            <li>
+                Email a photograph of your ID and Certificates to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Evidence">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+            </li>
+            <li>
+                Bring your ID and Certificates to college in person <strong>before</strong> the start date of your course and we can take a copy.
+            </li>
+        </ul>
+    </div>
+</div>
 </div>
 
 <asp:ValidationSummary ID="vsAttachments" runat="server" CssClass="alert alert-danger" />
@@ -274,29 +296,97 @@
 <div class="bd-callout bd-callout-askham bd-callout-grey PrivacyNotice">
     <h4><i class="fa-solid fa-circle-info"></i> Privacy Notice</h4>
 
-    <p>The data you provide including in some cases, special category (or “sensitive”) data, will be <strong>stored and processed</strong> by the College to support your enrolment and provision of education. 
-<p>It will be used for administrative and financial purposes relating to the provision of your education and provision of accommodation (so we can perform our contract with you); for audit and for Ofsted inspection and to provide local education authorities (“LEAs”), schools and academies with information such as destinations data (where we have a statutory obligation to process and share your data); to track student loans, support care standards, safeguarding and health and safety (because of our legal obligations as a public body); for marketing and event management and to monitor compliance with policies and standards (to support the College’s legitimate interests) including the College’s collections policy for failure to pay fees (where we reserve the right to pass your personal details onto debt collectors).</p>
-<p>We will <strong>share your data with some third parties</strong>, including the ESFA, LEAs, OfS, Ofsted, Student Loans Company, Higher Education Statistics Agency (“HESA”) and awarding bodies where this is necessary for the provision of your education or other core purposes and or where there is a statutory obligation to provide this information.</p>
-<p>For instance, every student must have an <strong>Individualised Learner Record (ILR)</strong> and the College must collect data about learners and learning undertaken and share those details with the ESFA as a condition of its funding.</p>
-<p>Your information may be shared by the ESFA with third parties for education, training, employment and well-being related purposes, including for research. In some instances, the DfE (Department for Education) and the English European Social Fund (ESF) Managing Authority (or agents acting on their behalf) may contact you in order for them to carry out research and evaluation to inform the effectiveness of training.</p>
-<p>This will only take place where the law allows it and the sharing complies with data protection legislation. The DfE is the data controller for personal data processed by the ESFA.</p>
-<p>To see how the ESFA will use your information, please go to <a href="https://www.gov.uk/government/publications/privacy-notice-for-key-stage-5-and-adult-education/privacy-notice-for-key-stage-5-and-adult-education" target="_blank">https://www.gov.uk/government/publications/privacy-notice-for-key-stage-5-and-adult-education/privacy-notice-for-key-stage-5-and-adult-education</a>.</p>
-<p>For more information about the ILR and the data collected, please see the ILR specification at <a href="https://www.gov.uk/government/collections/individualised-learner-record-ilr" target="_blank">https://www.gov.uk/government/collections/individualised-learner-record-ilr</a>.</p>
-<p class="mb-4">See also <a href="https://guidance.submit-learner-data.service.gov.uk/23-24/ilr/ilrprivacynotice" target="_blank">https://guidance.submit-learner-data.service.gov.uk/23-24/ilr/ilrprivacynotice</a></p>
+    <p>The College endeavours to be as transparent about the processing of individual data as it can be.</p>
 
-<p><strong>If you are under 18 years of age, the College reserves the right to discuss e.g. your attendance, behaviour, financial matters including bursaries and any safeguarding issues with your named contacts. </strong> 
-<p>The College also reserves the right to disclose information to your employer (regardless of your age), where connected with the College.
-<p><strong>Where your consent is required for us to share your information</strong> with third parties such as the provision of catering and transport, offsite activities, etc there will be a clear purpose for the sharing and a data sharing agreement will be put in place to define expectations for the use, control and security of that data.</p>
-<p>Where your consent is required for us to share your information with third parties, you can withdraw your consent at any time; but this could prevent those services being provided to you.</p>
-<p>In some cases, it may be necessary for us to share your personal data without your consent, for instance, with the police and or Social Services, where it is in your “vital interests” to do so, such as in an emergency situation, where it may not be possible to obtain your consent.</p>
-<p>We hold personal data in accordance with the College data retention policy (see <a href="https://www.askham-bryan.ac.uk/publication-scheme-higher-education/" target="_blank">https://www.askham-bryan.ac.uk/publication-scheme-higher-education/</a> for further details).</p>
-<p><strong>How long we keep information for will vary according to the type of information.</strong> Any data will either be deleted or anonymised when no longer needed. Unless otherwise stated, all data will remain at all times within the UK and European Economic Area (“EEA”).</p>
-<p><strong>If any data is to be shared outside the EEA, the College will enter into appropriate data processing agreements</strong> which will specify the <strong>safeguards</strong> that have to be in place to comply with UK data protection law, and if applicable, EU data protection law in cases where personal data will transfer to countries of the EU.</p>
-<p>If you are normally resident outside the EEA such as in the United States, China, Isle of Man or Channel Islands, you consent to your data being transferred outside of the EEA in the event that we have to contact your parents, guardian or carer, or for any other purposes related to your agreement with us, including medical emergency.</p>
-<p>If you have any concerns about the way the College collects or uses your personal data, you should raise your concerns in the first instance with the <strong>College's Data Protection Officer</strong>, <a href="mailto:judith.clapham@askham-bryan.ac.uk">judith.clapham@askham-bryan.ac.uk</a>.</p>
-<p>If you are not satisfied with that response, you may then wish to contact the Information Commissioner’s Office at <a href="https://ico.org.uk/" target="_blank">https://ico.org.uk/</a>.</p>
-<p>For further details about how we use your personal data and your rights under data protection legislation, see <a href="https://www.askham-bryan.ac.uk/publication-scheme-higher-education/" target="_blank">https://www.askham-bryan.ac.uk/publication-scheme-higher-education/</a></p>
-   
+    <p>This Privacy Notice sets out the purpose for collecting the information, your rights in relation to your information we have collected, how we protect your information and who we share your information with.</p>
+
+    <p>For example, the personal information you supply to us will be used by the DfE, to issue you a Unique Learner Number (ULN), and a Personal Learning Record if not already set up. Further information about use and access to your personal data, details of organisations with whom we regularly share data, information about how long we retain your data, and how to change your consent to being contacted, please visit: <a href="https://guidance.submit-learner-data.service.gov.uk/25-26/ilr/ilrprivacynotice" target="_blank" rel="noopener">https://guidance.submit-learner-data.service.gov.uk/25-26/ilr/ilrprivacynotice</a></p>
+
+    <p>Please also see the College’s Student Privacy Notice available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-data-protection/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-data-protection/</a></p>
+
+    <hr />
+
+    <h5>How We Use Your Personal Data</h5>
+
+    <p>The data you provide including in some cases, special category (or “sensitive”) data, will be stored and processed i.e. collected and used, by the College to support your enrolment and provision of education. It will be used for administrative and financial purposes relating to the provision of your education and provision of accommodation (so we can perform our contract with you); for audit and for Ofsted inspection and to provide local education authorities (“LEAs”), schools and academies with information such as destinations data (where we have a statutory obligation to process and share your data); to track student loans, support care standards, safeguarding and health and safety (because of our legal obligations as a public body); for marketing and event management and to monitor compliance with policies and standards (to support the College’s legitimate interests) including the College’s collections policy for failure to pay fees (where we reserve the right to pass your personal details onto debt collectors, if necessary).</p>
+
+    <hr />
+
+    <h5>Sharing Your Data</h5>
+
+    <p>We will share your data with some third parties, including the DfE (Department for Education), LEAs, OfS (Office for Students), Ofsted, Student Loans Company, Higher Education Statistics Agency (“HESA”) and awarding bodies where this is necessary for the provision of your education or other core purposes and or where there is a statutory obligation to provide this information.</p>
+
+    <p>For instance, every student must have an Individualised Learner Record (ILR) and the College must collect data about learners and learning undertaken and share those details with the DfE as a condition of its funding. Your information may be shared by the DfE with third parties for education, training, employment and well-being related purposes, including for research.</p>
+
+    <p>The College will not release any of your disclosed personal data to a third party where this contravenes the data protection legislation. <strong>However, we may make a disclosure without consent when: a learner under the age of 18 or a vulnerable adults is believed to be a serious risk of harm; there is evidence of serious public harm or risk of harm to others; there is evidence of serious health risk to the individual; instructed to do so by court of statutory agency in the prevention, detection or prosecution of crime.</strong> If you are under 18 years of age, the College also reserves the right to discuss e.g. your attendance, behaviour, financial matters including bursaries and any safeguarding issues with your named contacts.</p>
+
+    <p>Where your consent is required for us to share your information with third parties such as the provision of catering and transport, offsite activities, etc there will be a clear purpose for the sharing and a data sharing agreement will be put in place to define expectations for the use, control and security of that data. Where your consent is required for us to share your information with third parties, you can withdraw your consent at any time; but this could prevent those services being provided to you.</p>
+
+    <p><strong>We do not share information about our students with anyone without consent unless the law and our policies allow us to do so.</strong></p>
+
+    <p>The College will contact you by email, post or phone/mobile whilst you are studying here regarding you course or progression. It will also contact your next of kin in emergency by email or phone.</p>
+
+    <p>You may be contacted after you have completed your programme of learning to establish whether you have entered employment or gone onto further training or education.</p>
+
+    <hr />
+
+    <h5>How Long We Keep Your Data For</h5>
+
+    <p>We hold personal data in accordance with the College data retention policy (see <a href="https://www.askham-bryan.ac.uk/publication-scheme-data-protection/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-data-protection/</a> for further details). How long we keep information for will vary according to the type of information.</p>
+
+    <p>Any data will either be deleted or anonymised when no longer needed. Unless otherwise stated, all data will remain at all times within the UK and European Economic Area ("EEA").</p>
+
+    <p>If any data is to be shared outside the EEA, the College will enter into appropriate data processing agreements which will specify the safeguards that have to be in place to comply with UK data protection law, and if applicable, EU data protection law in cases where personal data will transfer to countries of the EU. If you are normally resident outside the EEA such as in the United States, China, Isle of Man or Channel Islands, you consent to your data being transferred outside of the EEA in the event that we have to contact your parents, guardian or carer, or for any other purposes related to your agreement with us, including medical emergency.</p>
+
+    <hr />
+
+    <h5>College Data Protection Officer</h5>
+
+    <p>If you have any concerns about the way the College collects or uses your personal data, you should raise your concerns in the first instance with the College’s Data Protection Officer, <a href="mailto:judith.clapham@askham-bryan.ac.uk?Subect=Privacy%20Statement">judith.clapham@askham-bryan.ac.uk</a>. If you are not satisfied with the College’s response, you may then wish to contact the Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener">https://ico.org.uk/</a>.</p>
+
+    <p>For further details about how we use your personal data and your rights under data protection legislation, see <a href="https://www.askham-bryan.ac.uk/publication-scheme-data-protection/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-data-protection/</a></p>
+
+    <hr />
+
+    <h5>Terms and Conditions</h5>
+
+    <p>These are available on the College web site <a href="https://www.askham-bryan.ac.uk/publication-scheme-admissions/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-admissions/</a> or by request from Student Records. You understand they include important information about our rights to vary the contract with you, our liability to you and our rights to terminate the contract with you.</p>
+
+    <p>By enrolling you also confirm:</p>
+    <ul>
+        <li>you agree to be enrolled on the course as set out in the College’s Admissions Policy available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-admissions/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-admissions/</a>;</li>
+        <li>you give the College permission to view your personal learning record and to access your previous achievements to support this enrolment;</li>
+        <li>you are not already studying at another institution, or with another training provider, on the start date of this course;</li>
+        <li>you have received appropriate information and guidance to help you make an informed decision as to whether you want to enrol on this course.</li>
+    </ul>
+
+    <hr />
+
+    <h5>Information Advice and Guidance</h5>
+
+    <p>By enrolling, you have confirmed the following in relation to your chosen programme:</p>
+    <ul>
+        <li>You have received information, advice and guidance to assess your suitability for this course, and we reviewed your goals, expectations and career progressions options available post completion.</li>
+        <li>You fully understand the requirements of the programme and understand the entry requirements.</li>
+        <li>You have been made aware of the College policies <a href="https://www.askham-bryan.ac.uk/college-policies/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/college-policies/</a>.</li>
+        <li>The College aims to provide a healthy and safe environment for you to learn but you understand that you also play a part in taking reasonable care in all activities to safeguard the health and safety of yourself and others.</li>
+        <li>You consented to your photograph being taken and used in College systems for the purpose of identification. It will also be used on your Photo ID card.  You further consented to wearing the ID card whenever you are on one for the College sites.</li>
+        <li>You will be diligent in your learning, attend classes, and take exams as required to achieve the objectives agreed in your individual learning plan.</li>
+        <li>You consent to being contacted by the College, or a third party acting on our behalf, for the purposes of collecting your destination on completion of your learning programme.</li>
+        <li>If you are 16-18 the College has collected your parent(s)/guardian(s) contact details to notify them of an emergency situation or if the College feels you are at risk of becoming a NEET (Not in Education, Employment or Training) or if there is a disciplinary taking place.  If you are aged 19+ the College has collected next of kin emergency details.</li>
+        <li>You will notify the College, if during the course, you are convicted of a criminal offence (other than minor motoring offences).</li>
+        <li>You understand why your information is being collected and who will have access to our personal data.  You declare that all the information you have provided is accurate and that any false statements may result in disciplinary proceedings.</li>
+        <li>You understand that the personal information provided is passed to the DfE to meet legal duties under the Apprenticeship, Skills, Children and Learning Act 2009, and for the Agencies Learning Record Service (LRS) to create and maintain a unique learning number (ULN).  The information provided may be shared with other partner organisations for the purposes relating to education or training.  You understand you can opt out of sharing your personal data with LRS but realise that doing so may later restrict progression opportunities with other institutions.</li>
+    </ul>
+
+    <hr />
+
+    <h5>Student Declaration</h5>
+
+    <p>I declare that the information given on this enrolment form is correct to the best of my knowledge and that I have read and agree to the above statements. I have read the above Privacy Notice and understand how my personal information will be used and agree to my personal information being used and shared in this way. I have also read and agree to the College’s terms and conditions and understand by signing, this forms a legally binding contract between me and the College.</p>
+
+    <p><strong>If you enrol and do not sign and return the Learner Agreement, you will be deemed as having accepted the terms of your Learner Agreement by your actions.</strong></p>
+
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
@@ -320,7 +410,7 @@
     <hr />
 
     <h5>Terms and Conditions</h5>
-    <p>These are available on the College web site <a href="https://www.askham-bryan.ac.uk" target="_blank">https://www.askham-bryan.ac.uk</a> or by request from Student Records. They include important information about our rights to vary the contract with you, our liability to you and our rights to terminate the contract with you. </p>
+    <p>These are available on the College web site <a href="https://www.askham-bryan.ac.uk" target="_blank">https://www.askham-bryan.ac.uk</a> or by request from Student Records. They include important information about our rights to vary the contract with you, our liability to you and our rights to terminate the contract with you.</p>
 
     <hr />
 
@@ -336,16 +426,31 @@
                 </div>
         </div>--%>
 
-    <br />
-    <span class="textfieldlabelrequired">I declare that the information given on this enrolment form is correct to the best of my knowledge. I have read the above Privacy Notice and understand how my personal information will be used and agree to my personal information being used and shared in this way. I have read and agree to the College terms and conditions.</span>
-       <div class="form-input">
-
-     <asp:CheckBox ID="chkConfirm" runat="server" 
-            Text="" Font-Bold="True" CausesValidation="True" /> 
-           <asp:CustomValidator ID="chkConfirmValidator" runat="server"></asp:CustomValidator>
+    <div class="form-input">
+    <p><strong>Please read the following statements.</strong></p>
+    
+     <ul>
+         <li>I declare that the information given on this enrolment form is correct to the best of my knowledge.</li>
+         <li>I have read the above Privacy Notice and understand how my personal information will be used and agree to my personal information being used and shared in this way.</li>
+         <li>I have read and agree to the College terms and conditions.</li>
+     </ul>  
     </div>
- 
-    <hr />
+   
+    <div class="form-input">
+        <p><b>Please tick to acknowledge the above statements:</b></p>
+     <asp:CheckBox ID="chkConfirm" runat="server" 
+            Text="" Font-Bold="True" CausesValidation="True" ClientIDMode="Static" /> 
+
+        <asp:CustomValidator ID="chkConfirmValidator" runat="server"></asp:CustomValidator>
+    </div>
+
+    <div class="form-input">
+        <p><b>Please sign to acknowledge the above statements:</b></p>
+        <uc1:StudentSignature ID="signature" runat="server" />
+        <asp:CheckBox ID="IsSigned" runat="server" ClientIDMode="Static" class="d-none" />
+        <asp:CheckBox ID="IsSignedComplex" runat="server" ClientIDMode="Static" class="d-none" /> 
+        <asp:CustomValidator ID="signatureValidator" runat="server"></asp:CustomValidator>
+    </div>
 
     <p><i>This project is part-financed by the European Union. ESF in England is investing in jobs and skills – focusing on people who need support the most and helping them fulfil their potential.</i></p>
    
@@ -522,5 +627,17 @@
 
     fuAttachment.addEventListener('change', function (event) {
         fileChosen.value = "Y";
+    });
+
+    //Show message about providing required evidence
+    let cannotUpload = document.getElementById("cboStudentDetailUserDefined25");
+    let uploadWarning = document.getElementById("UploadWarning");
+    cannotUpload.addEventListener('change', function (event) {
+        if (cannotUpload.value == "Fail" || cannotUpload.value == "NoInfo") {
+            uploadWarning.classList.remove("d-none");
+        }
+        else {
+            uploadWarning.classList.add("d-none");
+        }
     });
 </script>

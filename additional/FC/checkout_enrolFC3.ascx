@@ -109,13 +109,24 @@
 
     <p><strong>If you are aged under 18, we MUST have details of a parent, guardian or carer we can contact in case of an emergency. If aged 18 or over, please provide details of a next of kin. The person must know they are your emergency contact.</strong></p>
 
-
-    <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1" ID="StudentEnrolmentField15" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Full name" />
+    <div class="form-group">
+        <label for="Contact1Forename" style="font-weight: bold">Forename</label>
+        <input runat="server" type="text" id="Contact1Forename" class="form-control" name="Contact1Forename" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Forename" />
+        <asp:CustomValidator ID="Contact1ForenameValidator" runat="server"></asp:CustomValidator>
+    </div>
+    <div class="form-group">
+        <label for="Contact1Surname" style="font-weight: bold">Surname</label>
+        <input runat="server" type="text" id="Contact1Surname" class="form-control" name="Contact1Surname" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Surname" />
+        <asp:CustomValidator ID="Contact1SurnameValidator" runat="server"></asp:CustomValidator>
     </div>
 
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1RelationshipID" ID="StudentEnrolmentField16" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Relationship to you" ExcludedIDValues ="3079,3081,3082,3083,3084,3085,3086,3087,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103,3104,3105,3106,3107,3108,3109,3110,3111,3113,3114,3115,3116,3117,3118,3119,3120,3121,3122,3123,3124,3125,3126,3127,3128,3129,3130,3131,3132,3133,3134,3135,3136,3137,3138,3140,3141,3142,3143,3144,3145,3146,3147,3148,3149,3150,3151,3152,3153,3154,3155,3156,3157,3158,3159,3160,3161,3162,3163,3164,3165,3166,3167,3168,3169,3170,3171,3172,3173,3174,3175,3176,3177,3178,3179,3180,3181,3182,3183,3185,3186,3187,3188,3189,3190,3191,3192,3193,3194,3195,3196,3197,3198,3199,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3214,3215,3216,3217,3218,3219" ClientIDMode="Static" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1" ID="fldContact1Name" CssClass="d-none" runat="server" IsRequired="false" LabelWidth="300" ClientIDMode="Static" CustomCaption="Full name" />
+    </div>
+
+    <div class=" form-group">
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1RelationshipID" ID="fldContact1RelationshipID" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Relationship to you" ExcludedIDValues ="3079,3081,3082,3083,3084,3085,3086,3087,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103,3104,3105,3106,3107,3108,3109,3110,3111,3113,3114,3115,3116,3117,3118,3119,3120,3121,3122,3123,3124,3125,3126,3127,3128,3129,3130,3131,3132,3133,3134,3135,3136,3137,3138,3140,3141,3142,3143,3144,3145,3146,3147,3148,3149,3150,3151,3152,3153,3154,3155,3156,3157,3158,3159,3160,3161,3162,3163,3164,3165,3166,3167,3168,3169,3170,3171,3172,3173,3174,3175,3176,3177,3178,3179,3180,3181,3182,3183,3185,3186,3187,3188,3189,3190,3191,3192,3193,3194,3195,3196,3197,3198,3199,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3214,3215,3216,3217,3218,3219" ClientIDMode="Static" />
+        <asp:CustomValidator ID="fldContact1RelationshipIDValidator" runat="server"></asp:CustomValidator>
     </div>
 
     <div class=" form-group">
@@ -127,7 +138,7 @@
     </div>
 
     <%--<div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1EmailAddress" ID="StudentEnrolmentField18" runat="server" IsRequired="false" LabelWidth="300" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" Title="Please enter a valid email address - a@b.c" CustomCaption="Next of Kin email" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1EmailAddress" HTML5InputType="email" ID="StudentEnrolmentField18" runat="server" IsRequired="false" LabelWidth="300" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" Title="Please enter a valid email address - a@b.c" CustomCaption="Next of Kin email" />
     </div>
 
     <div class="form-input">
@@ -236,6 +247,20 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
+        //Split contact name to 2 fields
+        let contact1Forename = document.getElementById(`Contact1Forename`);
+        let contact1Surname = document.getElementById(`Contact1Surname`);
+
+        //Set initial values if contact field already has a value in it
+        setContactName(`txtContact1`, `Contact1Forename`, `Contact1Surname`);
+
+        contact1Forename.addEventListener(`keyup`, function (event) {
+            updateContactName(`txtContact1`, `Contact1Forename`, `Contact1Surname`);
+        });
+        contact1Surname.addEventListener(`keyup`, function (event) {
+            updateContactName(`txtContact1`, `Contact1Forename`, `Contact1Surname`);
+        });
+
         let fldContact1RelationshipID = document.getElementById(`cboContact1RelationshipID`);
         sortSelectMoveToTop(fldContact1RelationshipID, "3080");
         let fldContact1RelationshipIDInputBox = addSearchableDropDown(fldContact1RelationshipID);

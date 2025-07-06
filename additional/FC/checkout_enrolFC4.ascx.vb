@@ -487,7 +487,10 @@ Partial Class checkout_directapply
     Private Sub CheckData()
 
         'WorkingData.ApplicationRequestRow.EuroResidentID = CType(RadioButtonListEU.SelectedValue, Boolean?)
-        WorkingData.ApplicationRequestRow.CriminalConvictionID = CType(rdoCC.SelectedValue, Integer?)
+        If rdoCC.SelectedValue.Length > 0 Then
+            WorkingData.ApplicationRequestRow.CriminalConvictionID = CType(rdoCC.SelectedValue, Integer?)
+        End If
+
         'WorkingData.ApplicationRequestRow.Overseas = rdoOverseas.SelectedValue
         WorkingData.ApplicationRequestRow.LearningDiffOrDisID = selectLearnDiff.SelectedValue
         'WorkingData.EnrolmentRequestRow.HasEducationHealthCarePlan = HasEHCP.SelectedValue
@@ -525,19 +528,19 @@ Partial Class checkout_directapply
 
         Dim redirectString As String = String.Empty
 
-        Me.Page.Validate()
+        'Me.Page.Validate()
 
 
-        If Me.Page.IsValid Then
+        'If Me.Page.IsValid Then
 
 
-            CheckData()
+        CheckData()
 
 
             redirectString = GetResourceValue("checkout_enrolFC3_aspx")
             Response.Redirect(redirectString)
 
-        End If
+        'End If
 
 
 

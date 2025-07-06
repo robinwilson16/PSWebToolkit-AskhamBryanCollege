@@ -129,6 +129,9 @@
         <%--pattern="^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$" Title="Please enter a valid Postcode"--%>
         <asp:CustomValidator ID="postcodeValidator" runat="server"></asp:CustomValidator>
     </div>
+    <div class=" form-group"> 
+        <cc1:StudentEnrolmentField runat="server" ID="fldNumberOfYearsAtCurrentAddress" StudentEnrolmentFieldType="NumberOfYearsAtCurrentAddress" IsRequired="true" ClientIDMode="Static" HTML5InputType="number" />
+    </div>
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
@@ -145,7 +148,7 @@
         </div>
 
         <div class="form-input">
-            <cc1:StudentEmailField StudentEnrolmentFieldType="Email" ID="fldEmail" runat="server" IsRequired="true" LabelWidth="300" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" Title="Please enter a valid email address - a@b.c" CustomCaption="Personal e-mail" />
+            <cc1:StudentEmailField StudentEnrolmentFieldType="Email" HTML5InputType="email" ID="fldEmail" runat="server" IsRequired="true" LabelWidth="300" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" Title="Please enter a valid email address - a@b.c" CustomCaption="Personal e-mail" />
         </div>
 
         <div class="form-input">

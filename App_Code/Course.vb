@@ -2,63 +2,66 @@
 Imports Newtonsoft.Json
 
 Public Class Course
-    <JsonProperty(PropertyName:="facultyCode", Order:=1)>
+    <JsonProperty(PropertyName:="academicYear", Order:=1)>
+    Public AcademicYear As String
+
+    <JsonProperty(PropertyName:="facultyCode", Order:=2)>
     Public FacultyCode As String
 
-    <JsonProperty(PropertyName:="facultyName", Order:=2)>
+    <JsonProperty(PropertyName:="facultyName", Order:=3)>
     Public FacultyName As String
 
-    <JsonProperty(PropertyName:="teamCode", Order:=3)>
+    <JsonProperty(PropertyName:="teamCode", Order:=4)>
     Public TeamCode As String
 
-    <JsonProperty(PropertyName:="teamName", Order:=4)>
+    <JsonProperty(PropertyName:="teamName", Order:=5)>
     Public TeamName As String
 
-    <JsonProperty(PropertyName:="siteCode", Order:=5)>
+    <JsonProperty(PropertyName:="siteCode", Order:=6)>
     Public SiteCode As String
 
-    <JsonProperty(PropertyName:="siteName", Order:=6)>
+    <JsonProperty(PropertyName:="siteName", Order:=7)>
     Public SiteName As String
 
-    <JsonProperty(PropertyName:="courseId", Order:=7)>
+    <JsonProperty(PropertyName:="courseId", Order:=8)>
     Public CourseID As Integer
 
-    <JsonProperty(PropertyName:="courseCode", Order:=8)>
+    <JsonProperty(PropertyName:="courseCode", Order:=9)>
     Public CourseCode As String
 
-    <JsonProperty(PropertyName:="courseTitle", Order:=9)>
+    <JsonProperty(PropertyName:="courseTitle", Order:=10)>
     Public CourseTitle As String
 
-    <JsonProperty(PropertyName:="courseInformationCode", Order:=10)>
+    <JsonProperty(PropertyName:="courseInformationCode", Order:=11)>
     Public CourseInformationCode As String
 
-    <JsonProperty(PropertyName:="courseInformationTitle", Order:=11)>
+    <JsonProperty(PropertyName:="courseInformationTitle", Order:=12)>
     Public CourseInformationTitle As String
 
-    <JsonProperty(PropertyName:="offeringTypeCode", Order:=12)>
-    Public OfferingTypeCode As Integer
+    <JsonProperty(PropertyName:="offeringTypeCode", Order:=13)>
+    Public OfferingTypeCode As Integer?
 
-    <JsonProperty(PropertyName:="offeringTypeName", Order:=13)>
+    <JsonProperty(PropertyName:="offeringTypeName", Order:=14)>
     Public OfferingTypeName As String
 
-    <JsonProperty(PropertyName:="enrolmentTypeCode", Order:=14)>
-    Public EnrolmentTypeCode As Integer
+    <JsonProperty(PropertyName:="enrolmentTypeCode", Order:=15)>
+    Public EnrolmentTypeCode As Integer?
 
-    <JsonProperty(PropertyName:="enrolmentTypeName", Order:=15)>
+    <JsonProperty(PropertyName:="enrolmentTypeName", Order:=16)>
     Public EnrolmentTypeName As String
 
-    <JsonProperty(PropertyName:="suitableFor", Order:=16)>
+    <JsonProperty(PropertyName:="suitableFor", Order:=17)>
     Public SuitableFor As String
 
-    <JsonProperty(PropertyName:="aimCode", Order:=17)>
+    <JsonProperty(PropertyName:="aimCode", Order:=18)>
     Public AimCode As String
 
-    <JsonProperty(PropertyName:="aimTitle", Order:=18)>
+    <JsonProperty(PropertyName:="aimTitle", Order:=19)>
     Public AimTitle As String
 
-    <JsonProperty(PropertyName:="startDate", Order:=19)>
+    <JsonProperty(PropertyName:="startDate", Order:=20)>
     Public StartDate As DateTime?
 
-    <JsonProperty(PropertyName:="endDate", Order:=20)>
+    <JsonProperty(PropertyName:="endDate", Order:=21)>
     Public EndDate As DateTime?
 End Class

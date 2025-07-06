@@ -313,7 +313,7 @@ Partial Class checkout_directapply
 
         If Me.Page.IsValid Then
 
-            redirectString = GetResourceValue("checkout_attachments_HE_aspx")
+            redirectString = GetResourceValue("checkout_employment_HE_aspx")
             Response.Redirect(redirectString)
 
         End If

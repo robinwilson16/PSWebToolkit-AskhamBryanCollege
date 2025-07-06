@@ -52,7 +52,8 @@
                 To see how the ESFA will use your information, please go to <a href="https://www.gov.uk/government/publications/esfa-privacy-notice/esfa-privacy-notice" target="_blank">https://www.gov.uk/government/publications/esfa-privacy-notice/esfa-privacy-notice</a> . 
                 For more information about the ILR and the data collected, please see the ILR specification at <a href="https://www.gov.uk/government/collections/individualised-learner-record-ilr" target="_blank">https://www.gov.uk/government/collections/individualised-learner-record-ilr</a>.
                 See also <a href="https://guidance.submit-learner-data.service.gov.uk/22-23/ilr/ilrprivacynotice" target="_blank">https://guidance.submit-learner-data.service.gov.uk/22-23/ilr/ilrprivacynotice</a></p>
-          </div>
+          </p>
+        </div>
    </div>
    
      <div class="row">

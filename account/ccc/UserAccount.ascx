@@ -1,183 +1,200 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="UserAccount.ascx.vb" Inherits="account_ccc_UserAccount" %>
 <%@ Register Assembly="PSWebEnrolmentKit" Namespace="CompassCC.ProSolution.PSWebEnrolmentKit" TagPrefix="cc1" %>
 
+<nav aria-label="Breadcrumb navigation">
+    <ol class="breadcrumb">
+        <li><a href="default.aspx">Home</a></li>
+        <li class="active" aria-current="page">User Account</li>
+    </ol>
+</nav>
+<link href="<%= ResolveUrl("~/account/ccc/UserAccount.css") %>" rel="stylesheet" />
+<h3>User Account</h3>
+<p>Here you can see the status of any previous applications you have made, along with the details on interviews that have been arranged.</p>
 
-<br /><br />
-                <ol class="breadcrumb">
-                  <li><a href="default.aspx">Home</a></li>
-                  <li class="active">User Account</li>
-                </ol>
+<p>Your college reference number: <span runat="server" id="strRefNo" style="font-weight: 700"></span></p>
+<br />
 
+<a href="#Details">Update your details</a><br />
+<br />
 
+<asp:ListView runat="server" ID="lstDetails">
+    <ItemTemplate>
+        <div class="" title="Current status of each application request.">
+            <asp:Label runat="server" ID="lblCourse" CssClass="courseHeader" Text='<%#: Eval("OfferingName")%>'></asp:Label><br />
 
-        <style>
-         
-         </style>
-
-
-
-          <h3>User Account</h3>
-            <p>Here you can see the status of any previous applications you have made, along with the details on interviews that have been arranged.</p>
-           
-            <p>Your college reference number: <span runat="server" id="strRefNo" style="font-weight:700"></span></p>
-            <br />
-
-            <a href="#Details">Update your details</a><br /><br />
-     
-      <asp:ListView runat="server" ID="lstDetails">
-          <ItemTemplate>
-              <div class="">
-                     <asp:Label runat="server" ID="lblCourse" CssClass="courseHeader" text='<%#: Eval("OfferingName")%>'></asp:Label><br />
-               
-             <hr />
-              <ol class="progtrckr" data-progtrckr-steps="5" runat="server" id="progtrckr">
-                <li class="progtrckr-done" runat="server" id="stage0">Submitted</li>    
-                <li class="progtrckr-todo" runat="server" id="stage1">Application Created</li>    
+            <hr />
+            <ol class="progtrckr" data-progtrckr-steps="5" runat="server" id="progtrckr">
+                <li class="progtrckr-done" runat="server" id="stage0">Submitted</li>
+                <li class="progtrckr-todo" runat="server" id="stage1">Application Created</li>
                 <li class="progtrckr-todo" runat="server" id="stage2">Interview Created</li>
                 <li class="progtrckr-todo" runat="server" id="stage3">College Offer Made</li>
                 <li class="progtrckr-todo" runat="server" id="stage4">Student Enrolled</li>
-                </ol>
-                  <ol class="progtrckr" data-progtrckr-steps="5" runat="server" id="Ol1">
-                <li  runat="server" id="stage0Details" class="prog-details done">
-                    <div >
+            </ol>
+            <ol class="progtrckr" data-progtrckr-steps="5" runat="server" id="Ol1" role="list" title='<%#: "Current status of application requested for " & CStr(Eval("OfferingName")) %>'>
+                <li runat="server" id="stage0Details" class="prog-details done" role="listitem">
+                    <div>
                         <b>Application Submitted</b><br />
-                             <b>Request Date:</b><asp:Label runat="server" ID="lblRequestDate" text='<%#: Eval("RequestDate", "{0:d}")%>'></asp:Label>
+                        <b>Request Date:</b><asp:Label runat="server" ID="lblRequestDate" Text='<%#: Eval("RequestDate", "{0:d}")%>'></asp:Label>
                     </div>
 
-                </li>    
-                <li  runat="server" id="stage1Details" >
-                    <div >
+                </li>
+                <li runat="server" id="stage1Details" role="listitem">
+                    <div>
                         <b>Application Processed:</b><br />
-                         <b>Date:</b> <asp:Label runat="server" ID="iApplicationCreatedDate" text='<%#: Eval("ApplicationCreatedDate", "{0:d}")%>'></asp:Label><br />
+                        <b>Date:</b>
+                        <asp:Label runat="server" ID="iApplicationCreatedDate" Text='<%#: Eval("ApplicationCreatedDate", "{0:d}")%>'></asp:Label><br />
                     </div>
 
-                </li>    
-                <li  runat="server" id="stage2Details" >
-                   <div>
-                <b>Interview Details:</b><br />
+                </li>
+                <li runat="server" id="stage2Details" role="listitem">
+                    <div>
+                        <b>Interview Details:</b><br />
                         <div runat="server" id="interviewDetails">
-                       
-                       
-                           <b>Date/Time:</b> <asp:Label runat="server" ID="iDateTime"  text='<%#: Eval("DateTime", "{0:d}")%>'></asp:Label><br />
-                           <b>Site:</b> <asp:Label runat="server" ID="iSite"  text='<%#: Eval("Site")%>'></asp:Label><br />
-                           <b>Type:</b> <asp:Label runat="server" ID="iType" text='<%#: Eval("InterviewType")%>'></asp:Label><br />
-                           <b>Duration:</b> <asp:Label runat="server" ID="iDuration" text='<%#: Eval("Duration")%>'></asp:Label><br />
-                            </div>
-                      </div>
 
-                </li>
-                <li  runat="server" id="stage3Details" >
-                    <div >
-                        <b>Offer Details:</b><br />
-                    <asp:Label runat="server" ID="iOffer" text='<%#: Eval("ApplicationOffer")%>'></asp:Label><br />
+
+                            <b>Date/Time:</b>
+                            <asp:Label runat="server" ID="iDateTime" Text='<%#: Eval("DateTime", "{0:d}")%>'></asp:Label><br />
+                            <b>Site:</b>
+                            <asp:Label runat="server" ID="iSite" Text='<%#: Eval("Site")%>'></asp:Label><br />
+                            <b>Type:</b>
+                            <asp:Label runat="server" ID="iType" Text='<%#: Eval("InterviewType")%>'></asp:Label><br />
+                            <b>Duration:</b>
+                            <asp:Label runat="server" ID="iDuration" Text='<%#: Eval("Duration")%>'></asp:Label><br />
+                        </div>
                     </div>
 
                 </li>
-                <li  runat="server" id="stage4Details" >
-                    <div >
+                <li runat="server" id="stage3Details" role="listitem">
+                    <div>
+                        <b>Offer Details:</b><br />
+                        <asp:Label runat="server" ID="iOffer" Text='<%#: Eval("ApplicationOffer")%>'></asp:Label><br />
+                    </div>
+
+                </li>
+                <li runat="server" id="stage4Details" role="listitem">
+                    <div>
                         <b>Enrolment Details:</b><br />
                         <div runat="server" id="enrolmentDetails">
-                        <b>Start Date:</b><asp:Label runat="server" id="iEnrolmentStartDate"  text='<%#: Eval("EnrolmentStartDate", "{0:d}") %>'></asp:Label><br />
-                         <b>Expected End Date:</b><asp:Label runat="server" id="iEnrolmentExpectedEndDate"  text='<%#: Eval("EnrolmentExpectedEndDate", "{0:d}")%>'></asp:Label><br />
-                         <b>Course Code:</b><asp:Label runat="server" id="iEnrolmentCourseCode"  text='<%#: Eval("EnrolmentCourseCode")%>'></asp:Label><br />
-                         <b>Course Name:</b><asp:Label runat="server" id="iEnrolmentCourseName" text='<%#: Eval("EnrolmentCourseName")%>'></asp:Label><br />
-                         <b>Group Code:</b><asp:Label runat="server" id="iEnrolmentGroupCode" text='<%#: Eval("EnrolmentGroupCode")%>'></asp:Label><br />
-                            </div>
+                            <b>Start Date:</b><asp:Label runat="server" ID="iEnrolmentStartDate" Text='<%#: Eval("EnrolmentStartDate", "{0:d}") %>'></asp:Label><br />
+                            <b>Expected End Date:</b><asp:Label runat="server" ID="iEnrolmentExpectedEndDate" Text='<%#: Eval("EnrolmentExpectedEndDate", "{0:d}")%>'></asp:Label><br />
+                            <b>Course Code:</b><asp:Label runat="server" ID="iEnrolmentCourseCode" Text='<%#: Eval("EnrolmentCourseCode")%>'></asp:Label><br />
+                            <b>Course Name:</b><asp:Label runat="server" ID="iEnrolmentCourseName" Text='<%#: Eval("EnrolmentCourseName")%>'></asp:Label><br />
+                            <b>Group Code:</b><asp:Label runat="server" ID="iEnrolmentGroupCode" Text='<%#: Eval("EnrolmentGroupCode")%>'></asp:Label><br />
+                        </div>
                     </div>
 
                 </li>
-                </ol>
-               
-            
-              </div>
-<br />           
-           
-          </ItemTemplate>
-      </asp:ListView>
+            </ol>
+
+
+        </div>
+        <br />
+
+    </ItemTemplate>
+</asp:ListView>
 <a name="Details">
-       <br /><br />
-</a><div class="form-field-section grey" style="clear: left;" >
+    <br />
+    <br />
+</a>
+<div class="panel panel-info">
     <div class="panel-heading">Update Details</div>
-        <div>         
-            
-                <%--<form  id="registerform">--%>
-                
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldSurname" StudentEnrolmentFieldType="Surname" />
-                    </div>
-                    <div class=" form-group">
-                       <cc1:StudentEnrolmentField runat="server" ID="fldFirstForename" StudentEnrolmentFieldType="FirstForename" />
-                    </div>
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldTitle" StudentEnrolmentFieldType="title" />           
-                    </div>
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldSex" StudentEnrolmentFieldType="Sex" />                 
-                    </div>
-                    <div class=" form-group">
-                       <cc1:StudentEnrolmentField runat="server" ID="fldDateOfBirth" StudentEnrolmentFieldType="DateOfBirth" />
-                    </div>
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldAddress1" StudentEnrolmentFieldType="Address1" />
-                    </div>
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldAddress2" StudentEnrolmentFieldType="Address2" />
-                    </div>
-                    <div class=" form-group">
-                        <cc1:StudentEnrolmentField runat="server" ID="fldAddress3" StudentEnrolmentFieldType="Address3" />
-                    </div>
-                     <div class=" form-group">
-                         <cc1:StudentEnrolmentField runat="server" ID="fldAddress4" StudentEnrolmentFieldType="Address4" />
-                    </div>
-                    <div class=" form-group">
-                         <label for="postcode" class="label2">Postcode</label>
-                        <input runat="server" type="text" id="postcode" class="form-control" name="pre[postalcode]" placeholder="Your postcode here..." autocomplete="off" />
-                    </div>
-                    <div class=" form-group">
-                         <cc1:StudentEnrolmentField runat="server" ID="fldEmail" StudentEnrolmentFieldType="Email" />
-                    </div>
-                    <div class="form-field-section grey">
-                        <div class="panel-heading">To change your password, enter your existing password and then your new password below</div>
-                     <div class=" form-group">
-                        <label for="password" class="label2 ">Current Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Your password here..." autocomplete="off"  />
-                    </div>                   
-                    <div class=" form-group">
-                        <label for="passwordnew" class="label2 ">Change Password</label>
-                        <input type="password" id="passwordnew" name="passwordnew" class="form-control" placeholder="New password here..." autocomplete="off"  />
-                    </div>
-                    <div class=" form-group">
-                        <label for="password_mirror" class="label2 ">Retype New Password</label>
-                        <input type="password" id="password_mirror" name="password_mirror" class="form-control"  placeholder="Retype your new password..." autocomplete="off"   oninput="check(this)"/>
-                    </div>
-                   </div>
-                    <div class=" form-group">
-                        <p runat="server" id="errtext" style="color:red"></p>
-                    </div>
-                    <div class=" form-group">
-                        
-                       <asp:Button runat="server" ID="btnUpdate" Text="Update" CssClass="button" OnClick="btnSubmit_OnClick"/>
-                        
-                    </div>
-            <div class=" form-group" style="text-align:center;">
-            <label id="lblError" runat="server" visible="false" class="text-center text-danger"></label>
-               </div>
-                <%--</form>--%>
+    <div>
+
+        <%--<form  id="registerform">--%>
+
+        <div class="form-group">
+            <label for="txtSurname" class="label2 textfieldlabelrequired">Surname</label>
+            <asp:TextBox ID="txtSurname" ClientIDMode="Static" runat="server" CssClass="form-control" placeholder="Your surname here..." autocomplete="off" required autofocus />
+
+        </div>
+        <div class="form-group">
+            <label for="txtFirstName" class="label2 textfieldlabelrequired">First Name</label>
+            <asp:TextBox ID="txtFirstName" ClientIDMode="Static" runat="server" CssClass="form-control" placeholder="Your first name here..." autocomplete="off" required />
+
+        </div>
+        <div class="form-group">
+            <label for="ddlTitle" class="label2 textfieldlabelrequired">Title</label>
+            <asp:DropDownList ID="ddlTitle" ClientIDMode="Static" runat="server" CssClass="form-control" title="Title">
+                <asp:ListItem Text="" Value=""></asp:ListItem>
+                <asp:ListItem Text="Mr" Value="Mr"></asp:ListItem>
+                <asp:ListItem Text="Mrs" Value="Mrs"></asp:ListItem>
+                <asp:ListItem Text="Miss" Value="Miss"></asp:ListItem>
+                <asp:ListItem Text="Ms" Value="Ms"></asp:ListItem>
+                <asp:ListItem Text="Dr" Value="Dr"></asp:ListItem>
+                <asp:ListItem Text="Br" Value="Br"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div class="form-group">
+            <label for="ddlSex" class="label2 textfieldlabelrequired">Sex</label>
+            <asp:DropDownList ID="ddlSex" ClientIDMode="Static" runat="server" CssClass="form-control" title="Sex">
+                <asp:ListItem Text="" Value=""></asp:ListItem>
+                <asp:ListItem Text="Male" Value="M"></asp:ListItem>
+                <asp:ListItem Text="Female" Value="F"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div class="form-group">
+            <label for="txtDOB" class="label2 textfieldlabelrequired">Date of Birth</label>
+            <asp:TextBox ID="txtDOB" ClientIDMode="Static" runat="server" CssClass="form-control" TextMode="Date" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtAddress1" class="label2">Address Line 1</label>
+            <asp:TextBox ID="txtAddress1" ClientIDMode="Static" runat="server" CssClass="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtAddress2" class="label2">Address Line 2</label>
+            <asp:TextBox ID="txtAddress2" ClientIDMode="Static" runat="server" CssClass="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtAddress3" class="label2">Address Line 3</label>
+            <asp:TextBox ID="txtAddress3" ClientIDMode="Static" runat="server" CssClass="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtAddress4" class="label2">Address Line 4</label>
+            <asp:TextBox ID="txtAddress4" ClientIDMode="Static" runat="server" CssClass="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtPostcode" class="label2">Postcode</label>
+            <asp:TextBox ID="txtPostcode" ClientIDMode="Static" runat="server" CssClass="form-control" placeholder="Your postcode here..." autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="txtEmail" class="label2 textfieldlabelrequired">Email</label>
+            <asp:TextBox ID="txtEmail" ClientIDMode="Static" runat="server" CssClass="form-control" TextMode="Email" placeholder="Your E-mail here..." autocomplete="off" required />
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">To change your password, enter your existing password and then your new password below</div>
+            <div class="form-group">
+                <label for="txtPassword" class="label2 ">Current Password</label>
+                <asp:TextBox ID="txtPassword" ClientIDMode="Static" runat="server" CssClass="form-control" TextMode="Password" placeholder="Your current password here..." autocomplete="off" />
             </div>
+            <div class="form-group">
+                <label for="txtNewPassword" class="label2 textfieldlabelrequired">New Password</label>
+                <a id="lnkMinRequirements" runat="server" ClientIDMode="Static" data-toggle="tooltip" data-placement="top" data-html="true" title="Tooltip on top" href="javascript:void(0)">
+                    (Minimum Requirements)
+                </a>
+                <asp:TextBox ID="txtNewPassword" ClientIDMode="Static" runat="server" CssClass="form-control" TextMode="Password" placeholder="Your new password here..." autocomplete="off" aria-describedby="lblPasswordInfo" />
+            </div>
+            <div class="form-group">
+                <label for="txtPassword_Mirror" class="label2 textfieldlabelrequired">Retype New Password</label>
+                <asp:TextBox ID="txtPassword_Mirror" ClientIDMode="Static" runat="server" CssClass="form-control" TextMode="Password" placeholder="Retype your new password..." autocomplete="off" oninput="check(this)" />
+            </div>
+        </div>
+        <div class="form-group" runat="server" id="errtext" style="color: red" role="alert">
+        </div>
+        <div class="form-group">
 
-      
+            <asp:Button runat="server" ID="btnUpdate" Text="Update" CssClass="btn btn-primary" OnClick="btnSubmit_OnClick" />
+
+        </div>
+        <div class="form-group" style="text-align: center;">
+            <label id="lblError" runat="server" visible="false" class="text-center text-danger" role="alert"></label>
+        </div>
+        <%--</form>--%>
     </div>
-<br /><br />
 
 
-<script>
-    function check(input) {
-        if (input.value !== $("#passwordnew").val()) {
-            input.setCustomValidity('Password does not match.');
-        } else {
-            // input is fine -- reset the error message
-            input.setCustomValidity('');
-        }
-    }
+</div>
+<br />
+<br />
 
-</script>
+
+<script type="text/javascript" src="<%= ResolveUrl("~/account/ccc/UserAccount.js") %>"></script>

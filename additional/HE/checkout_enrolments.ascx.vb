@@ -144,7 +144,7 @@ Partial Class webcontrols_checkout_enrolments
         'End If
 
         'If Session("snamereadonly") = "Y" Then fldSurname.IsReadOnly = True
-        'If Session("fnamereadonly") = "Y" Then fldFirstName.IsReadOnly = True
+        'If Session("fnamereadonly") = "Y" Then fldFirstForename.IsReadOnly = True
         'If Session("dobreadonly") = "Y" Then datepicker.IsReadOnly = True
 
         MyBase.OnLoad(e)
@@ -178,6 +178,16 @@ Partial Class webcontrols_checkout_enrolments
         '        fldTitle.CssClass = "ErrorInput"
         '    End If
         'End If
+
+        'Forename (Single Name Only)
+        If Not String.IsNullOrEmpty(fldFirstForename.Value.ToString()) Then
+            If (fldFirstForename.Value.ToString().Contains(" ")) Then
+                fldFirstForenameValidator.ErrorMessage = "Forename or Given Name must only contain your first name with no spaces. Please Enter Any middle names into the Other Forenames (Middle Names) box below."
+                fldFirstForenameValidator.IsValid = False
+                fldFirstForenameValidator.CssClass = "error alert alert-danger"
+                fldFirstForename.CssClass = "ErrorInput"
+            End If
+        End If
 
         'DOB
         If Not IsNothing(fldDateOfBirth) Then
@@ -337,8 +347,11 @@ Partial Class webcontrols_checkout_enrolments
         Me.Page.Validate()
 
         If Me.Page.IsValid Then
+            WorkingData.EnrolmentRequestRow.FirstForename = Trim(fldFirstForename.Value.ToString)
+            WorkingData.EnrolmentRequestRow.OtherForenames = Trim(fldOtherForenames.Value.ToString)
             WorkingData.EnrolmentRequestRow.Surname = Trim(fldSurname.Value.ToString)
-            WorkingData.EnrolmentRequestRow.FirstForename = Trim(fldFirstName.Value.ToString)
+            WorkingData.EnrolmentRequestRow.KnownAs = Trim(fldKnownAs.Value.ToString)
+            WorkingData.EnrolmentRequestRow.SurnameAtBirth = Trim(fldSurnameAtBirth.Value.ToString)
 
             WorkingData.EnrolmentRequest(0).Address1 = fldAddress1.Value
             WorkingData.EnrolmentRequest(0).Address2 = fldAddress2.Value

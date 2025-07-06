@@ -465,29 +465,32 @@ College Admissions Team</value>
   <data name="checkout_enrolFC_aspx" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/FC/checkout_enrolFC.ascx</value>
   </data>
-  <data name="checkout_dataprotection_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_dataprotection.ascx</value>
+  <data name="checkout_dataprotection_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_dataprotection.ascx</value>
   </data>
-  <data name="checkout_employment1618" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_employment.ascx</value>
+  <data name="checkout_employmentFE" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_employment.ascx</value>
   </data>
-  <data name="checkout_enrolments2_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_enrolments2.ascx</value>
+  <data name="checkout_enrolments2_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_enrolments2.ascx</value>
   </data>
-  <data name="checkout_enrolments_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_enrolments.ascx</value>
+  <data name="check_learner_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/check_learner.ascx</value>
   </data>
-  <data name="checkout_parentguardian_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_parent_guardian.ascx</value>
+  <data name="checkout_enrolments_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_enrolments.ascx</value>
   </data>
-  <data name="checkout_quals_on_entry_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_quals_on_entry.ascx</value>
+  <data name="checkout_parentguardian_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_parent_guardian.ascx</value>
   </data>
-  <data name="courseenrol1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/courseenrol.ascx</value>
+  <data name="checkout_quals_on_entry_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_quals_on_entry.ascx</value>
   </data>
-  <data name="checkout_attachments_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_attachments.ascx</value>
+  <data name="courseenrolFE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/courseenrol.ascx</value>
+  </data>
+  <data name="checkout_attachments_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_attachments.ascx</value>
   </data>
   <data name="checkout_attachments_he_aspx" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/he/checkout_attachments.ascx</value>
@@ -498,8 +501,8 @@ College Admissions Team</value>
   <data name="checkout_employmenthe" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/he/checkout_employment.ascx</value>
   </data>
-  <data name="checkout_employment_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/checkout_employment.ascx</value>
+  <data name="checkout_employment_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/checkout_employment.ascx</value>
   </data>
   <data name="checkout_employment_he_aspx" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/he/checkout_employment.ascx</value>
@@ -513,8 +516,8 @@ College Admissions Team</value>
   <data name="checkout_parent_guardian_HE_aspx" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/he/checkout_parent_guardian.ascx</value>
   </data>
-  <data name="checkout_photo_1618_aspx" xml:space="preserve">
-    <value>~/webenrolment.aspx?page=~/additional/1618/photo.ascx</value>
+  <data name="checkout_photo_FE_aspx" xml:space="preserve">
+    <value>~/webenrolment.aspx?page=~/additional/FE/photo.ascx</value>
   </data>
   <data name="checkout_photo_HE_aspx" xml:space="preserve">
     <value>~/webenrolment.aspx?page=~/additional/he/checkout_photo.ascx</value>

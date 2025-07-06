@@ -1,4 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", function (event) {
+﻿document.addEventListener("DOMContentLoaded", (event) => {
+
     //Enable custom back button that submits the CCC btnBack when clicked
     let cccBackButton = document.getElementById(`btnBack`);
     let backButton = document.querySelectorAll(`.BackButton`);
@@ -33,6 +34,24 @@
             }
         }
         
+    });
+
+    //Another variation
+    let formItem2 = document.querySelectorAll(`#aspnetForm .form-input`);
+    formItem2.forEach(function (item) {
+        let itemOuterSpan = item.firstElementChild;
+        if (itemOuterSpan != null) {
+            let itemOuterDiv = itemOuterSpan.firstElementChild;
+            if (itemOuterDiv != null) {
+                let formLabel = itemOuterDiv.firstElementChild;
+
+                if (formLabel !== null) {
+                    formLabel.style.display = 'block';
+                    formLabel.style.width = 'inherit';
+                }
+            }
+        }
+
     });
 
     //Fix validation error boxes so they are more visible
@@ -76,7 +95,16 @@
         });
     }
 
-    //Enable Enter Key in coursse search boxes
+    //Capitalise the first character of all text boxes and remove any leading or trailing spaces
+    let textBoxes = document.querySelectorAll(`#aspnetForm input[type=text]`);
+    textBoxes.forEach(function (elem) {
+        elem.addEventListener('change', function (event) {
+            elem.value = capitaliseFirstLetter(elem.value);
+            elem.value = trimString(elem.value);
+        });
+    });
+
+    //Enable Enter Key in course search boxes
     let searchBox1 = document.getElementById(`SearchDept1`);
     let searchButton1 = document.getElementById(`SearchButton1`);
 
@@ -243,10 +271,10 @@ function addSearchableDropDown(elem) {
     //Chrome also contains Safari in its user agent string so need 2 checks
 
     let enableSearchableDropDowns = true;
-    let isIphone = navigator.userAgent.indexOf("iPhone") > -1;
-    let c = navigator.userAgent.indexOf("iPad") > -1;
+    let isIPhone = navigator.userAgent.indexOf("iPhone") > -1;
+    let isIPad = navigator.userAgent.indexOf("iPad") > -1;
 
-    if (isIphone === true || isIphone === true) {
+    if (isIPhone === true || isIPad === true) {
         enableSearchableDropDowns = false;
     }
 
@@ -405,10 +433,10 @@ function addSearchableDropDownWithButton(elem, buttonText) {
     //Chrome also contains Safari in its user agent string so need 2 checks
 
     let enableSearchableDropDowns = true;
-    let isIphone = navigator.userAgent.indexOf("iPhone") > -1;
-    let c = navigator.userAgent.indexOf("iPad") > -1;
+    let isIPhone = navigator.userAgent.indexOf("iPhone") > -1;
+    let isIPad = navigator.userAgent.indexOf("iPad") > -1;
 
-    if (isIphone === true || isIphone === true) {
+    if (isIPhone === true || isIPad === true) {
         enableSearchableDropDowns = false;
     }
 
@@ -633,4 +661,33 @@ function updateContactName(contactNameField, contactForenameField, contactSurnam
     }
 
     contactName.value = contactString;
+}
+
+//Contact name is displayed as a single field so this function takes the value from the default field and displays it on the seperate fields
+function setContactName(contactNameField, contactForenameField, contactSurnameField) {
+    let contactName = document.getElementById(contactNameField);
+    let contactForename = document.getElementById(contactForenameField);
+    let contactSurname = document.getElementById(contactSurnameField);
+
+    let contactString = contactName.value.trim();
+    let contactForenameValue = ``;
+    let contactSurnameValue = ``;
+    if (contactString.lastIndexOf(` `) > 0) {
+        contactForenameValue = contactString.substring(0, contactString.lastIndexOf(` `));
+        contactSurnameValue = contactString.substring(contactString.lastIndexOf(` `) + 1);
+    }
+    else {
+        contactForenameValue = contactString;
+    }
+
+    contactForename.value = contactForenameValue;
+    contactSurname.value = contactSurnameValue;
+}
+
+function capitaliseFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
+function trimString(val) {
+    return String(val).trim();
 }

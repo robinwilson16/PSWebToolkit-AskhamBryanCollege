@@ -32,19 +32,30 @@
     <h4><i class="fa-solid fa-user"></i> Personal Details</h4>
 
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="200" Placeholder="Legal Name" CustomCaption="Forename (Legal Name)" />
+        <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forename or Given Name" />
+        <asp:CustomValidator ID="fldFirstForenameValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" LabelWidth="200" CustomCaption="Middle Name" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="200" AutoFocus="true" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" LabelWidth="200" Placeholder="e.g. Billy instead of William" CustomCaption="Known As Name (if different to legal first name)" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
+        <div class="alert alert-primary hstack gap-3" role="alert">
+            <div>
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <div>
+                <p>
+                    This is a name you prefer to be called instead of your legal forename. This name will be printed on your student ID card. If you do not have a preferred name, leave this field blank.
+                </p>
+            </div>
+        </div>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" ClientIDMode="Static" IsRequired="true" LabelWidth="200" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" ClientIDMode="Static" IsRequired="true" LabelWidth="300" />
     </div>
     <div class=" form-group">
         <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
@@ -130,7 +141,7 @@
         Askham Bryan College receives government funding which allows us to offer courses at a lower cost. The guidelines relating to devolution means that we cannot apply this funding to learners who live in devolved areas. 
     </p>
     <p>
-        Before committing to a course with Askham Bryan College, we would recommend that you explore options to study the course the course in your local area.
+        Before committing to a course with Askham Bryan College, we would recommend that you explore options to study the course the course in your local area. If the course you have chosen is not avaailable in your local area, it may be worth checking with your devolved education team to see if they will fund your course with Askham Bryan.
     </p>
     <p>
         If you would prefer to continue your application with Askham Bryan College please note that the price of the course <strong>could be doubled the advertised cost</strong>. Definitive fees can only be confirmed at point of enrolment (usually in September).
@@ -217,6 +228,30 @@
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined24" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined24" ClientIDMode="Static" CustomCaption="Can't upload your photo at the moment - please select a reason why" />
     </div>
+
+    <div id="UploadWarning" class="alert alert-warning hstack gap-3 d-none" role="alert">
+    <div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <div>
+        <p>
+            You must provide a photo as soon as possible after completing this form. 
+        </p>
+        <p>
+            You cannot be fully enrolled without providing a photo. You can:
+        </p>
+        <ul>
+            <li>
+                Email your photo to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Evidence">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+            </li>
+            <li>
+                Bring your photo to college in person <strong>before</strong> the start date of your course and we can take a copy.
+            </li>
+        </ul>
+    </div>
+</div>
+
 </div>
 
 <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" ForeColor="" />
@@ -410,6 +445,17 @@
             }
         });
     
+        //Show message about providing required evidence
+        let cannotUpload = document.getElementById("cboStudentDetailUserDefined24");
+        let uploadWarning = document.getElementById("UploadWarning");
+        cannotUpload.addEventListener('change', function (event) {
+            if (cannotUpload.value == "Fail" || cannotUpload.value == "NoInfo") {
+                uploadWarning.classList.remove("d-none");
+            }
+            else {
+                uploadWarning.classList.add("d-none");
+            }
+        });
 
         postcode.addEventListener(`keyup`, function (event) {
             if (isPostCode(postcode.value) === true) {
@@ -454,7 +500,7 @@
 
             if (Age31stAug.value < 19) {
                 //If 16-18
-                let fundSource1618 = `Education and Skills Funding Agency (ESFA) - 16-19`
+                let fundSource1618 = `Department for Education (DFE) - 16-19`
                 ExpectedSourceOfFundingID.value = 107;
                 ExpectedSourceOfFundingName.value = fundSource1618;
                 DevolvedAreaName.innerHTML = fundSource1618;

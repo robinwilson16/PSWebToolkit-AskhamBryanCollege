@@ -18,13 +18,14 @@
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_parent_guardian.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_enrolments2.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Further Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_quals_on_entry.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
+        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_employment.ascx"><i class="fa-solid fa-city"></i> <span class="d-none d-sm-inline">Employment Status</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_attachments.ascx"><i class="fa-solid fa-paperclip"></i> <span class="d-none d-sm-inline">Documents/Evidence</span></a></li>
         <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-camera"></i> Photo Upload</li>
     </ol>
 </nav>
 
-<div class="progress mb-4" role="progressbar" aria-label="Animated striped example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 70%">70%</div>
+<div class="progress mb-4" role="progressbar" aria-label="Animated striped example" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 80%">80%</div>
 </div>
 
 
@@ -118,6 +119,28 @@
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined24" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined24" ClientIDMode="Static" CustomCaption="Can't upload your photo at the moment - please select a reason why" />
     </div>
+
+    <div id="UploadWarning" class="alert alert-warning hstack gap-3 d-none" role="alert">
+        <div>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+            <p>
+                You must provide a photo as soon as possible after completing this form. 
+            </p>
+            <p>
+                You cannot be fully enrolled without providing a photo. You can:
+            </p>
+            <ul>
+                <li>
+                    Email your photo to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Photo">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+                </li>
+                <li>
+                    Bring your photo to college in person <strong>before</strong> the start date of your course and we can take a copy.
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <%--<div class="form-field-section grey">
@@ -188,3 +211,18 @@
 <%--<cc1:CCCButton ID="btnBack" runat="server" Text="Back" CssClass="button" LinkResource="checkout_attachments_HE_aspx" />
 <cc1:CCCButton ID="btnContinue" runat="server" Text="Continue" CssClass="button"  CausesValidation="true" LinkResource="checkout_dataprotection_HE_aspx" />--%>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        //Show message about providing required evidence
+        let cannotUpload = document.getElementById("cboStudentDetailUserDefined24");
+        let uploadWarning = document.getElementById("UploadWarning");
+        cannotUpload.addEventListener('change', function (event) {
+            if (cannotUpload.value == "Fail" || cannotUpload.value == "NoInfo") {
+                uploadWarning.classList.remove("d-none");
+            }
+            else {
+                uploadWarning.classList.add("d-none");
+            }
+        });
+    });
+</script>

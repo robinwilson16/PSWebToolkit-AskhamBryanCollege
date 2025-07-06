@@ -81,7 +81,7 @@
 
      <div class="row">
         <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentEmailAddress" ID="StudentEnrolmentField11" runat="server" IsRequired="true" LabelWidth="200" CustomCaption="Email Address" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"/>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentEmailAddress" HTML5InputType="email" ID="StudentEnrolmentField11" runat="server" IsRequired="true" LabelWidth="200" CustomCaption="Email Address" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"/>
         </div>
          <div class="col-sm-6 columns form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentRelationshipID" ID="fldParentRelationshipID" runat="server" IsRequired="true"  CustomCaption="Relationship" ClientIDMode="Static" />

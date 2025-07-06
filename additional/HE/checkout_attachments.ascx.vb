@@ -377,7 +377,7 @@ Partial Class webcontrols_checkout_attachments
     Private Sub btnBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
 
 
-        Response.Redirect(GetResourceValue("checkout_quals_on_entry_HE_aspx"))
+        Response.Redirect(GetResourceValue("checkout_employment_HE_aspx"))
 
 
 

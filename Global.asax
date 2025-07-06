@@ -87,7 +87,9 @@
         CCCConfigLibrary.ReadConfigFromConfigFile(IO.Path.Combine(HttpRuntime.AppDomainAppPath, "web.dbconfig"))
         CCCConfigLibrary.ReadConfigFromMyAppDBConfigFile()
         CCCDatabaseConnectInfoList.LoadDatabaseInfoFromConfig()
-
+	    ''This was required by CAF after we upgraded to 25.0.
+	    CCCDatabaseConnectInfoList.LogicalAndMicroServiceNameMapping.Item("Enrolment") = "PSWebEnrolment"
+	    CCCDatabaseConnectInfoList.LogicalAndMicroServiceNameMapping.Item("ExamA2C") = "PSWebEnrolment"
 
         'Set timeout values from config
         CCCConfigLibrary.SetAllFrameworkValuesFromConfig()
@@ -124,7 +126,7 @@
 
 
         'System Settings
-        SystemSettings.AcademicYearID = "24/25"
+        SystemSettings.AcademicYearID = "25/26"
 
         SystemSettings.CollegeOrganisationID = 0
 

@@ -145,6 +145,19 @@
           </div>
           </div>
 
+    <div class="col-sm-12 columns form-group mt-3">
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentCarerInArmedForces" ID="fldParentCarerInArmedForces" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Are you a military service child?"/>
+    </div>
+    <div class="alert alert-secondary hstack gap-3 mt-1" role="alert">
+        <div>
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div>
+            <p>
+                A person whose parent or carer serves in the Regular armed forces, or as a Reservist, or has done at any point during the first 25 years of that person’s life.
+            </p>
+        </div>
+    </div>
 
         <%--<cc1:CCCButton id="btnBack" runat="server" Text="Back" CssClass="button" />
         <cc1:CCCButton ID="btnContinue" runat="server" Text="Continue" CssClass="button"  CausesValidation="true" EnableEnterKey="true" />--%>

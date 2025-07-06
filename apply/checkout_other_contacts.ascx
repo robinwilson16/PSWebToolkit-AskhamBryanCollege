@@ -77,7 +77,7 @@
         <asp:CustomValidator ID="fldContact1TelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1EmailAddress" ID="fldContact1EmailAddress" runat="server" LabelWidth="200" CustomCaption="Email" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1EmailAddress" HTML5InputType="email" ID="fldContact1EmailAddress" runat="server" LabelWidth="200" CustomCaption="Email" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" />
     </div>
     
     <div class=" form-group">
@@ -116,7 +116,7 @@
         <asp:CustomValidator ID="fldContact2TelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact2EmailAddress" ID="fldContact2EmailAddress" runat="server" LabelWidth="200" CustomCaption="Email" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact2EmailAddress" HTML5InputType="email" ID="fldContact2EmailAddress" runat="server" LabelWidth="200" CustomCaption="Email" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" />
     </div>
     <div class=" form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="IsLivingWithContact2" ID="fldIsLivingWithContact2" runat="server" IsRequired="false" LabelWidth="400" CustomCaption="Are You Living with this Person?" />
@@ -148,6 +148,10 @@
         let contact1Surname = document.getElementById(`Contact1Surname`);
         let contact2Forename = document.getElementById(`Contact2Forename`);
         let contact2Surname = document.getElementById(`Contact2Surname`);
+
+        //Set initial values if contact field already has a value in it
+        setContactName(`txtContact1`, `Contact1Forename`, `Contact1Surname`);
+        setContactName(`txtContact2`, `Contact2Forename`, `Contact2Surname`);
 
         contact1Forename.addEventListener(`keyup`, function (event) {
             updateContactName(`txtContact1`, `Contact1Forename`, `Contact1Surname`);

@@ -131,6 +131,28 @@
     <div class=" form-group">
         <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined25" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined25" ClientIDMode="Static" CustomCaption="Can't upload your file/s at the moment - please select a reason why" />
     </div>
+
+    <div id="UploadWarning" class="alert alert-warning hstack gap-3 d-none" role="alert">
+        <div>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+            <p>
+                You must provide the required documents/evidence as soon as possible after completing this form. 
+            </p>
+            <p>
+                You cannot be fully enrolled without this evidence. You can:
+            </p>
+            <ul>
+                <li>
+                    Email a photograph of your ID and Certificates to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Evidence">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+                </li>
+                <li>
+                    Bring your ID and Certificates to college in person <strong>before</strong> the start date of your course and we can take a copy.
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <asp:ValidationSummary ID="vsAttachments" runat="server" CssClass="alert alert-danger" />
@@ -162,5 +184,17 @@
 
     fuAttachment.addEventListener('change', function (event) {
         fileChosen.value = "Y";
+    });
+
+    //Show message about providing required evidence
+    let cannotUpload = document.getElementById("cboStudentDetailUserDefined25");
+    let uploadWarning = document.getElementById("UploadWarning");
+    cannotUpload.addEventListener('change', function (event) {
+        if (cannotUpload.value == "Fail" || cannotUpload.value == "NoInfo") {
+            uploadWarning.classList.remove("d-none");
+        }
+        else {
+            uploadWarning.classList.add("d-none");
+        }
     });
 </script>

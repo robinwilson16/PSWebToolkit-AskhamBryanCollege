@@ -495,11 +495,35 @@ Partial Class checkout_directapply
 
     Public Overrides Sub ValidateControl()
 
+        'Forename - Contact 1
+        If Not IsNothing(Contact1Forename) Then
+            If Contact1Forename.Value.ToString.Length = 0 Then
+                Contact1ForenameValidator.ErrorMessage = "Please enter a first name"
+                Contact1ForenameValidator.IsValid = False
+                Contact1ForenameValidator.CssClass = "error alert alert-danger"
+                Contact1Forename.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
+        End If
 
+        'Surname - Contact 1
+        If Not IsNothing(Contact1Surname) Then
+            If Contact1Surname.Value.ToString.Length = 0 Then
+                Contact1SurnameValidator.ErrorMessage = "Please enter a surname"
+                Contact1SurnameValidator.IsValid = False
+                Contact1SurnameValidator.CssClass = "error alert alert-danger"
+                Contact1Surname.Attributes.Add("Class", "textfield form-control ErrorInput")
+            End If
+        End If
 
-
-
-
+        'Parental Relationship
+        If Not IsNothing(fldContact1RelationshipID) Then
+            If String.IsNullOrEmpty(fldContact1RelationshipID.Value) Then
+                fldContact1RelationshipIDValidator.ErrorMessage = "Contact Relationship must not be blank"
+                fldContact1RelationshipIDValidator.IsValid = False
+                fldContact1RelationshipIDValidator.CssClass = "error alert alert-danger"
+                fldContact1RelationshipID.CssClass = "ErrorInput"
+            End If
+        End If
 
         MyBase.ValidateControl()
     End Sub
@@ -622,19 +646,19 @@ Partial Class checkout_directapply
 
         Dim redirectString As String = String.Empty
 
-        Me.Page.Validate()
+        'Me.Page.Validate()
 
 
-        If Me.Page.IsValid Then
+        'If Me.Page.IsValid Then
 
 
-            CheckData()
+        CheckData()
 
 
             redirectString = GetResourceValue("checkout_enrolFC2_aspx")
             Response.Redirect(redirectString)
 
-        End If
+        'End If
 
 
 

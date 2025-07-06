@@ -5,6 +5,7 @@ Imports System.Threading.Tasks
 Imports CompassCC.ProSolution.PSWebEnrolmentKit
 Imports Microsoft.VisualBasic
 Imports Newtonsoft.Json
+'Imports System.Text.Json
 
 Public Class GetProSolutionData
 
@@ -29,7 +30,7 @@ Public Class GetProSolutionData
             courseCode = courseCode.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Code/" & courseCode & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/" & courseCode & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -38,7 +39,7 @@ Public Class GetProSolutionData
 
                         'Way using NewtonSoft deserializer due to bug in this .NET version
                         course = JsonConvert.DeserializeObject(Of Course)(jsonString)
-
+                        'course = JsonSerializer.Deserialize(Of Course)(jsonString)
 
                         'CourseJSON.Text = Teams(6).TeamName 'Test for sixth element
                     End Using
@@ -56,7 +57,7 @@ Public Class GetProSolutionData
 
         If courseID > 0 Then
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/OfferingID/" & courseID & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/OfferingID/" & courseID & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -82,7 +83,7 @@ Public Class GetProSolutionData
         Dim teams As IList(Of Team)
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Team/")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Team/")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -105,7 +106,7 @@ Public Class GetProSolutionData
 
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Team/Enquire")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Team/Enquire")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -130,7 +131,7 @@ Public Class GetProSolutionData
         'Dim teamCode As String
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Team/Apply")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Team/Apply")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -163,7 +164,7 @@ Public Class GetProSolutionData
 
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Team/Enrol")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Team/Enrol")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -189,7 +190,7 @@ Public Class GetProSolutionData
             teamCode = teamCode.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Team/" & teamCode & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Team/" & teamCode & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -215,7 +216,7 @@ Public Class GetProSolutionData
         Dim courses As IList(Of Course)
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -239,7 +240,7 @@ Public Class GetProSolutionData
 
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Enquire")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Enquire")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -265,7 +266,7 @@ Public Class GetProSolutionData
             teamCode = teamCode.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Enquire/" & teamCode)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Enquire/" & teamCode)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -292,7 +293,7 @@ Public Class GetProSolutionData
 
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Apply")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Apply")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -318,16 +319,17 @@ Public Class GetProSolutionData
             teamCode = teamCode.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Apply/" & teamCode)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Apply/" & teamCode)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
                         'Best way using built in deseralizer
                         'Dim allitems As IList(Of DevolvedAreaPostCode) = JsonSerializer.Deserialize(Of IList(Of DevolvedAreaPostCode))(jsonString)
 
-                        'Way using NewtonSoft deserializer due to bug in this .NET version
-                        courses = JsonConvert.DeserializeObject(Of IList(Of Course))(jsonString)
-
+                        'Using NewtonSoft deserializer rather than System.Text.Json due to bug in this .NET version
+                        If Not String.IsNullOrEmpty(jsonString) Then
+                            courses = JsonConvert.DeserializeObject(Of IList(Of Course))(jsonString)
+                        End If
 
                         'CourseJSON.Text = Teams(6).TeamName 'Test for sixth element
                     End Using
@@ -345,7 +347,7 @@ Public Class GetProSolutionData
 
 
         Using webClient As WebClient = New WebClient()
-            Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Enrol")
+            Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Enrol")
                 Using streamReader As StreamReader = New StreamReader(stream)
                     Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -371,7 +373,7 @@ Public Class GetProSolutionData
             teamCode = teamCode.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Enrol/" & teamCode)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Enrol/" & teamCode)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -400,7 +402,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/" & search & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/" & search & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -430,7 +432,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/" & teamCode & "/" & search)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/" & teamCode & "/" & search)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -459,7 +461,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Enquire/" & search & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Enquire/" & search & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -489,7 +491,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Enquire/" & teamCode & "/" & search)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Enquire/" & teamCode & "/" & search)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -518,7 +520,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Apply/" & search & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Apply/" & search & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -548,7 +550,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Apply/" & teamCode & "/" & search)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Apply/" & teamCode & "/" & search)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -577,7 +579,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Enrol/" & search & "/")
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Enrol/" & search & "/")
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 
@@ -607,7 +609,7 @@ Public Class GetProSolutionData
             search = search.Replace("/", "|")
 
             Using webClient As WebClient = New WebClient()
-                Using stream As Stream = webClient.OpenRead("https://mis.askham-bryan.ac.uk/ProSolutionData/Course/Search/Enrol/" & teamCode & "/" & search)
+                Using stream As Stream = webClient.OpenRead("https://api.askham-bryan.ac.uk/Course/Search/Enrol/" & teamCode & "/" & search)
                     Using streamReader As StreamReader = New StreamReader(stream)
                         Dim jsonString As String = streamReader.ReadToEnd()
 

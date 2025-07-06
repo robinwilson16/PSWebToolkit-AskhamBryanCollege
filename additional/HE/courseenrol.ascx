@@ -118,6 +118,9 @@
             <li class="list-group-item icon listcheck"> Your address details, mobile number and a personal email address</li>
             <li class="list-group-item icon listcheck"> Your next of kin emergency contact details</li>
             <li class="list-group-item icon listcheck"> Proof of ID such as passport, driving licence or birth certicate to be uploaded</li>
+            <li class="list-group-item icon listcheck"> A headshot photograph</li>
+            <li class="list-group-item icon listcheck"> Your National Insurance Number</li>
+            <li class="list-group-item icon listcheck"> Evidence of qualifications including English and/or Maths and their grades</li>
         </ul>
     </div>
 

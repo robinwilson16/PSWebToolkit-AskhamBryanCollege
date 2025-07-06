@@ -54,32 +54,50 @@
             Please give your full legal name. The Education & Skills Funding Agency requires the College to collect legal gender.</p>
           </div>
   </div>
-      <div class="row">
-      <div class="col-sm-12 columns form-group"> 
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true"  CustomCaption="Title" ClientIDMode="Static" />
+ <div class="row">
+    <div class="col-sm-6 columns form-group"> 
+        <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" CustomCaption="Title" ClientIDMode="Static" />
         <asp:CustomValidator ID="fldTitleValidator" runat="server"></asp:CustomValidator>
-          </div>
-  </div>
+    </div>
+    <div class="col-sm-6 columns form-group">     
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forename or Given Name" />
+        <asp:CustomValidator ID="fldFirstForenameValidator" runat="server"></asp:CustomValidator>
+    </div>
+</div>
+
   <div class="row" id="divRefno" runat="server" visible="false">
       <div class="col-sm-12 columns form-group"> 
     <h4>If you have already applied to the College or studied at the College as a student, your ID is <strong><asp:Label ID="lblRefno" runat="server"></asp:Label></strong> </h4>
           </div>
   </div>
-    <div class="row">
+<div class="row">
     <div class="col-sm-6 columns form-group">     
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstName" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forenames or given name" />
-     </div>
-        <div class="col-sm-6 columns form-group">       
-                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
-     </div>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
     </div>
-  <div class="row">
-      <div class="col-sm-6 columns form-group">            
-                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="StudentEnrolmentField7" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Preferred or familiar name (if different)" />
-          </div>
-      <div class="col-sm-6 columns form-group">  <cc1:StudentEnrolmentField StudentEnrolmentFieldType="knownas" ID="StudentEnrolmentField8" runat="server" IsRequired="false"  LabelWidth="300" CustomCaption="Previous surname or family name" />   
-          </div>
-   </div>
+    <div class="col-sm-6 columns form-group">       
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 columns form-group">            
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300"  CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
+        
+        <div class="alert alert-primary hstack gap-3" role="alert">
+            <div>
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <div>
+                <p>
+                    This is a name you prefer to be called instead of your legal forename. This name will be printed on your student ID card. If you do not have a preferred name, leave this field blank.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 columns form-group">  
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SurnameAtBirth" ID="fldSurnameAtBirth" runat="server" IsRequired="false"  LabelWidth="300" CustomCaption="Previous Surname or Family Name (if changed)" />   
+    </div>
+</div>
+
   <div class="row">
         <div class="col-sm-12 columns form-group"> 
             <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
@@ -206,13 +224,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 columns form-group">
+        <div class="col-sm-6 columns form-group">
             <label for="postcode" class="textfieldlabelrequired">Postcode</label>
             <input runat="server" type="text" id="postcode" class="form-control" name="pre[postalcode]" placeholder="" autocomplete="off" pattern="^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$" title="Please enter a valid Postcode" ClientIDMode="Static" />
             <%--pattern="^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$" Title="Please enter a valid Postcode"--%>    
             <asp:CustomValidator ID="postcodeValidator" runat="server"></asp:CustomValidator>
-            </div> 
+        </div> 
+        <div class="col-sm-6 columns form-group"> 
+            <cc1:StudentEnrolmentField runat="server" ID="fldNumberOfYearsAtCurrentAddress" StudentEnrolmentFieldType="NumberOfYearsAtCurrentAddress" IsRequired="true" ClientIDMode="Static" HTML5InputType="number" />
         </div>
+    </div>
     </div>
      <div class="row">
        <div class="col-sm-12 columns form-group">  <p><strong>You must provide at least one phone number below:</strong></p>

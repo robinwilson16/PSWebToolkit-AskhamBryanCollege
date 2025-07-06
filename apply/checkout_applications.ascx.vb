@@ -71,6 +71,16 @@ Partial Class checkout_applications
     End Sub
 
     Public Overrides Sub ValidateControl()
+        'Forename (Single Name Only)
+        If Not String.IsNullOrEmpty(fldFirstForename.Value.ToString()) Then
+            If (fldFirstForename.Value.ToString().Contains(" ")) Then
+                fldFirstForenameValidator.ErrorMessage = "Forename or Given Name must only contain your first name with no spaces. Please Enter Any middle names into the Other Forenames (Middle Names) box below."
+                fldFirstForenameValidator.IsValid = False
+                fldFirstForenameValidator.CssClass = "error alert alert-danger"
+                fldFirstForename.CssClass = "ErrorInput"
+            End If
+        End If
+
         'Post Code
         If Not IsNothing(postcode) Then
             Dim regexPostCode As New Regex("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$")
@@ -123,12 +133,12 @@ Partial Class checkout_applications
                 matchNINumber = regexNINumber.Match(CStr(fldNINumber.Value))
             End If
 
-            If (String.IsNullOrEmpty(CStr(fldNINumber.Value))) Then
-                fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"
-                fldNINumberValidate.IsValid = False
-                fldNINumberValidate.CssClass = "error alert alert-danger"
-                fldNINumber.CssClass = "ErrorInput"
-            End If
+            'If (String.IsNullOrEmpty(CStr(fldNINumber.Value))) Then
+            '    fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"
+            '    fldNINumberValidate.IsValid = False
+            '    fldNINumberValidate.CssClass = "error alert alert-danger"
+            '    fldNINumber.CssClass = "ErrorInput"
+            'End If
 
             If fldNINumber.Value.ToString.Length > 0 And Not matchNINumber.Success Then
                 fldNINumberValidate.ErrorMessage = "Please enter a valid National Insurance Number"

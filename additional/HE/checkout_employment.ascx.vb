@@ -7,11 +7,25 @@ Partial Class webcontrols_checkout_employment
     Public OfferingID As Integer
     Public Course As Course
 
+    Public Is19Plus As Boolean
+    Public Date31stAug As Date
+    Public DateIsAdult As Date
+
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+
+        'Check age to see if 19+ fields should be displayed
+        Date31stAug = CDate(Today().Year & "-08-31")
+        DateIsAdult = Date31stAug.AddYears(-19)
+
+        If WorkingData.ApplicationRequestRow.DateOfBirth < DateIsAdult Then
+            Is19Plus = True
+        Else
+            Is19Plus = False
+        End If
 
         If Not (IsPostBack) Then
 
@@ -39,7 +53,9 @@ Partial Class webcontrols_checkout_employment
 
             End If
 
-
+        If WorkingData.EnrolmentRequestRow.StudentDetailUserDefined10 = "Y" Then
+            chkLowWage.Checked = True
+        End If
 
     End Sub
 
@@ -59,6 +75,13 @@ Partial Class webcontrols_checkout_employment
             If rdoSelfEmp.SelectedValue.ToString.Length > 0 Then
                 WorkingData.EnrolmentRequestEmploymentHistoryRow.IsSelfEmployed = rdoSelfEmp.SelectedValue
             End If
+
+            If Not IsNothing(chkLowWage) Then
+                If chkLowWage.Checked = True Then
+                    WorkingData.EnrolmentRequestRow.StudentDetailUserDefined10 = "Y"
+                End If
+            End If
+
 
             Response.Redirect(GetResourceValue("checkout_attachments_HE_aspx"))
 
@@ -83,7 +106,7 @@ Partial Class webcontrols_checkout_employment
             selectEmployed.Style.Add("border", "1px solid red")
         End If
 
-        If selectEmployed.SelectedValue = "11" Or selectEmployed.SelectedValue = "12" Then
+        If selectEmployed.SelectedValue = "11" Then
             If selectLengthUnemployed.SelectedValue = "" Then
                 Dim v As New CustomValidator
                 v.ErrorMessage = "Length of of time unemployed must be provided"
@@ -123,10 +146,10 @@ Partial Class webcontrols_checkout_employment
                 a.IsValid = False
                 a.ErrorMessage = "If you are Employed, are you self employed?"
                 Me.Page.Validators.Add(a)
-                ValidationSummary1.CssClass = "error"
+                ValidationSummary.CssClass = "error"
             End If
+
         End If
         MyBase.ValidateControl()
     End Sub
-
 End Class

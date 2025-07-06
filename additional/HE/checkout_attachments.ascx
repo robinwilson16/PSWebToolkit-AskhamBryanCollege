@@ -11,12 +11,13 @@
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_parent_guardian.ascx"><i class="fa-solid fa-users"></i> <span class="d-none d-sm-inline">Emergency Contact Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_enrolments2.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Further Details</span></a></li>
         <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_quals_on_entry.ascx"><i class="fa-solid fa-clipboard-list"></i> <span class="d-none d-sm-inline">Qualifications on Entry</span></a></li>
+        <li class="breadcrumb-item pl-0"><a href="webenrolment.aspx?page=~/additional/HE/checkout_employment.ascx"><i class="fa-solid fa-city"></i> <span class="d-none d-sm-inline">Employment Status</span></a></li>
         <li aria-current="page" class="breadcrumb-item pl-0 active pl-4"><i class="fa-solid fa-paperclip"></i> Documents/Evidence</li>
     </ol>
 </nav>
 
-<div class="progress mb-4" role="progressbar" aria-label="Animated striped example" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 60%">60%</div>
+<div class="progress mb-4" role="progressbar" aria-label="Animated striped example" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 70%">70%</div>
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
@@ -140,8 +141,30 @@
         <div class=" form-group">
             <cc1:StudentEnrolmentField runat="server" ID="StudentDetailUserDefined25" CustomFieldType="Lookup" StudentEnrolmentFieldType="StudentDetailUserDefined25" ClientIDMode="Static" CustomCaption="Can't upload your file/s at the moment - please select a reason why" />
         </div>
+        
+        <div id="UploadWarning" class="alert alert-warning hstack gap-3 d-none" role="alert">
+            <div>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+                <div>
+                    <p>
+                        You must provide the required documents/evidence as soon as possible after completing this form. 
+                    </p>
+                    <p>
+                        You cannot be fully enrolled without this evidence. You can:
+                    </p>
+                    <ul>
+                        <li>
+                            Email a photograph of your ID and Certificates to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Evidence">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+                        </li>
+                        <li>
+                            Bring your ID and Certificates to college in person <strong>before</strong> the start date of your course and we can take a copy.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 <asp:ValidationSummary ID="vsAttachments" runat="server" CssClass="alert alert-danger" />
 
@@ -150,7 +173,7 @@
         <div class="col-md">
             <span class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary btn-lg BackButton"> Back</button>
-                <cc1:CCCButton ID="btnBack" LinkResource="checkout_quals_on_entry_HE_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
+                <cc1:CCCButton ID="btnBack" LinkResource="checkout_employment_HE_aspx" CssClass="d-none" class="d-none" ClientIDMode="Static" runat="server" Text="Back" ImageResource="btnBack" CausesValidation="false" />
             </span>
         </div>
         <div class="col-md text-end">
@@ -193,5 +216,17 @@
 
     fuAttachment.addEventListener('change', function (event) {
         fileChosen.value = "Y";
+    });
+
+    //Show message about providing required evidence
+    let cannotUpload = document.getElementById("cboStudentDetailUserDefined25");
+    let uploadWarning = document.getElementById("UploadWarning");
+    cannotUpload.addEventListener('change', function (event) {
+        if (cannotUpload.value == "Fail" || cannotUpload.value == "NoInfo") {
+            uploadWarning.classList.remove("d-none");
+        }
+        else {
+            uploadWarning.classList.add("d-none");
+        }
     });
 </script>

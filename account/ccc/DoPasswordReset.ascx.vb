@@ -14,10 +14,16 @@ Partial Class account_ccc_DoPasswordReset
 
         Email = Request("Email")
         Verification = Request("vc")
+        ''CCCPS-80694: Setting information on password field to guide user to set strong password.
+        ''CCCPS-82835: Further enhancement to display Info into tooltip rather than on screen.
+        lnkMinRequirements.Title = PasswordValidation.InfoMessage
+        If String.IsNullOrWhiteSpace(lnkMinRequirements.Title) Then
+            lnkMinRequirements.Visible = False
+        End If
 
         Dim result As VerficationResult = WebUserDataTable.CheckVerificationCodeIsValid(Email, Verification)
 
-        Select Case result        
+        Select Case result
             Case VerficationResult.Failed
                 Dim v As New CustomValidator()
                 v.ErrorMessage = "Verification Code does not match. Please check and try again."
@@ -25,7 +31,7 @@ Partial Class account_ccc_DoPasswordReset
                 Me.Page.Validators.Add(v)
                 Me.ValidationSummary1.ShowSummary = True
                 btnUpdate.Enabled = False
-            Case VerficationResult.Expired             
+            Case VerficationResult.Expired
                 btnUpdate.Enabled = True
             Case VerficationResult.UserNotFound
                 Dim v As New CustomValidator()
@@ -43,10 +49,21 @@ Partial Class account_ccc_DoPasswordReset
 
     Public Overrides Sub ValidateControl()
         MyBase.ValidateControl()
+        ''CCCPS-78454: Validating password based on applied policy.
+        Dim m_errortext As String = String.Empty
+        If Len(Request.Form("passwordnew")) > 0 AndAlso Len(Request.Form("password_mirror")) > 0 Then
+            If Request.Form("passwordnew") <> Request.Form("password_mirror") Then
+                m_errortext = "Password does not match"
+            ElseIf Not PasswordValidation.IsValid(Request.Form("passwordnew"), Email) Then ''CCCPS-82743: Parameters added to perform some crucial validations.
+                m_errortext = PasswordValidation.ErrorMessage
+            End If
+        Else
+            m_errortext = "You must enter a 'New Password' and 'Retype New Password' to update the password."
+        End If
 
-        If Len(Request.Form("passwordnew")) < 6 Then
+        If Len(m_errortext) > 0 Then
             Dim v As New CustomValidator()
-            v.ErrorMessage = "Password must be at least 6 characters."
+            v.ErrorMessage = m_errortext
             v.IsValid = False
             Me.Page.Validators.Add(v)
             Me.ValidationSummary1.ShowSummary = True
