@@ -473,7 +473,7 @@
         }
 
         async function getFundingSourceinfo(postcode) {
-            await fetch(`https://mis.askham-bryan.ac.uk/ProSolutionData/DevolvedAreaPostCode/${postcode}`, {
+            await fetch(`https://api.askham-bryan.ac.uk/DevolvedAreaPostCode/${postcode}`, {
                 method: `GET`,
                 headers: {
                     'Content-Type': 'application/json',
