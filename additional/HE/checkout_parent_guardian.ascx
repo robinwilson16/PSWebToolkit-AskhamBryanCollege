@@ -53,10 +53,10 @@
 
   <div class="row">
       <div class="col-sm-6 columns form-group"> 
-           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentFirstName" ID="fldParentFirstName" runat="server" IsRequired="true" CustomCaption="First name"/>
+           <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentFirstName" ID="fldParentFirstName" runat="server" IsRequired="true" CustomCaption="Forename or Given Name" />
           </div>
        <div class="col-sm-6 columns form-group"> 
-                 <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentSurname" ID="fldParentSurname" runat="server" IsRequired="true"  CustomCaption="Surname"/>
+                 <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentSurname" ID="fldParentSurname" runat="server" IsRequired="true"  CustomCaption="Surname or Family Name"/>
           </div>
    </div>
 
@@ -68,10 +68,10 @@
     <div class="row">
         <div class="col-sm-6 columns form-group">
             <span class="textfieldlabelrequired">Mobile Number (eg 07)</span>
-    <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentMobileTel" ID="fldParentMobileTel" runat="server" IsRequired="false" Placeholder="Mobile numbers beginning 07" CustomCaption="Mobile Number (eg 07)" LabelWidth="0" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" />
+    <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentMobileTel" ID="fldParentMobileTel" runat="server" IsRequired="false" Placeholder="Mobile numbers beginning 07" CustomCaption="Mobile Number" LabelWidth="0" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" />
     </div>
    <div class="col-sm-6 columns form-group">
-       <span class="textfieldlabelrequired">Contact phone (inc. STD code)</span>
+       <span class="textfieldlabelrequired">Contact Phone (inc. STD code)</span>
                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentPhoneNumber" ID="fldParentPhoneNumber" runat="server" CustomCaption="Contact phone (inc. STD code)" LabelWidth="0" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
 </div>
     <div class="col-sm-12 columns form-group">
@@ -81,7 +81,7 @@
 
      <div class="row">
         <div class="col-sm-6 columns form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentEmailAddress" HTML5InputType="email" ID="StudentEnrolmentField11" runat="server" IsRequired="true" LabelWidth="200" CustomCaption="Email Address" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"/>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentEmailAddress" HTML5InputType="email" ID="StudentEnrolmentField11" runat="server" IsRequired="false" LabelWidth="200" CustomCaption="Email Address" Pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"/>
         </div>
          <div class="col-sm-6 columns form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentRelationshipID" ID="fldParentRelationshipID" runat="server" IsRequired="true"  CustomCaption="Relationship" ClientIDMode="Static" />

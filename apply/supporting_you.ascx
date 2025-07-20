@@ -46,7 +46,7 @@ Do you have any spent cautions or convictions, which are not protected as define
 
     <div class=" form-group" style="display: block;">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="LearningDiffOrDisID" ID="fldLearningDiffOrDisID" runat="server" IsRequired="true" LabelWidth="400"
-    CustomCaption="Do you consider yourself to have a learning difficulty and/or disability?" ClientIDMode="Static" Title="Please state whether you have a learning difficulty or disability" />
+    CustomCaption="Do you consider yourself to have a learning difficulty and/or disability?" ClientIDMode="Static" Title="Please state whether you have a learning difficulty, disability or health condition" />
         <asp:CustomValidator ID="fldLearningDiffOrDisIDValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class="mb-3 alert alert-warning" id="DisabilityCategory1IDRow">

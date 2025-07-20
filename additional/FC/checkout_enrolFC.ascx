@@ -127,7 +127,7 @@
         </div>
 
         <div class="form-input">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or Family Name" />
         </div>
 
         <div class="form-input">
@@ -149,7 +149,7 @@
         </div>
 
         <div class=" form-group">
-            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
             <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
             <div class="alert alert-secondary d-none" role="alert" id="AgeInfo">
                 &nbsp;
@@ -167,7 +167,7 @@
             <asp:CustomValidator ID="fldPronounValidator" runat="server"></asp:CustomValidator>
         </div>
 
-        <p><i><strong>The Education & Skills Funding Agency requires the College to collect legal gender.</strong></i></p>
+        <p><i><strong>The The Department for Education (DfE) requires the College to collect legal gender.</strong></i></p>
 
     </div>
 

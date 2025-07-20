@@ -11,12 +11,21 @@ Partial Class webcontrols_checkout_enrolments2
 
     Public OfferingID As Integer
     Public Course As Course
+    Public IsUnder19 As Boolean
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+
+        Dim referenceDate As DateTime = CDate(Today().Year & "-08-31")
+        Dim age19DOB As DateTime = referenceDate.AddYears(-19)
+        If WorkingData.EnrolmentRequestRow.DateOfBirth > age19DOB Then 'Under 19
+            IsUnder19 = True
+        Else
+            IsUnder19 = False
+        End If
 
         'Response.Write(WorkingData.EnrolmentRequestRow.StudentDetailUserDefined58)
         'If Not Session("agecourse") Is Nothing Then lblAgeCourse.Text = CType("Your age on " & Session("startdate") & ": " & Session("agecourse") & " (" & Session("ageGroup"), String) & ")"
@@ -95,7 +104,7 @@ Partial Class webcontrols_checkout_enrolments2
                 'System Fields
                 disabilityCategoryID.StudentDisabilityFieldType = StudentDisabilityFieldType.DisabilityCategoryID
                 disabilityCategoryID.StudentDisabilityRowNumber = i
-                disabilityCategoryID.CustomCaption = "Difficulty/Disability"
+                disabilityCategoryID.CustomCaption = "Difficulty/Disability/Health Condition"
                 'disabilityCategoryID.LabelWidth = 0
                 'cell1.Controls.Add(disabilityCategoryID)
 
@@ -224,7 +233,7 @@ Partial Class webcontrols_checkout_enrolments2
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")
         ElseIf selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
-            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
+            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability/health condition but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
             selectLearnDiffValidator.IsValid = False
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")
@@ -292,12 +301,12 @@ Partial Class webcontrols_checkout_enrolments2
 
         If rowCount >= 1 And selectLearnDiff.SelectedValue = "1" And isPrimaryCount = 0 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "Please record which difficulty/disability is the primary (main) one."
+            v.ErrorMessage = "Please record which difficulty/disability/health condition is the primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         ElseIf rowCount >= 1 And isPrimaryCount > 1 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "Please record only one difficulty/disability as your primary (main) one."
+            v.ErrorMessage = "Please record only one difficulty/disability/health condition as your primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         End If
@@ -328,7 +337,7 @@ Partial Class webcontrols_checkout_enrolments2
         ctlResidence.Items.Remove(itemXF)
         ctlResidence.Items.Insert(1, itemXF)
 
-
+        itemGB.Text = "British"
         ctlNationality.Items.Remove(itemGB)
         ctlNationality.Items.Insert(1, itemGB)
 

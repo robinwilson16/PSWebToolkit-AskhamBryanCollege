@@ -172,7 +172,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
 <%--    <p><strong>We MUST</strong> know about your level of English (language and literature) and Mathematics <strong>you already have.</strong></p>--%>
 <%--    <p>Do you have functional skills L2 in English or an alternative English qualification:</p>--%>
-    <p>Please confirm if you have achieved your GCSE English (language /literature) and GCSE Mathematics grade 9-4 by the end of Year 11.</p>
+    <p>Please confirm if you have achieved your GCSE English (Language/Literature) and GCSE Mathematics grade 9-4 by the end of Year 11.</p>
 
   <div class="row">
              <div class="col-sm-12 columns form-group"> 

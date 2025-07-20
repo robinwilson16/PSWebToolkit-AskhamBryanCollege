@@ -94,7 +94,7 @@ Partial Class webcontrols_checkout_enrolments2
                 'System Fields
                 disabilityCategoryID.StudentDisabilityFieldType = StudentDisabilityFieldType.DisabilityCategoryID
                 disabilityCategoryID.StudentDisabilityRowNumber = i
-                disabilityCategoryID.CustomCaption = "Difficulty/Disability"
+                disabilityCategoryID.CustomCaption = "Difficulty/Disability/Health Condition"
                 'disabilityCategoryID.LabelWidth = 0
                 'cell1.Controls.Add(disabilityCategoryID)
 
@@ -252,7 +252,7 @@ Partial Class webcontrols_checkout_enrolments2
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")
         ElseIf selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
-            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
+            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability/health condition but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
             selectLearnDiffValidator.IsValid = False
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")
@@ -320,12 +320,12 @@ Partial Class webcontrols_checkout_enrolments2
 
         If rowCount >= 1 And selectLearnDiff.SelectedValue = "1" And isPrimaryCount = 0 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "Please record which difficulty/disability is the primary (main) one."
+            v.ErrorMessage = "Please record which difficulty/disability/health condition is the primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         ElseIf rowCount >= 1 And isPrimaryCount > 1 Then
             Dim v As New CustomValidator
-            v.ErrorMessage = "Please record only one difficulty/disability as your primary (main) one."
+            v.ErrorMessage = "Please record only one difficulty/disability/health condition as your primary (main) one."
             v.IsValid = False
             Me.Page.Validators.Add(v)
         End If
@@ -359,7 +359,7 @@ Partial Class webcontrols_checkout_enrolments2
         ctlResidence.Items.Remove(itemXF)
         ctlResidence.Items.Insert(1, itemXF)
 
-
+        itemGB.Text = "British"
         ctlNationality.Items.Remove(itemGB)
         ctlNationality.Items.Insert(1, itemGB)
 

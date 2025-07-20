@@ -142,8 +142,8 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 
  <h5>English and Mathematics</h5>
     
-    <p><strong>We MUST</strong> know about your level of English (language and literature) Mathematics and Science <strong>you already have.</strong></p>
-    <p>Please enter the details of your prior qualifications. Use ‘Add row’ to save and add multiple qualifications.</p>
+    <p><strong>We MUST</strong> know about your level of English (Language and Literature), Mathematics and Science <strong>you already have.</strong></p>
+    <p>Please enter the details of your prior qualifications. Use 'Add row' to save and add multiple qualifications.</p>
     <br />
 
     <asp:Button runat="server" ID="btnNoEnglishandMaths" CssClass="show_hide btn btn-primary" Text="No English Maths and Science qualifications" ToolTip="Click to remove all the items listed below (And hide the list)"></asp:Button>

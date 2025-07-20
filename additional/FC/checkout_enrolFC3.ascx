@@ -110,12 +110,12 @@
     <p><strong>If you are aged under 18, we MUST have details of a parent, guardian or carer we can contact in case of an emergency. If aged 18 or over, please provide details of a next of kin. The person must know they are your emergency contact.</strong></p>
 
     <div class="form-group">
-        <label for="Contact1Forename" style="font-weight: bold">Forename</label>
+        <label for="Contact1Forename" style="font-weight: bold">Forename or Given Name</label>
         <input runat="server" type="text" id="Contact1Forename" class="form-control" name="Contact1Forename" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Forename" />
         <asp:CustomValidator ID="Contact1ForenameValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class="form-group">
-        <label for="Contact1Surname" style="font-weight: bold">Surname</label>
+        <label for="Contact1Surname" style="font-weight: bold">Surname or Family Name</label>
         <input runat="server" type="text" id="Contact1Surname" class="form-control" name="Contact1Surname" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Surname" />
         <asp:CustomValidator ID="Contact1SurnameValidator" runat="server"></asp:CustomValidator>
     </div>
@@ -130,7 +130,7 @@
     </div>
 
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1Tel" ID="contacttel" runat="server" IsRequired="false" LabelWidth="400" CustomCaption="Contact phone (inc. STD code)" Pattern="^(0[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Telephone Number (0XXXXXXXXXX)" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1Tel" ID="contacttel" runat="server" IsRequired="false" LabelWidth="400" CustomCaption="Contact Phone (inc. STD code)" Pattern="^(0[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Telephone Number (0XXXXXXXXXX)" />
     </div>
 
     <div class=" form-group">

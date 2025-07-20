@@ -44,6 +44,17 @@ Partial Class webcontrols_checkout_parent_guardian
         ''show course name 
     End Sub
 
+    Public Overrides Sub RenderControl(writer As HtmlTextWriter)
+
+        Dim fldParentRelationshipDropDown As DropDownList = TryCast(fldParentRelationshipID.InternalFieldControl, DropDownList)
+
+        Dim fldParentRelationshipDropDownParent = fldParentRelationshipDropDown.Items.FindByValue("3080")
+        fldParentRelationshipDropDown.Items.Remove(fldParentRelationshipDropDownParent)
+        fldParentRelationshipDropDown.Items.Insert(1, fldParentRelationshipDropDownParent)
+
+        MyBase.RenderControl(writer)
+    End Sub
+
     Public Overrides Sub ValidateControl()
 
         'Mobile Tel
@@ -117,14 +128,14 @@ Partial Class webcontrols_checkout_parent_guardian
 
 
         'lewis @adnvanced
-        Dim regexEmail As New Regex("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$")
-        Dim matchE As Match = regexEmail.Match(fldEmail.Value)
-        If Not matchE.Success Then
-            Dim v As New CustomValidator
-            v.ErrorMessage = "Please enter a valid email"
-            v.IsValid = False
-            Me.Page.Validators.Add(v)
-        End If
+        'Dim regexEmail As New Regex("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$")
+        'Dim matchE As Match = regexEmail.Match(fldEmail.Value)
+        'If Not matchE.Success Then
+        '    Dim v As New CustomValidator
+        '    v.ErrorMessage = "Please enter a valid email"
+        '    v.IsValid = False
+        '    Me.Page.Validators.Add(v)
+        'End If
 
         MyBase.ValidateControl()
     End Sub
@@ -136,6 +147,11 @@ Partial Class webcontrols_checkout_parent_guardian
 
 
         If Me.Page.IsValid Then
+            'Set Is Emergency Contact to true if NOK fields are filled in
+            If Not String.IsNullOrEmpty(fldParentFirstName.Value) Then
+                WorkingData.EnrolmentRequestRow.NextOfKin = 1
+            End If
+
             WorkingData.EnrolmentRequestRow.ParentAddress1 = txtAddress1.Value
             WorkingData.EnrolmentRequestRow.ParentAddress2 = txtAddress2.Value
             WorkingData.EnrolmentRequestRow.ParentAddress3 = txtAddress3.Value

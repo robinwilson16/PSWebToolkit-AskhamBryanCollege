@@ -3,34 +3,64 @@
   "WorkspaceRootPath": "Z:\\\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\check_learner.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fc\\checkout_enrolfc6.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\app_globalresources\\resource.resx||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_dataprotection.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\app_globalresources\\resource - copy.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\webcontrols\\checkout_applications.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\check_learner.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\webcontrols\\checkout_applications2.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\webenrolment.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\he\\checkout_enrolments2.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\webenrolment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments2.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments2.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_parent_guardian.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\courseenrol.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_parent_guardian.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\he\\checkout_parent_guardian.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\he\\checkout_parent_guardian.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fc\\checkout_enrolfc2.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\apply\\checkout_applications.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\apply\\checkout_applications.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fc\\checkout_enrolfc.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\he\\checkout_enrolments.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fc\\checkout_enrolfc2.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\he\\checkout_enrolments.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FC0E728-FFEC-4210-B5EA-2E39D87EE709}|Z:|z:\\additional\\fe\\checkout_enrolments.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,62 +70,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "checkout_enrolFC6.ascx",
+              "DocumentMoniker": "Z:\\additional\\FC\\checkout_enrolFC6.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC6.ascx",
+              "ToolTip": "Z:\\additional\\FC\\checkout_enrolFC6.ascx",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC6.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-20T10:23:14.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Resource.resx",
-              "DocumentMoniker": "Z:\\App_GlobalResources\\Resource.resx",
-              "RelativeDocumentMoniker": "..\\App_GlobalResources\\Resource.resx",
-              "ToolTip": "Z:\\App_GlobalResources\\Resource.resx",
-              "RelativeToolTip": "..\\App_GlobalResources\\Resource.resx",
-              "ViewState": "AgIAAMkBAAAAAAAAAAAYwOABAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-07-06T15:33:15.081Z",
+              "Title": "checkout_dataprotection.ascx",
+              "DocumentMoniker": "Z:\\additional\\FE\\checkout_dataprotection.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_dataprotection.ascx",
+              "ToolTip": "Z:\\additional\\FE\\checkout_dataprotection.ascx",
+              "RelativeToolTip": "..\\additional\\FE\\checkout_dataprotection.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-20T10:22:50.951Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Resource - Copy.resx",
-              "DocumentMoniker": "Z:\\App_GlobalResources\\Resource - Copy.resx",
-              "RelativeDocumentMoniker": "..\\App_GlobalResources\\Resource - Copy.resx",
-              "ToolTip": "Z:\\App_GlobalResources\\Resource - Copy.resx",
-              "RelativeToolTip": "..\\App_GlobalResources\\Resource - Copy.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-07-06T15:33:00.06Z",
+              "Title": "checkout_applications.ascx",
+              "DocumentMoniker": "Z:\\webcontrols\\checkout_applications.ascx",
+              "RelativeDocumentMoniker": "..\\webcontrols\\checkout_applications.ascx",
+              "ToolTip": "Z:\\webcontrols\\checkout_applications.ascx",
+              "RelativeToolTip": "..\\webcontrols\\checkout_applications.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T23:23:46.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "checkout_applications2.ascx",
+              "DocumentMoniker": "Z:\\webcontrols\\checkout_applications2.ascx",
+              "RelativeDocumentMoniker": "..\\webcontrols\\checkout_applications2.ascx",
+              "ToolTip": "Z:\\webcontrols\\checkout_applications2.ascx",
+              "RelativeToolTip": "..\\webcontrols\\checkout_applications2.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T23:22:51.57Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "webenrolment.aspx.vb",
-              "DocumentMoniker": "Z:\\webenrolment.aspx.vb",
-              "RelativeDocumentMoniker": "..\\webenrolment.aspx.vb",
-              "ToolTip": "Z:\\webenrolment.aspx.vb",
-              "RelativeToolTip": "..\\webenrolment.aspx.vb",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAAEMAAAC5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-07-06T15:19:28.46Z",
+              "Title": "checkout_enrolments2.ascx",
+              "DocumentMoniker": "Z:\\additional\\HE\\checkout_enrolments2.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_enrolments2.ascx",
+              "ToolTip": "Z:\\additional\\HE\\checkout_enrolments2.ascx",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_enrolments2.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T23:22:22.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "webenrolment.aspx",
-              "DocumentMoniker": "Z:\\webenrolment.aspx",
-              "RelativeDocumentMoniker": "..\\webenrolment.aspx",
-              "ToolTip": "Z:\\webenrolment.aspx",
-              "RelativeToolTip": "..\\webenrolment.aspx",
+              "Title": "checkout_enrolments2.ascx",
+              "DocumentMoniker": "Z:\\additional\\FE\\checkout_enrolments2.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_enrolments2.ascx",
+              "ToolTip": "Z:\\additional\\FE\\checkout_enrolments2.ascx",
+              "RelativeToolTip": "..\\additional\\FE\\checkout_enrolments2.ascx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-06T15:19:26.996Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T23:07:46.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "checkout_enrolments2.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\FE\\checkout_enrolments2.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_enrolments2.ascx.vb",
+              "ToolTip": "Z:\\additional\\FE\\checkout_enrolments2.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FE\\checkout_enrolments2.ascx.vb",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBcAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T23:07:46.803Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "checkout_parent_guardian.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\FE\\checkout_parent_guardian.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_parent_guardian.ascx.vb",
+              "ToolTip": "Z:\\additional\\FE\\checkout_parent_guardian.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FE\\checkout_parent_guardian.ascx.vb",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T23:01:24.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "checkout_parent_guardian.ascx",
               "DocumentMoniker": "Z:\\additional\\FE\\checkout_parent_guardian.ascx",
               "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_parent_guardian.ascx",
@@ -103,12 +186,142 @@
               "RelativeToolTip": "..\\additional\\FE\\checkout_parent_guardian.ascx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2025-07-06T14:51:47.601Z",
+              "WhenOpened": "2025-07-16T23:01:19.743Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
+              "Title": "checkout_parent_guardian.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\HE\\checkout_parent_guardian.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_parent_guardian.ascx.vb",
+              "ToolTip": "Z:\\additional\\HE\\checkout_parent_guardian.ascx.vb",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_parent_guardian.ascx.vb",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T23:03:04.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "checkout_parent_guardian.ascx",
+              "DocumentMoniker": "Z:\\additional\\HE\\checkout_parent_guardian.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_parent_guardian.ascx",
+              "ToolTip": "Z:\\additional\\HE\\checkout_parent_guardian.ascx",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_parent_guardian.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T23:03:02.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "checkout_enrolments.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\FE\\checkout_enrolments.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_enrolments.ascx.vb",
+              "ToolTip": "Z:\\additional\\FE\\checkout_enrolments.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FE\\checkout_enrolments.ascx.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAP0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T21:48:39.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "checkout_enrolFC2.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\FC\\checkout_enrolFC2.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC2.ascx.vb",
+              "ToolTip": "Z:\\additional\\FC\\checkout_enrolFC2.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC2.ascx.vb",
+              "ViewState": "AgIAALABAAAAAAAAAAAIwL4BAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T21:53:40.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "checkout_applications.ascx.vb",
+              "DocumentMoniker": "Z:\\apply\\checkout_applications.ascx.vb",
+              "RelativeDocumentMoniker": "..\\apply\\checkout_applications.ascx.vb",
+              "ToolTip": "Z:\\apply\\checkout_applications.ascx.vb",
+              "RelativeToolTip": "..\\apply\\checkout_applications.ascx.vb",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAYwIUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T21:54:49.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "checkout_applications.ascx",
+              "DocumentMoniker": "Z:\\apply\\checkout_applications.ascx",
+              "RelativeDocumentMoniker": "..\\apply\\checkout_applications.ascx",
+              "ToolTip": "Z:\\apply\\checkout_applications.ascx",
+              "RelativeToolTip": "..\\apply\\checkout_applications.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T21:54:48.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "checkout_enrolFC.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "ToolTip": "Z:\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC.ascx.vb",
+              "ViewState": "AgIAAA4CAAAAAAAAAADwvxsCAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T22:56:55.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "checkout_enrolments.ascx.vb",
+              "DocumentMoniker": "Z:\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "ToolTip": "Z:\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_enrolments.ascx.vb",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAowPEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-07-16T21:52:36.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "checkout_enrolFC2.ascx",
+              "DocumentMoniker": "Z:\\additional\\FC\\checkout_enrolFC2.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\FC\\checkout_enrolFC2.ascx",
+              "ToolTip": "Z:\\additional\\FC\\checkout_enrolFC2.ascx",
+              "RelativeToolTip": "..\\additional\\FC\\checkout_enrolFC2.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T21:53:40.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "checkout_enrolments.ascx",
+              "DocumentMoniker": "Z:\\additional\\HE\\checkout_enrolments.ascx",
+              "RelativeDocumentMoniker": "..\\additional\\HE\\checkout_enrolments.ascx",
+              "ToolTip": "Z:\\additional\\HE\\checkout_enrolments.ascx",
+              "RelativeToolTip": "..\\additional\\HE\\checkout_enrolments.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-07-16T21:47:47.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "checkout_enrolments.ascx",
               "DocumentMoniker": "Z:\\additional\\FE\\checkout_enrolments.ascx",
               "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_enrolments.ascx",
@@ -116,59 +329,7 @@
               "RelativeToolTip": "..\\additional\\FE\\checkout_enrolments.ascx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2025-07-06T14:30:48.924Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "check_learner.ascx",
-              "DocumentMoniker": "Z:\\additional\\FE\\check_learner.ascx",
-              "RelativeDocumentMoniker": "..\\additional\\FE\\check_learner.ascx",
-              "ToolTip": "Z:\\additional\\FE\\check_learner.ascx",
-              "RelativeToolTip": "..\\additional\\FE\\check_learner.ascx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2025-07-06T14:30:49.659Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "courseenrol.ascx",
-              "DocumentMoniker": "Z:\\additional\\FE\\courseenrol.ascx",
-              "RelativeDocumentMoniker": "..\\additional\\FE\\courseenrol.ascx",
-              "ToolTip": "Z:\\additional\\FE\\courseenrol.ascx",
-              "RelativeToolTip": "..\\additional\\FE\\courseenrol.ascx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2025-07-06T14:30:49.923Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "check_learner.ascx.vb",
-              "DocumentMoniker": "Z:\\additional\\FE\\check_learner.ascx.vb",
-              "RelativeDocumentMoniker": "..\\additional\\FE\\check_learner.ascx.vb",
-              "ToolTip": "Z:\\additional\\FE\\check_learner.ascx.vb",
-              "RelativeToolTip": "..\\additional\\FE\\check_learner.ascx.vb",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwEcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-07-06T14:30:54.751Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "checkout_enrolments.ascx.vb",
-              "DocumentMoniker": "Z:\\additional\\FE\\checkout_enrolments.ascx.vb",
-              "RelativeDocumentMoniker": "..\\additional\\FE\\checkout_enrolments.ascx.vb",
-              "ToolTip": "Z:\\additional\\FE\\checkout_enrolments.ascx.vb",
-              "RelativeToolTip": "..\\additional\\FE\\checkout_enrolments.ascx.vb",
-              "ViewState": "AgIAAJYBAAAAAAAAAAAAAJkBAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-07-06T14:30:22.315Z",
+              "WhenOpened": "2025-07-16T21:47:47.444Z",
               "EditorCaption": ""
             }
           ]

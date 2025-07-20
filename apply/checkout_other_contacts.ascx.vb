@@ -78,6 +78,23 @@ Partial Class webcontrols_checkout_other_contacts
 
     End Sub
 
+    Public Overrides Sub RenderControl(writer As HtmlTextWriter)
+
+        Dim fldParentRelationshipDropDown As DropDownList = TryCast(fldContact1RelationshipID.InternalFieldControl, DropDownList)
+
+        Dim fldParentRelationshipDropDownParent = fldParentRelationshipDropDown.Items.FindByValue("3080")
+        fldParentRelationshipDropDown.Items.Remove(fldParentRelationshipDropDownParent)
+        fldParentRelationshipDropDown.Items.Insert(1, fldParentRelationshipDropDownParent)
+
+        Dim fldParentRelationship2DropDown As DropDownList = TryCast(fldContact2RelationshipID.InternalFieldControl, DropDownList)
+
+        Dim fldParentRelationship2DropDownParent = fldParentRelationship2DropDown.Items.FindByValue("3080")
+        fldParentRelationship2DropDown.Items.Remove(fldParentRelationship2DropDownParent)
+        fldParentRelationship2DropDown.Items.Insert(1, fldParentRelationship2DropDownParent)
+
+        MyBase.RenderControl(writer)
+    End Sub
+
     Public Overrides Sub ValidateControl()
 
         'Forename - Contact 1

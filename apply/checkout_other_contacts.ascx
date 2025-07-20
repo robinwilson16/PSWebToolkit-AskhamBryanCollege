@@ -48,12 +48,12 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Contact1ContactTypeID" ID="fldContact1ContactTypeID" runat="server" IsRequired="false" LabelWidth="200" CustomCaption="Contact Type" />
     </div>--%>
     <div class=" form-group">
-        <label for="Contact1Forename" style="font-weight: bold">Forename</label>
+        <label for="Contact1Forename" style="font-weight: bold">Forename or Given Name</label>
         <input runat="server" type="text" id="Contact1Forename" class="form-control" name="Contact1Forename" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Forename" />
         <asp:CustomValidator ID="Contact1ForenameValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
-        <label for="Contact1Surname" style="font-weight: bold">Surname</label>
+        <label for="Contact1Surname" style="font-weight: bold">Surname or Family Name</label>
         <input runat="server" type="text" id="Contact1Surname" class="form-control" name="Contact1Surname" IsRequired="true" ClientIDMode="Static" title="Please enter a valid Surname" />
         <asp:CustomValidator ID="Contact1SurnameValidator" runat="server"></asp:CustomValidator>
     </div>

@@ -30,8 +30,16 @@ Partial Class webcontrols_checkout_parent_guardian
         ''show course name 
     End Sub
 
+    Public Overrides Sub RenderControl(writer As HtmlTextWriter)
 
+        Dim fldParentRelationshipDropDown As DropDownList = TryCast(fldParentRelationshipID.InternalFieldControl, DropDownList)
 
+        Dim fldParentRelationshipDropDownParent = fldParentRelationshipDropDown.Items.FindByValue("3080")
+        fldParentRelationshipDropDown.Items.Remove(fldParentRelationshipDropDownParent)
+        fldParentRelationshipDropDown.Items.Insert(1, fldParentRelationshipDropDownParent)
+
+        MyBase.RenderControl(writer)
+    End Sub
 
     Public Overrides Sub ValidateControl()
 

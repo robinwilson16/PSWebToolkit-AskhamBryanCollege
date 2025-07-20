@@ -51,7 +51,7 @@
    <div class="row">
       <div class="col-sm-12 columns form-group"> 
           <p>Please note all fields marked with  <span class="textfieldlabelrequired"></span> are required. <br /><br />
-            Please give your full legal name. The Education & Skills Funding Agency requires the College to collect legal gender.</p>
+            Please give your full legal name. The The Department for Education (DfE) requires the College to collect legal gender.</p>
           </div>
   </div>
  <div class="row">
@@ -75,7 +75,7 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
     </div>
     <div class="col-sm-6 columns form-group">       
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or Family Name" />
     </div>
 </div>
 <div class="row">
@@ -100,7 +100,7 @@
 
   <div class="row">
         <div class="col-sm-12 columns form-group"> 
-            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
             <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
             <div class="alert alert-secondary d-none" role="alert" id="AgeInfo">
                 &nbsp;
@@ -141,17 +141,19 @@
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
-    <h4><i class="fa-solid fa-hashtag"></i> NI and Criminal Convictions</h4>
+    <h4><i class="fa-solid fa-hashtag"></i> National Insurance</h4>
 
-    <h5>National Insurance</h5>
     <div class="row">
-      <div class="col-sm-12 columns form-group">            
-                 <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NI" ID="StudentEnrolmentField20" runat="server"  IsRequired="false" LabelWidth="400" CustomCaption="National Insurance (NI) Number" title="The format of the number is two prefix letters, six digits and one suffix letter. Use UPPER CASE for letters.  An example is AB123456C. Neither of the first two letters can be D, F, I, Q, U or V. The second letter also cannot be O. The prefixes BG, GB, NK, KN, TN, NT and ZZ are not allowed" Pattern="^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$"/>
-          </div>
+        <div class="col-sm-12 columns form-group">            
+            <%--<cc1:StudentEnrolmentField StudentEnrolmentFieldType="NI" ID="fldNI" runat="server"  IsRequired="false" LabelWidth="400" CustomCaption="National Insurance (NI) Number" title="The format of the number is two prefix letters, six digits and one suffix letter. Use UPPER CASE for letters.  An example is AB123456C. Neither of the first two letters can be D, F, I, Q, U or V. The second letter also cannot be O. The prefixes BG, GB, NK, KN, TN, NT and ZZ are not allowed" Pattern="^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$" />--%>
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NI" ID="fldNI" runat="server"  IsRequired="false" LabelWidth="400" CustomCaption="National Insurance (NI) Number" title="The format of the number is two prefix letters, six digits and one suffix letter. Use UPPER CASE for letters.  An example is AB123456C. Neither of the first two letters can be D, F, I, Q, U or V. The second letter also cannot be O. The prefixes BG, GB, NK, KN, TN, NT and ZZ are not allowed" />
+            <asp:CustomValidator ID="fldNIValidator" runat="server"></asp:CustomValidator>
+        </div>
    </div>
+</div>
 
-    <hr />
-    <h5>Criminal Convictions</h5>
+<div class="bd-callout bd-callout-askham bd-callout-grey">
+    <h4><i class="fa-solid fa-handcuffs"></i> Criminal Convictions</h4>
 
         <p>We must ask you to provide details of any <strong>unspent</strong> criminal convictions. You do not need to tell us about any spent convictions, as defined by the Rehabilitation of Offenders Act 1974, unless your course involves access to children and young adults under the age of 18. If you are enrolled to such a course, any failure to disclose such convictions may result in the College asking you to withdraw. Any information you give will be completely confidential and is only considered in relation to this enrolment.</p>
         
@@ -179,16 +181,6 @@
         </div>
       </div>--%>
 
-<!--
-<div class="container">
-  <div class="row">
-      <div class="col-sm-6 columns form-group"> 
-          </div>
-       <div class="col-sm-6 columns form-group"> 
-          </div>
-   </div>
-</div>
-    -->
 </div>
 
 <div class="bd-callout bd-callout-askham bd-callout-grey">
@@ -250,8 +242,8 @@
             <cc1:StudentEnrolmentField CustomCaption="Personal Mobile" LabelWidth="0" StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" Placeholder="Mobile numbers beginning 07" title="The format of the mobile must be beginning 07, with no spaces and 11 digits in length eg 07771900900" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$"/>
         </div>
         <div class="col-sm-6 columns form-group"> 
-            <span class="textfieldlabelrequired">Home phone (inc. STD code)</span>
-            <cc1:StudentEnrolmentField CustomCaption="Home phone (inc. STD code)" LabelWidth="0" StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
+            <span class="textfieldlabelrequired">Home Phone (inc. STD code)</span>
+            <cc1:StudentEnrolmentField CustomCaption="Home Phone (inc. STD code)" LabelWidth="0" StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" title="The format of the home telephone must be a UK standard number begining with 0, with no spaces eg 01273800900" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
         </div>
         <div class="col-sm-12 columns form-group">
             <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>

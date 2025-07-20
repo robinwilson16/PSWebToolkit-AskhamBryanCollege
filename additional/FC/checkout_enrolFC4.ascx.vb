@@ -444,7 +444,7 @@ Partial Class checkout_directapply
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")
         ElseIf selectLearnDiff.SelectedValue = "1" And WorkingData.EnrolmentRequestDisabilityCategory.Rows.Count = 0 Then
-            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
+            selectLearnDiffValidator.ErrorMessage = "You have indicated you have a difficulty/disability/health condition but the disability category has not been selected. Please select the nature of your diifficulty/disability or if you do not have one, change the selection to no."
             selectLearnDiffValidator.IsValid = False
             selectLearnDiffValidator.CssClass = "error alert alert-danger"
             selectLearnDiff.Style.Add("border", "1px solid red")

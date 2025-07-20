@@ -74,6 +74,35 @@
         });
     });
 
+    //Clear validation errors when input is changed
+    //document.querySelectorAll('#aspnetForm input, #aspnetForm select, #aspnetForm textarea').forEach(function (field) {
+    //    field.addEventListener('input', function () {
+    //        document.querySelectorAll('.alert-danger, .validator').forEach(function (error) {
+    //            error.style.display = 'none';
+    //        });
+
+    //        document.querySelectorAll('.textfield, .form-control').forEach(function (input) {
+    //            input.style.borderColor = '#dee2e6';
+    //        });
+    //    });
+    //});
+
+    //Clear closest validation error when input is changed
+    document.querySelectorAll('input, select, textarea').forEach(function (field) {
+        field.addEventListener('input', function () {
+            field.style.borderColor = '#dee2e6';
+
+            // Find the closest validation error element within the same form-group
+            var formGroup = field.closest('.form-group');
+            if (formGroup) {
+                var error = formGroup.querySelector('.alert-danger, .validator, .field-validation-error');
+                if (error) {
+                    error.style.display = 'none';
+                }
+            }
+        });
+    });
+
     //Replaces jQuery Date Picker with browser native date selector - field should have HTML5InputType="date" against it
     $(function () {
         $("input[type=date]").datepicker("destroy");
@@ -83,6 +112,9 @@
     let dateBoxes = document.querySelectorAll(`#aspnetForm input[type=date]`);
     dateBoxes.forEach(function (elem) {
         switchDateYMD(elem.id);
+        elem.addEventListener('blur', function (event) {
+            elem.value = isDateYMD(elem.value);
+        });
     });
 
     //Switch dates from yyyy-MM-dd to dd/MM/yyyy before form submission
@@ -99,7 +131,7 @@
     let textBoxes = document.querySelectorAll(`#aspnetForm input[type=text]`);
     textBoxes.forEach(function (elem) {
         elem.addEventListener('change', function (event) {
-            elem.value = capitaliseFirstLetter(elem.value);
+            elem.value = capitaliseAfterSpaceOrHypen(elem.value);
             elem.value = trimString(elem.value);
         });
     });
@@ -412,6 +444,20 @@ function addSearchableDropDown(elem) {
             }
         });
 
+        //Clear closest validation error when input is changed
+        inputBox.addEventListener('input', function () {
+            inputBox.style.borderColor = '#dee2e6';
+
+            // Find the closest validation error element within the same form-group
+            var formGroup = inputBox.closest('.form-group');
+            if (formGroup) {
+                var error = formGroup.querySelector('.alert-danger, .validator, .field-validation-error');
+                if (error) {
+                    error.style.display = 'none';
+                }
+            }
+        });
+
         //If options of original select are changed, refresh datalist
         let observer = new MutationObserver(function (mutationsList, observer) {
             //console.log(mutationsList);
@@ -591,6 +637,20 @@ function addSearchableDropDownWithButton(elem, buttonText) {
             }
         });
 
+        //Clear closest validation error when input is changed
+        inputBox.addEventListener('input', function () {
+            inputBox.style.borderColor = '#dee2e6';
+
+            // Find the closest validation error element within the same form-group
+            var formGroup = inputBox.closest('.form-group');
+            if (formGroup) {
+                var error = formGroup.querySelector('.alert-danger, .validator, .field-validation-error');
+                if (error) {
+                    error.style.display = 'none';
+                }
+            }
+        });
+
         //If options of original select are changed, refresh datalist
         let observer = new MutationObserver(function (mutationsList, observer) {
             //console.log(mutationsList);
@@ -688,6 +748,52 @@ function capitaliseFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+function capitaliseFirstLetterOfEachWord(val) {
+    return String(val).split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
+function capitaliseAfterHyphen(val) {
+    return String(val).split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-');
+}
+
+function capitaliseAfterSpaceOrHypen(val) {
+    return String(val).split(/([-\s])/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
+}
+
+function capitaliseAfterSpaceOrHypenAndRemoveHyphen(val) {
+    return String(val).split(/[-\s]/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 function trimString(val) {
     return String(val).trim();
+}
+
+function isDate(val) {
+    //Check if value is a date in the format dd/MM/yyyy
+    let datePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(\d{4})$/;
+
+    if (datePattern.test(val)) {
+        return val;
+    }
+    else {
+        return null;
+    }
+}
+
+function isDateYMD(val) {
+    //Check if value is a date in the format yyyy-MM-dd
+    let datePattern = /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
+
+    if (datePattern.test(val)) {
+        return val;
+    }
+    else {
+        ageField = document.getElementById(`AgeInfo`);
+
+        if (ageField !== null) {
+            ageField.innerHTML = ``;
+        }
+
+        return null;
+    }
 }

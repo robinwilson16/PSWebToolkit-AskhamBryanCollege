@@ -80,12 +80,12 @@ Partial Class checkout_applications
 
         If Not IsNothing(fldLearningDiffOrDisID) Then
             If IsNothing(fldLearningDiffOrDisID.Value) Then
-                fldLearningDiffOrDisIDValidator.ErrorMessage = "Please select whether you have a learning difficulty and/or disability"
+                fldLearningDiffOrDisIDValidator.ErrorMessage = "Please select whether you have a learning difficulty, disability or health condition"
                 fldLearningDiffOrDisIDValidator.IsValid = False
                 fldLearningDiffOrDisIDValidator.CssClass = "error alert alert-danger"
                 fldLearningDiffOrDisID.CssClass = "ErrorInput"
             ElseIf CInt(fldLearningDiffOrDisID.Value) = 1 And IsNothing(fldDisabilityCategory1ID.Value) Then
-                fldLearningDiffOrDisIDValidator.ErrorMessage = "As you have stated you have a learning difficulty and/or disability, please state what this so we can support you"
+                fldLearningDiffOrDisIDValidator.ErrorMessage = "As you have stated you have a learning difficulty, disability, or health condition, please state what this so we can support you"
                 fldLearningDiffOrDisIDValidator.IsValid = False
                 fldLearningDiffOrDisIDValidator.CssClass = "error alert alert-danger"
                 fldLearningDiffOrDisID.CssClass = "ErrorInput"

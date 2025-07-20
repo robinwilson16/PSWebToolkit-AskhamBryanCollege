@@ -110,7 +110,7 @@
             <div class="form-input">
                 <span class="checkbox">
 				<asp:CheckBox ID="chkLowWage" runat="server" ClientIDMode="static"
-					Text=" Tick this box if you earn less than £25,000 per year in gross pay." Font-Bold="True" 
+					Text=" Tick this box if you earn less than £25,750 per year in gross pay." Font-Bold="True" 
 					CausesValidation="True" />
 </span>	
             </div>
@@ -121,7 +121,7 @@
                 </div>
                 <div>
                     <p>
-                        Please upload 2 wage slips identifying a gross salary of less than £25,000 if you tick this box
+                        Please upload 2 wage slips identifying a gross salary of less than £25,750 if you tick this box
                     </p>
                 </div>
             </div>

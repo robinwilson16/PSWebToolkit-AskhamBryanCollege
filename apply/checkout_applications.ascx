@@ -39,7 +39,7 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or family name" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or Family Name" />
     </div>
     <div class=" form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
@@ -58,7 +58,7 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" ClientIDMode="Static" IsRequired="true" LabelWidth="300" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="false" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
         <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
         <div class="alert alert-secondary" role="alert" id="AgeInfo">
             &nbsp;
@@ -74,8 +74,8 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="PreferredPronounID" ID="fldPreferredPronounID" runat="server" ClientIDMode="Static" IsRequired="true" LabelWidth="200" CustomCaption="Preferred Pronoun" />
     </div>
     <div class=" form-group">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NI" ID="fldNINumber" runat="server" LabelWidth="200" CustomCaption="National Insurance Number (if known)" />
-        <asp:CustomValidator ID="fldNINumberValidate" runat="server"></asp:CustomValidator>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="NI" ID="fldNI" runat="server" LabelWidth="200" CustomCaption="National Insurance Number (if known)" />
+        <asp:CustomValidator ID="fldNIValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SchoolID" ID="fldSchoolID" runat="server" LabelWidth="200" ClientIDMode="Static" CustomCaption="Previous School" />
@@ -89,12 +89,14 @@
     <h4><i class="fa-solid fa-comment"></i> Contact Details</h4>
     <div class=" form-group">
         <span class="textfieldlabelrequired">Personal Mobile</span>
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" LabelWidth="0" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Mobile Telephone Number" />
+        <%--<cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" LabelWidth="0" Pattern="^(07[\d]{8,12}|447[\d]{7,11})$" Title="Please enter a valid Mobile Telephone Number" />--%>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="MobileTel" ID="fldMobileTel" runat="server" LabelWidth="0" Title="Please enter a valid Mobile Telephone Number" />
         <asp:CustomValidator ID="fldMobileTelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
         <span class="textfieldlabelrequired">Alternative Contact Number</span>
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" LabelWidth="0" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?#(\d{4}|\d{3}))?$" Title="Please enter a valid Telephone Number" CustomCaption="Alternative Contact Number" />
+        <%--<cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" LabelWidth="0" Pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?#(\d{4}|\d{3}))?$" Title="Please enter a valid Telephone Number" CustomCaption="Alternative Contact Number" />--%>
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Tel" ID="fldTel" runat="server" LabelWidth="0" Title="Please enter a valid Telephone Number" CustomCaption="Alternative Contact Number" />
         <asp:CustomValidator ID="fldTelValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class=" form-group">
@@ -500,7 +502,7 @@
 
             if (Age31stAug.value < 19) {
                 //If 16-18
-                let fundSource1618 = `Department for Education (DFE) - 16-19`
+                let fundSource1618 = `Department for Education (DfE) - 16-19`
                 ExpectedSourceOfFundingID.value = 107;
                 ExpectedSourceOfFundingName.value = fundSource1618;
                 DevolvedAreaName.innerHTML = fundSource1618;

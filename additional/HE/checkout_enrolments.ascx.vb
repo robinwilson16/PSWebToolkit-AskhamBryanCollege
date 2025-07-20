@@ -229,6 +229,18 @@ Partial Class webcontrols_checkout_enrolments
             End If
         End If
 
+        'National Insurance Number
+        Dim regexNI As New Regex("^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$")
+        If Not IsNothing(fldNI) And CStr(fldNI.Value).Length > 0 Then
+            Dim match As Match = regexNI.Match(fldNI.Value)
+            If Not match.Success Then
+                fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number or leave blank if you do not know it"
+                fldNIValidator.IsValid = False
+                fldNIValidator.CssClass = "error alert alert-danger"
+                fldNI.CssClass = "ErrorInput"
+            End If
+        End If
+
         'Criminal Convictions
         If Not IsNothing(fldCriminalConvictionID) Then
             If String.IsNullOrEmpty(fldCriminalConvictionID.Value) Then
@@ -252,24 +264,36 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         'Mobile Tel
+        Dim regexMobileTel As New Regex("^(07[\d]{8,12}|447[\d]{7,11})$") ' Mobile numbers should start with 07 and be 11 digits long
+        Dim regexTel As New Regex("^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$")
         If Not IsNothing(fldMobileTel) And Not IsNothing(fldTel) Then
-            If String.IsNullOrEmpty(fldMobileTel.Value) And String.IsNullOrEmpty(fldTel.Value) Then
+            If String.IsNullOrEmpty(CStr(fldMobileTel.Value)) And String.IsNullOrEmpty(CStr(fldTel.Value)) Then
                 fldMobileTelValidator.ErrorMessage = "Please enter at least one phone number (Mobile number / Home phone (inc. STD code))"
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
                 fldTel.CssClass = "ErrorInput"
-            ElseIf fldMobileTel.Value.ToString.Length <> 11 Then
+            ElseIf CStr(fldMobileTel.Value).Length > 0 And fldMobileTel.Value.ToString.Length <> 11 Then
                 fldMobileTelValidator.ErrorMessage = "Your mobile phone number must be 11 digits long"
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
                 fldTel.CssClass = "ErrorInput"
-            ElseIf Not fldMobileTel.Value.ToString.StartsWith("07") Then
+            ElseIf CStr(fldMobileTel.Value).Length > 0 And Not fldMobileTel.Value.ToString.StartsWith("07") Then
                 fldMobileTelValidator.ErrorMessage = "Your mobile phone number must start with 07"
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
+                fldTel.CssClass = "ErrorInput"
+            ElseIf CStr(fldMobileTel.Value).Length > 0 And Not regexMobileTel.IsMatch(CStr(fldMobileTel.Value)) Then
+                fldMobileTelValidator.ErrorMessage = "The format of the mobile must be beginning 07, with no spaces and 11 digits in length e.g. 07771900900"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
+                fldMobileTel.CssClass = "ErrorInput"
+            ElseIf CStr(fldTel.Value).Length > 0 And Not regexTel.IsMatch(CStr(fldTel.Value)) Then
+                fldMobileTelValidator.ErrorMessage = "The format of the home telephone must be a UK standard number begining with 0, with no spaces e.g. 01273800900"
+                fldMobileTelValidator.IsValid = False
+                fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldTel.CssClass = "ErrorInput"
             End If
         End If

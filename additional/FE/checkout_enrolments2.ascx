@@ -120,26 +120,35 @@
       </div>--%>
     <br />
     <hr />
-     <div class="row">
-         <div class="col-sm-12 columns form-group">
-             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="LookedAfter" ID="StudentEnrolmentField3" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are currently in care?"/>
-          </div>
-          </div>
-    <br />
-      <p>Have you recently left care (care leaver)? - A care leaver is a young person aged 16-25 who has been 'looked after' at some point by a local authority (for example placed with foster carers) since the age of 14, and in care on or after their 16th birthday.</p>
-      <div class="row">
-         <div class="col-sm-12 columns form-group">
-             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CareLeaver" ID="StudentEnrolmentField16" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a care leaver?"/>
-          </div>
-          </div>
-   <p>Do you look after a family member who may have a physical disability, a long-term illness, a mental health problem or drug / alcohol dependencies (young carer)?</p>
-          <div class="row">
-         <div class="col-sm-12 columns form-group">
-             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="YoungCarer" ID="StudentEnrolmentField7" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a young carer?"/>
-          </div>
-    <div class="col-sm-12 columns form-group mt-3">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentCarerInArmedForces" ID="fldParentCarerInArmedForces" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Are you a military service child?"/>
+    <div class="row">
+        <div class="col-sm-12 columns form-group">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="LookedAfter" ID="StudentEnrolmentField3" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are currently in care?"/>
+        </div>
     </div>
+    <br />
+
+    <p>Have you recently left care (care leaver)? - A care leaver is a young person aged 16-25 who has been 'looked after' at some point by a local authority (for example placed with foster carers) since the age of 14, and in care on or after their 16th birthday.</p>
+    <div class="row">
+        <div class="col-sm-12 columns form-group">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CareLeaver" ID="StudentEnrolmentField16" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a care leaver?"/>
+        </div>
+    </div>
+
+    <%If IsUnder19 = True Then %>
+    <p>Do you look after a family member who may have a physical disability, a long-term illness, a mental health problem or drug / alcohol dependencies (young carer)?</p>
+    <div class="row">
+        <div class="col-sm-12 columns form-group">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="YoungCarer" ID="StudentEnrolmentField7" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a young carer?"/>
+        </div>
+    </div>
+    <%End If %>
+
+    <div class="row">
+        <div class="col-sm-12 columns form-group mt-3">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentCarerInArmedForces" ID="fldParentCarerInArmedForces" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Are you a military service child?"/>
+        </div>
+    </div>
+
     <div class="alert alert-secondary hstack gap-3 mt-1" role="alert">
         <div>
             <i class="fa-solid fa-circle-info"></i>

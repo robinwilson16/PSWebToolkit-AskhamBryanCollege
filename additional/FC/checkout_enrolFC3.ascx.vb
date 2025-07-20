@@ -340,110 +340,13 @@ Partial Class checkout_directapply
 
     Public Overrides Sub RenderControl(writer As HtmlTextWriter)
 
-        '' Residency dropdown reordering
-        'Dim ctlNationality As DropDownList = TryCast(fldNationalityID.InternalFieldControl, DropDownList)
-        ''  Dim ctlResidence As DropDownList = TryCast(StudentEnrolmentField9.InternalFieldControl, DropDownList)
-        'Dim ctlEthnicity As DropDownList = TryCast(StudentEnrolmentField12.InternalFieldControl, DropDownList)
-        '' Dim ctlLanguage As DropDownList = TryCast(fldLanguage.InternalFieldControl, DropDownList)
+        Dim fldParentRelationshipDropDown As DropDownList = TryCast(fldContact1RelationshipID.InternalFieldControl, DropDownList)
 
-
-        'Dim itemGB = ctlNationality.Items.FindByValue("GB") ' United Kingdom
-        '' Dim itemXF = ctlResidence.Items.FindByValue("XF") ' UK
-        'Dim ItemEng = ctlEthnicity.Items.FindByValue("31")
-        '' Dim itemLang = ctlLanguage.Items.FindByValue("1")
-
-        'ctlEthnicity.Items.Remove(ItemEng)
-        'ctlEthnicity.Items.Insert(1, ItemEng)
-
-        '' ctlResidence.Items.Remove(itemXF)
-        '' ctlResidence.Items.Insert(1, itemXF)
-
-
-        'ctlNationality.Items.Remove(itemGB)
-        'ctlNationality.Items.Insert(1, itemGB)
-
-        'ctlLanguage.Items.Remove(itemLang)
-        ' ctlLanguage.Items.Insert(1, itemLang)
-
-        'Employment field reordering
-
-        'Dim ctlLOE As DropDownList = TryCast(StudentEmploymentHistoryField1.InternalFieldControl, DropDownList)
-        'Dim ctlEII As DropDownList = TryCast(Field_EmploymentIntensityID.InternalFieldControl, DropDownList)
-        'Dim ctlUL As DropDownList = TryCast(Field_LengthOfUnemploymentID.InternalFieldControl, DropDownList)
-
-
-        'Dim ItemLOE = ctlLOE.Items.FindByValue("1")
-        'ctlLOE.Items.Remove(ItemLOE)
-        'ctlLOE.Items.Insert(1, ItemLOE)
-
-
-
-        'Dim itemUL1 = ctlUL.Items.FindByValue("1")
-        'ctlUL.Items.Remove(itemUL1)
-        'ctlUL.Items.Insert(1, itemUL1)
-
-
-
-        'Dim itemUL2 = ctlUL.Items.FindByValue("2")
-        'ctlUL.Items.Remove(itemUL2)
-        'ctlUL.Items.Insert(2, itemUL2)
-
-        'Dim ctlGrades As DropDownList = TryCast(EnglishQual.InternalFieldControl, DropDownList)
-        ''Dim ctlPredictedGrades As DropDownList = TryCast(StudentQualsOnEntryField19.InternalFieldControl, DropDownList)
-
-        '' Move all GCSE Grades to the top
-        'Dim indexGrade = 0
-        'For k As Integer = 0 To ctlGrades.Items.Count - 1 Step 1
-        '    Dim item = ctlGrades.Items(k)
-        '    Dim itemGradeName = item.Text
-
-        '    ' Is this a GCSE Grade A*-G or 1-9?
-        '    Select Case itemGradeName
-        '        Case "A*", "A", "B", "C", "D", "E", "F", "G", "U",
-        '             "1", "2", "3", "4", "5", "6", "7", "8", "9"
-        '            ' Remove the item and reinsert at top
-        '            ctlGrades.Items.Remove(item)
-        '            ctlGrades.Items.Insert(indexGrade, item)
-        '            ' Increment index to maintain alpha sort
-        '            indexGrade += 1
-        '    End Select
-        'Next
-
-
-
-        'Dim itemGradeBlank = ctlGrades.Items.FindByValue("")
-        'ctlGrades.Items.Remove(itemGradeBlank)
-        'ctlGrades.Items.Insert(0, itemGradeBlank)
-
-
-        'Dim ctlgrades1 As DropDownList = TryCast(MathsQual.InternalFieldControl, DropDownList)
-
-        'Dim indexGrade1 = 0
-        'For k As Integer = 0 To ctlgrades1.Items.Count - 1 Step 1
-        '    Dim item1 = ctlgrades1.Items(k)
-        '    Dim itemGradeName1 = item1.Text
-
-        '    ' Is this a GCSE Grade A*-G or 1-9?
-        '    Select Case itemGradeName1
-        '        Case "A*", "A", "B", "C", "D", "E", "F", "G", "U",
-        '             "1", "2", "3", "4", "5", "6", "7", "8", "9"
-        '            ' Remove the item and reinsert at top
-        '            ctlgrades1.Items.Remove(item1)
-        '            ctlgrades1.Items.Insert(indexGrade1, item1)
-        '            ' Increment index to maintain alpha sort
-        '            indexGrade1 += 1
-        '    End Select
-        'Next
-
-
-        'Dim itemGradeBlank1 = ctlgrades1.Items.FindByValue("")
-        'ctlgrades1.Items.Remove(itemGradeBlank1)
-        'ctlgrades1.Items.Insert(0, itemGradeBlank1)
-
-
+        Dim fldParentRelationshipDropDownParent = fldParentRelationshipDropDown.Items.FindByValue("3080")
+        fldParentRelationshipDropDown.Items.Remove(fldParentRelationshipDropDownParent)
+        fldParentRelationshipDropDown.Items.Insert(1, fldParentRelationshipDropDownParent)
 
         MyBase.RenderControl(writer)
-
     End Sub
 
     ''Bring in the Fees
