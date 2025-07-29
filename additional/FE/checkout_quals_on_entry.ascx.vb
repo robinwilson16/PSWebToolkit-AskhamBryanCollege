@@ -32,6 +32,10 @@ Partial Class checkout_directapply
             Is19Plus = False
         End If
 
+        If Is19Plus = False Then
+            fldPriorAttainmentLevelID.ExcludedIDValues = "07,08,09,10,98"
+        End If
+
         'Populate an all grades table and a GCSE grade table so these can be switched between depending on the subject chosen
         Dim gradeDataTable As New GradeDataTable
         Dim gradeDataView As CCCDataViewDataSet = CCCDataViewDataSet.CreateDataView(gradeDataTable)
@@ -198,10 +202,6 @@ Partial Class checkout_directapply
         'rowH.Cells.AddRange({c1, c2, c3, c5})
 
         'tblQuals.Rows.Add(rowH)
-
-        If Is19Plus = False Then
-            fldPriorAttainmentLevelID.ExcludedIDValues = "07,08,09,10,98"
-        End If
 
         If IsPostBack Then
             Dim c As Control = GetPostBackControl(Me.Page)

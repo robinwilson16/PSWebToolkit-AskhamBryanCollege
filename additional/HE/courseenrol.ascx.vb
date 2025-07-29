@@ -23,6 +23,7 @@ Partial Class courseenrol
     Public CourseAction As String
 
     Public tblOffering As New OfferingDataTable
+
     Public ReadOnly Property OfferingID() As Integer
         Get
             If Me.DesignMode OrElse CCCBlankLibrary.IsBlank(Me.Page.Request("OfferingID")) Then
@@ -38,6 +39,17 @@ Partial Class courseenrol
             Return Me.Page.Request("Dept")
         End Get
     End Property
+
+    Public ReadOnly Property RefNo() As String
+        Get
+            If Me.DesignMode OrElse CCCBlankLibrary.IsBlank(Me.Page.Request("rn")) Then
+                Return Nothing
+            Else
+                Return Me.Page.Request("rn")
+            End If
+        End Get
+    End Property
+
 
     Protected Overrides Sub OnLoad(ByVal e As System.EventArgs)
         MyBase.OnLoad(e)
@@ -68,19 +80,14 @@ Partial Class courseenrol
 
             End Try
 
-            Session("RequestMode") = RequestMode.EnrolmentRequest
-
-
             If Not IsPostBack Then
-
+                WorkingData.EnrolmentRequestRow.RefNo = RefNo()
                 PutAllOfferingsInBasket()
                 PopulateOfferingFeeTable()
-
 
             Else
 
                 Page.MaintainScrollPositionOnPostBack = True
-
 
             End If
         ElseIf Len(Search) > 0 Then
@@ -163,21 +170,18 @@ Partial Class courseenrol
         RepeaterCourses.DataBind()
     End Sub
 
-
-
     ''Put offerings in basket
     Protected Sub PutAllOfferingsInBasket()
 
         Dim intOfferingID As Integer = Me.OfferingID
         If intOfferingID <> -1 Then
 
-            'Dim tblOffering As New OfferingDataTable
+            Dim tblOffering As New OfferingDataTable
             Dim v As CCCDataViewDataSet = CCCDataViewDataSet.CreateDataView(tblOffering)
             v.Columns.AddPKColumns()
             v.Columns.EnsureColumnsAreSelected(True, False, tblOffering.WebSiteAvailabilityIDColumn, tblOffering.CourseInformationIDColumn, tblOffering.TotalFeeAmountColumn, tblOffering.OfferingTypeIDColumn)
             v.Filters.SetColumnFilter(tblOffering.OfferingIDColumn, intOfferingID)
             tblOffering.TableAdapter.Load(tblOffering, v)
-
 
 
             If tblOffering.Count > 0 AndAlso tblOffering(0).WebSiteAvailabilityID.HasValue Then
@@ -191,6 +195,7 @@ Partial Class courseenrol
 
                     item.OfferingID = .OfferingID.Value
                     item.CourseInfoID = .CourseInformationID.GetValueOrDefault
+                    Session("RequestMode") = RequestMode.EnrolmentRequest
 
                 End With
                 With WorkingData.ShoppingCart
@@ -200,8 +205,6 @@ Partial Class courseenrol
                 End With
             End If
         End If
-
-
 
     End Sub
 
@@ -219,14 +222,13 @@ Partial Class courseenrol
             If stb.Length > 0 Then stb.Append(",")
             stb.Append(item.OfferingID)
 
-
         Next
         If stb.Length > 0 Then
             'Load offerings
-            Dim tblOffering As New OfferingDataTable
+            'Dim tblOffering As New OfferingDataTable
             Dim vOffering As CCCDataViewDataSet = CCCDataViewDataSet.CreateDataViewDefault(tblOffering)
             vOffering.Columns.AddPKColumns()
-            vOffering.Columns.EnsureColumnsAreSelected(True, False, tblOffering.CodeColumn, tblOffering.StartTimeColumn, tblOffering.DayOfWeekColumn, tblOffering.StartDateColumn, tblOffering.EndDateColumn, tblOffering.SiteDescriptionColumn, tblOffering.EndTimeColumn, tblOffering.TotalFeeAmountColumn, tblOffering.SIDColumn, tblOffering.WebSiteAvailabilityIDColumn, tblOffering.CourseInformationColumn, tblOffering.GrossTuitionFeeOverrideColumn)
+            vOffering.Columns.EnsureColumnsAreSelected(True, False, tblOffering.CodeColumn, tblOffering.StartTimeColumn, tblOffering.DayOfWeekColumn, tblOffering.StartDateColumn, tblOffering.EndDateColumn, tblOffering.SiteDescriptionColumn, tblOffering.EndTimeColumn, tblOffering.TotalFeeAmountColumn, tblOffering.SIDColumn, tblOffering.WebSiteAvailabilityIDColumn, tblOffering.CourseInformationColumn, tblOffering.CollegeLevelNameColumn)
             vOffering.Columns.EnsureColumnIsSelected(False, False, tblOffering.KISCourseCodeColumn)
 
             vOffering.Filters.SetColumnFilter(tblOffering.OfferingIDColumn, stb.ToString, FilterOperator.OperatorInList)
@@ -237,8 +239,8 @@ Partial Class courseenrol
             'Me.GridView1.DataBind()
             'Me.GridView1.Visible = True
 
-
         End If
+
     End Sub
 
     ''Databind the Grid

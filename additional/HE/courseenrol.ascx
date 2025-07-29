@@ -69,7 +69,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h4><i class="fa-solid fa-award"></i> <%=crs.Name%></h4>
-                                <div class="row">
+                                <div class="row align-items-end">
                                     <div class="col-sm-6 col-md-3">
                                         <strong>Start Date:</strong>
                                     </div>
@@ -95,9 +95,9 @@
                                         <%=crs.SiteDescription%>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <strong>Total Fees:</strong>
+                                        <strong>Total Fees for the <%=crs.AcademicYearID %> Academic Year:</strong>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
+                                    <div class="col-sm-6 col-md-3 just">
                                         <%=If(Not (IsNothing(crs.TotalFeeAmount)), crs.TotalFeeAmount.Value.ToString("C0"), "")%>
                                     </div>
                                 </div>

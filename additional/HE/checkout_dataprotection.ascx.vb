@@ -90,6 +90,7 @@ Partial Class checkout_dataprotection
             End If
         End If
 
+        MyBase.ValidateControl()
     End Sub
 
     Private Sub CheckData()

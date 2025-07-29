@@ -235,7 +235,7 @@
 
     <p>I declare that the information given on this enrolment form is correct to the best of my knowledge and that I have read and agree to the above statements. I have read the above Privacy Notice and understand how my personal information will be used and agree to my personal information being used and shared in this way. I have also read and agree to the College’s terms and conditions and understand by signing, this forms a legally binding contract between me and the College.</p>
 
-    <p><strong>If you enrol, you will be deemed as having accepted the terms of your Learner Agreement by your actions.</strong></p>
+    <p><strong>If you enrol and do not sign and return the Learner Agreement, you will be deemed as having accepted the terms of your Learner Agreement by your actions.</strong></p>
 
 </div>
 
@@ -448,4 +448,56 @@
 
            });
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        //Marketing Info
+        let rdo = document.getElementsByName("<%= selectStayingInTouch.UniqueID%>");
+        let chkSentMarktingInfo = document.getElementById(`ctl00_MainContentPlaceholder_ctl00_fldConsent_chkSentMarktingInfo`);
+        if (rdo[0].checked) {
+            //chkSentMarktingInfo.checked = true;
+        }
+        else {
+            //chkSentMarktingInfo.checked = false;
+        }
+
+        //Signature
+        let signature = document.getElementById(`signature`);
+        let clear = document.getElementById(`clear`);
+
+        signature.addEventListener(`mouseup`, (event) => {
+            checkSignature();
+        });
+        signature.addEventListener(`touchend`, (event) => {
+            checkSignature();
+        });
+        clear.addEventListener(`click`, (event) => {
+            setTimeout(() => {
+                checkSignature();
+            }, "200");
+        });
+    });
+
+    function checkSignature() {
+        let isSigned = document.getElementById(`IsSigned`);
+        let isSignedComplex = document.getElementById(`IsSignedComplex`);
+        let signatureComplexity = $("#signature").jSignature('getData', 'base30')[1].length;
+        let signatureIsSigned = signatureComplexity > 0 ? true : false;
+        let signatureIsComplex = signatureComplexity > 75 ? true : false;
+
+        if (signatureIsSigned === true) {
+            isSigned.checked = true;
+        }
+        else {
+            isSigned.checked = false;
+        }
+
+        if (signatureIsComplex === true) {
+            isSignedComplex.checked = true;
+        }
+        else {
+            isSignedComplex.checked = false;
+        }
+    }
 </script>
