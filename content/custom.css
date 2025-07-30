@@ -24558,3 +24558,8 @@ html :where(img[class*=wp-image-]) {
     height: auto;
     max-width: 100%
 }
+
+.last-login-info {
+    padding-left: 4px !important;
+    padding-top: 17px !important;
+}

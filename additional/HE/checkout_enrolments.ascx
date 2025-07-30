@@ -98,17 +98,19 @@
     </div>
 </div>
 
-  <div class="row">
-        <div class="col-sm-12 columns form-group"> 
-            <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
-            <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
-            <div class="alert alert-secondary d-none" role="alert" id="AgeInfo">
-                &nbsp;
-            </div>
-            <asp:Textbox runat="server" ID="Age31stAug" Placeholder="Age31stAug" type="number" ClientIDMode="Static" class="d-none" />
+<div class="row align-items-end">
+    <div class="col-sm-6 columns form-group"> 
+        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+        <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
+    </div>
+    <div class="col-sm-6 columns form-group"> 
+        <div class="alert alert-secondary" role="alert" id="AgeInfo">
+        &nbsp;
         </div>
-      </div>
-     <div class="row">
+        <asp:Textbox runat="server" ID="Age31stAug" Placeholder="Age31stAug" type="number" ClientIDMode="Static" class="d-none" />
+    </div>
+</div>
+<div class="row">
       <div class="col-sm-6 columns form-group">            
                  <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Sex" ID="fldGender" runat="server" IsRequired="true" LabelWidth="300" ClientIDMode="Static" CustomCaption="Legal gender" />
                 <asp:CustomValidator ID="fldGenderValidator" runat="server"></asp:CustomValidator>

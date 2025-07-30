@@ -95,6 +95,7 @@ Partial Class webcontrols_checkout_enrolments2
                 disabilityCategoryID.StudentDisabilityFieldType = StudentDisabilityFieldType.DisabilityCategoryID
                 disabilityCategoryID.StudentDisabilityRowNumber = i
                 disabilityCategoryID.CustomCaption = "Difficulty/Disability/Health Condition"
+                disabilityCategoryID.ExcludedIDValues = "98,99"
                 'disabilityCategoryID.LabelWidth = 0
                 'cell1.Controls.Add(disabilityCategoryID)
 

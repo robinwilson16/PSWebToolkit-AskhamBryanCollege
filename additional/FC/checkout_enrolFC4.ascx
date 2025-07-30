@@ -163,10 +163,10 @@
     <div class="Disability">
 
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="fldDisabilityCategory1ID" runat="server" CustomCaption="Please provide your main learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="fldDisabilityCategory1ID" ExcludedIDValues="98,99" runat="server" CustomCaption="Please provide your main learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
     </div>
     <div class="form-input">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory2ID" ID="fldDisabilityCategory2ID" runat="server" CustomCaption="Let us know if you have any other learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory2ID" ID="fldDisabilityCategory2ID" ExcludedIDValues="98,99" runat="server" CustomCaption="Let us know if you have any other learning diffculty/disability" IsRequired="false" LabelWidth="400" ClientIDMode="Static" />
     </div>
     </div>
 

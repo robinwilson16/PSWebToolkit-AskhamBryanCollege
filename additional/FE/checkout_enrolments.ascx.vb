@@ -13,7 +13,8 @@ Partial Class webcontrols_checkout_enrolments
     Public OfferingID As Integer
     Public Course As Course
     Public ReferenceDate As Date
-    Public ConsentDate As Date
+    Public Age19DOB As Date
+    Public IsUnder19 As Boolean
     Public ShowBackButton As Boolean = False
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -29,7 +30,12 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         ReferenceDate = CDate(Today().Year & "-08-31")
-        ConsentDate = ReferenceDate.AddYears(-18)
+        Age19DOB = ReferenceDate.AddYears(-19)
+        If WorkingData.EnrolmentRequestRow.DateOfBirth > Age19DOB Then 'Under 19
+            IsUnder19 = True
+        Else
+            IsUnder19 = False
+        End If
 
         If IsDate(WorkingData.EnrolmentRequestRow.DateOfBirth) Then
             WorkingData.EnrolmentRequestRow.StudentDetailUserDefined1 = Math.Floor(DateDiff(DateInterval.Day, CType(WorkingData.EnrolmentRequestRow.DateOfBirth.GetValueOrDefault, Date), ReferenceDate) / 365.25)
@@ -243,9 +249,14 @@ Partial Class webcontrols_checkout_enrolments
 
         'National Insurance Number
         Dim regexNI As New Regex("^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$")
-        If Not IsNothing(fldNI) And CStr(fldNI.Value).Length > 0 Then
+        If Not IsNothing(fldNI) Then
             Dim match As Match = regexNI.Match(fldNI.Value)
-            If Not match.Success Then
+            If String.IsNullOrEmpty(fldNI.Value) And IsUnder19 = False Then
+                fldNIValidator.ErrorMessage = "National Insurance Number must not be blank for anyone 19+"
+                fldNIValidator.IsValid = False
+                fldNIValidator.CssClass = "error alert alert-danger"
+                fldNI.CssClass = "ErrorInput"
+            ElseIf Not match.Success And CStr(fldNI.Value).Length > 0 Then
                 fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number or leave blank if you do not know it"
                 fldNIValidator.IsValid = False
                 fldNIValidator.CssClass = "error alert alert-danger"

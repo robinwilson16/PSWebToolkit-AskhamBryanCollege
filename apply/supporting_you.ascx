@@ -50,7 +50,7 @@ Do you have any spent cautions or convictions, which are not protected as define
         <asp:CustomValidator ID="fldLearningDiffOrDisIDValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class="mb-3 alert alert-warning" id="DisabilityCategory1IDRow">
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="fldDisabilityCategory1ID" ClientIDMode="Static"  runat="server" IsRequired="false" LabelWidth="400"
+        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="DisabilityCategory1ID" ID="fldDisabilityCategory1ID" ExcludedIDValues="98,99" ClientIDMode="Static"  runat="server" IsRequired="false" LabelWidth="400"
             CustomCaption="Please provide your primary difficulty or disability" />
         <asp:CustomValidator ID="CustomValidator2" runat="server"></asp:CustomValidator>
     </div>

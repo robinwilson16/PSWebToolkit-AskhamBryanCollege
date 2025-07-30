@@ -149,7 +149,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
     <p>Please enter the details of your prior qualifications. Use ‘Add row’ to save and add multiple qualifications.</p>
     <br />
 
-    <asp:Button runat="server" ID="btnNoQualifications" CssClass="show_hide btn btn-primary" Text="No qualifications" ToolTip="Click to remove all the items listed below (And hide the list)"></asp:Button>
+    <asp:Button runat="server" ID="btnNoQualifications" CssClass="show_hide btn btn-primary" Text="No qualifications" ToolTip="Click to remove all the items listed below (And hide the list)" ClientIDMode="Static"></asp:Button>
     <br />
     <br />
     <div id="slidingdiv" class="slidingDiv" runat="server">
@@ -166,6 +166,9 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
     <asp:button runat="server" id="btnAdd" cssClass="btn btn-success" text="Add Row" CausesValidation="false"></asp:button>
     </div>
 
+    
+
+<% If Is19Plus = False %>
     <hr />
 
  <h5>English and Mathematics</h5>
@@ -188,8 +191,11 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
           </div>
    </div>
 
+<% End If %>
+
 </div>
 
+<% If Is19Plus = False %>
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-school"></i> Education Details</h4>
 
@@ -219,6 +225,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
    </div>
 
 </div>
+<% End If %>
 
 <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="alert alert-danger"  />
 
@@ -391,6 +398,14 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
                     gradeDropDown.selectedIndex = 0;
                     //predictedGradeDropDown.selectedIndex = 0;
                 });
+            }
+        });
+
+        //If Prior Quals set to no or not known then QOEs section removed
+        let btnNoQualifications = document.getElementById("btnNoQualifications");
+        cboPriorAttainmentLevelID.addEventListener(`change`, function (event) {
+            if (cboPriorAttainmentLevelID.value == "99" || cboPriorAttainmentLevelID.value == "98") {
+                btnNoQualifications.click();
             }
         });
     });

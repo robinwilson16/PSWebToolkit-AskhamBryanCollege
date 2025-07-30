@@ -31,6 +31,17 @@
                     formLabel.style.display = 'block';
                     formLabel.style.width = 'inherit';
                 }
+
+                //For when there is a second field in the form group such as email confirmation
+                let itemOuterDiv2 = itemOuterDiv.nextElementSibling;
+                if (itemOuterDiv2 != null) {
+                    let formLabel2 = itemOuterDiv2.firstElementChild;
+
+                    if (formLabel2 !== null) {
+                        formLabel2.style.display = 'block';
+                        formLabel2.style.width = 'inherit';
+                    }
+                }
             }
         }
         
