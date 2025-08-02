@@ -208,6 +208,12 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         'DOB
+        If fldDateOfBirth.Value > Age19DOB Then 'Under 19
+            IsUnder19 = True
+        Else
+            IsUnder19 = False
+        End If
+
         If Not IsNothing(fldDateOfBirth) Then
             Dim dateOfBirthDate As Date?
 
