@@ -234,7 +234,7 @@ Partial Class webcontrols_checkout_enrolments
         If Not IsNothing(fldNI) And CStr(fldNI.Value).Length > 0 Then
             Dim match As Match = regexNI.Match(fldNI.Value)
             If Not match.Success Then
-                fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number or leave blank if you do not know it"
+                fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number"
                 fldNIValidator.IsValid = False
                 fldNIValidator.CssClass = "error alert alert-danger"
                 fldNI.CssClass = "ErrorInput"

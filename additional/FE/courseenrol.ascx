@@ -111,7 +111,7 @@
             <li class="list-group-item icon listcheck"> Your parent, guardian or carer emergency contact details</li>
             <li class="list-group-item icon listcheck"> One form of ID</li>
             <li class="list-group-item icon listcheck"> A headshot photograph</li>
-            <li class="list-group-item icon listcheck"> Your National Insurance Number</li>
+            <li class="list-group-item icon listcheck"> Your National Insurance Number if you are over 19</li>
             <li class="list-group-item icon listcheck"> Evidence of qualifications including English and/or Maths and their grades</li>
         </ul>
     </div>

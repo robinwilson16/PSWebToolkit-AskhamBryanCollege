@@ -263,7 +263,7 @@ Partial Class webcontrols_checkout_enrolments
                 fldNIValidator.CssClass = "error alert alert-danger"
                 fldNI.CssClass = "ErrorInput"
             ElseIf Not match.Success And CStr(fldNI.Value).Length > 0 Then
-                fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number or leave blank if you do not know it"
+                fldNIValidator.ErrorMessage = "Please enter a valid National Insurance Number"
                 fldNIValidator.IsValid = False
                 fldNIValidator.CssClass = "error alert alert-danger"
                 fldNI.CssClass = "ErrorInput"
