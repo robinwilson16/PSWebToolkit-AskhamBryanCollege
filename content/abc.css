@@ -54,6 +54,14 @@ input[type=checkbox] {
     word-wrap: break-word;
 }
 
+.callout {
+    border: 1px solid #003366;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    background-color: #6575a4;
+    color: #ffffff
+}
+
 .bd-callout-askham {
     border-left-color: #23573a !important;
 }
@@ -225,6 +233,20 @@ span.error {
     border-radius: .25rem;
     padding: .3rem;
     color: #FFFFFF;
+}
+
+table.TableInline tr {
+    display: inline-table;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+table.TableInline tr td {
+    background-color: #FFFFFF;
+}
+
+table.TableInline tr td label::before {
+    margin-bottom: 0.5em;
 }
 
 .York {

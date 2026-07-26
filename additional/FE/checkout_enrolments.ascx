@@ -46,58 +46,65 @@
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-user"></i> Personal Details</h4>
 
-   <div class="row">
-      <div class="col-sm-12 columns form-group"> 
-          <p>Please note all fields marked with  <span class="textfieldlabelrequired"></span> are required. <br /><br />
-            Please give your full legal name. The Department for Education (DfE) requires the College to collect legal gender.</p>
-          </div>
-  </div>
-<div class="row">
-    <div class="col-sm-6 columns form-group"> 
-        <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" CustomCaption="Title" ClientIDMode="Static" />
-        <asp:CustomValidator ID="fldTitleValidator" runat="server"></asp:CustomValidator>
-    </div>
-    <div class="col-sm-6 columns form-group">     
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forename or Given Name" />
-        <asp:CustomValidator ID="fldFirstForenameValidator" runat="server"></asp:CustomValidator>
-    </div>
-</div>
-
-  <div class="row" id="divRefno" runat="server" visible="false">
-      <div class="col-sm-12 columns form-group"> 
-    <h4>If you have already applied to the College or studied at the College as a student, your ID is <strong><asp:Label ID="lblRefno" runat="server"></asp:Label></strong> </h4>
-          </div>
-  </div>
-<div class="row">
-    <div class="col-sm-6 columns form-group">     
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
-    </div>
-    <div class="col-sm-6 columns form-group">       
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or Family Name" />
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-6 columns form-group">            
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300"  CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
-        
-        <div class="alert alert-primary hstack gap-3" role="alert">
-            <div>
-                <i class="fa-solid fa-circle-info"></i>
-            </div>
-            <div>
-                <p>
-                    This is a name you prefer to be called instead of your legal forename. This name will be printed on your student ID card. If you do not have a preferred name, leave this field blank.
-                </p>
-            </div>
+    <div class="row">
+        <div class="col-sm-12 columns form-group mb-3"> 
+            <p>Please note all fields marked with <span class="textfieldlabelrequired"></span> are required.</p>
         </div>
     </div>
-    <div class="col-sm-6 columns form-group">  
-        <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SurnameAtBirth" ID="fldSurnameAtBirth" runat="server" IsRequired="false"  LabelWidth="300" CustomCaption="Previous Surname or Family Name (if changed)" />   
+
+     <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+              <div class="callout callout-info">Please give your full legal name. The Department for Education (DfE) requires the College to collect legal gender.</div>
+        </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-sm-6 columns form-group"> 
+            <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" CustomCaption="Title" ClientIDMode="Static" />
+            <asp:CustomValidator ID="fldTitleValidator" runat="server"></asp:CustomValidator>
+        </div>
+        <div class="col-sm-6 columns form-group">     
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="FirstForename" ID="fldFirstForename" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Forename or Given Name" />
+            <asp:CustomValidator ID="fldFirstForenameValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
+
+    <div class="row" id="divRefno" runat="server" visible="false">
+        <div class="col-sm-12 columns form-group"> 
+            <h4>If you have already applied to the College or studied at the College as a student, your ID is <strong><asp:Label ID="lblRefno" runat="server"></asp:Label></strong> </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 columns form-group">     
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="OtherForenames" ID="fldOtherForenames" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Other Forenames (Middle Names)" />
+        </div>
+        <div class="col-sm-6 columns form-group">       
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="Surname" ID="fldSurname" runat="server" IsRequired="true" LabelWidth="300" CustomCaption="Surname or Family Name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 columns form-group">            
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="KnownAs" ID="fldKnownAs" runat="server" IsRequired="false" LabelWidth="300"  CustomCaption="Preferred Name" Placeholder="Billy instead of William, Jess instead of Jessica, etc." />
+        
+            <div class="alert alert-primary hstack gap-3" role="alert">
+                <div>
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div>
+                    <p>
+                        This is a name you prefer to be called instead of your legal forename. This name will be printed on your student ID card. If you do not have a preferred name, leave this field blank.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 columns form-group">  
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="SurnameAtBirth" ID="fldSurnameAtBirth" runat="server" IsRequired="false"  LabelWidth="300" CustomCaption="Previous Surname or Family Name (if changed)" />   
+        </div>
+    </div>
+
 <div class="row align-items-end">
     <div class="col-sm-6 columns form-group"> 
-        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" AutoPostBack="true" />
         <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class="col-sm-6 columns form-group"> 
@@ -179,6 +186,33 @@
         </div>
       </div>--%>
 
+    <%If IsUnder18 = True Then %>
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <span class="textfieldlabelrequired">Are you known to the youth justice service?</span>
+                <p>Are you receiving support or involvement from the Youth Justice Service due to offending behaviour or related concerns</p>
+                <asp:RadioButtonList runat="server" ID="fldKnownToYouthJustice" CssClass="form-input TableInline">
+                    <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                    <asp:ListItem Text="No" Value="No"></asp:ListItem>
+                </asp:RadioButtonList>
+                <asp:CustomValidator ID="fldKnownToYouthJusticeValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+        <%End If %>
+
+        <%If IsUnder19 = True Then %>
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <span class="textfieldlabelrequired">Do you have a parent or carer in prison?</span>
+                <p>Do you have a parent, guardian, or main carer who is currently serving a prison sentence</p>
+                <asp:RadioButtonList runat="server" ID="fldParentCarerInPrison" CssClass="form-input TableInline">
+                    <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                    <asp:ListItem Text="No" Value="No"></asp:ListItem>
+                </asp:RadioButtonList>
+                <asp:CustomValidator ID="fldParentCarerInPrisonValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+        <%End If %>
 
 </div>
 
@@ -289,7 +323,7 @@
 
     <div class="form-input">
         <span class="textfieldlabelrequired">Will you be living in College accommodation?</span>
-        <asp:RadioButtonList runat="server" ID="ddCollegeAccomodation" CssClass="form-input" AutoPostBack="true">
+        <asp:RadioButtonList runat="server" ID="ddCollegeAccomodation" CssClass="form-input TableInline" AutoPostBack="true">
             <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
             <asp:ListItem Text="No" Value="0"></asp:ListItem>
         </asp:RadioButtonList>
@@ -299,7 +333,7 @@
     <%If ddCollegeAccomodation.SelectedValue <> "1" Then %>
     <div class="form-input">
         <span class="textfieldlabelrequired">Is your term time address different to your home address?</span>
-        <asp:RadioButtonList runat="server" ID="RadioButtonListAlt" CssClass="form-input">
+        <asp:RadioButtonList runat="server" ID="RadioButtonListAlt" CssClass="form-input TableInline">
             <asp:ListItem Text="No, it is the same" Value="2"></asp:ListItem>
             <asp:ListItem Text="Yes, it is different" Value="1"></asp:ListItem>
         </asp:RadioButtonList>

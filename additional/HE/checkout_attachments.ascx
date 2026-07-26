@@ -155,7 +155,7 @@
                     </p>
                     <ul>
                         <li>
-                            Email a photograph of your ID and Certificates to <a href="mailto:student.records@askham-bryan.ac.uk?subject=Cannot Upload Evidence">student.records@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+                            Email a photograph of your ID and Certificates to <a href="mailto:enrolment-enquiries@askham-bryan.ac.uk?subject=Cannot Upload Evidence">enrolment-enquiries@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
                         </li>
                         <li>
                             Bring your ID and Certificates to college in person <strong>before</strong> the start date of your course and we can take a copy.

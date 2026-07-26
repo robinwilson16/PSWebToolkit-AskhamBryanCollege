@@ -51,7 +51,7 @@
             <asp:CustomValidator ID="fldNationalityIDValidator" runat="server"></asp:CustomValidator>
            </div>
        <div class="col-sm-6 columns form-group"> 
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="fldCountryID" runat="server" IsRequired="true" LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="fldCountryID" runat="server" IsRequired="true" LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" AutoPostBack="true" />
             <asp:CustomValidator ID="fldCountryIDValidator" runat="server"></asp:CustomValidator>
            </div>
  
@@ -70,7 +70,7 @@
 
         
     <div class="form-input">
-          <span class="textfieldlabelrequired">Do you consider that you have a learning difficulty, disability or health condition?</span>
+            <span class="textfieldlabelrequired">Do you consider that you have a learning difficulty, disability or health condition?</span>
       
             <asp:DropDownList runat="server" ID="selectLearnDiff"  CssClass="form-input" AutoPostBack="true">
                 <asp:ListItem Text="--Please Select--" Value=""></asp:ListItem>
@@ -79,11 +79,20 @@
                 <asp:ListItem Text="Rather not say" Value="9"></asp:ListItem>
             </asp:DropDownList>
             <asp:CustomValidator ID="selectLearnDiffValidator" runat="server"></asp:CustomValidator>
-          <div style="display:none">
-             <cc1:StudentEnrolmentField Visible="true" ClientIDMode="Static" StudentEnrolmentFieldType="LearningDiffOrDisID" ID="fldLearningDiffOrDisID" runat="server" IsRequired="false"   />
-      </div>
-        <i> *It is your responsibility to disclose any support requirements. This will help the College make reasonable adjustments, limited by funding available.</i>
-          </div>
+            <div style="display:none">
+                <cc1:StudentEnrolmentField Visible="true" ClientIDMode="Static" StudentEnrolmentFieldType="LearningDiffOrDisID" ID="fldLearningDiffOrDisID" runat="server" IsRequired="false"   />
+        </div>
+        <div class="alert alert-warning hstack gap-3 mt-1" role="alert">
+            <div>
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <div>
+                <p>
+                    It is <strong>your</strong> responsibility to disclose any support requirements. This will help the College make reasonable adjustments, limited by funding available.
+                </p>
+            </div>
+        </div>
+    </div>
     <br />
 
 <div class="form-input" id="disfields" >
@@ -118,38 +127,161 @@
         </div>
 
       </div>--%>
-    <br />
-    <hr />
+
+</div>
+
+<%If GetUKResident() = False Then %>
+    <div class="bd-callout bd-callout-askham bd-callout-grey">
+        <h4><i class="fa-solid fa-passport"></i> International Student Information</h4>
+
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="AsylumSeekerRef" ID="fldAsylumSeekerRef" runat="server" IsRequired="false" CustomCaption="What is your Immigration Health Surcharge (IHS) number?" HTML5InputType="number" />
+                <div class="callout callout-info">The reference number issued when you pay the Immigration Health Surcharge as part of a UK visa or immigration application</div>
+                <asp:CustomValidator ID="AsylumSeekerRefValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <span class="textfieldlabelrequired">Do you have a right to work in the UK?</span>
+                <p>Legal permission to work in the United Kingdom based on your citizenship, visa, or immigration status</p>
+                <asp:RadioButtonList runat="server" ID="fldRightToWorkInUK" CssClass="form-input TableInline">
+                    <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                    <asp:ListItem Text="No" Value="No"></asp:ListItem>
+                </asp:RadioButtonList>
+                <asp:CustomValidator ID="fldRightToWorkInUKValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="RefugeeAsylumSeekerStatus" ID="fldRefugeeAsylumSeekerStatus" runat="server" IsRequired="false" CustomCaption="Do you have settled/pre settled status if you are non-UK Nationality?" ExcludedIDValues="100,101,102,103" />
+                <div class="callout callout-info">Immigration status granted under the EU Settlement Scheme allowing eligible non-UK nationals to live, study, and work in the UK</div>
+                <asp:CustomValidator ID="fldRefugeeAsylumSeekerStatusValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 columns form-group"> 
+                <cc1:StudentEnrolmentField StudentEnrolmentFieldType="VisaTypeID" ID="fldVisaTypeID" runat="server" IsRequired="false" CustomCaption="Are you subject to any VISA such as dependents or spousal visa if you are non-UK nationalities?" ExcludedIDValues="100,101,102,103" />
+                <div class="callout callout-info">Whether you hold a visa, such as a dependent or spousal visa, that allows you to live, study, or work in the UK</div>
+                <asp:CustomValidator ID="fldVisaTypeIDValidator" runat="server"></asp:CustomValidator>
+            </div>
+        </div>
+
+    </div>
+<%End If %>
+
+<div class="bd-callout bd-callout-askham bd-callout-grey">
+    <h4><i class="fa-solid fa-hand-holding"></i> Supporting You</h4>
+
     <div class="row">
-        <div class="col-sm-12 columns form-group">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="LookedAfter" ID="StudentEnrolmentField3" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are currently in care?"/>
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you currently in care?</span>
+            <asp:RadioButtonList runat="server" ID="fldInCare" CssClass="form-input TableInline">
+	            <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+	            <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldInCareValidator" runat="server"></asp:CustomValidator>
         </div>
     </div>
-    <br />
 
-    <p>Have you recently left care (care leaver)? - A care leaver is a young person aged 16-25 who has been 'looked after' at some point by a local authority (for example placed with foster carers) since the age of 14, and in care on or after their 16th birthday.</p>
     <div class="row">
-        <div class="col-sm-12 columns form-group">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CareLeaver" ID="StudentEnrolmentField16" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a care leaver?"/>
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you are care leaver?</span>
+            <p>Have you recently left care (care leaver)? - A care leaver is a young person aged 16-25 who has been 'looked after' at some point by a local authority (for example placed with foster carers) since the age of 14, and in care on or after their 16th birthday</p>
+            <asp:RadioButtonList runat="server" ID="fldCareLeaver" CssClass="form-input TableInline">
+                <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldCareLeaverValidator" runat="server"></asp:CustomValidator>
         </div>
     </div>
 
     <%If IsUnder19 = True Then %>
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you are young carer?</span>
+            <p>Do you look after a family member who may have a physical disability, a long-term illness, a mental health problem or drug / alcohol dependencies?</p>
+            <asp:RadioButtonList runat="server" ID="fldYoungCarer" CssClass="form-input TableInline">
+                <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldYoungCarerValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
+    <%End If %>
+
+    <%--<div class="row">
+        <div class="col-sm-12 columns form-group mb-3">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="LookedAfter" ID="StudentEnrolmentField3" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are currently in care?"/>
+        </div>
+    </div>--%>
+
+    <%--<p>Have you recently left care (care leaver)? - A care leaver is a young person aged 16-25 who has been 'looked after' at some point by a local authority (for example placed with foster carers) since the age of 14, and in care on or after their 16th birthday.</p>
+    <div class="row">
+        <div class="col-sm-12 columns form-group mb-3">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CareLeaver" ID="StudentEnrolmentField16" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a care leaver?"/>
+        </div>
+    </div>--%>
+
+    <%--<%If IsUnder19 = True Then %>
     <p>Do you look after a family member who may have a physical disability, a long-term illness, a mental health problem or drug / alcohol dependencies (young carer)?</p>
     <div class="row">
-        <div class="col-sm-12 columns form-group">
+        <div class="col-sm-12 columns form-group mb-3">
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="YoungCarer" ID="StudentEnrolmentField7" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Tick if you are a young carer?"/>
+        </div>
+    </div>
+    <%End If %>--%>
+
+    <%If IsUnder19 = True Then %>
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Were you eligible for free school meals at school?</span>
+            <p>Meals provided free of charge during school due to low household income or eligibility for certain benefits</p>
+		    <asp:RadioButtonList runat="server" ID="fldFreeSchoolMeals" CssClass="form-input TableInline">
+			    <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+			    <asp:ListItem Text="No" Value="No"></asp:ListItem>
+		    </asp:RadioButtonList>
+		    <asp:CustomValidator ID="fldFreeSchoolMealsValidator" runat="server"></asp:CustomValidator>
         </div>
     </div>
     <%End If %>
 
     <div class="row">
-        <div class="col-sm-12 columns form-group mt-3">
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentCarerInArmedForces" ID="fldParentCarerInArmedForces" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Are you a military service child?"/>
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you a military service child?</span>
+            <p>A person whose parent or carer serves in the Regular armed forces, or as a Reservist, or has done at any point during the first 25 years of that person’s life.</p>
+	        <asp:RadioButtonList runat="server" ID="fldMilitaryServiceChild" CssClass="form-input TableInline">
+		        <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+		        <asp:ListItem Text="No" Value="No"></asp:ListItem>
+	        </asp:RadioButtonList>
+	        <asp:CustomValidator ID="fldMilitaryServiceChildValidator" runat="server"></asp:CustomValidator>
         </div>
     </div>
 
-    <div class="alert alert-secondary hstack gap-3 mt-1" role="alert">
+    <%If IsUnder19 = True Then %>
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you known to social care services?</span>
+            <p>Are you receiving support, involvement, or assistance from children's social care or social services</p>
+	        <asp:RadioButtonList runat="server" ID="fldKnownToSocialCare" CssClass="form-input TableInline">
+		        <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+		        <asp:ListItem Text="No" Value="No"></asp:ListItem>
+	        </asp:RadioButtonList>
+	        <asp:CustomValidator ID="fldKnownToSocialCareValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
+    <%End If %>
+
+    <%--<div class="row">
+        <div class="col-sm-12 columns form-group mt-3 mb-3">
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="ParentCarerInArmedForces" ID="fldParentCarerInArmedForces" runat="server"  LabelWidth="300" IsRequired="false" CustomCaption="Are you a military service child?"/>
+        </div>
+    </div>--%>
+
+    <%--<div class="alert alert-secondary hstack gap-3 mt-1" role="alert">
         <div>
             <i class="fa-solid fa-circle-info"></i>
         </div>
@@ -158,14 +290,14 @@
                 A person whose parent or carer serves in the Regular armed forces, or as a Reservist, or has done at any point during the first 25 years of that person’s life.
             </p>
         </div>
-    </div>
+    </div>--%>
 
-          </div>  
+</div>  
 
 
         <%--<cc1:CCCButton id="btnBack" runat="server" Text="Back" CssClass="button" />
         <cc1:CCCButton ID="btnContinue" runat="server" Text="Continue" CssClass="button"  CausesValidation="true" EnableEnterKey="true" />--%>
-</div>
+
 
 <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="alert alert-danger" ForeColor="" />
 

@@ -146,7 +146,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
     <p>Please enter the details of your prior qualifications. Use 'Add row' to save and add multiple qualifications.</p>
     <br />
 
-    <asp:Button runat="server" ID="btnNoEnglishandMaths" CssClass="show_hide btn btn-primary" Text="No English Maths and Science qualifications" ToolTip="Click to remove all the items listed below (And hide the list)"></asp:Button>
+    <asp:Button runat="server" ID="btnNoEnglishandMaths" CssClass="show_hide btn btn-primary" Text="No English Maths and Science qualifications" ToolTip="Click to remove all the items listed below (And hide the list)" CausesValidation="false"></asp:Button>
     <br />
     <br />
     <div id="slidingdiv" class="slidingDiv" runat="server">
@@ -183,11 +183,16 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
         </div>
     </div>
 
-      <div class="row">
+    <div class="row">
         <div class="col-sm-12 columns form-group"> 
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="StudyElsewhere" ID="fldStudyElse" runat="server" Visible="true" LabelWidth="400" IsRequired="false"  CustomCaption="Were you in full-time education or training prior to enrolment?"/>
-          </div>
-   </div>
+            <span class="textfieldlabelrequired">Will you be studying elsewhere during the time you study at Askham Bryan College?</span>
+            <asp:RadioButtonList runat="server" ID="fldEnrolledAtAnotherProvider" CssClass="form-input TableInline">
+	            <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+	            <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldEnrolledAtAnotherProviderValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
 
     
 </div>

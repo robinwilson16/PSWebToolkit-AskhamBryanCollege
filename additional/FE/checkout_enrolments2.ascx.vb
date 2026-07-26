@@ -12,6 +12,8 @@ Partial Class webcontrols_checkout_enrolments2
     Public OfferingID As Integer
     Public Course As Course
     Public IsUnder19 As Boolean
+    Public IsUnder18 As Boolean
+    Public IsUKResident As Boolean
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
@@ -19,19 +21,68 @@ Partial Class webcontrols_checkout_enrolments2
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
 
-        Dim referenceDate As DateTime = CDate(Today().Year & "-08-31")
-        Dim age19DOB As DateTime = referenceDate.AddYears(-19)
-        If WorkingData.EnrolmentRequestRow.DateOfBirth > age19DOB Then 'Under 19
-            IsUnder19 = True
-        Else
-            IsUnder19 = False
-        End If
+        SetAgeChecks()
+        SetUKResident()
 
         'Response.Write(WorkingData.EnrolmentRequestRow.StudentDetailUserDefined58)
         'If Not Session("agecourse") Is Nothing Then lblAgeCourse.Text = CType("Your age on " & Session("startdate") & ": " & Session("agecourse") & " (" & Session("ageGroup"), String) & ")"
 
         If Not IsPostBack Then
             If Session("dis") <> "" Then selectLearnDiff.SelectedValue = Session("dis")
+
+            'Booleans default to false when not set
+            If WorkingData.EnrolmentRequestRow.NationalityID = "" Then
+                WorkingData.EnrolmentRequestRow.InCare = Nothing
+                WorkingData.EnrolmentRequestRow.CareLeaver = Nothing
+                WorkingData.EnrolmentRequestRow.YoungCarer = Nothing
+                WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = Nothing
+                WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = Nothing
+                WorkingData.EnrolmentRequestRow.YoungParent = Nothing
+                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
+            End If
+
+            'If WorkingData.EnrolmentRequestRow.IsAimHigher = True Then
+            '    fldRightToWorkInUK.SelectedValue = "Yes"
+            'ElseIf WorkingData.EnrolmentRequestRow.IsAimHigher = False Then
+            '    fldRightToWorkInUK.SelectedValue = "No"
+            'End If
+
+            If WorkingData.EnrolmentRequestRow.InCare = True Then
+                fldInCare.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.InCare = False Then
+                fldInCare.SelectedValue = "No"
+            End If
+
+            If WorkingData.EnrolmentRequestRow.CareLeaver = True Then
+                fldCareLeaver.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.CareLeaver = False Then
+                fldCareLeaver.SelectedValue = "No"
+            End If
+
+            If WorkingData.EnrolmentRequestRow.YoungCarer = True Then
+                fldYoungCarer.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.YoungCarer = False Then
+                fldYoungCarer.SelectedValue = "No"
+            End If
+
+            If WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = True Then
+                fldFreeSchoolMeals.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = False Then
+                fldFreeSchoolMeals.SelectedValue = "No"
+            End If
+
+            If WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = True Then
+                fldMilitaryServiceChild.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = False Then
+                fldMilitaryServiceChild.SelectedValue = "No"
+            End If
+
+            If WorkingData.EnrolmentRequestRow.YoungParent = True Then
+                fldKnownToSocialCare.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.YoungParent = False Then
+                fldKnownToSocialCare.SelectedValue = "No"
+            End If
+
         End If
 
         ' postcode.Value = WorkingD ata.EnrolmentRequestRow.PostcodeOut & WorkingData.EnrolmentRequestRow.PostcodeIn
@@ -44,6 +95,72 @@ Partial Class webcontrols_checkout_enrolments2
             slidingdiv.Visible = False
         End If
 
+    End Sub
+
+    Public Function SetAgeChecks() As Boolean
+        Dim dateOfBirthDate As Date?
+        Dim referenceDate As DateTime = CDate(Today().Year & "-08-31")
+
+        If Not String.IsNullOrEmpty(WorkingData.EnrolmentRequestRow.DateOfBirth.Value) Then
+            dateOfBirthDate = WorkingData.EnrolmentRequestRow.DateOfBirth
+        End If
+        Dim age19DOB As DateTime = referenceDate.AddYears(-19)
+        If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > age19DOB Then 'Under 19
+            IsUnder19 = True
+        Else
+            IsUnder19 = False
+        End If
+        Dim age18DOB As DateTime = referenceDate.AddYears(-18)
+        If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > age18DOB Then 'Under 18
+            IsUnder18 = True
+        Else
+            IsUnder18 = False
+        End If
+        Return True
+    End Function
+
+    Public Function SetUKResident() As Boolean
+        If IsNothing(WorkingData.EnrolmentRequestRow.CountryID) Then
+            IsUKResident = True 'Not set yet so default to UK
+        ElseIf WorkingData.EnrolmentRequestRow.CountryID = "GB" Or WorkingData.EnrolmentRequestRow.CountryID = "XF" Then
+            IsUKResident = True
+        Else
+            IsUKResident = False
+        End If
+        Return IsUKResident
+    End Function
+
+    Public Function GetUKResident() As Boolean
+        Return IsUKResident
+    End Function
+
+    Private Function FindChildDropdown(parent As Control) As DropDownList
+        For Each c As Control In parent.Controls
+            If TypeOf c Is DropDownList Then
+                Return DirectCast(c, DropDownList)
+                Dim dd = FindChildDropdown(c)
+                If dd IsNot Nothing Then
+                    Return dd
+                End If
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Protected Overrides Sub OnInit(e As EventArgs)
+        MyBase.OnInit(e)
+        Dim dd = FindChildDropdown(fldCountryID)
+        If dd IsNot Nothing Then
+            dd.AutoPostBack = True
+            AddHandler dd.SelectedIndexChanged, AddressOf CountryChangedHandler ' If inside UpdatePanel, register for async postback:
+            If ScriptManager.GetCurrent(Page) IsNot Nothing Then
+                ScriptManager.GetCurrent(Page).RegisterAsyncPostBackControl(dd)
+            End If
+        End If
+    End Sub
+
+    Protected Sub CountryChangedHandler(sender As Object, e As EventArgs) ' handle change End Sub
+        SetUKResident()
     End Sub
 
     Protected Overrides Sub CreateChildControls()
@@ -319,6 +436,62 @@ Partial Class webcontrols_checkout_enrolments2
         '    Me.Page.Validators.Add(v)
         'End If
 
+        If fldRightToWorkInUK.SelectedValue = "" And IsUKResident = False Then
+            fldRightToWorkInUKValidator.ErrorMessage = "Please confirm if you have a right to work in the UK"
+            fldRightToWorkInUKValidator.IsValid = False
+            fldRightToWorkInUKValidator.CssClass = "error alert alert-danger"
+            'fldRightToWorkInUK.CssClass = "ErrorInput"
+            fldRightToWorkInUK.Style.Add("border", "1px solid red")
+        End If
+
+        If fldInCare.SelectedValue = "" Then
+            fldInCareValidator.ErrorMessage = "Please confirm if you are currently in care"
+            fldInCareValidator.IsValid = False
+            fldInCareValidator.CssClass = "error alert alert-danger"
+            'fldInCare.CssClass = "ErrorInput"
+            fldInCare.Style.Add("border", "1px solid red")
+        End If
+
+        If fldCareLeaver.SelectedValue = "" Then
+            fldCareLeaverValidator.ErrorMessage = "Please confirm if you are a care leaver"
+            fldCareLeaverValidator.IsValid = False
+            fldCareLeaverValidator.CssClass = "error alert alert-danger"
+            'fldCareLeaver.CssClass = "ErrorInput"
+            fldCareLeaver.Style.Add("border", "1px solid red")
+        End If
+
+        If fldYoungCarer.SelectedValue = "" And IsUnder19 = True Then
+            fldYoungCarerValidator.ErrorMessage = "Please confirm if you are a young carer"
+            fldYoungCarerValidator.IsValid = False
+            fldYoungCarerValidator.CssClass = "error alert alert-danger"
+            'fldYoungCarer.CssClass = "ErrorInput"
+            fldYoungCarer.Style.Add("border", "1px solid red")
+        End If
+
+        If fldFreeSchoolMeals.SelectedValue = "" And IsUnder19 = True Then
+            fldFreeSchoolMealsValidator.ErrorMessage = "Please confirm if you were eligible for free school meals at school"
+            fldFreeSchoolMealsValidator.IsValid = False
+            fldFreeSchoolMealsValidator.CssClass = "error alert alert-danger"
+            'fldFreeSchoolMeals.CssClass = "ErrorInput"
+            fldFreeSchoolMeals.Style.Add("border", "1px solid red")
+        End If
+
+        If fldMilitaryServiceChild.SelectedValue = "" Then
+            fldMilitaryServiceChildValidator.ErrorMessage = "Please confirm if you are a military service child"
+            fldMilitaryServiceChildValidator.IsValid = False
+            fldMilitaryServiceChildValidator.CssClass = "error alert alert-danger"
+            'fldMilitaryServiceChild.CssClass = "ErrorInput"
+            fldMilitaryServiceChild.Style.Add("border", "1px solid red")
+        End If
+
+        If fldKnownToSocialCare.SelectedValue = "" And IsUnder19 = True Then
+            fldKnownToSocialCareValidator.ErrorMessage = "Please confirm if you are known to social care services"
+            fldKnownToSocialCareValidator.IsValid = False
+            fldKnownToSocialCareValidator.CssClass = "error alert alert-danger"
+            'fldKnownToSocialCare.CssClass = "ErrorInput"
+            fldKnownToSocialCare.Style.Add("border", "1px solid red")
+        End If
+
         MyBase.ValidateControl()
     End Sub
 
@@ -355,6 +528,49 @@ Partial Class webcontrols_checkout_enrolments2
         Me.Page.Validate()
 
         If Me.Page.IsValid Then
+
+            'Capture Yes/No fields
+            If fldRightToWorkInUK.SelectedValue = "Yes" Then
+                'WorkingData.EnrolmentRequestRow.IsAimHigher = True
+            ElseIf fldRightToWorkInUK.SelectedValue = "No" Then
+                'WorkingData.EnrolmentRequestRow.IsAimHigher = False
+            End If
+
+            If fldInCare.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.InCare = True
+            ElseIf fldInCare.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.InCare = False
+            End If
+
+            If fldCareLeaver.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.CareLeaver = True
+            ElseIf fldCareLeaver.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.CareLeaver = False
+            End If
+
+            If fldYoungCarer.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.YoungCarer = True
+            ElseIf fldYoungCarer.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.YoungCarer = False
+            End If
+
+            If fldFreeSchoolMeals.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = True
+            ElseIf fldFreeSchoolMeals.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = False
+            End If
+
+            If fldMilitaryServiceChild.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = True
+            ElseIf fldMilitaryServiceChild.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = False
+            End If
+
+            If fldKnownToSocialCare.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.YoungParent = True
+            ElseIf fldKnownToSocialCare.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.YoungParent = False
+            End If
 
             Response.Redirect(GetResourceValue("checkout_quals_on_entry_FE_aspx"))
 

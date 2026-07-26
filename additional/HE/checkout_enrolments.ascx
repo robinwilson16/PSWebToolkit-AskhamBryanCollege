@@ -49,11 +49,17 @@
     <h4><i class="fa-solid fa-user"></i> Personal Details</h4>
 
    <div class="row">
-      <div class="col-sm-12 columns form-group"> 
-          <p>Please note all fields marked with  <span class="textfieldlabelrequired"></span> are required. <br /><br />
-            Please give your full legal name. The The Department for Education (DfE) requires the College to collect legal gender.</p>
-          </div>
-  </div>
+    <div class="col-sm-12 columns form-group mb-3"> 
+        <p>Please note all fields marked with <span class="textfieldlabelrequired"></span> are required.</p>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+              <div class="callout callout-info">Please give your full legal name. The Department for Education (DfE) requires the College to collect legal gender.</div>
+        </div>
+    </div>
+
  <div class="row">
     <div class="col-sm-6 columns form-group"> 
         <cc1:StudentEnrolmentField AutoFocus="true" StudentEnrolmentFieldType="Title" ID="fldTitle" runat="server" IsRequired="true" CustomCaption="Title" ClientIDMode="Static" />
@@ -100,7 +106,7 @@
 
 <div class="row align-items-end">
     <div class="col-sm-6 columns form-group"> 
-        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" />
+        <cc1:StudentEnrolmentField ID="fldDateOfBirth" runat="server" IsRequired="true" StudentEnrolmentFieldType="DateOfBirth" LabelWidth="200" ClientIDMode="Static" Placeholder="dd/mm/yyyy" HTML5InputType="date" AutoPostBack="true" />
         <asp:CustomValidator ID="fldDateOfBirthValidator" runat="server"></asp:CustomValidator>
     </div>
     <div class="col-sm-6 columns form-group"> 
@@ -182,6 +188,34 @@
         <cc1:StudentEnrolmentField StudentEnrolmentFieldType="StudentDetailUserDefined60" ID="txtYesCriminalConviction" runat="server" IsRequired="false" CustomCaption="If yes, you are required to give full details. This will be referred to the College Admissions Panel." LabelWidth="650"/>
         </div>
       </div>--%>
+
+    <%If IsUnder18 = True Then %>
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Are you known to the youth justice service?</span>
+            <p>Are you receiving support or involvement from the Youth Justice Service due to offending behaviour or related concerns</p>
+            <asp:RadioButtonList runat="server" ID="fldKnownToYouthJustice" CssClass="form-input TableInline">
+                <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldKnownToYouthJusticeValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
+    <%End If %>
+
+    <%If IsUnder19 = True Then %>
+    <div class="row">
+        <div class="col-sm-12 columns form-group"> 
+            <span class="textfieldlabelrequired">Do you have a parent or carer in prison?</span>
+            <p>Do you have a parent, guardian, or main carer who is currently serving a prison sentence</p>
+            <asp:RadioButtonList runat="server" ID="fldParentCarerInPrison" CssClass="form-input TableInline">
+                <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                <asp:ListItem Text="No" Value="No"></asp:ListItem>
+            </asp:RadioButtonList>
+            <asp:CustomValidator ID="fldParentCarerInPrisonValidator" runat="server"></asp:CustomValidator>
+        </div>
+    </div>
+    <%End If %>
 
 </div>
 
@@ -266,7 +300,7 @@
 
         <div class="form-input">
         <span class="textfieldlabelrequired">Is your term time address different to your home address?</span>
-        <asp:RadioButtonList runat="server" ID="RadioButtonListAlt" CssClass="form-input">
+        <asp:RadioButtonList runat="server" ID="RadioButtonListAlt" CssClass="form-input TableInline">
             <asp:ListItem Text="No, it is the same" Value="2"></asp:ListItem>
             <asp:ListItem Text="Yes, it is different" Value="1"></asp:ListItem>
   

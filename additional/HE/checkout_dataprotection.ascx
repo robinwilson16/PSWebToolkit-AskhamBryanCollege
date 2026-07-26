@@ -150,7 +150,7 @@
 
     <p>This Privacy Notice sets out the purpose for collecting the information, your rights in relation to your information we have collected, how we protect your information and who we share your information with.</p>
 
-    <p>For example, the personal information you supply to us will be used by the DfE, to issue you a Unique Learner Number (ULN), and a Personal Learning Record if not already set up. Further information about use and access to your personal data, details of organisations with whom we regularly share data, information about how long we retain your data, and how to change your consent to being contacted, please visit: <a href="https://guidance.submit-learner-data.service.gov.uk/25-26/ilr/ilrprivacynotice" target="_blank" rel="noopener">https://guidance.submit-learner-data.service.gov.uk/25-26/ilr/ilrprivacynotice</a></p>
+    <p>For example, the personal information you supply to us will be used by the DfE, to issue you a Unique Learner Number (ULN), and a Personal Learning Record if not already set up. For further information about use and access to your personal data, details of organisations with whom we regularly share data, information about how long we retain your data, and how to change your consent to being contacted, please visit: <a href="https://guidance.submit-learner-data.service.gov.uk/<%=AcademicYearID.Replace("/", "-") %>/ilr/ilrprivacynotice" target="_blank" rel="noopener">https://guidance.submit-learner-data.service.gov.uk/<%=AcademicYearID.Replace("/", "-") %>/ilr/ilrprivacynotice</a></p>
 
     <p>Please also see the College’s Student Privacy Notice available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-data-protection/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-data-protection/</a></p>
 
@@ -168,7 +168,9 @@
 
     <p>For instance, every student must have an Individualised Learner Record (ILR) and the College must collect data about learners and learning undertaken and share those details with the DfE as a condition of its funding. Your information may be shared by the DfE with third parties for education, training, employment and well-being related purposes, including for research.</p>
 
-    <p>The College will not release any of your disclosed personal data to a third party where this contravenes the data protection legislation. <strong>However, we may make a disclosure without consent when: a learner under the age of 18 or a vulnerable adult is believed to be a serious risk of harm; there is evidence of serious public harm or risk of harm to others; there is evidence of serious health risk to the individual; instructed to do so by court of statutory agency in the prevention, detection or prosecution of crime.</strong> If you are under 18 years of age, the College also reserves the right to discuss e.g. your attendance, behaviour, financial matters including bursaries and any safeguarding issues with your named contacts.</p>
+    <p>Please note: in the case of international students, the College is required to share your personal information, including details of your visa status, with the UKVI, in order to comply with immigration rules.</p>
+
+    <p>The College will not release any of your disclosed personal data to a third party where this contravenes the data protection legislation. <strong>However, we may make a disclosure without consent when: a learner under the age of 18 or a vulnerable adult is believed to be a serious risk of harm, i.e. for safeguarding reasons; there is evidence of serious public harm or risk of harm to others; there is evidence of serious health risk to the individual; instructed to do so by court of statutory agency in the prevention, detection or prosecution of crime.</strong> If you are under 18 years of age, the College also reserves the right to discuss e.g. your attendance, behaviour, financial matters including bursaries and any safeguarding issues with your named contacts.</p>
 
     <p>Where your consent is required for us to share your information with third parties such as the provision of catering and transport, offsite activities, etc there will be a clear purpose for the sharing and a data sharing agreement will be put in place to define expectations for the use, control and security of that data. Where your consent is required for us to share your information with third parties, you can withdraw your consent at any time; but this could prevent those services being provided to you.</p>
 
@@ -192,7 +194,7 @@
 
     <h5>College Data Protection Officer</h5>
 
-    <p>If you have any concerns about the way the College collects or uses your personal data, you should raise your concerns in the first instance with the College’s Data Protection Officer, <a href="mailto:judith.clapham@askham-bryan.ac.uk?Subect=Privacy%20Statement">judith.clapham@askham-bryan.ac.uk</a>. If you are not satisfied with the College’s response, you may then wish to contact the Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener">https://ico.org.uk/</a>.</p>
+    <p>If you have any concerns about the way the College collects or uses your personal data, you should raise your concerns in the first instance with the College’s Data Protection Officer, <a href="mailto:judith.clapham@askham-bryan.ac.uk?Subect=Privacy%20Statement">judith.clapham@askham-bryan.ac.uk</a>. If you are not satisfied with the College's response, you have the right to complain. See the College's Complaints Policy at <a href="https://www.askham-bryan.ac.uk/publication-scheme-customer-services/" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-customer-services/</a> for further details. You also have the right to contact the Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener">https://ico.org.uk/</a>.</p>
 
     <p>For further details about how we use your personal data and your rights under data protection legislation, see <a href="https://www.askham-bryan.ac.uk/publication-scheme-data-protection/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-data-protection/</a></p>
 
@@ -204,10 +206,11 @@
 
     <p>By enrolling you also confirm:</p>
     <ul>
-        <li>you agree to be enrolled on the course as set out in the College's Admissions Policy available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-admissions/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-admissions/</a> and at <a href="https://www.askham-bryan.ac.uk/publication-scheme-higher-education/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-higher-education/</a>;</li>
-        <li>you give the College permission to view your personal learning record and to access your previous achievements to support this enrolment;</li>
-        <li>you are not already studying at another institution, or with another training provider, on the start date of this course;</li>
+        <li>you agree to be enrolled on the course as set out in the College's Admissions Policy available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-admissions/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-admissions/</a> and at <a href="https://www.askham-bryan.ac.uk/publication-scheme-higher-education/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-higher-education/</a>.</li>
+        <li>you give the College permission to view your personal learning record and to access your previous achievements to support this enrolment.</li>
+        <li>you are not already studying at another institution, or with another training provider, on the start date of this course.</li>
         <li>you have received appropriate information and guidance to help you make an informed decision as to whether you want to enrol on this course.</li>
+        <li>if you have to pay fees for your course, that you will pay those fees as and when they become due and payable.</li>
     </ul>
 
     <hr />
@@ -224,7 +227,7 @@
         <li>You will be diligent in your learning, attend classes, and take exams as required to achieve the objectives agreed in your individual learning plan.</li>
         <li>You consent to being contacted by the College, or a third party acting on our behalf, for the purposes of collecting your destination on completion of your learning programme.</li>
         <li>If you are 16-18 the College has collected your parent(s)/guardian(s)/carer(s) contact details to notify them of an emergency situation or if the College feels you are at risk of becoming a NEET (Not in Education, Employment or Training) or if there is a disciplinary taking place.  If you are aged 19+ the College has collected next of kin emergency details.</li>
-        <li>You will notify the College, if during the course, you are convicted of a criminal offence (other than minor motoring offences).</li>
+        <li>You will notify the College, if during the course, you are convicted of a criminal offence (other than minor motoring offences). For further details see the College’s Admissions Policy available at <a href="https://www.askham-bryan.ac.uk/publication-scheme-admissions/" target="_blank" rel="noopener">https://www.askham-bryan.ac.uk/publication-scheme-admissions/</a>.</li>
         <li>You understand why your information is being collected and who will have access to our personal data.  You declare that all the information you have provided is accurate and that any false statements may result in disciplinary proceedings.</li>
         <li>You understand that the personal information provided is passed to the DfE to meet legal duties under the Apprenticeship, Skills, Children and Learning Act 2009, and for the Agencies Learning Record Service (LRS) to create and maintain a unique learning number (ULN).  The information provided may be shared with other partner organisations for the purposes relating to education or training.  You understand you can opt out of sharing your personal data with LRS but realise that doing so may later restrict progression opportunities with other institutions.</li>
     </ul>

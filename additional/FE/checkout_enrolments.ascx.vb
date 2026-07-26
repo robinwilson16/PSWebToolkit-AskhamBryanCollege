@@ -15,6 +15,7 @@ Partial Class webcontrols_checkout_enrolments
     Public ReferenceDate As Date
     Public Age19DOB As Date
     Public IsUnder19 As Boolean
+    Public IsUnder18 As Boolean
     Public ShowBackButton As Boolean = False
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -22,19 +23,13 @@ Partial Class webcontrols_checkout_enrolments
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
 
+        SetAgeChecks()
+
         'Show back button if arrived here from search
         If Not IsNothing(Request.UrlReferrer) Then
             If Request.UrlReferrer.ToString.Contains("Dept=") Or Request.UrlReferrer.ToString.Contains("Search=") Then
                 ShowBackButton = True
             End If
-        End If
-
-        ReferenceDate = CDate(Today().Year & "-08-31")
-        Age19DOB = ReferenceDate.AddYears(-19)
-        If WorkingData.EnrolmentRequestRow.DateOfBirth > Age19DOB Then 'Under 19
-            IsUnder19 = True
-        Else
-            IsUnder19 = False
         End If
 
         If IsDate(WorkingData.EnrolmentRequestRow.DateOfBirth) Then
@@ -54,13 +49,37 @@ Partial Class webcontrols_checkout_enrolments
             AltPostcode.Value = WorkingData.EnrolmentRequestRow.AltPostcodeOut + WorkingData.EnrolmentRequestRow.AltPostcodeIn
         End If
 
-        If Not (IsPostBack) Then
+        If Not IsPostBack Then
+
+            'Booleans default to false when not set
+            If WorkingData.EnrolmentRequestRow.FirstForename = "" Then
+                WorkingData.EnrolmentRequestRow.YoungParent = Nothing
+                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
+            End If
+
+            If WorkingData.EnrolmentRequestRow.EMAConfirmed = True Then
+                fldKnownToYouthJustice.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.EMAConfirmed = False Then
+                fldKnownToYouthJustice.SelectedValue = "No"
+            End If
+
+            'If WorkingData.EnrolmentRequestRow.ALGConfirmed = True Then
+            '    fldParentCarerInPrison.SelectedValue = "Yes"
+            'ElseIf WorkingData.EnrolmentRequestRow.ALGConfirmed = False Then
+            '    fldParentCarerInPrison.SelectedValue = "No"
+            'End If
 
             If WorkingData.EnrolmentRequestRow.AccommodationTypeID = 11 Then
                 ddCollegeAccomodation.SelectedValue = 1
             Else
                 ddCollegeAccomodation.SelectedValue = 0
             End If
+
+            'Booleans default to false when not set
+            If IsNothing(WorkingData.EnrolmentRequestRow.FirstForename) Then
+                WorkingData.EnrolmentRequestRow.StudyElsewhere = Nothing
+            End If
+
         End If
 
         'WorkingData.EnrolmentRequestRow.Title = "Mr"
@@ -165,6 +184,65 @@ Partial Class webcontrols_checkout_enrolments
         MyBase.OnLoad(e)
     End Sub
 
+    Public Function SetAgeChecks() As Boolean
+        Dim dateOfBirthDate As Date?
+        Dim referenceDate As DateTime = CDate(Today().Year & "-08-31")
+
+        If Not String.IsNullOrEmpty(fldDateOfBirth.Value) Then
+            dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
+        End If
+        Dim age19DOB As DateTime = referenceDate.AddYears(-19)
+        If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > age19DOB Then 'Under 19
+            IsUnder19 = True
+        Else
+            IsUnder19 = False
+        End If
+        Dim age18DOB As DateTime = referenceDate.AddYears(-18)
+        If Not IsNothing(dateOfBirthDate) And dateOfBirthDate > age18DOB Then 'Under 18
+            IsUnder18 = True
+        Else
+            IsUnder18 = False
+        End If
+        Return True
+    End Function
+
+    Private Function FindChildTextbox(parent As Control) As TextBox
+        For Each c As Control In parent.Controls
+            If TypeOf c Is TextBox Then
+                Return DirectCast(c, TextBox)
+                Dim tb = FindChildTextbox(c)
+                If tb IsNot Nothing Then
+                    Return tb
+                End If
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Protected Overrides Sub OnInit(e As EventArgs)
+        MyBase.OnInit(e)
+        Dim tb = FindChildTextbox(fldDateOfBirth)
+        If tb IsNot Nothing Then
+            tb.AutoPostBack = True
+            AddHandler tb.TextChanged, AddressOf DateOfBirthChangedHandler ' If inside UpdatePanel, register for async postback:
+            If ScriptManager.GetCurrent(Page) IsNot Nothing Then
+                ScriptManager.GetCurrent(Page).RegisterAsyncPostBackControl(tb)
+            End If
+        End If
+    End Sub
+
+    Protected Sub DateOfBirthChangedHandler(sender As Object, e As EventArgs)
+        Dim tb = TryCast(sender, TextBox)
+        If tb IsNot Nothing Then
+            Dim dateOfBirthDate As Date?
+            If Not String.IsNullOrEmpty(tb.Text) Then
+                dateOfBirthDate = CType(tb.Text, Date)
+            End If
+
+            SetAgeChecks()
+        End If
+    End Sub
+
     Protected Overrides Sub CreateChildControls()
         MyBase.CreateChildControls()
 
@@ -198,7 +276,7 @@ Partial Class webcontrols_checkout_enrolments
         'End If
 
         'Forename (Single Name Only)
-        If Not String.IsNullOrEmpty(fldFirstForename.Value.ToString()) Then
+        If Not String.IsNullOrEmpty(fldFirstForename.Value) Then
             If (fldFirstForename.Value.ToString().Contains(" ")) Then
                 fldFirstForenameValidator.ErrorMessage = "Forename or Given Name must only contain your first name with no spaces. Please Enter Any middle names into the Other Forenames (Middle Names) box below."
                 fldFirstForenameValidator.IsValid = False
@@ -208,17 +286,19 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         'DOB
-        If fldDateOfBirth.Value > Age19DOB Then 'Under 19
-            IsUnder19 = True
-        Else
-            IsUnder19 = False
-        End If
-
         If Not IsNothing(fldDateOfBirth) Then
+
+
             Dim dateOfBirthDate As Date?
 
             If Not String.IsNullOrEmpty(fldDateOfBirth.Value) Then
                 dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
+            End If
+
+            If dateOfBirthDate > Age19DOB Then 'Under 19
+                IsUnder19 = True
+            Else
+                IsUnder19 = False
             End If
 
             Dim dateToCheckDOB As Date = CDate(Today().Year & "-08-31")
@@ -244,7 +324,7 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         'Gender
-        If Not IsNothing(fldGender) Then
+        If Not IsNothing(fldGender.Value) Then
             If String.IsNullOrEmpty(fldGender.Value) Then
                 fldGenderValidator.ErrorMessage = "Legal Gender must not be blank"
                 fldGenderValidator.IsValid = False
@@ -255,7 +335,7 @@ Partial Class webcontrols_checkout_enrolments
 
         'National Insurance Number
         Dim regexNI As New Regex("^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$")
-        If Not IsNothing(fldNI) Then
+        If Not IsNothing(fldNI.Value) Then
             Dim match As Match = regexNI.Match(fldNI.Value)
             If String.IsNullOrEmpty(fldNI.Value) And IsUnder19 = False Then
                 fldNIValidator.ErrorMessage = "National Insurance Number must not be blank for anyone 19+"
@@ -271,7 +351,7 @@ Partial Class webcontrols_checkout_enrolments
         End If
 
         'Criminal Convictions
-        If Not IsNothing(fldCriminalConvictionID) Then
+        If Not IsNothing(fldCriminalConvictionID.Value) Then
             If String.IsNullOrEmpty(fldCriminalConvictionID.Value) Then
                 fldCriminalConvictionIDValidator.ErrorMessage = "Criminal Convictions must not be blank"
                 fldCriminalConvictionIDValidator.IsValid = False
@@ -280,10 +360,25 @@ Partial Class webcontrols_checkout_enrolments
             End If
         End If
 
+        If fldKnownToYouthJustice.SelectedValue = "" And IsUnder18 = True Then
+            fldKnownToYouthJusticeValidator.ErrorMessage = "Please confirm if you are known to the youth justice service"
+            fldKnownToYouthJusticeValidator.IsValid = False
+            fldKnownToYouthJusticeValidator.CssClass = "error alert alert-danger"
+            'fldKnownToYouthJustice.CssClass = "ErrorInput"
+            fldKnownToYouthJustice.Style.Add("border", "1px solid red")
+        End If
+
+        If fldParentCarerInPrison.SelectedValue = "" And IsUnder19 = True Then
+            fldParentCarerInPrisonValidator.ErrorMessage = "Please confirm if you have a parent or carer in prison"
+            fldParentCarerInPrisonValidator.IsValid = False
+            fldParentCarerInPrisonValidator.CssClass = "error alert alert-danger"
+            'fldParentCarerInPrison.CssClass = "ErrorInput"
+            fldParentCarerInPrison.Style.Add("border", "1px solid red")
+        End If
 
         'Post Code
         Dim regexPostCode As New Regex("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$")
-        If Not IsNothing(postcode) Then
+        If Not IsNothing(postcode.Value) Then
             Dim match As Match = regexPostCode.Match(postcode.Value)
             If Not match.Success Then
                 postcodeValidator.ErrorMessage = "Please enter a valid Postcode"
@@ -316,7 +411,7 @@ Partial Class webcontrols_checkout_enrolments
         'Mobile Tel
         Dim regexMobileTel As New Regex("^(07[\d]{8,12}|447[\d]{7,11})$") ' Mobile numbers should start with 07 and be 11 digits long
         Dim regexTel As New Regex("^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$")
-        If Not IsNothing(fldMobileTel) And Not IsNothing(fldTel) Then
+        If Not IsNothing(fldMobileTel.Value) And Not IsNothing(fldTel.Value) Then
             If String.IsNullOrEmpty(CStr(fldMobileTel.Value)) And String.IsNullOrEmpty(CStr(fldTel.Value)) Then
                 fldMobileTelValidator.ErrorMessage = "Please enter at least one phone number (Mobile number / Home phone (inc. STD code))"
                 fldMobileTelValidator.IsValid = False
@@ -467,6 +562,19 @@ Partial Class webcontrols_checkout_enrolments
                     WorkingData.ApplicationRequestRow.AltPostcodeOut = AltPostcode.Value.Trim.Substring(0, AltPostcode.Value.Trim.Length - 3).Trim
                     WorkingData.ApplicationRequestRow.AltPostcodeIn = Right(AltPostcode.Value.Trim, 3).Trim
                 End If
+            End If
+
+            'Capture Yes/No fields
+            If fldKnownToYouthJustice.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.EMAConfirmed = True
+            ElseIf fldKnownToYouthJustice.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.EMAConfirmed = False
+            End If
+
+            If fldParentCarerInPrison.SelectedValue = "Yes" Then
+                'WorkingData.EnrolmentRequestRow.ALGConfirmed = True
+            ElseIf fldParentCarerInPrison.SelectedValue = "No" Then
+                'WorkingData.EnrolmentRequestRow.ALGConfirmed = False
             End If
 
             Response.Redirect(GetResourceValue("checkout_parentguardian_FE_aspx"))

@@ -5,6 +5,7 @@ Partial Class webcontrols_checkout_employment
     Inherits CheckoutBaseControl
 
     Public OfferingID As Integer
+    Public AcademicYearID As String
     Public Course As Course
 
     Public Is19Plus As Boolean
@@ -16,6 +17,7 @@ Partial Class webcontrols_checkout_employment
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+        AcademicYearID = Course.AcademicYear
 
         'Check age to see if 19+ fields should be displayed
         Date31stAug = CDate(Today().Year & "-08-31")
@@ -46,17 +48,28 @@ Partial Class webcontrols_checkout_employment
 
 
             If WorkingData.EnrolmentRequestEmploymentHistoryRow.IsSelfEmployed Then
-                    rdoSelfEmp.SelectedValue = 1
-                Else
-                    rdoSelfEmp.SelectedValue = 0
-                End If
-
+                rdoSelfEmp.SelectedValue = 1
+            Else
+                rdoSelfEmp.SelectedValue = 0
             End If
+
+        End If
 
         If WorkingData.EnrolmentRequestRow.StudentDetailUserDefined10 = "Y" Then
             chkLowWage.Checked = True
         End If
 
+    End Sub
+
+    Public Overrides Sub RenderControl(writer As HtmlTextWriter)
+
+        'Show older guidance for learners enrolling to current year rather than next year
+        If AcademicYearID <= "25/26" Then
+            chkLowWage.Text = "Tick this box if you earn less than &pound;25,750 per year in gross pay"
+            lblLowWageThreshold.Text = "&pound;25,750"
+        End If
+
+        MyBase.RenderControl(writer)
     End Sub
 
     Public Sub btnContinue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnContinue.Click
@@ -152,4 +165,5 @@ Partial Class webcontrols_checkout_employment
         End If
         MyBase.ValidateControl()
     End Sub
+
 End Class

@@ -72,7 +72,7 @@
       <div class="row"  id="divEmploymentLength" style="display:none">
           <div class="form-input">
               <span class="textfieldlabelrequired">Are you self Employed?</span>
-            <asp:RadioButtonList runat="server" ID="rdoSelfEmp" >
+            <asp:RadioButtonList runat="server" ID="rdoSelfEmp" CssClass="form-input TableInline">
             <asp:ListItem Text="Yes" Value="1" ></asp:ListItem>
             <asp:ListItem Text="No" Value="0"></asp:ListItem>        
             </asp:RadioButtonList>
@@ -110,7 +110,7 @@
             <div class="form-input">
                 <span class="checkbox">
 				<asp:CheckBox ID="chkLowWage" runat="server" ClientIDMode="static"
-					Text=" Tick this box if you earn less than £25,750 per year in gross pay." Font-Bold="True" 
+					Text="Tick this box if you earn less than &pound;26,800 per year in gross pay." Font-Bold="True" 
 					CausesValidation="True" />
 </span>	
             </div>
@@ -121,7 +121,7 @@
                 </div>
                 <div>
                     <p>
-                        Please upload 2 wage slips identifying a gross salary of less than £25,750 if you tick this box
+                        Please upload 2 wage slips identifying a gross salary of less than <asp:Label runat="server" ID="lblLowWageThreshold">&pound;26,800</asp:Label> if you tick this box
                     </p>
                 </div>
             </div>

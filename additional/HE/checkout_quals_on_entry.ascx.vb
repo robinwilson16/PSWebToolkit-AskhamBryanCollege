@@ -16,6 +16,21 @@ Partial Class checkout_directapply
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
 
+        If Not IsPostBack Then
+
+            'Booleans default to false when not set
+            If WorkingData.EnrolmentRequestRow.HighestQualID = "" Then
+                WorkingData.EnrolmentRequestRow.YoungParent = Nothing
+                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
+            End If
+
+            If WorkingData.EnrolmentRequestRow.StudyElsewhere = True Then
+                fldEnrolledAtAnotherProvider.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.StudyElsewhere = False Then
+                fldEnrolledAtAnotherProvider.SelectedValue = "No"
+            End If
+        End If
+
         'Populate an all grades table and a GCSE grade table so these can be switched between depending on the subject chosen
         Dim gradeDataTable As New GradeDataTable
         Dim gradeDataView As CCCDataViewDataSet = CCCDataViewDataSet.CreateDataView(gradeDataTable)
@@ -119,6 +134,14 @@ Partial Class checkout_directapply
                 End If
             End If
         Next
+
+        If fldEnrolledAtAnotherProvider.SelectedValue = "" Then
+            fldEnrolledAtAnotherProviderValidator.ErrorMessage = "Please confirm if you will be studying elsewhere during the time you study at Askham Bryan College"
+            fldEnrolledAtAnotherProviderValidator.IsValid = False
+            fldEnrolledAtAnotherProviderValidator.CssClass = "error alert alert-danger"
+            'fldEnrolledAtAnotherProvider.CssClass = "ErrorInput"
+            fldEnrolledAtAnotherProvider.Style.Add("border", "1px solid red")
+        End If
 
         MyBase.ValidateControl()
     End Sub
@@ -312,6 +335,13 @@ Partial Class checkout_directapply
         Me.Page.Validate()
 
         If Me.Page.IsValid Then
+
+            'Capture Yes/No fields
+            If fldEnrolledAtAnotherProvider.SelectedValue = "Yes" Then
+                WorkingData.EnrolmentRequestRow.StudyElsewhere = True
+            ElseIf fldEnrolledAtAnotherProvider.SelectedValue = "No" Then
+                WorkingData.EnrolmentRequestRow.StudyElsewhere = False
+            End If
 
             redirectString = GetResourceValue("checkout_employment_HE_aspx")
             Response.Redirect(redirectString)

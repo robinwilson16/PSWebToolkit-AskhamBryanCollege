@@ -10,6 +10,7 @@ Partial Class checkout_dataprotection
     Inherits CheckoutBaseControl
 
     Public OfferingID As Integer
+    Public AcademicYearID As String
     Public Course As Course
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -17,6 +18,7 @@ Partial Class checkout_dataprotection
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
+        AcademicYearID = Course.AcademicYear
 
         If WorkingData.EnrolmentRequestRow.SentMarketingInfo = True Then
             selectStayingInTouch.SelectedValue = "1"
