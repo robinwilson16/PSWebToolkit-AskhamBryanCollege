@@ -133,7 +133,7 @@
             </p>
             <ul>
                 <li>
-                    Email your photo to <a href="mailto:enrolment-enquiries@askham-bryan.ac.uk?subject=Cannot Upload Photo">enrolment-enquiries@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
+                    Email your photo to <a href="mailto:he@askham-bryan.ac.uk?subject=Cannot Upload Photo">he@askham-bryan.ac.uk</a>. Please include your <strong>full name</strong> in the subject line.
                 </li>
                 <li>
                     Bring your photo to college in person <strong>before</strong> the start date of your course and we can take a copy.

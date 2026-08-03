@@ -23,13 +23,15 @@
          $(document).ready(function () {
 
             if ($("#<%=selectEmployed.ClientID%>").val() == "10") {
-                     $("#divEmploymentLength").show();
-          
-
-                 }
-                 else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
+                $("#divEmploymentLength").show();
+            }
+            else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
                 $("#divUnEmploymentLength").show();
-             }
+            }
+            else if ($("#<%=selectEmployed.ClientID%>").val() == "12") {
+                $("#divUnEmploymentLength").show();
+            }
+
              $('#<%= selectEmployed.ClientID %>').change(function () {
                  $("#divEmploymentLength").hide();
            
@@ -44,6 +46,10 @@
                      return;
                  }
                  else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
+                     $("#divUnEmploymentLength").show();
+                     return;
+                 }
+                 else if ($("#<%=selectEmployed.ClientID%>").val() == "12") {
                      $("#divUnEmploymentLength").show();
                      return;
                  }

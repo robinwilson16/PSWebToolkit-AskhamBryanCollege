@@ -274,7 +274,7 @@
         Askham Bryan College receives government funding which allows us to offer courses at a lower cost. The guidelines relating to devolution means that we cannot apply this funding to learners who live in devolved areas. 
     </p>
     <p>
-        Before committing to a course with Askham Bryan College, we would recommend that you explore options to study the course the course in your local area. If the course you have chosen is not available in your local area, it may be worth checking with your devolved education team to see if they will fund your course with Askham Bryan.
+        Before committing to a course with Askham Bryan College, we would recommend that you explore options to study the course in your local area. If the course you have chosen is not available in your local area, it may be worth checking with your devolved education team to see if they will fund your course with Askham Bryan.
     </p>
     <p>
         If you would prefer to continue your application with Askham Bryan College please note that the price of the course <strong>could be doubled the advertised cost</strong>. Definitive fees can only be confirmed at point of enrolment (usually in September).
@@ -283,7 +283,7 @@
         You may be able to find support for these fees based on your personal circumstances. Please confirm you acknowledge this.
     </p>
     <div class=" form-group">
-        <asp:Checkbox runat="server" ID="ConfirmNoFundingAvailable" Text="I confirm my acknowledgement" />
+        <asp:Checkbox runat="server" ID="ConfirmNoFundingAvailable" Text="I confirm my acknowledgement" ClientIDMode="Static" />
         <asp:CustomValidator ID="ConfirmNoFundingAvailableValidator" runat="server"></asp:CustomValidator>
         <asp:Textbox runat="server" ID="ExpectedSourceOfFundingID" Placeholder="ExpectedSourceOfFundingID" type="number" ClientIDMode="Static" class="d-none" />
         <asp:Textbox runat="server" ID="ExpectedSourceOfFundingName" Placeholder="ExpectedSourceOfFundingName" ClientIDMode="Static" class="d-none" />
@@ -652,6 +652,7 @@
             let ExpectedSourceOfFundingName = document.getElementById(`ExpectedSourceOfFundingName`);
             let DevolutionAreaIsFunded = document.getElementById(`DevolutionAreaIsFunded`);
             let DevolvedFeesInfo = document.getElementById(`DevolvedFeesInfo`);
+            let ConfirmNoFundingAvailable = document.getElementById(`ConfirmNoFundingAvailable`);
 
             if (Age31stAug.value < 19) {
                 //If 16-18
@@ -664,6 +665,7 @@
                 fundingIsAvailable = true
                 DevolutionAreaIsFunded.checked = true;
                 DevolvedFeesInfo.classList.add(`d-none`);
+                ConfirmNoFundingAvailable.checked = false;
 
                 //Reset in case DOB changed
                 DevolvedPostCodeAreaInfo.classList.remove(`alert-secondary`);
@@ -671,6 +673,7 @@
                 DevolvedPostCodeAreaInfo.classList.add(`alert-success`);
 
                 DevolvedFeesInfo.classList.add(`d-none`);
+                ConfirmNoFundingAvailable.checked = false;
             }
             else {
                 if (devolvedPostCode.status === 404) {
@@ -702,6 +705,7 @@
                     DevolvedPostCodeAreaInfo.classList.add(`alert-success`);
 
                     DevolvedFeesInfo.classList.add(`d-none`);
+                    ConfirmNoFundingAvailable.checked = false;
                 }
                 else {
                     DevolvedPostCodeAreaInfo.classList.remove(`alert-secondary`);

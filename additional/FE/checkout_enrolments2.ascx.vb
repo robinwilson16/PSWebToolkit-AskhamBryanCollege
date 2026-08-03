@@ -38,14 +38,13 @@ Partial Class webcontrols_checkout_enrolments2
                 WorkingData.EnrolmentRequestRow.ReceivedFreeSchoolMeals = Nothing
                 WorkingData.EnrolmentRequestRow.ParentCarerInArmedForces = Nothing
                 WorkingData.EnrolmentRequestRow.YoungParent = Nothing
-                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
             End If
 
-            'If WorkingData.EnrolmentRequestRow.IsAimHigher = True Then
-            '    fldRightToWorkInUK.SelectedValue = "Yes"
-            'ElseIf WorkingData.EnrolmentRequestRow.IsAimHigher = False Then
-            '    fldRightToWorkInUK.SelectedValue = "No"
-            'End If
+            If WorkingData.EnrolmentRequestRow.StudentDetailUserDefined49 = "True" Then
+                fldRightToWorkInUK.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.StudentDetailUserDefined49 = "False" Then
+                fldRightToWorkInUK.SelectedValue = "No"
+            End If
 
             If WorkingData.EnrolmentRequestRow.InCare = True Then
                 fldInCare.SelectedValue = "Yes"
@@ -531,9 +530,9 @@ Partial Class webcontrols_checkout_enrolments2
 
             'Capture Yes/No fields
             If fldRightToWorkInUK.SelectedValue = "Yes" Then
-                'WorkingData.EnrolmentRequestRow.IsAimHigher = True
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined49 = "True"
             ElseIf fldRightToWorkInUK.SelectedValue = "No" Then
-                'WorkingData.EnrolmentRequestRow.IsAimHigher = False
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined49 = "False"
             End If
 
             If fldInCare.SelectedValue = "Yes" Then

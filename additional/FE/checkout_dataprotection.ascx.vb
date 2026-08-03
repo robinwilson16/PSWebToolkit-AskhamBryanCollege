@@ -20,7 +20,7 @@ Partial Class checkout_dataprotection
         Course = GetProSolutionData.GetCourseByID(OfferingID)
         AcademicYearID = Course.AcademicYear
 
-        If WorkingData.EnrolmentRequestRow.SentMarketingInfo = True Then
+        If WorkingData.EnrolmentRequestRow.AcceptMarketingConsent = True Then
             selectStayingInTouch.SelectedValue = "1"
         End If
 
@@ -88,6 +88,10 @@ Partial Class checkout_dataprotection
         If Me.Page.IsValid Then
 
             CheckData()
+
+            If selectStayingInTouch.SelectedValue = "1" Then
+                WorkingData.EnrolmentRequestRow.AcceptMarketingConsent = True
+            End If
 
             If selectSMSConsent.SelectedValue = "1" Then
                 WorkingData.EnrolmentRequestRow.CanBeContactBySMS = True

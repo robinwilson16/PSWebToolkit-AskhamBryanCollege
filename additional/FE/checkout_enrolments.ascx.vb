@@ -25,6 +25,10 @@ Partial Class webcontrols_checkout_enrolments
 
         SetAgeChecks()
 
+        If IsUnder19 = False Then
+            fldNI.IsRequired = True
+        End If
+
         'Show back button if arrived here from search
         If Not IsNothing(Request.UrlReferrer) Then
             If Request.UrlReferrer.ToString.Contains("Dept=") Or Request.UrlReferrer.ToString.Contains("Search=") Then
@@ -44,8 +48,12 @@ Partial Class webcontrols_checkout_enrolments
         If IsPostBack Then
             '   UpdateAddress()
 
+            If ddCollegeAccomodation.SelectedValue = "1" Then
+                RadioButtonListAlt.SelectedValue = 1 'Different Address
+            End If
+
         Else
-            postcode.Value = WorkingData.EnrolmentRequestRow.PostcodeOut + WorkingData.EnrolmentRequestRow.PostcodeIn
+                postcode.Value = WorkingData.EnrolmentRequestRow.PostcodeOut + WorkingData.EnrolmentRequestRow.PostcodeIn
             AltPostcode.Value = WorkingData.EnrolmentRequestRow.AltPostcodeOut + WorkingData.EnrolmentRequestRow.AltPostcodeIn
         End If
 
@@ -63,16 +71,18 @@ Partial Class webcontrols_checkout_enrolments
                 fldKnownToYouthJustice.SelectedValue = "No"
             End If
 
-            'If WorkingData.EnrolmentRequestRow.ALGConfirmed = True Then
-            '    fldParentCarerInPrison.SelectedValue = "Yes"
-            'ElseIf WorkingData.EnrolmentRequestRow.ALGConfirmed = False Then
-            '    fldParentCarerInPrison.SelectedValue = "No"
-            'End If
+            If WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "True" Then
+                fldParentCarerInPrison.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "False" Then
+                fldParentCarerInPrison.SelectedValue = "No"
+            End If
 
             If WorkingData.EnrolmentRequestRow.AccommodationTypeID = 11 Then
                 ddCollegeAccomodation.SelectedValue = 1
-            Else
+            ElseIf WorkingData.EnrolmentRequestRow.AccommodationTypeID > 0 Then
                 ddCollegeAccomodation.SelectedValue = 0
+            Else
+                ddCollegeAccomodation.SelectedValue = Nothing
             End If
 
             'Booleans default to false when not set
@@ -257,7 +267,6 @@ Partial Class webcontrols_checkout_enrolments
     End Sub
 
     Public Overrides Sub ValidateControl()
-
         'If Len(txtAddress1.Value) = 0 Then
         '    Dim v As New CustomValidator
         '    v.ErrorMessage = "You must enter the 1st line of the address"
@@ -293,12 +302,6 @@ Partial Class webcontrols_checkout_enrolments
 
             If Not String.IsNullOrEmpty(fldDateOfBirth.Value) Then
                 dateOfBirthDate = CType(fldDateOfBirth.Value, Date)
-            End If
-
-            If dateOfBirthDate > Age19DOB Then 'Under 19
-                IsUnder19 = True
-            Else
-                IsUnder19 = False
             End If
 
             Dim dateToCheckDOB As Date = CDate(Today().Year & "-08-31")
@@ -435,18 +438,18 @@ Partial Class webcontrols_checkout_enrolments
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
-            ElseIf CStr(fldTel.Value).Length > 0 And Not regexTel.IsMatch(CStr(fldTel.Value)) Then
-                fldMobileTelValidator.ErrorMessage = "The format of the home telephone must be a UK standard number begining with 0, with no spaces e.g. 01273800900"
-                fldMobileTelValidator.IsValid = False
-                fldMobileTelValidator.CssClass = "error alert alert-danger"
-                fldTel.CssClass = "ErrorInput"
+                'ElseIf CStr(fldTel.Value).Length > 0 And Not regexTel.IsMatch(CStr(fldTel.Value)) Then
+                '    fldMobileTelValidator.ErrorMessage = "The format of the home telephone must be a UK standard number begining with 0, with no spaces e.g. 01273800900"
+                '    fldMobileTelValidator.IsValid = False
+                '    fldMobileTelValidator.CssClass = "error alert alert-danger"
+                '    fldTel.CssClass = "ErrorInput"
             End If
         End If
 
         If ddCollegeAccomodation.SelectedValue = "" Then
             Dim a As New CustomValidator
             a.IsValid = False
-            a.ErrorMessage = "Will you be living in College accommodation? must not be blank"
+            a.ErrorMessage = "Please confirm if you will you be living in College accommodation"
             Me.Page.Validators.Add(a)
             ddCollegeAccomodation.Style.Add("border", "1px solid red")
         End If
@@ -454,7 +457,7 @@ Partial Class webcontrols_checkout_enrolments
         If RadioButtonListAlt.SelectedValue = "" Then
             Dim a As New CustomValidator
             a.IsValid = False
-            a.ErrorMessage = "Is your term time address different to your home address? must not be blank"
+            a.ErrorMessage = "Please confirm if your term time address is different to your home address"
             Me.Page.Validators.Add(a)
             RadioButtonListAlt.Style.Add("border", "1px solid red")
         End If
@@ -572,9 +575,9 @@ Partial Class webcontrols_checkout_enrolments
             End If
 
             If fldParentCarerInPrison.SelectedValue = "Yes" Then
-                'WorkingData.EnrolmentRequestRow.ALGConfirmed = True
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "True"
             ElseIf fldParentCarerInPrison.SelectedValue = "No" Then
-                'WorkingData.EnrolmentRequestRow.ALGConfirmed = False
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "False"
             End If
 
             Response.Redirect(GetResourceValue("checkout_parentguardian_FE_aspx"))

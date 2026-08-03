@@ -51,7 +51,7 @@
             <asp:CustomValidator ID="fldNationalityIDValidator" runat="server"></asp:CustomValidator>
            </div>
        <div class="col-sm-6 columns form-group"> 
-            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="fldCountryID" runat="server" IsRequired="true" LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" AutoPostBack="true" />
+            <cc1:StudentEnrolmentField StudentEnrolmentFieldType="CountryID" ID="fldCountryID" runat="server" LabelWidth="400" CustomCaption="Main Country of residence (last 3 years)?" ClientIDMode="Static" AutoPostBack="true" />
             <asp:CustomValidator ID="fldCountryIDValidator" runat="server"></asp:CustomValidator>
            </div>
  

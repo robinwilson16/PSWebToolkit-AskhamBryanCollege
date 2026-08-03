@@ -119,7 +119,7 @@ Partial Class webcontrols_checkout_employment
             selectEmployed.Style.Add("border", "1px solid red")
         End If
 
-        If selectEmployed.SelectedValue = "11" Then
+        If selectEmployed.SelectedValue = "11" Or selectEmployed.SelectedValue = "12" Then
             If selectLengthUnemployed.SelectedValue = "" Then
                 Dim v As New CustomValidator
                 v.ErrorMessage = "Length of of time unemployed must be provided"

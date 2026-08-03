@@ -168,8 +168,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
 <div class="bd-callout bd-callout-askham bd-callout-grey">
     <h4><i class="fa-solid fa-school"></i> Education Details</h4>
 
-    <p>Please only complete if aged under 19</p>
-
+    <% If Is19Plus = False %>
    <div class="row">
        <div class="col-sm-6 columns form-group"> 
             <cc1:StudentEnrolmentField StudentEnrolmentFieldType="StudentDetailUserDefined12" ID="txtSchoolAT16" runat="server" IsRequired="false" LabelWidth="300" CustomCaption="Name of school attended at age 16" />
@@ -182,6 +181,7 @@ QCF Certificate at Level 3 which is 30 to 36 credits</td>
            </div>
         </div>
     </div>
+    <% End If %>
 
     <div class="row">
         <div class="col-sm-12 columns form-group"> 

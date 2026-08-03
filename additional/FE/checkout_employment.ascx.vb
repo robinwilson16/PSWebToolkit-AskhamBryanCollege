@@ -11,6 +11,7 @@ Partial Class webcontrols_checkout_employment
     Public Is19Plus As Boolean
     Public Date31stAug As Date
     Public DateIsAdult As Date
+    Public Is19PlusOutsideAreaConfirmed As Boolean
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
@@ -18,6 +19,7 @@ Partial Class webcontrols_checkout_employment
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
         AcademicYearID = Course.AcademicYear
+        Is19PlusOutsideAreaConfirmed = CBool(Session("19PlusOutsideAreaConfirmed"))
 
         'Check age to see if 19+ fields should be displayed
         Date31stAug = CDate(Today().Year & "-08-31")
@@ -119,7 +121,7 @@ Partial Class webcontrols_checkout_employment
             selectEmployed.Style.Add("border", "1px solid red")
         End If
 
-        If selectEmployed.SelectedValue = "11" Then
+        If selectEmployed.SelectedValue = "11" Or selectEmployed.SelectedValue = "12" Then
             If selectLengthUnemployed.SelectedValue = "" Then
                 Dim v As New CustomValidator
                 v.ErrorMessage = "Length of of time unemployed must be provided"

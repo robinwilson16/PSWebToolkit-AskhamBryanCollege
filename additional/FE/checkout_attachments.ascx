@@ -29,7 +29,7 @@
     <p><strong>Failure to upload the required documents will delay or prevent your enrolment to the College.</strong></p>
     <ul runat="server" id="ulList">
         <li>You must upload 1 proof of identity such as a passport, birth certificate or driving licence</li>
-        <li>You must also upload proof of your address if you are being funded via the West Yorkshire Combined Authority (WYCA) - this could be a Utility Bill, Bank Statement, Driving Licence, Phone Contract, Universal Credit Statement, Council Tax Bill</li>
+        <li>Adults only – You must also upload proof of your address if you are being funded via West Yorkshire Combined Authority (WYCA) or York and North Yorkshire Combined Authority (YNYCA) – this could be a Utility Bill, Bank Statement, Driving Licence, Phone Contract, Universal Credit Statement or Council Tax Bill</li>
         <li>You must upload copies of certificates for any qualifications you have already achieved. If you are awaiting your results, you do not need to upload them here.</li>
   
     </ul>

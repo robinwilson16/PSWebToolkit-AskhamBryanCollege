@@ -23,13 +23,17 @@
          $(document).ready(function () {
 
             if ($("#<%=selectEmployed.ClientID%>").val() == "10") {
-                     $("#divEmploymentLength").show();
+                $("#divEmploymentLength").show();
           
 
-                 }
-                 else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
+            }
+            else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
                 $("#divUnEmploymentLength").show();
-             }
+            }
+            else if ($("#<%=selectEmployed.ClientID%>").val() == "12") {
+                $("#divUnEmploymentLength").show();
+            }
+
              $('#<%= selectEmployed.ClientID %>').change(function () {
                  $("#divEmploymentLength").hide();
            
@@ -44,6 +48,10 @@
                      return;
                  }
                  else if ($("#<%=selectEmployed.ClientID%>").val() == "11") {
+                     $("#divUnEmploymentLength").show();
+                     return;
+                 }
+                 else if ($("#<%=selectEmployed.ClientID%>").val() == "12") {
                      $("#divUnEmploymentLength").show();
                      return;
                  }
@@ -217,6 +225,7 @@
         let chkLowWage = document.getElementById(`chkLowWage`);
         let alertLowWage = document.getElementById(`alertLowWage`);
 
+        <% If Not Is19PlusOutsideAreaConfirmed = True Then %>
         chkLowWage.addEventListener(`change`, function (event) {
             if (chkLowWage.checked == true) {
                 alertLowWage.classList.remove(`d-none`);
@@ -225,6 +234,7 @@
                 alertLowWage.classList.add(`d-none`);
             }
         });
+        <% End If %>
 
         let fldBenefitStatusIndicatorID = document.getElementById(`cboBenefitStatusIndicatorID`);
         let alertBenefitStatusIndicatorID = document.getElementById(`alertBenefitStatusIndicatorID`);

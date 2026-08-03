@@ -37,13 +37,6 @@ Partial Class checkout_directapply
         End If
 
         If Not IsPostBack Then
-
-            'Booleans default to false when not set
-            If WorkingData.EnrolmentRequestRow.HighestQualID = "" Then
-                WorkingData.EnrolmentRequestRow.YoungParent = Nothing
-                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
-            End If
-
             If WorkingData.EnrolmentRequestRow.StudyElsewhere = True Then
                 fldEnrolledAtAnotherProvider.SelectedValue = "Yes"
             ElseIf WorkingData.EnrolmentRequestRow.StudyElsewhere = False Then

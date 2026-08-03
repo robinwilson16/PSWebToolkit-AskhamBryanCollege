@@ -10,20 +10,25 @@ Partial Class checkout_directapply
     Public OfferingID As Integer
     Public Course As Course
 
+    Public Is19Plus As Boolean
+
     Protected Overrides Sub OnLoad(ByVal e As System.EventArgs)
         MyBase.OnLoad(e)
 
         OfferingID = GetProSolutionData.GetOfferingID()
         Course = GetProSolutionData.GetCourseByID(OfferingID)
 
+        'Check age to see if 19+ fields should be displayed
+        Date31stAug = CDate(Today().Year & "-08-31")
+        DateIsAdult = Date31stAug.AddYears(-19)
+
+        If WorkingData.ApplicationRequestRow.DateOfBirth < DateIsAdult Then
+            Is19Plus = True
+        Else
+            Is19Plus = False
+        End If
+
         If Not IsPostBack Then
-
-            'Booleans default to false when not set
-            If WorkingData.EnrolmentRequestRow.HighestQualID = "" Then
-                WorkingData.EnrolmentRequestRow.YoungParent = Nothing
-                WorkingData.EnrolmentRequestRow.EMAConfirmed = Nothing
-            End If
-
             If WorkingData.EnrolmentRequestRow.StudyElsewhere = True Then
                 fldEnrolledAtAnotherProvider.SelectedValue = "Yes"
             ElseIf WorkingData.EnrolmentRequestRow.StudyElsewhere = False Then

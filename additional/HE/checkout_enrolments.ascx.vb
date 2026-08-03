@@ -26,6 +26,10 @@ Partial Class webcontrols_checkout_enrolments
 
         SetAgeChecks()
 
+        If IsUnder19 = False Then
+            fldNI.IsRequired = True
+        End If
+
         'Show back button if arrived here from search
         If Not IsNothing(Request.UrlReferrer) Then
             If Request.UrlReferrer.ToString.Contains("Dept=") Or Request.UrlReferrer.ToString.Contains("Search=") Then
@@ -62,11 +66,11 @@ Partial Class webcontrols_checkout_enrolments
                 fldKnownToYouthJustice.SelectedValue = "No"
             End If
 
-            'If WorkingData.EnrolmentRequestRow.ALGConfirmed = True Then
-            '    fldParentCarerInPrison.SelectedValue = "Yes"
-            'ElseIf WorkingData.EnrolmentRequestRow.ALGConfirmed = False Then
-            '    fldParentCarerInPrison.SelectedValue = "No"
-            'End If
+            If WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "True" Then
+                fldParentCarerInPrison.SelectedValue = "Yes"
+            ElseIf WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "False" Then
+                fldParentCarerInPrison.SelectedValue = "No"
+            End If
         End If
 
         'WorkingData.EnrolmentRequestRow.Title = "Mr"
@@ -391,18 +395,18 @@ Partial Class webcontrols_checkout_enrolments
                 fldMobileTelValidator.IsValid = False
                 fldMobileTelValidator.CssClass = "error alert alert-danger"
                 fldMobileTel.CssClass = "ErrorInput"
-            ElseIf CStr(fldTel.Value).Length > 0 And Not regexTel.IsMatch(CStr(fldTel.Value)) Then
-                fldMobileTelValidator.ErrorMessage = "The format of the home telephone must be a UK standard number begining with 0, with no spaces e.g. 01273800900"
-                fldMobileTelValidator.IsValid = False
-                fldMobileTelValidator.CssClass = "error alert alert-danger"
-                fldTel.CssClass = "ErrorInput"
+                'ElseIf CStr(fldTel.Value).Length > 0 And Not regexTel.IsMatch(CStr(fldTel.Value)) Then
+                '    fldMobileTelValidator.ErrorMessage = "The format of the home telephone must be a UK standard number begining with 0, with no spaces e.g. 01273800900"
+                '    fldMobileTelValidator.IsValid = False
+                '    fldMobileTelValidator.CssClass = "error alert alert-danger"
+                '    fldTel.CssClass = "ErrorInput"
             End If
         End If
 
         If RadioButtonListAlt.SelectedValue = "" Then
             Dim a As New CustomValidator
             a.IsValid = False
-            a.ErrorMessage = "Is your term time address different to your home address? must not be blank"
+            a.ErrorMessage = "Please confirm if your term time address is different to your home address"
             Me.Page.Validators.Add(a)
             RadioButtonListAlt.Style.Add("border", "1px solid red")
         End If
@@ -510,9 +514,9 @@ Partial Class webcontrols_checkout_enrolments
             End If
 
             If fldParentCarerInPrison.SelectedValue = "Yes" Then
-                'WorkingData.EnrolmentRequestRow.ALGConfirmed = True
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "True"
             ElseIf fldParentCarerInPrison.SelectedValue = "No" Then
-                'WorkingData.EnrolmentRequestRow.ALGConfirmed = False
+                WorkingData.EnrolmentRequestRow.StudentDetailUserDefined50 = "False"
             End If
 
             Response.Redirect(GetResourceValue("checkout_parent_guardian_HE_aspx"))
